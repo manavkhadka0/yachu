@@ -1,14 +1,6 @@
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
-import { NavMenus } from "./NavMenus";
 
 const NavActions = () => {
   return (
@@ -29,9 +21,7 @@ const NavActions = () => {
       <div className=" md:hidden block">
         <Sheet>
           <SheetTrigger>
-            <Button variant={"ghost"} size={"icon"}>
-              <MenuIcon />
-            </Button>
+            <MenuIcon />
           </SheetTrigger>
           <SheetContent className="w-[400px] sm:w-[540px]"></SheetContent>
         </Sheet>
