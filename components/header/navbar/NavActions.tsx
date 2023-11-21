@@ -1,12 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
+import { NavMenus } from "./NavMenus";
 
 const NavActions = () => {
   return (
     <div className=" flex gap-2 items-center   justify-end">
-      <Button>
+      <Button className="lg:inline-flex hidden">
         Search
-        <SearchIcon className="h-4 w-4 ml-2" />
+        <SearchIcon className="h-4 w-4 ml-2 " />
+      </Button>
+      <Button className="lg:hidden inline-flex" size={"icon"} variant={"ghost"}>
+        <SearchIcon />
       </Button>
       <Button variant={"ghost"} size={"icon"}>
         <UserIcon />
@@ -14,6 +26,16 @@ const NavActions = () => {
       <Button variant={"ghost"} size={"icon"}>
         <ShoppingCartIcon />
       </Button>
+      <div className=" md:hidden block">
+        <Sheet>
+          <SheetTrigger>
+            <Button variant={"ghost"} size={"icon"}>
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="w-[400px] sm:w-[540px]"></SheetContent>
+        </Sheet>
+      </div>
     </div>
   );
 };

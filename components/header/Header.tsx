@@ -2,7 +2,7 @@ import Navbar from "./navbar/Navbar";
 
 const Header = () => {
   return (
-    <div className="shadow-md w-full">
+    <div className="shadow w-full">
       <Navbar />
     </div>
   );
