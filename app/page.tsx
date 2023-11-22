@@ -1,3 +1,4 @@
+import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import Hero from "@/components/hero/Hero";
@@ -8,6 +9,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col ">
       <Header />
       <Hero />
+      <FlowerDivider />
       <ProductShowcase />
       <Footer />
     </main>
