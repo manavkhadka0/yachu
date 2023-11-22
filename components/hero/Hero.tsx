@@ -3,7 +3,7 @@ import HeroQuickLinks from "./HeroQuickLinks";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="">
       <EmblaCarousel />
       <HeroQuickLinks />
     </div>

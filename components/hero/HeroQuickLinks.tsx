@@ -22,7 +22,7 @@ const HERO_QUICK_LINKS = [
 const HeroQuickLinks = () => {
   return (
     <div className="container ">
-      <div className="flex justify-between gap-4 mx-auto ">
+      <div className="flex justify-between gap-4 mx-auto my-12 ">
         {HERO_QUICK_LINKS.map(({ href, Icon, title }, index) => (
           <Link
             href={href}
