@@ -65,7 +65,7 @@ const navLinks = [
 
 export function NavMenus() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="max-w-full">
       <NavigationMenuList>
         {navLinks.map(({ title, href, options }, index) => (
           <NavigationMenuItem key={index}>

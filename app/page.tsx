@@ -1,3 +1,4 @@
+import BlogSection from "@/components/blog/BlogSection";
 import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <FlowerDivider />
       <ProductShowcase />
+      <BlogSection />
       <Footer />
     </main>
   );

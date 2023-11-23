@@ -1,4 +1,4 @@
-import { TBlog } from "@/types/product";
+import { TBlog } from "@/types/blog";
 import Image from "next/image";
 import Link from "next/link";
 
