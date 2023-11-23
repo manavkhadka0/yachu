@@ -5,7 +5,7 @@ const USEFUL_LINKS = [
   { name: "Home", href: "/" },
   { name: "Shop", href: "/" },
   { name: "About", href: "/" },
-  { name: "Contact", href: "/" },
+  { name: "Contact", href: "/contact" },
   { name: "Blog", href: "/" },
 ];
 
