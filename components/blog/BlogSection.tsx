@@ -23,8 +23,8 @@ const BLOGS: TBlog[] = [
 
 const BlogSection = () => {
   return (
-    <div className=" bg-amber-50">
-      <div className="container p-10 py-16 ">
+    <div className=" ">
+      <div className="container p-10 ">
         <div className="flex justify-between gap-4 items-center  mb-8 ">
           <h3 className="sm:text-2xl font-bold  uppercase">Blogs</h3>
           <Button variant={"outline"} className="sm:text-lg" size={"lg"}>

@@ -51,7 +51,7 @@ const navLinks = [
 
   {
     title: "About",
-    href: "/",
+    href: "/about",
   },
   {
     title: "Contact",

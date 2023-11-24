@@ -4,7 +4,7 @@ import FooterLinkColumn from "./FooterLinkColumn";
 const USEFUL_LINKS = [
   { name: "Home", href: "/" },
   { name: "Shop", href: "/" },
-  { name: "About", href: "/" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Blog", href: "/" },
 ];
