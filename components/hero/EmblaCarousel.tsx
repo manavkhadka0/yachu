@@ -4,6 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import "../../styles/embla.css";
 import BannerImg from "../../public/banner.jpg";
+import useEmblaCarousel from "embla-carousel-react";
 
 export const SLIDES = [
   {
@@ -19,9 +20,6 @@ export const SLIDES = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper ligula in auctor auctor. Aenean bibendum aliquam molestie. Cras mattis molestie urna eget laoreet. ",
   },
 ];
-
-import useEmblaCarousel from "embla-carousel-react";
-import image from "next/image";
 
 const EmblaCarousel = () => {
   const [emblaRef] = useEmblaCarousel({}, [Autoplay()]);

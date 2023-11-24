@@ -1,4 +1,3 @@
-import About from "@/components/about-us/About";
 import BlogSection from "@/components/blog/BlogSection";
 import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 

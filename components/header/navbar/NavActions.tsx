@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
+import NavMenusMobile from "./NavMenusMobile";
 
 const NavActions = () => {
   return (
@@ -23,7 +24,9 @@ const NavActions = () => {
           <SheetTrigger>
             <MenuIcon />
           </SheetTrigger>
-          <SheetContent className="w-[400px] sm:w-[540px]"></SheetContent>
+          <SheetContent className="w-[200px] sm:w-[540px]">
+            <NavMenusMobile />
+          </SheetContent>
         </Sheet>
       </div>
     </div>

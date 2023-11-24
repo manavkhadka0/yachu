@@ -13,61 +13,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-
-const navLinks = [
-  {
-    title: "Home",
-    href: "/",
-  },
-
-  {
-    title: "Shop",
-    options: [
-      {
-        title: "Hair Care",
-        href: "",
-        description:
-          "A modal dialog that interrupts the user with important content and expects a response.",
-      },
-      {
-        title: "Pain Relief",
-        href: "",
-        description:
-          "For sighted users to preview content available behind a link.",
-      },
-      {
-        title: "Skin Care",
-        href: "",
-        description:
-          "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-      },
-      {
-        title: "Treatment",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-      },
-    ],
-  },
-
-  {
-    title: "About",
-    href: "/about",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-  },
-  {
-    title: "Blog",
-    href: "/",
-  },
-];
+import { NAVBAR_LINKS } from "@/constants/navbar";
 
 export function NavMenus() {
   return (
     <NavigationMenu className="max-w-full">
       <NavigationMenuList>
-        {navLinks.map(({ title, href, options }, index) => (
+        {NAVBAR_LINKS.map(({ title, href, options }, index) => (
           <NavigationMenuItem key={index}>
             {options ? (
               <>

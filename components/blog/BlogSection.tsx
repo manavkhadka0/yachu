@@ -1,25 +1,7 @@
 import { TBlog } from "@/types/blog";
 import BlogCard from "./BlogCard";
 import { Button } from "../ui/button";
-
-const BLOGS: TBlog[] = [
-  {
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "Sept 20, 2023",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non sapien ac arcu laoreet luctus ac vitae tortor.   ",
-    image: "/banner.jpg",
-    href: "",
-  },
-  {
-    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "Sept 20, 2023",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non sapien ac arcu laoreet luctus ac vitae tortor.  ",
-    image: "/banner.jpg",
-    href: "",
-  },
-];
+import { BLOGS } from "@/constants/blog";
 
 const BlogSection = () => {
   return (
