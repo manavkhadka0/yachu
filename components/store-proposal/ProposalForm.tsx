@@ -2,19 +2,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { proposalFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
 import RHFTextarea from "../react-hook-form/RHFTextarea";
+import Map from "react-map-gl";
+import { mapboxAccessToken } from "@/constants/constant";
+import GeocoderControl from "../map/geocoder-control";
+import "../../styles/map.css";
+import { useMapCoordinate } from "@/context/MapCoordinateProvider";
 
 const ProposalForm = () => {
   const form = useForm<z.infer<typeof proposalFormSchema>>({
@@ -44,11 +42,37 @@ const ProposalForm = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     window.alert("message sent");
   };
+
+  // Map
+  // const { latLng, setCoordinate } = useMapCoordinate();
+
   return (
     <div className=" p-5 sm:p-8 shadow-lg rounded-lg max-w-4xl mx-auto ">
+      <div className="  h-96">
+        <Map
+          initialViewState={{
+            longitude: -79.4512,
+            latitude: 43.6568,
+            zoom: 13,
+          }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken={mapboxAccessToken}
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <GeocoderControl
+            position="top-left"
+            mapboxAccessToken={mapboxAccessToken || ""}
+            marker
+          />
+        </Map>
+      </div>
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className=" grid grid-cols-3 gap-5">
+            {/* {latLng.lat} {latLng.lng} */}
             <RHFInput
               name="firstName"
               label="First Name"
