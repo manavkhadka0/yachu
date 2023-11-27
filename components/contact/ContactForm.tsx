@@ -13,28 +13,13 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
-
-import { useRouter } from "next/navigation";
-import { Textarea } from "../ui/textarea";
+import { contactFormSchema } from "@/types/zod.schema";
+import RHFInput from "../react-hook-form/RHFInput";
+import RHFTextarea from "../react-hook-form/RHFTextarea";
 
 const ContactForm = () => {
-  const formSchema = z.object({
-    name: z.string().min(4, {
-      message: "Name is required",
-    }),
-    email: z.string().min(10, {
-      message: "Email is required",
-    }),
-    phone: z.string().min(1, {
-      message: "Phone No. is required",
-    }),
-    message: z.string().min(1, {
-      message: "Message is required",
-    }),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof contactFormSchema>>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -45,15 +30,8 @@ const ContactForm = () => {
 
   const {
     handleSubmit,
-    control,
-    register,
-    setValue,
-    reset,
-    trigger,
     formState: { isSubmitting },
   } = form;
-
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     window.alert("message sent");
@@ -62,74 +40,30 @@ const ContactForm = () => {
     <div className=" p-5 sm:p-8 shadow-lg rounded-lg ">
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <FormField
-            control={control}
+          <RHFInput
             name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="eg John Doe"
-                    {...field}
-                    className=" bg-slate-100"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Full Name"
+            placeholder="eg. John Doe"
+            required
           />
-          <FormField
-            control={control}
+          <RHFInput
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email Address</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="eg john@gmail.com"
-                    type="email"
-                    className=" bg-slate-100"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />{" "}
-          <FormField
-            control={control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone Number</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="eg 986543665"
-                    className=" bg-slate-100"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Email Address"
+            placeholder="eg. john@gmail.com"
+            type="email"
+            required
           />
-          <FormField
-            control={control}
+          <RHFInput
+            name="phone"
+            label="Phone Number"
+            placeholder="eg. 986543665"
+            type="number"
+            required
+          />
+          <RHFTextarea
             name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Write your message..."
-                    className=" bg-slate-100"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Message"
+            placeholder="Write your message..."
           />
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>
