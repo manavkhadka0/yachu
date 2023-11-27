@@ -44,7 +44,7 @@ const ProposalForm = () => {
   };
 
   // Map
-  // const { latLng, setCoordinate } = useMapCoordinate();
+  const { latLng } = useMapCoordinate();
 
   return (
     <div className=" p-5 sm:p-8 shadow-lg rounded-lg max-w-4xl mx-auto ">
@@ -69,10 +69,13 @@ const ProposalForm = () => {
           />
         </Map>
       </div>
+      <div className="my-4">
+        <h4 className="font-bold">Location</h4>
+        Latitude: {latLng.lat} Longitude{latLng.lng}
+      </div>
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className=" grid grid-cols-3 gap-5">
-            {/* {latLng.lat} {latLng.lng} */}
             <RHFInput
               name="firstName"
               label="First Name"

@@ -1,10 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
-import { useControl, Marker, MarkerProps, ControlPosition } from "react-map-gl";
+import {
+  useControl,
+  Marker,
+  MarkerProps,
+  ControlPosition,
+  MarkerDragEvent,
+} from "react-map-gl";
 import MapboxGeocoder, { GeocoderOptions } from "@mapbox/mapbox-gl-geocoder";
-// import { useMapCoordinate } from "@/context/MapCoordinateProvider";
+import { useMapCoordinate } from "@/context/MapCoordinateProvider";
 
 type GeocoderControlProps = Omit<
   GeocoderOptions,
@@ -22,47 +27,28 @@ type GeocoderControlProps = Omit<
 
 /* eslint-disable complexity,max-statements */
 export default function GeocoderControl(props: GeocoderControlProps) {
-  // const { latLng, setCoordinate } = useMapCoordinate();
-  const [marker, setMarker] = useState<any>(null);
-  // const onMarkerDrag = (event: MarkerDragEvent) => {
-  //   setCoordinate({ lat: event.lngLat.lat, lng: event.lngLat.lng });
-  // };
-  React.useEffect(() => {
-    console.log(marker);
-  }, [marker]);
+  const { latLng, setCoordinate } = useMapCoordinate();
+  const onMarkerDrag = (event: MarkerDragEvent) => {
+    setCoordinate({ lat: event.lngLat.lat, lng: event.lngLat.lng });
+  };
   const geocoder = useControl<MapboxGeocoder>(
     () => {
       const ctrl = new MapboxGeocoder({
         ...props,
-        marker: marker,
+        marker: true,
         accessToken: props.mapboxAccessToken,
       });
       if (props.onLoading) ctrl.on("loading", props.onLoading);
       if (props.onResults) ctrl.on("results", props.onResults);
       ctrl.on("result", (evt) => {
         if (props.onResult) props.onResult(evt);
-
         const { result } = evt;
         const location =
           result &&
           (result.center ||
             (result.geometry?.type === "Point" && result.geometry.coordinates));
         if (location && props.marker) {
-          // setCoordinate({ lng: location[0], lat: location[1] });
-          console.log("first");
-          console.log(location[0]);
-
-          setMarker(
-            <Marker
-              // draggable
-              // onDrag={onMarkerDrag}
-              longitude={location[0]}
-              latitude={location[1]}
-            />
-          );
-        } else {
-          console.log("second");
-          setMarker(null);
+          setCoordinate({ lng: location[0], lat: location[1] });
         }
       });
       if (props.onError) ctrl.on("error", props.onError);
@@ -143,7 +129,14 @@ export default function GeocoderControl(props: GeocoderControlProps) {
     //   geocoder.setWorldview(props.worldview);
     // }
   }
-  return marker;
+  return (
+    <Marker
+      draggable
+      onDrag={onMarkerDrag}
+      longitude={latLng.lng}
+      latitude={latLng.lat}
+    />
+  );
 }
 
 const noop = () => {};
