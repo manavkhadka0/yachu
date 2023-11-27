@@ -8,11 +8,7 @@ import { Loader2 } from "lucide-react";
 import { proposalFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
 import RHFTextarea from "../react-hook-form/RHFTextarea";
-import Map from "react-map-gl";
-import { mapboxAccessToken } from "@/constants/constant";
-import GeocoderControl from "../map/geocoder-control";
-import "../../styles/map.css";
-import { useMapCoordinate } from "@/context/MapCoordinateProvider";
+import StoreLocation from "./StoreLocation";
 
 const ProposalForm = () => {
   const form = useForm<z.infer<typeof proposalFormSchema>>({
@@ -44,35 +40,9 @@ const ProposalForm = () => {
   };
 
   // Map
-  const { latLng } = useMapCoordinate();
 
   return (
-    <div className=" p-5 sm:p-8 shadow-lg rounded-lg max-w-4xl mx-auto ">
-      <div className="  h-96">
-        <Map
-          initialViewState={{
-            longitude: -79.4512,
-            latitude: 43.6568,
-            zoom: 13,
-          }}
-          mapStyle="mapbox://styles/mapbox/streets-v9"
-          mapboxAccessToken={mapboxAccessToken}
-          style={{
-            height: "100%",
-            width: "100%",
-          }}
-        >
-          <GeocoderControl
-            position="top-left"
-            mapboxAccessToken={mapboxAccessToken || ""}
-            marker
-          />
-        </Map>
-      </div>
-      <div className="my-4">
-        <h4 className="font-bold">Location</h4>
-        Latitude: {latLng.lat} Longitude{latLng.lng}
-      </div>
+    <div className=" p-5 sm:p-8 shadow-lg   rounded-lg max-w-4xl mx-auto my-10 ">
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className=" grid grid-cols-3 gap-5">
@@ -135,6 +105,7 @@ const ProposalForm = () => {
             rows={6}
             required
           />
+          <StoreLocation />
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && (

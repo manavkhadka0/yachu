@@ -14,8 +14,8 @@ const MapCoordinateContext = createContext<
   MapCoordinateContextType | undefined
 >({
   latLng: {
-    lng: -79.4512,
-    lat: 43.6568,
+    lng: 85.320582,
+    lat: 27.708317,
   },
   setCoordinate: () => {},
 });
@@ -26,8 +26,8 @@ export function MapCoordinateProvider({
   children: React.ReactNode;
 }) {
   const [latLng, setLatLng] = useState<LatLng>({
-    lng: -79.4512,
-    lat: 43.6568,
+    lng: 85.320582,
+    lat: 27.708317,
   });
 
   const setCoordinate = (latLng: LatLng) => {
