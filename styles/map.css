@@ -2,3 +2,9 @@
 
 /* Import Mapbox GL Geocoder stylesheet */
 @import url("https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css");
+
+@media screen and (max-width: 600px) {
+  .mapboxgl-ctrl-geocoder {
+    width: 200px;
+  }
+}
