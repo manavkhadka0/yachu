@@ -42,10 +42,14 @@ const ProposalForm = () => {
   // Map
 
   return (
-    <div className=" p-5 sm:p-8 shadow-lg   rounded-lg max-w-4xl mx-auto my-10 ">
+    <div className=" p-5 sm:p-8 shadow-lg   rounded-lg max-w-4xl mx-auto  bg-white ">
+      <h1 className=" text-xl font-bold">Store Proposal</h1>
+      <p className="text-sm text-gray-500  mb-6">
+        Provide your details and plans to open up a store for yachu products.
+      </p>
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <div className=" grid grid-cols-3 gap-5">
+          <div className=" grid sm:grid-cols-3 gap-5">
             <RHFInput
               name="firstName"
               label="First Name"
@@ -64,7 +68,7 @@ const ProposalForm = () => {
               required
             />
           </div>
-          <div className=" grid grid-cols-3 gap-5">
+          <div className=" grid sm:grid-cols-3 gap-5">
             <RHFInput
               name="email"
               label="Email Address"
@@ -85,7 +89,7 @@ const ProposalForm = () => {
               placeholder="eg. 01-2323234"
             />
           </div>
-          <div className=" grid grid-cols-2 gap-5">
+          <div className=" grid sm:grid-cols-2 gap-5">
             <RHFInput
               name="temporaryAddress"
               label="Temporary Address"

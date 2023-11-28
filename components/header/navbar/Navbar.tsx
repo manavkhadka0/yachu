@@ -4,7 +4,7 @@ import NavActions from "./NavActions";
 import Link from "next/link";
 const Navbar = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 items-center  p-4 container mx-auto">
+    <div className="grid grid-cols-2 md:grid-cols-3 items-center  p-4 container mx-auto  ">
       <div className="">
         <Link href={"/"}>
           <Image

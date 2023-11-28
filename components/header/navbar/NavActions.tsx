@@ -19,7 +19,7 @@ const NavActions = () => {
       <Button variant={"ghost"} size={"icon"}>
         <ShoppingCartIcon />
       </Button>
-      <div className=" md:hidden block">
+      <div className=" md:hidden flex justify-center items-center">
         <Sheet>
           <SheetTrigger>
             <MenuIcon />
