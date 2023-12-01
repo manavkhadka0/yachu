@@ -22,7 +22,7 @@ const SUPPORT_LINKS = [
   { name: "Refund Policy", href: "/" },
   { name: "Shipping Policy", href: "/" },
   { name: "Terms of Service", href: "/" },
-  { name: "Store Proposal", href: "/store-proposal" },
+  { name: "Franchise Proposal", href: "/franchise-proposal" },
 ];
 
 const Footer = () => {
