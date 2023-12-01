@@ -30,10 +30,6 @@ const StoreLocation = () => {
           />
         </Map>
       </div>
-      <div className="my-4">
-        <h4 className="font-bold">Location</h4>
-        Latitude: {latLng.lat} Longitude: {latLng.lng}
-      </div>
     </div>
   );
 };

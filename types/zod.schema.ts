@@ -4,7 +4,6 @@ export const proposalFormSchema = z.object({
   firstName: z.string().min(1, {
     message: "Firstname is required",
   }),
-  middleName: z.string().optional(),
   lastName: z.string().min(1, {
     message: "Lastname is required",
   }),
@@ -13,16 +12,14 @@ export const proposalFormSchema = z.object({
   email: z.string().min(10, {
     message: "Email is required",
   }),
-  landlineNumber: z.string().optional(),
-
   mobileNumber: z.string().refine((value) => /^\d{10}$/.test(value), {
     message: "Invalid mobile number",
   }),
-  temporaryAddress: z.string().optional(),
-  permanentAddress: z.string().min(1, {
-    message: "Address is required",
-  }),
+  address: z.string().optional(),
   skills: z.array(z.string()),
+  location: z.string().min(1, {
+    message: "Location is required",
+  }),
   experience: z.string().min(1, {
     message: "Message is required",
   }),

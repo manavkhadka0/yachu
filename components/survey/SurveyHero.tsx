@@ -13,7 +13,7 @@ const SurveyHero = () => {
           className="w-60"
         />
       </div>
-      <h1 className="text-4xl font-bold text-center mb-4">Survey</h1>
+      <h1 className="text-4xl font-bold text-center mb-4"> Survey</h1>
     </div>
   );
 };

@@ -2,28 +2,30 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
-import { Form } from "../ui/form";
+import { Form, FormControl, FormItem, FormLabel } from "../ui/form";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { proposalFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
 import RHFTextarea from "../react-hook-form/RHFTextarea";
-import StoreLocation from "./StoreLocation";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/components/ui/use-toast";
+import RHFradio from "../react-hook-form/RHFRadio";
+import { RadioGroupItem } from "../ui/radio-group";
 
 const ProposalForm = () => {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof proposalFormSchema>>({
     resolver: zodResolver(proposalFormSchema),
     defaultValues: {
       firstName: "",
-      middleName: "",
       lastName: "",
       age: "",
       gender: "",
-      landlineNumber: "",
       mobileNumber: "",
-      temporaryAddress: "",
-      permanentAddress: "",
+      address: "",
       experience: "",
+      location: "",
       skills: [],
       email: "",
     },
@@ -31,12 +33,24 @@ const ProposalForm = () => {
 
   const {
     handleSubmit,
-
     formState: { isSubmitting },
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    window.alert("message sent");
+    emailjs
+      .send("service_57mk83w", "template_uckwqs9", data, "HkRr4Zmamy8axmFd5")
+      .then((result) => {
+        toast({
+          title: "Proposal for franchise submitted",
+          description: "We will contact you soon.",
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: "Error submitting proposal",
+          description: "We are getting some error. Please try again.",
+        });
+      });
   };
 
   // Map
@@ -49,17 +63,12 @@ const ProposalForm = () => {
       </p>
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <div className=" grid sm:grid-cols-3 gap-5">
+          <div className=" grid sm:grid-cols-2 gap-5">
             <RHFInput
               name="firstName"
               label="First Name"
               placeholder="eg. John "
               required
-            />
-            <RHFInput
-              name="middleName"
-              label="Middle Name"
-              placeholder="eg. Kumar"
             />
             <RHFInput
               name="lastName"
@@ -68,7 +77,7 @@ const ProposalForm = () => {
               required
             />
           </div>
-          <div className=" grid sm:grid-cols-3 gap-5">
+          <div className=" grid sm:grid-cols-2 gap-5">
             <RHFInput
               name="email"
               label="Email Address"
@@ -83,24 +92,40 @@ const ProposalForm = () => {
               type="number"
               required
             />
-            <RHFInput
-              name="landlineNumber"
-              label="Landline Number"
-              placeholder="eg. 01-2323234"
-            />
           </div>
           <div className=" grid sm:grid-cols-2 gap-5">
             <RHFInput
-              name="temporaryAddress"
+              name="address"
               label="Temporary Address"
               placeholder="eg. Biratnagar - 2, Morang"
             />
             <RHFInput
-              name="permanentAddress"
-              label="Permanent Address"
-              placeholder="eg. New Baneshwor, Kathmandu"
+              name="age"
+              label="Age"
+              placeholder="eg. 25"
+              type="number"
               required
             />
+            <RHFradio name="gender" label="Gender">
+              <FormItem className="flex items-center space-x-3 space-y-0">
+                <FormControl>
+                  <RadioGroupItem value="all" />
+                </FormControl>
+                <FormLabel className="font-normal">Male</FormLabel>
+              </FormItem>
+              <FormItem className="flex items-center space-x-3 space-y-0">
+                <FormControl>
+                  <RadioGroupItem value="mentions" />
+                </FormControl>
+                <FormLabel className="font-normal">Female</FormLabel>
+              </FormItem>
+              <FormItem className="flex items-center space-x-3 space-y-0">
+                <FormControl>
+                  <RadioGroupItem value="none" />
+                </FormControl>
+                <FormLabel className="font-normal">Others</FormLabel>
+              </FormItem>
+            </RHFradio>
           </div>
           <RHFTextarea
             name="experience"
@@ -109,7 +134,15 @@ const ProposalForm = () => {
             rows={6}
             required
           />
-          <StoreLocation />
+          <div className=" grid sm:grid-cols-2 gap-5">
+            <RHFInput
+              name="location"
+              label="Where are you planning to open the store?"
+              placeholder="eg. Biratnagar - 2, Morang"
+              required
+            />
+          </div>
+          {/* <StoreLocation /> */}
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && (
