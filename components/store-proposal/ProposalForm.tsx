@@ -33,6 +33,7 @@ const ProposalForm = () => {
 
   const {
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = form;
 
@@ -51,12 +52,13 @@ const ProposalForm = () => {
           description: "We are getting some error. Please try again.",
         });
       });
+    reset();
   };
 
   // Map
 
   return (
-    <div className=" p-5 sm:p-8 shadow-lg   rounded-lg max-w-4xl mx-auto  bg-white ">
+    <div className=" p-5 sm:p-8 max-w-4xl mx-auto  bg-white ">
       <h1 className=" text-xl font-bold">Store Proposal</h1>
       <p className="text-sm text-gray-500  mb-6">
         Provide your details and plans to open up a store for yachu products.
