@@ -109,7 +109,7 @@ const Hero = () => {
           width={700}
           className=" w-[600px] xl:w-auto translate-y-6 -translate-x-16 lg:block hidden "
         />
-        <div className=" xl:block hidden absolute top-7 left-28 ">
+        <div className=" xl:block hidden absolute top-7 left-24 ">
           <Image
             src={"/person.png"}
             alt="curve line"
