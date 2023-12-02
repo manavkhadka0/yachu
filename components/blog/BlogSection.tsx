@@ -13,7 +13,7 @@ const BlogSection = () => {
             View all
           </Button>
         </div>
-        <div className="max-auto grid grid-cols-2 gap-10 ">
+        <div className="max-auto grid sm:grid-cols-2 gap-10 ">
           {BLOGS.map((blog, index) => (
             <BlogCard blog={blog} key={index} />
           ))}
