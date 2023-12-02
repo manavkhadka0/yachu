@@ -20,3 +20,8 @@ export const PRODUCTS: TProduct[] = [
     image: ProductImg,
   },
 ];
+
+export const HERO_BEFORE_AFTER = [
+  { before: "/before.jpeg", after: "/after.jpg" },
+  { before: "/before.jpeg", after: "/after.jpg" },
+];
