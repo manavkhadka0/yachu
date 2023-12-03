@@ -7,7 +7,7 @@ const ProductShowcase = () => {
   return (
     <div className="container pb-14">
       <div className="flex justify-between gap-4 items-center  mb-8 ">
-        <h3 className="sm:text-2xl font-bold  uppercase">Bestsellers</h3>
+        <h3 className="sm:text-2xl font-bold  ">Our Products</h3>
         <Button variant={"outline"} className="sm:text-lg" size={"lg"}>
           View all
         </Button>
