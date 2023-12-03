@@ -9,7 +9,7 @@ const FooterContactDetails = () => {
           <MapPin className="h-4 w-4 mt-1" />
           <div className="">
             <p>Yachu Hair Oil</p>
-            <p className=" text-gray-500">Kathmandu, Nepal</p>
+            <p className=" text-gray-300">Kathmandu, Nepal</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
