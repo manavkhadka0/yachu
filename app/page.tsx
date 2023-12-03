@@ -5,6 +5,7 @@ import ContactForm from "@/components/contact/ContactForm";
 import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 
 import Hero from "@/components/hero/Hero";
+import Ingredients from "@/components/ingredients/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <FlowerDivider />
       <About />
       <OurTeam />
+      <Ingredients />
       <FlowerDivider />
       <BlogSection />
       <FlowerDivider />
