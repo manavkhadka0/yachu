@@ -14,8 +14,8 @@ const FooterLinkColumn: React.FC<FooterLinkColumnProps> = ({
 }) => {
   return (
     <div>
-      <p className="text-lg font-semibold mb-2">{title}</p>
-      <div className="flex flex-col gap-1">
+      <p className="text-lg font-semibold mb-6">{title}</p>
+      <div className="flex flex-col gap-4">
         {links.map(({ name, href }, index) => (
           <Link
             href={href}
