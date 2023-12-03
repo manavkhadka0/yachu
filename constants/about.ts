@@ -17,7 +17,7 @@ export const OUR_TEAM = [
   {
     name: "Chaturman Limbu",
     imageSrc: "/team/chaturman-limbu-mm.jpg",
-    position: "Marketing Manager",
+    position: "General Manager",
   },
   {
     name: "Parbati Shrestha",

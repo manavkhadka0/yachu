@@ -4,9 +4,8 @@ import OurTeam from "./OurTeam";
 
 const About = () => {
   return (
-    <div className=" ">
-      <div className="container py-12">
-        <h2 className=" text-3xl font-bold mb-4 text-center">About Us</h2>
+    <div className=" " id="about">
+      <div className="container pb-12">
         <div className="grid mb-12  ">
           <div className="">
             <Image

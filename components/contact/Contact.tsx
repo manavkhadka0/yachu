@@ -3,7 +3,7 @@ import FAQ from "./FAQ";
 
 const Contact = () => {
   return (
-    <div className="w-full pt-4 container pb-16">
+    <div className="w-full pt-4 container pb-16" id="contact">
       <h3 className="text-2xl font-bold mb-4  text-center ">Contact Us</h3>
       <div className=" max-w-3xl mx-auto">
         <ContactForm />
