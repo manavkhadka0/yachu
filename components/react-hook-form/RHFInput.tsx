@@ -8,6 +8,7 @@ import {
 } from "../ui/form";
 import { Input, InputProps } from "../ui/input";
 import { HTMLInputTypeAttribute } from "react";
+import { cn } from "@/lib/utils";
 
 type RHFInputProps = InputProps & {
   name: string;
@@ -15,6 +16,7 @@ type RHFInputProps = InputProps & {
   placeholder?: string;
   required?: boolean;
   type?: HTMLInputTypeAttribute | undefined;
+  className?: string;
 };
 
 const RHFInput: React.FC<RHFInputProps> = ({
@@ -23,6 +25,7 @@ const RHFInput: React.FC<RHFInputProps> = ({
   placeholder,
   required,
   type,
+  className,
   ...others
 }) => {
   const { control } = useFormContext();
@@ -39,7 +42,7 @@ const RHFInput: React.FC<RHFInputProps> = ({
           <FormControl>
             <Input
               placeholder={placeholder || ""}
-              className=" bg-slate-100"
+              className={cn(" bg-slate-100", className)}
               type={type}
               {...field}
               {...others}

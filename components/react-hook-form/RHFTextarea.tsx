@@ -6,14 +6,15 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
 import { Textarea, TextareaProps } from "../ui/textarea";
+import { cn } from "@/lib/utils";
 
 type RHFInputProps = TextareaProps & {
   name: string;
   label: string;
   placeholder?: string;
   required?: boolean;
+  className?: string;
 };
 
 const RHFTextarea: React.FC<RHFInputProps> = ({
@@ -21,6 +22,7 @@ const RHFTextarea: React.FC<RHFInputProps> = ({
   label,
   placeholder,
   required,
+  className,
   ...others
 }) => {
   const { control } = useFormContext();
@@ -37,7 +39,7 @@ const RHFTextarea: React.FC<RHFInputProps> = ({
           <FormControl>
             <Textarea
               placeholder={placeholder || ""}
-              className=" bg-slate-100"
+              className={cn(" bg-slate-100", className)}
               {...field}
               {...others}
             />

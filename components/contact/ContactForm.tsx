@@ -45,6 +45,7 @@ const ContactForm = () => {
             label="Full Name"
             placeholder="eg. John Doe"
             required
+            className="text-base"
           />
           <RHFInput
             name="email"
@@ -52,18 +53,22 @@ const ContactForm = () => {
             placeholder="eg. john@gmail.com"
             type="email"
             required
+            className="text-base"
           />
           <RHFInput
             name="phone"
             label="Phone Number"
             placeholder="eg. 986543665"
             type="number"
+            className="text-base"
             required
           />
           <RHFTextarea
             name="message"
             label="Message"
+            rows={5}
             placeholder="Write your message..."
+            className="text-base py-4 "
           />
           <div className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>

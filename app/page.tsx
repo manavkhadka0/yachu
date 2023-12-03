@@ -1,6 +1,6 @@
 import About from "@/components/about-us/About";
+import OurTeam from "@/components/about-us/OurTeam";
 import BlogSection from "@/components/blog/BlogSection";
-import Contact from "@/components/contact/Contact";
 import ContactForm from "@/components/contact/ContactForm";
 import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 
@@ -15,10 +15,16 @@ export default function Home() {
       <ProductShowcase />
       <FlowerDivider />
       <About />
+      <OurTeam />
       <FlowerDivider />
       <BlogSection />
       <FlowerDivider />
-      <Contact />
+      <div className="container mb-16">
+        <div className=" flex justify-center flex-col max-w-3xl mx-auto">
+          <h1 className="text-2xl font-bold my-5  text-center">Contact Us</h1>
+          <ContactForm />
+        </div>
+      </div>
     </main>
   );
 }
