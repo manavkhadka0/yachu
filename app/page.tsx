@@ -21,7 +21,9 @@ export default function Home() {
       <FlowerDivider />
       <div className="container mb-16">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto">
-          <h1 className="text-2xl font-bold my-5  text-center">Contact Us</h1>
+          <h3 className="sm:text-2xl font-bold  uppercase text-center">
+            Contact Yachu
+          </h3>
           <ContactForm />
         </div>
       </div>

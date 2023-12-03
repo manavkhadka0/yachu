@@ -5,8 +5,7 @@ import FAQ from "./FAQ";
 const Contact = () => {
   return (
     <div className="w-full pt-4 container pb-16" id="contact">
-      <h3 className="text-2xl font-bold mb-8   ">Contact Us</h3>
-
+      <h3 className="text-2xl font-bold mb-8   ">Contact Yachu</h3>
       <div className=" grid sm:grid-flow-col grid-flow-row sm:grid-cols-2 mx-auto  gap-10 ">
         <ContactForm />
         <ContactDetails />

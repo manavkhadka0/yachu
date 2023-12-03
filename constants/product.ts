@@ -1,23 +1,31 @@
 import { TProduct } from "@/types/product";
-import ProductImg from "../public/product.jpeg";
 
 export const PRODUCTS: TProduct[] = [
   {
-    title: "Yachu Hari Oil",
-    subtitle: "High-quality hair growth experience",
+    title: "Yachu Hair Oil - For Dandruff",
+    subtitle: "Regrowth For Dandruff Case",
     rating: 4.5,
     reviews: 120,
     price: 99.99,
     tag: "Bestseller",
-    image: ProductImg,
+    imageSrc: "/product/dandruff.png",
   },
   {
-    title: "Yachu Skil Oil",
-    subtitle: "High-quality skin care",
+    title: "Yachu Hair Oil - For Hairfall",
+    subtitle: "Regrowth For Hair Fall Case",
+    rating: 4.5,
+    reviews: 120,
+    price: 99.99,
+    tag: "Bestseller",
+    imageSrc: "/product/hairfall.png",
+  },
+  {
+    title: "Yachu Skil Oil - For baldness",
+    subtitle: "Regrowth For Baldness Case",
     rating: 4.2,
     reviews: 80,
     price: 149.99,
-    image: ProductImg,
+    imageSrc: "/product/baldness.png",
   },
 ];
 

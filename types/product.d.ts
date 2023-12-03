@@ -7,5 +7,5 @@ export type TProduct = {
   reviews: number;
   price: number;
   tag?: string;
-  image: StaticImageData;
+  imageSrc: string;
 };
