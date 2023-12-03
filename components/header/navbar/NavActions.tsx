@@ -1,20 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Routes } from "@/utils/routes";
-import { MenuIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
+import { MenuIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 import NavMenusMobile from "./NavMenusMobile";
 
 const NavActions = () => {
   return (
     <div className=" flex gap-2 items-center   justify-end">
-      <Button variant={"ghost"} size={"icon"}>
+      <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
         <UserIcon />
       </Button>
-      <Button variant={"ghost"} size={"icon"}>
+      <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
         <ShoppingCartIcon />
       </Button>
-      <div className="flex gap-2 flex-col">
+      <div className=" hidden lg:flex gap-2 flex-col">
         <p className="text-sm text-gray-500">Want to know your hair type?</p>
         <Link href={Routes.survey.root} legacyBehavior passHref>
           <Button className="lg:inline-flex hidden">
@@ -22,7 +22,7 @@ const NavActions = () => {
           </Button>
         </Link>
       </div>
-      <div className=" md:hidden block">
+      <div className=" lg:hidden block">
         <Sheet>
           <SheetTrigger>
             <MenuIcon />

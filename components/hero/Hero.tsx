@@ -43,7 +43,7 @@ const Hero = () => {
         </div>
         <div className=" md:hidden   w-full flex flex-col items-center mb-6">
           <Image
-            src={"/yachu-hero.svg"}
+            src={"/person-product.png"}
             alt="curve line"
             height={500}
             width={500}
@@ -117,12 +117,10 @@ const Hero = () => {
             width={700}
             className=" w-[220px]      "
           />
-
           <div className="py-4">
             <p className="text-amber-600 text-lg font-bold">
-              पुर्खा को फर्मुला अब नयाँ टेक्नोलोजी क साथ
+              पुर्खा को फर्मुला + New Technology
             </p>
-            <p className="text-lg">Reverse the Hair Damage Process</p>
           </div>
         </div>
         <div className=" w-full">
