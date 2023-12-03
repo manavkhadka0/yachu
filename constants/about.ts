@@ -20,7 +20,7 @@ export const OUR_TEAM = [
     position: "General Manager",
   },
   {
-    name: "Parbati Shrestha",
+    name: "Rajesh Lama",
     imageSrc: "/team/rajesh-lama-photographer.jpeg",
     position: "Photo/Videographer",
   },
