@@ -46,16 +46,16 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
   //   href: "/",
   // },
 
-  {
-    title: "About",
-    href: "#about",
-  },
+  // {
+  //   title: "About",
+  //   href: "#about",
+  // },
   {
     title: "Contact",
-    href: "#contact",
+    href: "/contact",
   },
   {
-    title: "Blog",
-    href: "#blog",
+    title: "Franchise Proposal",
+    href: "/franchise-proposal",
   },
 ];
