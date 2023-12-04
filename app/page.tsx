@@ -1,6 +1,5 @@
 import About from "@/components/home/about-us/About";
 import OurTeam from "@/components/home/about-us/OurTeam";
-import BlogSection from "@/components/blog/BlogSection";
 import ContactForm from "@/components/contact/ContactForm";
 import FAQ from "@/components/contact/FAQ";
 import FlowerDivider from "@/components/shared/FlowerDivider";
@@ -8,19 +7,31 @@ import FlowerDivider from "@/components/shared/FlowerDivider";
 import Hero from "@/components/home/hero/Hero";
 import Ingredients from "@/components/home/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
+import Questions from "@/components/home/about-us/Questions";
 
 export default function Home() {
   return (
     <main className="flex flex-col ">
       <Hero />
+
       <FlowerDivider />
+
+      {/* ------------ Products ------------*/}
       <ProductShowcase />
       <Ingredients />
+      {/* ---------------------------------- */}
+
       <FlowerDivider />
+
+      {/* --------- About Yachu ------------*/}
       <About />
+      <Questions />
       <OurTeam />
+      {/* ---------------------------------- */}
+
       <FlowerDivider />
-      <BlogSection />
+
+      {/* <BlogSection /> */}
       {/* <VideoShowcase /> */}
       <FlowerDivider />
       <div className="container mb-20 mt-10">
