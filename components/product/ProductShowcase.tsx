@@ -12,7 +12,7 @@ const ProductShowcase = () => {
           View all
         </Button>
       </div>
-      <div className=" grid sm:grid-cols-3 grid-cols-2  gap-4 sm:gap-6 xl:gap-20 ">
+      <div className=" grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-4 sm:gap-6 xl:gap-18 ">
         {PRODUCTS.map((product, index) => (
           <ProductCard product={product} key={index} />
         ))}

@@ -2,30 +2,31 @@ import { TProduct } from "@/types/product";
 
 export const PRODUCTS: TProduct[] = [
   {
-    title: "Yachu Hair Oil - For Dandruff",
-    subtitle: "Regrowth For Dandruff Case",
+    title: "New Hair Growth for Dandruff Case",
+    subtitle:
+      "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
     rating: 4.5,
     reviews: 120,
     price: 99.99,
     tag: "Bestseller",
-    imageSrc: "/product/dandruff.png",
+    imageSrc: "/product.jpeg",
   },
   {
-    title: "Yachu Hair Oil - For Hairfall",
-    subtitle: "Regrowth For Hair Fall Case",
+    title: "New Hair Growth for Hairfall Case",
+    subtitle: "It helps to stop hair fall and grows new hair.",
     rating: 4.5,
     reviews: 120,
     price: 99.99,
     tag: "Bestseller",
-    imageSrc: "/product/hairfall.png",
+    imageSrc: "/product.jpeg",
   },
   {
-    title: "Yachu Skil Oil - For baldness",
-    subtitle: "Regrowth For Baldness Case",
+    title: "Re Growth for Baldness Case",
+    subtitle: "It helps to grow new hair.",
     rating: 4.2,
     reviews: 80,
     price: 149.99,
-    imageSrc: "/product/baldness.png",
+    imageSrc: "/product.jpeg",
   },
 ];
 
