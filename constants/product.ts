@@ -5,8 +5,6 @@ export const PRODUCTS: TProduct[] = [
     title: "New Hair Growth for Dandruff Case",
     subtitle:
       "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
-    rating: 4.5,
-    reviews: 120,
     price: 99.99,
     tag: "Bestseller",
     imageSrc: "/product.jpeg",
@@ -14,8 +12,6 @@ export const PRODUCTS: TProduct[] = [
   {
     title: "New Hair Growth for Hairfall Case",
     subtitle: "It helps to stop hair fall and grows new hair.",
-    rating: 4.5,
-    reviews: 120,
     price: 99.99,
     tag: "Bestseller",
     imageSrc: "/product.jpeg",
@@ -23,8 +19,6 @@ export const PRODUCTS: TProduct[] = [
   {
     title: "Re Growth for Baldness Case",
     subtitle: "It helps to grow new hair.",
-    rating: 4.2,
-    reviews: 80,
     price: 149.99,
     imageSrc: "/product.jpeg",
   },

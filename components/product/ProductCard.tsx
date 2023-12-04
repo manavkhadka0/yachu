@@ -7,9 +7,9 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { title, subtitle, rating, reviews, price, tag, imageSrc } = product;
+  const { title, subtitle, price, tag, imageSrc } = product;
   return (
-    <div className="product-card-shadow pt-2 sm:pt-4 rounded-lg sm:rounded-2xl  r overflow-hidden">
+    <div className="product-card-shadow py-4 sm:py-8 rounded-lg sm:rounded-2xl  r overflow-hidden">
       <div className=" rounded-t-3xl bg-white  flex flex-col h-full justify-between items-center overflow-hidden">
         <div className="flex p-4 flex-col justify-center items-center h-64">
           <Image
@@ -27,16 +27,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <p className=" text-xs sm:text-base font-semibold text-lime-700 text-center mt-4">
             {subtitle}
           </p>
-          <div className=" flex w-full justify-between gap-2 my-6 sm:my-8 px-4 ">
-            <p className=" items-center gap-1 text-sm text-gray-500 flex">
-              {rating}
-              <StarIcon className=" text-orange-500 h-3 w-3" />
-            </p>
-            <p className="flex items-center gap-1 text-sm text-gray-500">
-              <MessageSquareIcon className=" text-orange-500 h-3 w-3" />
-              {reviews} Reviews
-            </p>
-          </div>
         </div>
         {/* <div className="w-full flex flex-col">
           <div className="sm:text-xl text-sm font-bold my-2 sm:my-4 text-center">
