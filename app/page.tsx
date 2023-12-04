@@ -1,12 +1,12 @@
-import About from "@/components/about-us/About";
-import OurTeam from "@/components/about-us/OurTeam";
+import About from "@/components/home/about-us/About";
+import OurTeam from "@/components/home/about-us/OurTeam";
 import BlogSection from "@/components/blog/BlogSection";
 import ContactForm from "@/components/contact/ContactForm";
 import FAQ from "@/components/contact/FAQ";
-import FlowerDivider from "@/components/custom-ui/FlowerDivider";
+import FlowerDivider from "@/components/shared/FlowerDivider";
 
-import Hero from "@/components/hero/Hero";
-import Ingredients from "@/components/ingredients/Ingredients";
+import Hero from "@/components/home/hero/Hero";
+import Ingredients from "@/components/home/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
 
 export default function Home() {

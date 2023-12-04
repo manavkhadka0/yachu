@@ -1,5 +1,5 @@
 import { MoveRightIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import Image from "next/image";
 import { HERO_BEFORE_AFTER } from "@/constants/product";
 
