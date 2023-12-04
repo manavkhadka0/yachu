@@ -8,6 +8,7 @@ import Hero from "@/components/home/hero/Hero";
 import Ingredients from "@/components/home/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
 import Questions from "@/components/home/about-us/Questions";
+import YachuWomen from "@/components/home/YachuWomen";
 
 export default function Home() {
   return (
@@ -31,7 +32,7 @@ export default function Home() {
 
       <FlowerDivider />
 
-      {/* <BlogSection /> */}
+      <YachuWomen />
       {/* <VideoShowcase /> */}
       <FlowerDivider />
       <div className="container mb-20 mt-10">
