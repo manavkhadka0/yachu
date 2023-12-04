@@ -6,7 +6,7 @@ const SurveyHero = () => {
     <div className="flex gap-2 flex-col md:flex-row items-end">
       <div className="">
         <Image
-          src="/logo.jpg"
+          src="/logo.svg"
           alt="me"
           width="500"
           height="500"

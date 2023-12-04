@@ -8,7 +8,7 @@ const About = () => {
         <div className="grid sm:grid-cols-2 sm:grid-flow-col grid-flow-row  ">
           <div className="sm:order-1">
             <Image
-              src="/logo.jpg"
+              src="/logo.svg"
               height={300}
               width={500}
               alt="logo"

@@ -36,11 +36,11 @@ const Footer = () => {
       <div className=" container mx-auto grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 py-8 ">
         <div className="flex flex-col gap-4">
           <Image
-            src="/logo.jpg"
+            src="/logo-white.svg"
             alt="me"
             width="500"
             height="500"
-            className="w-28"
+            className="w-44"
           />
           <p className="text-slate-300 text-sm">
             nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
