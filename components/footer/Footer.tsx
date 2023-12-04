@@ -32,8 +32,8 @@ const SUPPORT_LINKS = [
 
 const Footer = () => {
   return (
-    <div className=" w-full bg-slate-800 text-white">
-      <div className=" container mx-auto grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 py-8 border-t">
+    <div className=" w-full bg-slate-800 text-white py-8">
+      <div className=" container mx-auto grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 py-8 ">
         <div className="flex flex-col gap-4">
           <Image
             src="/logo.jpg"
