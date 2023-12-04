@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import { Routes } from "@/utils/routes";
-import { MenuIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
+import {
+  MenuIcon,
+  PhoneCallIcon,
+  ShoppingCartIcon,
+  UserIcon,
+} from "lucide-react";
 import Link from "next/link";
 import NavMenusMobile from "./NavMenusMobile";
 
@@ -14,13 +18,13 @@ const NavActions = () => {
       <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
         <ShoppingCartIcon />
       </Button>
-      <div className=" hidden lg:flex gap-2 flex-col">
-        <p className="text-sm text-gray-500">Want to know your hair type?</p>
-        <Link href={Routes.survey.root} legacyBehavior passHref>
-          <Button className="lg:inline-flex hidden">
-            Give quick hair quiz
+      <div className=" hidden lg:flex gap-2 flex-col items-center">
+        <Link href={"tel:+9779745671024"}>
+          <Button className="  inline-flex gap-2 " variant={"secondary"}>
+            <PhoneCallIcon size={15} /> +9779745671024{" "}
           </Button>
         </Link>
+        <p className="text-xs">Questions? Speak with Yachu</p>
       </div>
       <div className=" lg:hidden block">
         <Sheet>

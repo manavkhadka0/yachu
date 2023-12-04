@@ -8,7 +8,6 @@ import FlowerDivider from "@/components/custom-ui/FlowerDivider";
 import Hero from "@/components/hero/Hero";
 import Ingredients from "@/components/ingredients/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
-import VideoShowcase from "@/components/video/VideoShowcase";
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
       <OurTeam />
       <FlowerDivider />
       <BlogSection />
-      <VideoShowcase />
+      {/* <VideoShowcase /> */}
       <FlowerDivider />
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
