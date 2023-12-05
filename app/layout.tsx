@@ -4,6 +4,7 @@ import Footer from "@/components/layout/footer/Footer";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header/Header";
+import { PopoverFranchise } from "@/components/popover/PopoverFranchise";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <PopoverFranchise />
+
         <Toaster />
         <main className="min-h-screen"> {children}</main>
         <Footer />
