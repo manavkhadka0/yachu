@@ -19,6 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          id="pixel-script-poptin"
+          src="https://cdn.popt.in/pixel.js?id=567937d5760ce"
+          async={true}
+        ></script>
+      </head>
       <body className={inter.className}>
         <Header />
         <Toaster />
