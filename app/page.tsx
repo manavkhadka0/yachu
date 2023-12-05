@@ -39,9 +39,6 @@ export default function Home() {
       <InstaFeed />
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
-          <h3 className="sm:text-2xl font-bold  uppercase text-center">
-            Contact Yachu
-          </h3>
           <ContactForm />
         </div>
         <h3 className="sm:text-2xl text-xl font-bold">FAQs</h3>

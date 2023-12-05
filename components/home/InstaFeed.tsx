@@ -1,11 +1,10 @@
 import { beholdId } from "@/constants/constant";
-import { InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import Script from "next/script";
 
 const InstaFeed = () => {
   return (
-    <div>
+    <div className=" mb-12">
       <Script
         src="https://w.behold.so/widget.js"
         type="module"

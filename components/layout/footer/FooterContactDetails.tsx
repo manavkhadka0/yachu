@@ -1,3 +1,4 @@
+import { yachuEmail, yachuPhone } from "@/constants/constant";
 import { MailIcon, MapPin, PhoneCallIcon } from "lucide-react";
 import Link from "next/link";
 const FooterContactDetails = () => {
@@ -14,11 +15,15 @@ const FooterContactDetails = () => {
         </div>
         <div className="flex items-center gap-2">
           <PhoneCallIcon className="h-4 w-4" />
-          <Link href="">01-2323233</Link>
+          <Link href={`tel:${yachuPhone}`} className=" hover:underline">
+            {yachuPhone}
+          </Link>
         </div>
         <div className="flex items-center gap-2">
           <MailIcon className="h-4 w-4" />
-          <Link href="">yachu@hairoil.com</Link>
+          <Link href={`mailto:${yachuEmail}`} className="hover:underline">
+            {yachuEmail}
+          </Link>
         </div>
       </div>
     </div>
