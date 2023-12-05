@@ -12,12 +12,12 @@ import NavMenusMobile from "./NavMenusMobile";
 const NavActions = () => {
   return (
     <div className=" flex gap-2 items-center   justify-end">
-      <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
+      {/* <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
         <UserIcon />
       </Button>
       <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
         <ShoppingCartIcon />
-      </Button>
+      </Button> */}
       <div className=" hidden lg:flex gap-2 flex-col items-center">
         <Link href={"tel:+9779745671024"}>
           <Button className="  inline-flex gap-2 " variant={"secondary"}>
