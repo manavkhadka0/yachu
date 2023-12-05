@@ -56,6 +56,6 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
   },
   {
     title: "Franchise Proposal",
-    href: "/franchise-proposal",
+    href: "/proposal",
   },
 ];

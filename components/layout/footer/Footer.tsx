@@ -27,7 +27,7 @@ const SUPPORT_LINKS = [
   { name: "Refund Policy", href: "/" },
   { name: "Shipping Policy", href: "/" },
   { name: "Terms of Service", href: "/" },
-  { name: "Franchise Proposal", href: "/franchise-proposal" },
+  { name: "Proposal", href: "/proposal" },
 ];
 
 const Footer = () => {

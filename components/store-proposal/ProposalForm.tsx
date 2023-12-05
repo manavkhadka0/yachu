@@ -26,7 +26,7 @@ const ProposalForm = () => {
       address: "",
       experience: "",
       location: "",
-      skills: [],
+      skills: "",
       email: "",
     },
   });
@@ -134,6 +134,13 @@ const ProposalForm = () => {
             name="experience"
             label="What were you doing before this?"
             placeholder="Write about your past experience"
+            rows={6}
+            required
+          />
+          <RHFTextarea
+            name="skills"
+            label="What are your skills?"
+            placeholder="Write about what you are good at"
             rows={6}
             required
           />

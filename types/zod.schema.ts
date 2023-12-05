@@ -16,7 +16,9 @@ export const proposalFormSchema = z.object({
     message: "Invalid mobile number",
   }),
   address: z.string().optional(),
-  skills: z.array(z.string()),
+  skills: z.string().min(1, {
+    message: "Skills is required",
+  }),
   location: z.string().min(1, {
     message: "Location is required",
   }),
