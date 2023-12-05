@@ -9,6 +9,7 @@ import Ingredients from "@/components/home/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
 import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
+import InstaFeed from "@/components/home/InstaFeed";
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <YachuWomen />
       {/* <VideoShowcase /> */}
       <FlowerDivider />
+      <InstaFeed />
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
           <h3 className="sm:text-2xl font-bold  uppercase text-center">
