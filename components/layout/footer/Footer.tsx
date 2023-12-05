@@ -43,10 +43,11 @@ const Footer = () => {
             className="w-44"
           />
           <p className="text-slate-300 text-sm">
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus.
+            Experience the beauty of naturally nourished hair with Yachu Hair
+            Oil. Our premium botanical blends, crafted with care and tradition,
+            are designed to elevate your hair care routine. Join our community
+            of enthusiasts and indulge in the goodness of healthy, beautiful
+            hair, sustainably and responsibly
           </p>
           <div className=" flex gap-4 items-center">
             {SOCIAL_LINKS.map(({ Icon, href }, index) => (

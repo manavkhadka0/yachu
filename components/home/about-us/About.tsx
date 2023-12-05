@@ -15,22 +15,25 @@ const About = () => {
               className=" w-full object-contain h-60"
             />
           </div>
-          <div className=" text-gray-500 font-medium">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            a volutpat est, id rhoncus mi. Aliquam congue ipsum et risus
-            tincidunt aliquam. Nunc tempor aliquam diam, eu interdum neque
-            malesuada non. Quisque ac vestibulum tellus, nec posuere nunc. Nunc
-            sed sem eu urna dictum mollis. Maecenas neque tellus, fringilla quis
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus.
-            <br />
-            <br />
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus.
+          <div className=" text-gray-500 font-medium flex flex-col gap-2">
+            <p>
+              Whether you dream of thicker, stronger hair or want to smooth
+              flyaways and control frizz, our ethically-sourced oils provide
+              lightweight moisture without weighing your hair down. They absorb
+              quickly to replenish hair from root to tip, leaving it touchably
+              soft.
+            </p>{" "}
+            <p>
+              We take pride in doing business responsibly and sustainably at
+              every step. Our oils come in recyclable packaging and we partner
+              with programs that plant trees and offset our carbon footprint.
+            </p>
+            <p>
+              At Yachu, caring for hair and our planet go hand-in-hand. Discover
+              for yourself why we have a rapidly-growing community raving about
+              our oils. We can&apos;t wait for you to make our products a
+              cherished part of your own hair care ritual.
+            </p>
           </div>
         </div>
       </div>

@@ -8,13 +8,10 @@ const Questions = () => {
           <LeafIcon size={40} />
         </div>
         <div className=" sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">Why</h3>
-          <p className="sm:text-md text-sm text-slate-500 font-medium">
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus. eu, ultrices pellentesque sem. Sed dignissim finibus diam
-            a faucibus. faucibus.
+          <h3 className="text-2xl font-bold mb-2">Why ?</h3>
+          <p className="sm:text-base text-sm text-slate-500 font-medium">
+            We understand that hair is more than just strands – it&apos;s a
+            reflection of one&apos;s identity and confidence.
           </p>
         </div>
       </div>
@@ -23,13 +20,14 @@ const Questions = () => {
           <LeafIcon size={40} />
         </div>
         <div className="sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">How</h3>
-          <p className="sm:text-md text-sm text-slate-500 font-medium">
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus. eu, ultrices pellentesque sem. Sed dignissim finibus diam
-            a faucibus. faucibus.
+          <h3 className="text-2xl font-bold mb-2">How ?</h3>
+          <p className="sm:text-base text-sm text-slate-500 font-medium">
+            Yachu Hair Oil stands apart through the artistry of our
+            formulations, which marry traditional techniques with modern
+            precision. Our proprietary blends feature a harmonious selection of
+            natural oils – coconut, olive, almond, and castor oils –
+            time-honored ingredients renowned for their hair-nourishing
+            properties.
           </p>
         </div>
       </div>
@@ -38,13 +36,10 @@ const Questions = () => {
           <LeafIcon size={40} />
         </div>
         <div className="sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">What</h3>
-          <p className="sm:text-md text-sm text-slate-500 font-medium">
-            nunc vitae, vulputate ullamcorper neque. Nullam eget vehicula
-            ligula, ac porttitor augue. Aliquam felis odio, convallis quis felis
-            eu, ultrices pellentesque sem. Sed dignissim finibus diam a
-            faucibus. eu, ultrices pellentesque sem. Sed dignissim finibus diam
-            a faucibus. faucibus.
+          <h3 className="text-2xl font-bold mb-2">What ?</h3>
+          <p className="sm:text-base text-sm text-slate-500 font-medium">
+            Yachu Hair Oil is not just a product; it&apos;s a promise to care
+            for your hair and the planet simultaneously.
           </p>
         </div>
       </div>

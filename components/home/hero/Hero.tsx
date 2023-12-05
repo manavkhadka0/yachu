@@ -10,8 +10,8 @@ const Hero = () => {
         <div className=" flex gap-1 md:gap-6 items-center mb-6 md:justify-start justify-center">
           <div className=" flex flex-col items-center gap-2">
             <Image
-              src={"/before.jpeg"}
-              alt="Dandruff"
+              src={"/dandruff.png"}
+              alt="dandruff"
               height={200}
               width={200}
               className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="flex flex-col items-center gap-2">
             <Image
               src={"/before.jpeg"}
-              alt="Dandruff"
+              alt="hairfall"
               height={200}
               width={200}
               className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
@@ -32,8 +32,8 @@ const Hero = () => {
           <MoveRightIcon className=" mb-2" />
           <div className=" flex flex-col items-center gap-2">
             <Image
-              src={"/before.jpeg"}
-              alt="Dandruff"
+              src={"/baldness.png"}
+              alt="baldness"
               height={200}
               width={200}
               className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
