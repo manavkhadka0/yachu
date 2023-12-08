@@ -10,6 +10,7 @@ import ProductShowcase from "@/components/product/ProductShowcase";
 import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
+import VideoShowcase from "@/components/home/video-showcase/VideoShowcase";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
       <FlowerDivider />
 
       <YachuWomen />
-      {/* <VideoShowcase /> */}
+      <VideoShowcase />
       <FlowerDivider />
       <InstaFeed />
       <div className="container mb-20 mt-10">

@@ -2,6 +2,7 @@ import { MoveRightIcon } from "lucide-react";
 import { Button } from "../../ui/button";
 import Image from "next/image";
 import { HERO_BEFORE_AFTER } from "@/constants/product";
+import { before } from "node:test";
 
 const Hero = () => {
   return (
@@ -65,34 +66,38 @@ const Hero = () => {
           </div>
         </div>
         <div className=" flex mb-4 flex-wrap gap-4">
-          {HERO_BEFORE_AFTER.map(({ before, after }, index) => (
-            <div className="flex " key={index}>
-              <Image
-                src={before}
-                alt="Before Yachu"
-                height={200}
-                width={200}
-                className=" h-16 w-16 lg:h-20  lg:w-20 rounded-full object-cover opacity-70 "
-              />
-              <Image
-                src={after}
-                alt="After Yachu"
-                height={200}
-                width={200}
-                className=" h-16 w-16 lg:h-20  lg:w-20 rounded-full object-cover  -translate-x-6 "
-              />
-            </div>
-          ))}
-          <div className=" flex flex-col gap-1">
-            <p className=" text-amber-700 text-4xl md:text-6xl  font-extrabold">
-              50K +
-            </p>
-            <p>Hair Problems Solved</p>
+          <div className="flex gap-2 sm:gap-6 fle-w">
+            <Image
+              src={"/comparisons/comparison1.png"}
+              alt="Before Yachu"
+              height={200}
+              width={200}
+              className="  w-24 sm:w-32 object-cover opacity-70 "
+            />
+            <Image
+              src={"/comparisons/comparison2.png"}
+              alt="Before Yachu"
+              height={200}
+              width={200}
+              className="  w-24  sm:w-32 object-cover opacity-70 "
+            />
+            <Image
+              src={"/comparisons/comparison3.png"}
+              alt="Before Yachu"
+              height={200}
+              width={200}
+              className="  w-24  sm:w-32 object-cover opacity-70 "
+            />
           </div>
         </div>
-
+        <div className=" flex flex-col gap-1 mb-2">
+          <p className=" text-amber-700 text-4xl md:text-6xl  font-extrabold">
+            50K +
+          </p>
+          <p>Hair Problems Solved</p>
+        </div>
         <Button
-          variant={"ghost"}
+          variant={"outline"}
           className=" flex gap-2 hover:gap-4 transition-all"
         >
           <span className="">Explore More Transformation</span>{" "}
