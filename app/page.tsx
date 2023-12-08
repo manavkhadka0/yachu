@@ -35,7 +35,7 @@ export default function Home() {
       <FlowerDivider />
 
       <YachuWomen />
-      <VideoShowcase />
+      {/* <VideoShowcase /> */}
       <FlowerDivider />
       <InstaFeed />
       <div className="container mb-20 mt-10">

@@ -50,26 +50,29 @@ export function PopoverFranchise() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[725px]">
         <DialogHeader>
-          <DialogTitle className="text-6xl">Join our Franchise</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className=" text-3xl sm:text-4xl text-center">
+            Join our Franchise
+          </DialogTitle>
+          <DialogDescription className="text-center">
             To join our franchise, click on the button below and fill out the
             form.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-2 items-end gap-4">
+          <div className="flex flex-col items-center">
             <Image
-              src="/franchisepopup.jpg"
+              src="/franchiseIllustration.svg"
               width={600}
               height={600}
               alt="Franchise Proposal Image"
+              className="pb-10"
             />
             <Button
               size={"lg"}
-              variant={"link"}
+              variant={"default"}
               asChild
               onClick={() => updateLocalStorage()}
-              className="py-10 bg-amber-400 text-black font-extrabold text-4xl"
+              className=" py-6 sm:py-10 bg-amber-700 text-white w-full font-extrabold text-2xl sm:text-3xl hover:bg-amber-800"
             >
               <Link href={"/proposal"}>Join Us</Link>
             </Button>
