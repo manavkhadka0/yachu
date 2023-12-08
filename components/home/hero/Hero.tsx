@@ -72,21 +72,21 @@ const Hero = () => {
               alt="Before Yachu"
               height={200}
               width={200}
-              className="  w-24 sm:w-32 object-cover opacity-70 "
+              className="  w-24 sm:w-32 object-cover  "
             />
             <Image
               src={"/comparisons/comparison2.png"}
               alt="Before Yachu"
               height={200}
               width={200}
-              className="  w-24  sm:w-32 object-cover opacity-70 "
+              className="  w-24  sm:w-32 object-cover  "
             />
             <Image
               src={"/comparisons/comparison3.png"}
               alt="Before Yachu"
               height={200}
               width={200}
-              className="  w-24  sm:w-32 object-cover opacity-70 "
+              className="  w-24  sm:w-32 object-cover  "
             />
           </div>
         </div>
