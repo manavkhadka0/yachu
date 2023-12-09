@@ -9,8 +9,8 @@ import { PopoverFranchise } from "@/components/popover/PopoverFranchise";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Yachu",
-  description: "Hair Oil",
+  title: "Yachu Hair Oil",
+  description: "Hair Oil Crafted with a mix of 33 Jadibuti",
 };
 
 export default function RootLayout({

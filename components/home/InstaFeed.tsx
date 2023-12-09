@@ -4,7 +4,7 @@ import Script from "next/script";
 
 const InstaFeed = () => {
   return (
-    <div className=" mb-12">
+    <div className=" mb-20">
       <Script
         src="https://w.behold.so/widget.js"
         type="module"

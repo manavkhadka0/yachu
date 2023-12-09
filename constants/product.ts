@@ -63,3 +63,11 @@ export const INGREDIENTS = [
   "Coconut (नरिवल)",
   "Black Cumin (कालो जीरा)",
 ];
+
+export const VIDEOS = [
+  "https://www.youtube.com/embed/SveivPBTJGs",
+  "https://www.youtube.com/embed/-ceDW7t6rSU",
+  "https://www.youtube.com/embed/VII5bFTj-OM",
+  "https://www.youtube.com/embed/0q_Mndl1fHs",
+  "https://www.youtube.com/embed/gfAFrJSB7Zk",
+];

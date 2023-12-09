@@ -35,9 +35,16 @@ export default function Home() {
       <FlowerDivider />
 
       <YachuWomen />
-      {/* <VideoShowcase /> */}
+
       <FlowerDivider />
+
+      {/* --------- Instagram and Youtube------------*/}
       <InstaFeed />
+      <VideoShowcase />
+      {/* ---------------------------------- */}
+
+      <FlowerDivider />
+
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
           <ContactForm />
