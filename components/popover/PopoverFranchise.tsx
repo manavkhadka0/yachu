@@ -37,7 +37,7 @@ export function PopoverFranchise() {
     <Dialog open={showPopover} onOpenChange={setShowPopover}>
       <DialogTrigger asChild>
         <div
-          className="fixed bottom-0 cursor-pointer left-0 p-5 h-[140px] w-[140px] bg-orange-800 "
+          className="fixed bottom-0 cursor-pointer left-0 p-5 h-[140px] w-[140px] bg-orange-800 z-20 "
           style={{
             clipPath: "polygon(0% 0%, 0% 100%, 100% 100%)",
           }}

@@ -11,6 +11,7 @@ import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import VideoShowcase from "@/components/home/video-showcase/VideoShowcase";
+import Testimonials from "@/components/home/Testimonials";
 
 export default function Home() {
   return (
@@ -44,7 +45,7 @@ export default function Home() {
       {/* ---------------------------------- */}
 
       <FlowerDivider />
-
+      {/* <Testimonials /> */}
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
           <ContactForm />

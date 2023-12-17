@@ -39,6 +39,7 @@ const VideoShowcase = () => {
         }}
         modules={[Pagination]}
         className="mySwiper"
+        style={{ paddingBottom: "60px" }}
       >
         {VIDEOS.map((video, index) => (
           <SwiperSlide key={index}>

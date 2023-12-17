@@ -71,3 +71,12 @@ export const VIDEOS = [
   "https://www.youtube.com/embed/0q_Mndl1fHs",
   "https://www.youtube.com/embed/gfAFrJSB7Zk",
 ];
+
+export const TESTIMONIALS = [
+  "/banner2.jpeg",
+  "/banner2.jpeg",
+  "/banner2.jpeg",
+  "/banner2.jpeg",
+  "/banner2.jpeg",
+  "/banner2.jpeg",
+];

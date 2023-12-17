@@ -1,7 +1,6 @@
 .swiper {
   width: 100%;
   height: 100%;
-  padding-bottom: 60px;
 }
 
 .swiper-slide {
@@ -18,4 +17,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.swiper-button-prev {
+  color: white;
+}
+
+.swiper-button-next {
+  color: white;
 }
