@@ -33,7 +33,7 @@ const Testimonials = () => {
   }, [viewport]);
 
   return (
-    <div className=" bg-gradient-to-r from-lime-500  from-10%  to-lime-700 to-90% text-white  my-10">
+    <div className=" bg-gradient-to-r from-lime-700  from-10%  to-lime-900 to-90% text-white  my-10">
       <div className="container mx-auto py-12">
         <h2 className="text-2xl text-center uppercase font-bold mb-10">
           Testimonials
