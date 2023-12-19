@@ -1,11 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import useProductCart from "@/store/zustand";
+import { TProduct } from "@/types/product";
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-const PRODUCT = {
+const PRODUCT: TProduct = {
   title: "New Hair Growth for Dandruff Case",
   subtitle:
     "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
@@ -16,15 +18,19 @@ const PRODUCT = {
 
 const ProductPage = () => {
   const [count, setCount] = useState<number>(1);
+  const { addToCart } = useProductCart();
 
   const handleIncrement = () => {
     setCount((p) => p + 1);
   };
-
   const handleDecrement = () => {
     if (count > 1) {
       setCount((p) => p - 1);
     }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(PRODUCT);
   };
 
   return (
@@ -81,6 +87,7 @@ const ProductPage = () => {
           <Button
             className="w-full bg-amber-700 hover:bg-amber-900 text-sm sm:text-lg flex items-center"
             size={"lg"}
+            onClick={handleAddToCart}
           >
             <ShoppingCartIcon className="mr-2" />
             Add to cart
