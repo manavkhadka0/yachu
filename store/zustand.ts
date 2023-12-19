@@ -1,15 +1,14 @@
-import { TProduct } from "@/types/product";
+import { CartItem } from "@/types/product";
 import { create } from "zustand";
 
 interface ProductCartStore {
-  cart: TProduct[];
-  addToCart: (items: TProduct) => void;
+  cart: CartItem[];
+  addToCart: (items: CartItem[]) => void;
 }
 
 const useProductCart = create<ProductCartStore>((set) => ({
   cart: [],
-  addToCart: (item: TProduct) =>
-    set((state) => ({ cart: [...state.cart, item] })),
+  addToCart: (items: CartItem[]) => set({ cart: items }),
 }));
 
 export default useProductCart;

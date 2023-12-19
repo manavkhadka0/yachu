@@ -1,13 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { newCart } from "@/lib/utils";
 import useProductCart from "@/store/zustand";
-import { TProduct } from "@/types/product";
+import { CartItem, TProduct } from "@/types/product";
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 const PRODUCT: TProduct = {
+  id: "1",
   title: "New Hair Growth for Dandruff Case",
   subtitle:
     "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
@@ -18,7 +19,7 @@ const PRODUCT: TProduct = {
 
 const ProductPage = () => {
   const [count, setCount] = useState<number>(1);
-  const { addToCart } = useProductCart();
+  const { cart, addToCart } = useProductCart();
 
   const handleIncrement = () => {
     setCount((p) => p + 1);
@@ -30,7 +31,12 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
-    addToCart(PRODUCT);
+    const cartItem: CartItem = {
+      product: PRODUCT,
+      count,
+    };
+    const updatedCart = newCart(cartItem, cart);
+    addToCart(updatedCart);
   };
 
   return (
@@ -59,27 +65,14 @@ const ProductPage = () => {
         </div>
 
         <p className="text-3xl font-bold"> Rs {PRODUCT.price}</p>
-        <div className=" flex items-center gap-2">
-          <Button
-            size={"icon"}
-            variant={"secondary"}
-            className="btn btn-square  btn-accent"
-            onClick={handleDecrement}
-          >
-            {" "}
+        <div className=" flex  gap-2">
+          <Button size={"icon"} variant={"secondary"} onClick={handleDecrement}>
             <Minus />
           </Button>
-          <Input
-            type="text"
-            className="input max-w-[50px] input-bordered text-lg text-center font-medium "
-            value={count}
-          />
-          <Button
-            size={"icon"}
-            variant={"secondary"}
-            className="btn btn-square btn-accent "
-            onClick={handleIncrement}
-          >
+          <div className="flex items-center justify-center max-w-[50px] input-bordered text-lg text-center font-medium bg-white border border-slate-200 px-4 rounded-md">
+            {count}
+          </div>
+          <Button size={"icon"} variant={"secondary"} onClick={handleIncrement}>
             <Plus />
           </Button>
         </div>
