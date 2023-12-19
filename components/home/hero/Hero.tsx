@@ -25,7 +25,6 @@ const Hero = () => {
               alt="hairfall"
               height={200}
               width={200}
-              priority
               className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
             />
             <p className=" md:text-xl font-semibold">Hairfall?</p>
@@ -37,7 +36,6 @@ const Hero = () => {
               alt="baldness"
               height={200}
               width={200}
-              priority
               className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover z-[1]  "
             />
             <p className=" md:text-xl font-extrabold">Baldness?</p>
@@ -49,7 +47,6 @@ const Hero = () => {
             alt="curve line"
             height={500}
             width={500}
-            priority
             className=" max-w-[200px] "
           />
         </div>
@@ -74,7 +71,6 @@ const Hero = () => {
               alt="Before Yachu"
               height={200}
               width={200}
-              priority
               className="  w-24 sm:w-32 object-cover  "
             />
             <Image
@@ -82,7 +78,6 @@ const Hero = () => {
               alt="Before Yachu"
               height={200}
               width={200}
-              priority
               className="  w-24  sm:w-32 object-cover  "
             />
             <Image
@@ -117,7 +112,6 @@ const Hero = () => {
           alt="curve line"
           height={300}
           width={700}
-          priority
           className=" w-[600px] xl:w-auto translate-y-6 -translate-x-16 lg:block hidden "
         />
         <div className=" xl:block hidden absolute top-7 left-24 ">
@@ -126,7 +120,6 @@ const Hero = () => {
             alt="curve line"
             height={400}
             width={700}
-            priority
             className=" w-[220px]      "
           />
           <div className="py-4">
@@ -141,7 +134,6 @@ const Hero = () => {
             alt="curve line"
             height={500}
             width={500}
-            priority
             className=" w-[300px] xl:w-[370px]  lg:absolute  xl:top-[180px] top-[100px] right-[6px] md:block hidden  "
           />
         </div>
