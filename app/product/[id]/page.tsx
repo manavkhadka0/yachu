@@ -1,11 +1,13 @@
 "use client";
-import { Button } from "@/components/ui/button";
+
 import { newCart } from "@/lib/utils";
-import useProductCart from "@/store/zustand";
 import { CartItem, TProduct } from "@/types/product";
+import { useState } from "react";
+import { toast } from "sonner";
+import useProductCart from "@/store/zustand";
+import { Button } from "@/components/ui/button";
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 
 const PRODUCT: TProduct = {
   id: "1",
@@ -37,6 +39,7 @@ const ProductPage = () => {
     };
     const updatedCart = newCart(cartItem, cart);
     addToCart(updatedCart);
+    toast.success("Product added to cart. Checkout now!");
   };
 
   return (
