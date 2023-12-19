@@ -66,6 +66,7 @@ export function PopoverFranchise() {
               height={600}
               alt="Franchise Proposal Image"
               className="pb-10 object-contain w-full"
+              priority
             />
             <Button
               size={"lg"}
