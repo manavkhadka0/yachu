@@ -37,7 +37,7 @@ const Hero = () => {
               alt="baldness"
               height={200}
               width={200}
-              className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
+              className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover z-[1]  "
             />
             <p className=" md:text-xl font-extrabold">Baldness?</p>
           </div>
@@ -130,7 +130,7 @@ const Hero = () => {
         </div>
         <div className=" w-full">
           <Image
-            src={"/yachu-hero.svg"}
+            src={"/yachu-hero.png"}
             alt="curve line"
             height={500}
             width={500}

@@ -61,11 +61,11 @@ export function PopoverFranchise() {
         <div className="grid gap-4 py-4">
           <div className="flex flex-col items-center">
             <Image
-              src="/franchiseIllustration.svg"
+              src="/franchiseIllustration.png"
               width={600}
               height={600}
               alt="Franchise Proposal Image"
-              className="pb-10"
+              className="pb-10 object-contain w-full"
             />
             <Button
               size={"lg"}
