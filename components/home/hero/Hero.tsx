@@ -104,39 +104,14 @@ const Hero = () => {
           <MoveRightIcon />
         </Button>
       </div>
-      {/* <EmblaCarousel /> */}
-      {/* <HeroQuickLinks /> */}
-      <div className=" relative lg:flex-1">
+      <div className=" w-full pt-9  justify-end md:flex hidden">
         <Image
-          src={"/curve-line.svg"}
+          src={"/yachu-hero.png"}
           alt="curve line"
-          height={300}
-          width={700}
-          className=" w-[600px] xl:w-auto translate-y-6 -translate-x-16 lg:block hidden "
+          height={500}
+          width={500}
+          className=" "
         />
-        <div className=" xl:block hidden absolute top-7 left-24 ">
-          <Image
-            src={"/person.png"}
-            alt="curve line"
-            height={400}
-            width={700}
-            className=" w-[220px]      "
-          />
-          <div className="py-4">
-            <p className="text-amber-600 text-lg font-bold">
-              पुर्खा को फर्मुला + New Technology
-            </p>
-          </div>
-        </div>
-        <div className=" w-full">
-          <Image
-            src={"/yachu-hero.png"}
-            alt="curve line"
-            height={500}
-            width={500}
-            className=" w-[300px] xl:w-[370px]  lg:absolute  xl:top-[180px] top-[100px] right-[6px] md:block hidden  "
-          />
-        </div>
       </div>
     </div>
   );
