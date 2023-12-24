@@ -55,7 +55,7 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     href: "/contact",
   },
   {
-    title: "Franchise Proposal",
-    href: "/proposal",
+    title: "Our Products",
+    href: "/#products",
   },
 ];

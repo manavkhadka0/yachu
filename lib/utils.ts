@@ -25,3 +25,7 @@ export function newCart(cartItem: CartItem, cart: CartItem[]) {
   }
   return cart;
 }
+
+export const getTotalCount = (cartItems: CartItem[]): number => {
+  return cartItems.reduce((total, item) => total + item.count, 0);
+};

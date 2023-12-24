@@ -14,7 +14,7 @@ export const PRODUCTS: TProduct[] = [
     id: "2",
     title: "New Hair Growth for Hairfall Case",
     subtitle: "It helps to stop hair fall and grows new hair.",
-    price: 99.99,
+    price: 100,
     tag: "Bestseller",
     imageSrc: "/product.jpeg",
   },

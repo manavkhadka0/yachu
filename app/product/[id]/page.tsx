@@ -8,6 +8,7 @@ import useProductCart from "@/store/zustand";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
+import { PRODUCTS } from "@/constants/product";
 
 const PRODUCT: TProduct = {
   id: "1",
@@ -19,7 +20,15 @@ const PRODUCT: TProduct = {
   imageSrc: "/product.jpeg",
 };
 
-const ProductPage = () => {
+interface IParams {
+  id: string;
+}
+
+const ProductPage = ({ params }: { params: IParams }) => {
+  let product: TProduct | undefined = PRODUCTS.find(
+    (item) => item.id === params.id
+  );
+
   const [count, setCount] = useState<number>(1);
   const { cart, addToCart } = useProductCart();
 
@@ -33,8 +42,9 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
+    if (!product) return;
     const cartItem: CartItem = {
-      product: PRODUCT,
+      product: product,
       count,
     };
     const updatedCart = newCart(cartItem, cart);
@@ -42,23 +52,27 @@ const ProductPage = () => {
     toast.success("Product added to cart. Checkout now!");
   };
 
+  if (!product) {
+    return <h1>No product available</h1>;
+  }
+
   return (
     <div className="flex sm:flex-row flex-col gap-10 container mx-auto my-16">
-      <div className="p-4 border border-gray-300 rounded-lg">
+      <div className="p-4 border border-gray-300 rounded-lg flex justify-center  items-center">
         <Image
-          src={PRODUCT.imageSrc}
+          src={product.imageSrc}
           alt="yachu oil"
           height={400}
           width={500}
-          className=" h-[400px] object-contain max-w-sm w-auto lg:w-[400px] "
+          className=" object-contain max-w-sm w-full lg:w-[400px] "
         />
       </div>
       <div className="sm:px-4 px-2 flex flex-col gap-4 items-start  w-full">
         <p className="lg:text-4xl sm:text-3xl text-lg font-bold  px-4 sm:px-6 py-2 border-2 border-amber-600  rounded-xl ">
-          {PRODUCT.title}
+          {product.title}
         </p>
         <p className=" text-xs sm:text-base font-semibold text-lime-700 text-center mt-2">
-          {PRODUCT.subtitle}
+          {product.subtitle}
         </p>
         <div className=" space-y-2 my-2 ">
           <p>❌ Dandruff, Hair Loss, Baldness ? Multiple Hair Problems</p>
@@ -67,7 +81,7 @@ const ProductPage = () => {
           <p>🇳🇵 Made in Nepal</p>
         </div>
 
-        <p className="text-3xl font-bold"> Rs {PRODUCT.price}</p>
+        <p className="text-3xl font-bold"> Rs {product.price}</p>
         <div className=" flex  gap-2">
           <Button size={"icon"} variant={"secondary"} onClick={handleDecrement}>
             <Minus />
