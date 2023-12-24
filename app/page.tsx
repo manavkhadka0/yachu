@@ -10,6 +10,7 @@ import ProductShowcase from "@/components/product/ProductShowcase";
 import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -46,7 +47,14 @@ export default function Home() {
       {/* <Testimonials /> */}
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
-          <div className=" mb-12 ">
+          <div className=" mb-12  flex flex-col justify-center items-center gap-2">
+            <Image
+              src={"/team/parbati-shrestha-gm.jpg"}
+              alt="contact-person"
+              width={150}
+              height={150}
+              className=" rounded-full h-28 w-28 object-cover "
+            />
             <h1 className=" text-center text-2xl sm:text-3xl font-bold mb-1">
               Contact Yachu
             </h1>
