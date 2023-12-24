@@ -10,8 +10,6 @@ import ProductShowcase from "@/components/product/ProductShowcase";
 import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
-import VideoShowcase from "@/components/home/video-showcase/VideoShowcase";
-import Testimonials from "@/components/home/Testimonials";
 
 export default function Home() {
   return (
@@ -41,7 +39,7 @@ export default function Home() {
 
       {/* --------- Instagram and Youtube------------*/}
       <InstaFeed />
-      <VideoShowcase />
+      {/* <VideoShowcase /> */}
       {/* ---------------------------------- */}
 
       <FlowerDivider />
