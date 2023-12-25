@@ -38,6 +38,21 @@ export const contactFormSchema = z.object({
     message: "Phone No. is required",
   }),
   message: z.string().min(1, {
-    message: "Message is required",
+    message: "Address is required",
+  }),
+});
+
+export const checkoutFormSchema = z.object({
+  name: z.string().min(4, {
+    message: "Name is required",
+  }),
+  email: z.string().min(10, {
+    message: "Email is required",
+  }),
+  phone: z.string().min(1, {
+    message: "Phone No. is required",
+  }),
+  address: z.string().min(1, {
+    message: "Address is required",
   }),
 });

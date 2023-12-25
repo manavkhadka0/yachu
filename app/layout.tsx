@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <Toaster richColors />
+        <Toaster position="bottom-left" richColors />
         <main className="min-h-screen"> {children}</main>
         <Footer />
       </body>

@@ -5,9 +5,24 @@ import useProductCart from "@/store/zustand";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Minus, Plus, Trash2Icon, X, XCircleIcon } from "lucide-react";
+import { CheckoutModal } from "../popover/CheckoutModal";
+import { useState } from "react";
+import { useToast } from "../ui/use-toast";
+import { toast } from "sonner";
 
 const ProductCart = () => {
   const { cart, increaseCount, decreaseCount, removeItem } = useProductCart();
+  const [openCheckoutForm, setOpenCheckoutForm] = useState(false);
+
+  const handleCheckout = () => {
+    if (cart.length == 0) {
+      toast.warning("Cart is empty!", {
+        description: "Please add items to cart first.",
+      });
+      return;
+    }
+    setOpenCheckoutForm(true);
+  };
 
   return (
     <div className="  flex flex-col justify-between h-full w-full">
@@ -56,10 +71,17 @@ const ProductCart = () => {
           </span>
         </span>
 
-        <Button className="w-full  sm:text-lg p-6 bg-amber-700 hover:bg-amber-800">
+        <Button
+          className="w-full  sm:text-lg p-6 bg-amber-700 hover:bg-amber-800"
+          onClick={handleCheckout}
+        >
           Proceed to Checkout
         </Button>
       </div>
+      <CheckoutModal
+        isOpen={openCheckoutForm}
+        setIsOpen={setOpenCheckoutForm}
+      />
     </div>
   );
 };
