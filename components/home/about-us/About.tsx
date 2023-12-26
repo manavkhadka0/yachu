@@ -7,7 +7,7 @@ const About = () => {
         <div className="grid sm:grid-cols-2 sm:grid-flow-col grid-flow-row rounded-lg overflow-hidden  ">
           <div className="bg-amber-50/80 flex flex-col justify-center items-center gap-4 p-8">
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               height={300}
               width={500}
               alt="logo"
