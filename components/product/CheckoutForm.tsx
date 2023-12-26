@@ -92,7 +92,7 @@ const CheckoutForm = () => {
           name="address"
           label="Delivery Address"
           rows={5}
-          placeholder="Write your message..."
+          placeholder="eg. New baneshwor - 10, Kathmandu"
           className="text-base py-4 "
           required
         />
