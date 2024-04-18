@@ -21,13 +21,18 @@ export default function Home() {
 
       {/* ------------ Products ------------*/}
       <ProductShowcase />
+
+      <FlowerDivider />
+
       <Ingredients />
+      
       {/* ---------------------------------- */}
 
       <FlowerDivider />
 
       {/* --------- About Yachu ------------*/}
       <About />
+      <FlowerDivider />
       <Questions />
       <OurTeam />
       {/* ---------------------------------- */}
