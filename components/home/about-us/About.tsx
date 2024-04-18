@@ -67,7 +67,7 @@ const About = () => {
                 <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">Wanna know us better?</p>
                 <h2 className="mt-8 text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Our Story</h2>
                 <p className="text-xl leading-relaxed text-gray-700 mt-9">We take pride in doing business responsibly and sustainably at every step. Our oils come in recyclable packaging and we partner with programs that plant trees and offset our carbon footprint.</p>
-                <p className="mt-6 text-xl leading-relaxed text-gray-700">At Yachu, caring for hair and our planet go hand-in-hand. Discover for yourself why we have a rapidly-growing community raving about our oils. We can't wait for you to make our products a cherished part of your own hair care ritual.</p>
+                <p className="mt-6 text-xl leading-relaxed text-gray-700">At Yachu, caring for hair and our planet go hand-in-hand. Discover for yourself why we have a rapidly-growing community raving about our oils. We can&apos;t wait for you to make our products a cherished part of your own hair care ritual.</p>
                 <a href="#" title="" className="inline-flex items-center justify-center px-10 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-amber-700 rounded-md hover:bg-amber-900 focus:bg-amber-900" role="button"> Contact us </a>
               </div>
             </div>
