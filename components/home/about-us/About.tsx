@@ -57,7 +57,7 @@ const About = () => {
                   <img className="object-cover size-24 object-right w-full h-full scale-150" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/lines.svg" alt="" />
                 </div>
                 <div className="relative lg:-top-12">
-                  <img className="" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/girl-drinking-coffee.jpg" alt="" />
+                  <img className="shadow-2xl " src="/hair.webp" alt="" />
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const About = () => {
               <div className="relative lg:mb-12">
                 <img className="absolute -right-0 object-cover -bottom-8 xl:-bottom-12 xl:-right-4" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/3/dots-pattern.svg" alt="" />
                 <div className="pl-12 pr-6 ">
-                  <img className="relative object-cover" src="/person.png" alt="" />
+                  <img className="relative object-" src="/person.png" alt="" />
                 </div>
                 <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
                   <div className="max-w-xs bg-amber-600 rounded-lg sm:max-w-md xl:max-w-md">

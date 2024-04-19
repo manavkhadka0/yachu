@@ -69,28 +69,29 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     // </div>
 
     <div className="flex flex-col overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-md hover:shadow-xl shadow-lg">
+
       <div className="flex-shrink-0  w-full h-80 ">
-        <img className="object-contain text-center w-full h-full p-12" src={product.imageSrc} alt="" />
+        <img className="object-contain text-center w-full h-full p-12 md:p-8" src={product.imageSrc} alt="" />
       </div>
 
       <div className="flex flex-col flex-1 px-4 py-3">
 
-        <h3 className="text-sm sm:text-base text-center font-bold text-gray-900 mt-2.5 flex-1 hover:text-blue-600 transition-all duratin-200">
-          <a href="#" className="text-lg text-center pb-2 text-gray-800 font-bold" >{product.title} </a>
-          <p className="text-sm text-center text-green-700 opacity-80 font-normal mb-3">{product.subtitle}</p>
+        <h3 className="text-sm md:text-center text-center sm:text-base font-bold text-gray-900 flex-1 hover:text-blue-600 transition-all duratin-200">
+          <a href="#" className="text-base md:text-2xl pb-1 text-gray-800 sm:font-semibold font-bold" >{product.title} </a>
+          <p className="text-xs md:text-sm pt-2 text-green-700  font-medium mb-2">{product.subtitle}</p>
         </h3>
         <div className="flex justify-center items-center text-center flex-shrink-0">
-          <p className="text-3xl text-center font-bold text-gray-900">Nrs. {product.price}</p>
+          <p className="text-xl md:text-2xl text-center font-bold text-gray-900"><span className="text-amber-600">Rs.</span> {product.price}</p>
         </div>
-        <div className="flex items-center justify-between mt-8">
+        <div className="flex items-center justify-between md:mt-6 mt-3">
 
 
           <Button
-            className="w-full bg-amber-700 hover:bg-amber-900 text-sm sm:text-lg flex items-center"
+            className="w-full p-3 h-9 text-xs justify-center hover:bg-white hover:border-2 hover:border-amber-500 bg-amber-700 md:text-sm font-medium hover:text-amber-500 sm:text-lg flex items-center"
             size={"lg"}
             onClick={handleAddToCart}
           >
-            <ShoppingCartIcon className="mr-2" />
+            <ShoppingCartIcon className=" mr-2" />
             Add to cart
           </Button>
         </div>
