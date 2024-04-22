@@ -5,11 +5,11 @@ const OurTeam = () => {
   return (
     <section className="py-12 bg-white sm:py-16 lg:py-20 xl:py-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="overflow-hidden bg-[#FEF9E3] shadow-lg rounded-3xl">
+        <div className="overflow-hidden bg-[#FEF9E3] rounded-3xl">
           <div className="grid grid-cols-2 lg:grid-cols-4">
             <div className="col-span-2 px-8 py-12 text-center xl:px-12 xl:pr-24 lg:text-left lg:order-1">
               <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-                Meet Our Team
+                Meet the brain
               </h2>
               <p className="mt-4 text-base font-normal leading-7 text-gray-600 lg:text-lg lg:mt-6 lg:leading-8">
                 Clarity gives you the blocks & components you need to create a
@@ -21,6 +21,7 @@ const OurTeam = () => {
             {OUR_TEAM.map((member) => (
               <>
                 <div
+                  key={member.imageSrc}
                   className={`relative overflow-hidden lg:order-${member.placement} group`}
                 >
                   <img
@@ -35,7 +36,7 @@ const OurTeam = () => {
                         {member.name}
                       </p>
                       <p className="mt-1 text-sm font-normal text-gray-300">
-                        {member.position}{" "}
+                        {member.position}
                       </p>
                     </div>
                   </div>
