@@ -18,35 +18,29 @@ export default function Home() {
   return (
     <main className="flex flex-col ">
       <Hero />
-
       <FlowerDivider />
-
       {/* ------------ Products ------------*/}
       <ProductShowcase />
       <Ingredients />
       <FlowerDivider />
       <BlogSection />
       {/* ---------------------------------- */}
-
       <FlowerDivider />
-
       {/* --------- About Yachu ------------*/}
       <About />
+      <FlowerDivider />
       <Questions />
+      <FlowerDivider />
+
       <OurTeam />
       {/* ---------------------------------- */}
-
       <FlowerDivider />
-
       <YachuWomen />
-
       <FlowerDivider />
-
       {/* --------- Instagram and Youtube------------*/}
       <InstaFeed />
       {/* <VideoShowcase /> */}
       {/* ---------------------------------- */}
-
       <FlowerDivider />
       {/* <Testimonials /> */}
       <div className="container mb-20 mt-10">
