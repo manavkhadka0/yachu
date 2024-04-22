@@ -5,7 +5,7 @@ import { PRODUCTS } from "@/constants/product";
 
 const ProductShowcase = () => {
   return (
-    <div className="container pb-14" id="products">
+    <div className="container pb-6 md:pb-10" id="products">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
         <div className="mx-auto">
           <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">Our Products</h3>

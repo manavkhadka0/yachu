@@ -62,9 +62,9 @@ const About = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-start py-0 lg:order-1 sm:py-16 lg:py-24 xl:py-48">
+            <div className="flex items-center justify-center lg:order-1 ">
               <div>
-                <p className="text-sm pt-4 lg:pt-16 font-semibold tracking-widest text-gray-500 uppercase">Wanna know us better?</p>
+                <p className="text-sm pt-4  font-semibold tracking-widest text-gray-500 uppercase">Wanna know us better?</p>
                 <h2 className="mt-4 text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">Our Story</h2>
                 <p className="text-lg md:text-xl leading-relaxed text-gray-700 mt-5">We take pride in doing business responsibly and sustainably at every step. Our oils come in recyclable packaging and we partner with programs that plant trees and offset our carbon footprint.</p>
                 <p className="text-lg mt-5 md:text-xl leading-relaxed text-gray-700">At Yachu, caring for hair and our planet go hand-in-hand. Discover for yourself why we have a rapidly-growing community raving about our oils. We can&apos;t wait for you to make our products a cherished part of your own hair care ritual.</p>
@@ -96,7 +96,7 @@ const About = () => {
               </div>
 
               <div className="2xl:pl-16">
-                <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight mt-4">About Founder</h2>
+                <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight mt-12">About Founder</h2>
                 <p className="text-lg md:text-xl leading-relaxed text-gray-900 mt-5">Whether you dream of thicker, stronger hair or want to smooth flyaways and control frizz, our ethically-sourced oils provide lightweight moisture without weighing your hair down. They absorb quickly to replenish hair from root to tip, leaving it touchably soft. </p>
                 <p className="text-lg md:text-xl mt-5 leading-relaxed text-gray-900">We take pride in doing business responsibly and sustainably at every step. Our oils come in recyclable packaging and we partner with programs that plant trees and offset our carbon footprint.</p>
               </div>
