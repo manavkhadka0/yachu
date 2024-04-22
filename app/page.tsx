@@ -11,6 +11,8 @@ import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
+import BlogCard from "@/components/blog/BlogCard";
+import BlogSection from "@/components/blog/BlogSection";
 
 export default function Home() {
   return (
@@ -22,6 +24,8 @@ export default function Home() {
       {/* ------------ Products ------------*/}
       <ProductShowcase />
       <Ingredients />
+      <FlowerDivider />
+      <BlogSection />
       {/* ---------------------------------- */}
 
       <FlowerDivider />

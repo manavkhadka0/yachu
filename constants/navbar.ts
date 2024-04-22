@@ -58,4 +58,8 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     title: "Our Products",
     href: "/#products",
   },
+  {
+    title: "Blog",
+    href: "/#blogsection",
+  },
 ];
