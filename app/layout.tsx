@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Footer from "@/components/layout/footer/Footer";
 import "./globals.css";
 import Header from "@/components/layout/header/Header";
 import { PopoverFranchise } from "@/components/popover/PopoverFranchise";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yachu Hair Oil",

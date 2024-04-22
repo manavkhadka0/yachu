@@ -21,9 +21,16 @@ export default function Home() {
       <FlowerDivider />
       {/* ------------ Products ------------*/}
       <ProductShowcase />
+
+      <FlowerDivider />
+
       <Ingredients />
+
       <FlowerDivider />
       <BlogSection />
+
+      
+
       {/* ---------------------------------- */}
       <FlowerDivider />
       {/* --------- About Yachu ------------*/}
