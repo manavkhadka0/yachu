@@ -2,48 +2,78 @@ import { LeafIcon } from "lucide-react";
 
 const Questions = () => {
   return (
-    <div className="container flex flex-col gap-8 mb-20 mt-6">
-      <div className="flex gap-4 items-center sm:flex-row flex-col">
-        <div className=" p-4 bg-lime-600 text-white rounded-full">
-          <LeafIcon size={40} />
-        </div>
-        <div className=" sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">Why ?</h3>
-          <p className="sm:text-base text-sm text-slate-500 font-medium">
-            We understand that hair is more than just strands – it&apos;s a
-            reflection of one&apos;s identity and confidence.
-          </p>
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#FEF9E3]">
+      <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
+        <div className="grid grid-cols-1 gap-y-12 xl:grid-cols-6 gap-x-8">
+          <div className="xl:col-span-2">
+            <h2 className="tracking-tighter text-black">
+              <span className="font-sans text-4xl font-medium sm:text-5xl md:text-6xl">
+                {" "}
+                Is Yachu{" "}
+              </span>
+              <span className="font-serif text-5xl italic font-medium sm:text-6xl sm:block md:text-7xl ">
+                {" "}
+                for me?{" "}
+              </span>
+            </h2>
+          </div>
+
+          <div className="xl:col-span-4">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+                <div className="px-4 py-5 sm:px-6 sm:py-8">
+                  <div className=" p-4 bg-lime-600 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
+                    <LeafIcon size={35} />
+
+                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                      Why?
+                    </h3>
+                  </div>
+                  <p className="mt-4 font-sans text-base font-normal text-opacity-100 text-black">
+                    We understand that hair is more than just strands –
+                    it&apos;s a reflection of one&apos;s identity and
+                    confidence.
+                  </p>
+                </div>
+              </div>
+
+              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+                <div className="px-4 py-5 sm:px-6 sm:py-8">
+                  <div className=" p-4 bg-amber-700 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
+                    <LeafIcon size={35} />
+
+                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                      How?
+                    </h3>
+                  </div>
+                  <p className="mt-4 font-sans text-base font-normal text-opacity-100 text-black">
+                    Yachu Hair Oil: Blending traditional techniques with modern
+                    precision, featuring coconut, olive, almond, and castor oils
+                    for nourishment.
+                  </p>
+                </div>
+              </div>
+
+              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+                <div className="px-4 py-5 sm:px-6 sm:py-8">
+                  <div className=" p-4 bg-yellow-600 text-white pl-6 flex rounded-full items-center w-fit md:w-full ">
+                    <LeafIcon size={35} />
+
+                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                      What?
+                    </h3>
+                  </div>
+                  <p className="mt-4 font-sans text-base font-normal text-opacity-100 text-black">
+                    Yachu Hair Oil is not just a product; it&apos;s a promise to
+                    care for your hair and the planet simultaneously.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="flex gap-4 items-center sm:flex-row flex-col">
-        <div className=" p-4 bg-amber-700 text-white rounded-full">
-          <LeafIcon size={40} />
-        </div>
-        <div className="sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">How ?</h3>
-          <p className="sm:text-base text-sm text-slate-500 font-medium">
-            Yachu Hair Oil stands apart through the artistry of our
-            formulations, which marry traditional techniques with modern
-            precision. Our proprietary blends feature a harmonious selection of
-            natural oils – coconut, olive, almond, and castor oils –
-            time-honored ingredients renowned for their hair-nourishing
-            properties.
-          </p>
-        </div>
-      </div>
-      <div className="flex gap-4 items-center sm:flex-row flex-col">
-        <div className=" p-4 bg-yellow-600 text-white rounded-full">
-          <LeafIcon size={40} />
-        </div>
-        <div className="sm:text-left text-center">
-          <h3 className="text-2xl font-bold mb-2">What ?</h3>
-          <p className="sm:text-base text-sm text-slate-500 font-medium">
-            Yachu Hair Oil is not just a product; it&apos;s a promise to care
-            for your hair and the planet simultaneously.
-          </p>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 export default Questions;

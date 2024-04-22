@@ -11,43 +11,43 @@ import Questions from "@/components/home/about-us/Questions";
 import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
+import BlogCard from "@/components/blog/BlogCard";
+import BlogSection from "@/components/blog/BlogSection";
 
 export default function Home() {
   return (
     <main className="flex flex-col ">
       <Hero />
-
       <FlowerDivider />
-
       {/* ------------ Products ------------*/}
       <ProductShowcase />
 
       <FlowerDivider />
 
       <Ingredients />
-      
-      {/* ---------------------------------- */}
 
       <FlowerDivider />
+      <BlogSection />
 
+      
+
+      {/* ---------------------------------- */}
+      <FlowerDivider />
       {/* --------- About Yachu ------------*/}
       <About />
       <FlowerDivider />
       <Questions />
+      <FlowerDivider />
+
       <OurTeam />
       {/* ---------------------------------- */}
-
       <FlowerDivider />
-
       <YachuWomen />
-
       <FlowerDivider />
-
       {/* --------- Instagram and Youtube------------*/}
       <InstaFeed />
       {/* <VideoShowcase /> */}
       {/* ---------------------------------- */}
-
       <FlowerDivider />
       {/* <Testimonials /> */}
       <div className="container mb-20 mt-10">
