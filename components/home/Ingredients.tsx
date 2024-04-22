@@ -3,7 +3,7 @@ import { Badge } from "../ui/badge";
 
 const Ingredients = () => {
   return (
-    <div className=" mt-8">
+    <div className=" mt-5">
       <h3 className="sm:text-2xl font-bold  text-center uppercase mb-10">
         Yachu Hair Oil - Ingredients
       </h3>
