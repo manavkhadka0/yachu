@@ -16,8 +16,8 @@ const ProductShowcase = () => {
             View all
           </Button>
         </div>
-
       </div>
+
       <section className="py-2 bg-white sm:py-12 lg:py-0">
 
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
