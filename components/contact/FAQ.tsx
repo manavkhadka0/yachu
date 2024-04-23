@@ -6,7 +6,6 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { FAQs } from "@/types/faqs";
-import { AxiosResponse } from "axios";
 
 const FAQ_LIST : FAQs = [
   {
@@ -39,7 +38,6 @@ const FAQ_LIST : FAQs = [
 const getFAQs = async () => {
   try{
     const response = await axiosInstance.get("/faqs");
-
     return response.data;
   }
   catch(error){
@@ -49,7 +47,12 @@ const getFAQs = async () => {
 }
 
 const  FAQ = async () => {
-  const data:FAQs = await getFAQs();
+  let data:FAQs = await getFAQs();
+
+  if (data.length === 0) {
+    data = FAQ_LIST;
+  }
+
   return (
     <Accordion type="single" collapsible className="w-full">
       {data.map(({ question, answer }, index) => (
