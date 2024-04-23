@@ -29,8 +29,6 @@ export default function Home() {
       <FlowerDivider />
       <BlogSection />
 
-      
-
       {/* ---------------------------------- */}
       <FlowerDivider />
       {/* --------- About Yachu ------------*/}
@@ -69,7 +67,13 @@ export default function Home() {
           </div>
           <ContactForm />
         </div>
-        <h3 className="sm:text-2xl text-xl font-bold">FAQs</h3>
+        <FlowerDivider />
+        <h3 className="text-4xl text-center font-bold mt-5 pt-6">
+          Frequently Asked Questions
+        </h3>
+        <p className="text-center font-semibold pb-4 pt-1 text-base text-gray-400">
+          Here are some common questions about Yachu Hail Oil, Answered for you
+        </p>
         <FAQ />
       </div>
     </main>
