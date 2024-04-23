@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Figtree } from "next/font/google";
 import Footer from "@/components/layout/footer/Footer";
 import "./globals.css";
 import Header from "@/components/layout/header/Header";
 import { PopoverFranchise } from "@/components/popover/PopoverFranchise";
 import { Toaster } from "sonner";
 
-const inter = Montserrat({ subsets: ["latin"] });
+const inter = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yachu Hair Oil",
