@@ -29,6 +29,7 @@ const OurTeam = () => {
                     src={member.imageSrc}
                     alt=""
                   />
+
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
                   <div className="absolute bottom-0 left-0 w-full p-3 sm:py-5 sm:px-6">
                     <div className="scale-90 sm:scale-100">
