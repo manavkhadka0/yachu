@@ -12,7 +12,7 @@ import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
 import BlogSection from "@/components/blog/BlogSection";
-import { axiosInstance } from "@/utils/config";
+import { BASE_URL } from "@/utils/config";
 import { TSiteSetting } from "@/types/site-setting";
 
 const DUMMY_SITE_CONFIG : TSiteSetting = [
@@ -23,19 +23,22 @@ const DUMMY_SITE_CONFIG : TSiteSetting = [
     hero_title: "Title",
     hero_section_subtitle: "Discover The Best Hiking Trails And Bee-Watching Spots On Your Next Adventure. Book A Trip Now",
     hero_section_image: "./yachu-hero.png",
-    about_founder: "<p>Hello</p>",
-    message_from_ceo: "<p>whats up</p>",
-    our_story: "<p>dsadasd</p>"
+    about_founder: "dummy_founder",
+    message_from_ceo: "dummy_messgae",
+    our_story: "dummy_story"
   }
 ];
   
 
 async function getData() {
   try {
-    const response = await axiosInstance.get("/site-configs");
+    const response = await fetch(BASE_URL + "/site-configssss", { next: { revalidate: 10 } });
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
-    return response.data;
+    if(!response.ok){
+      throw new Error("Failed to fetch data")
+    }
+    return response.json();
   } catch (error) {
     // This will activate the closest `error.js` Error Boundary
     return DUMMY_SITE_CONFIG;

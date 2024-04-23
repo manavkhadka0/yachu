@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/utils/config";
+import { BASE_URL } from "@/utils/config";
 import {
   Accordion,
   AccordionContent,
@@ -37,8 +37,8 @@ const FAQ_LIST : FAQs = [
 
 const getFAQs = async () => {
   try{
-    const response = await axiosInstance.get("/faqs");
-    return response.data;
+    const response = await fetch(BASE_URL + "/faqs", { next: { revalidate: 10 } })
+    return response.json();
   }
   catch(error){
     console.error("Error fetching FAQs", error);
