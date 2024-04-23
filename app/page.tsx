@@ -13,8 +13,27 @@ import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogSection from "@/components/blog/BlogSection";
+import { axiosInstance } from "@/utils/config";
+import { TSiteSetting } from "@/types/site-setting";
 
-export default function Home() {
+
+
+async function getData() {
+  try {
+    const response = await axiosInstance.get("/site-configs");
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+    return response.data;
+  } catch (error) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+}
+
+export default async function Home() {
+
+  const data: TSiteSetting = await getData();
+
   return (
     <main className="flex flex-col ">
       <Hero />
@@ -32,7 +51,8 @@ export default function Home() {
       {/* ---------------------------------- */}
       <FlowerDivider />
       {/* --------- About Yachu ------------*/}
-      <About />
+      <About about_founder={data[0].about_founder} our_story={data[0].our_story} />
+      {/* ---------------------------------- */}
       <FlowerDivider />
       <Questions />
       <FlowerDivider />
