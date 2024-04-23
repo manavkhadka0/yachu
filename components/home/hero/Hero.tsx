@@ -4,66 +4,34 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="container pt-16 sm:pt-12 md:flex-row flex-col flex justify-between md:items-start items-center ">
-      <div className="">
+    <div className="container px-3 pt-0 sm:pt-12 md:pt-2 lg:px-12  xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center ">  
+      <div className="flex flex-col flex-1 w-full">
         
-        <div className=" md:hidden   w-full flex flex-col items-center mb-6">
-          <Image
-            src={"/person-product.png"}
-            alt="curve line"
-            height={500}
-            width={500}
-            className=" max-w-[200px] "
-          />
-        </div>
-        <div className="">
-          <p className=" text-xl font-bold mb-2"> Made in Nepal</p>
-          <h1 className=" text-4xl md:text-5xl lg:text-6xl font-bold">
-            <p className="text-[#B45309]">Yachu </p>Hair Oil
+          <p className=" text-xs md:text-xs font-semibold text-gray-700  mb-1"> Made in Nepal</p>
+          <h1 className="block xl:hidden text-5xl md:text-5xl lg:text-7xl font-bold">
+            <p className="text-[#B45309] font-bold">Yachu </p>Hair Oil
           </h1>
-          <div className=" space-y-2 my-6">
-            <p className="font-semibold text-xl text-gray-700">❌ Dandruff, Hair Loss, Baldness ? Multiple Hair Problems</p>
-            <p className="font-semibold text-xl text-gray-700">🟢 Ultimate Solution = Yachu Hair Oil</p>
-            <p className="font-semibold text-xl text-gray-700">🍃 Crafted with a mix of 33 Jadibuti</p>
-            <p className="font-semibold text-xl text-gray-700">✅ Easy, Affordable and Safe
+          <h1 className="hidden xl:block text-5xl md:text-5xl lg:text-7xl font-bold">
+          <span className="text-[#B45309] font-bold">Yachu </span>
+            Hair Oil
+          </h1>
+          <div className=" space-y-2 my-4">
+            <p className="font-semibold text-base text-gray-700">❌ Dandruff, Hair Loss, Baldness ? </p>
+            <p className="font-semibold text-base text-gray-700">🟢 Ultimate Solution = Yachu Hair Oil</p>
+            <p className="font-semibold text-base text-gray-700">🍃 Crafted with a mix of 33 Jadibuti</p>
+            <p className="font-semibold text-base text-gray-700">✅ Easy, Affordable and Safe
             </p>
           </div>
-        </div>
-        <div className=" flex mb-4 flex-wrap gap-4">
-          {/* <div className="flex gap-2 sm:gap-6 fle-w">
-            <Image
-              src={"/comparisons/comparison1.png"}
-              alt="Before Yachu"
-              height={200}
-              width={200}
-              className="  w-24 sm:w-32 object-cover  "
-            />
-            <Image
-              src={"/comparisons/comparison2.png"}
-              alt="Before Yachu"
-              height={200}
-              width={200}
-              className="  w-24  sm:w-32 object-cover  "
-            />
-            <Image
-              src={"/comparisons/comparison3.png"}
-              alt="Before Yachu"
-              height={200}
-              width={200}
-              priority
-              className="  w-24  sm:w-32 object-cover  "
-            />
-          </div> */}
-        </div>
-        <div className=" flex gap-1 md:gap-6 items-center mb-6 md:justify-start justify-center">
-          <div className=" flex flex-col items-center gap-2">
+        
+        <div className="md:hidden flex gap-1 md:gap-3 lg:gap-2 items-center mb-4 md:justify-start ">
+          <div className=" flex flex-col items-center gap-3">
             <Image
               src={"/dandruff.png"}
               alt="dandruff"
               height={200}
               width={200}
               priority
-              className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
+              className=" h-12 w-12 md:h-16 md:w-16 lg:h-16 lg:w-16 rounded-full object-cover  "
             />
             <p className="  md:text-xl font-semibold">Dandruff?</p>
           </div>
@@ -74,7 +42,7 @@ const Hero = () => {
               alt="hairfall"
               height={200}
               width={200}
-              className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover  "
+              className=" h-12 w-12 md:h-16 md:w-16 lg:h-16 lg:w-16 rounded-full object-cover  "
             />
             <p className=" md:text-xl font-semibold">Hairfall?</p>
           </div>
@@ -85,7 +53,7 @@ const Hero = () => {
               alt="baldness"
               height={200}
               width={200}
-              className=" h-12 w-12 md:h-16 md:w-16 lg:h-20  lg:w-20 rounded-full object-cover z-[1]  "
+              className=" h-12 w-12 md:h-16 md:w-16 lg:h-16 lg:w-16 rounded-full object-cover z-[1]  "
             />
             <p className=" md:text-xl font-semibold">Baldness?</p>
           </div>
@@ -94,23 +62,23 @@ const Hero = () => {
           <p className=" text-amber-700 border-3 border-black-800 text-4xl md:text-6xl  font-extrabold">
             50K +
           </p>
-          <p className="font-semibold text-gray-600 mt-3">Hair Problems Solved</p>
+          <p className="font-semibold text-gray-600 ">Hair Problems Solved</p>
         </div>
         <Button
           variant={"ghost"}
-          className="mt-6 bg-[#B45309] hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] flex gap-2  hover:gap-3 transition-all"
+          className="mt-4 bg-[#B45309] w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] flex gap-2  hover:gap-3 transition-all"
         >
-          <span className="  ">Explore More Transformation</span>{" "}
+          <span className="">Explore More Transformation</span>{" "}
           <MoveRightIcon className="" />
         </Button>
       </div>
-      <div className=" w-full pt-9 justify-center md:flex hidden">
+      <div className=" w-auto pt-9 justify-end md:flex hidden">
         <Image
           src={"/yachu-hero.png"}
           alt="curve line"
-          height={500}
-          width={500}
-          className=" "
+          height={400}
+          width={400}
+          className="drop-shadow-xl "
         />
       </div>
     </div>
