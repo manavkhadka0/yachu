@@ -38,7 +38,7 @@ const Testimonials = () => {
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-base font-semibold text-blue-600">3940+ Happy Landingfolio Users</p>
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl lg:mt-8">Don't just take our words</h2>
+            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl lg:mt-8">Don&apos;t just take our words</h2>
           </div>
 
           <div className="grid max-w-3xl grid-cols-1 gap-12 mx-auto mt-16 text-center lg:mt-20 xl:mt-20 xl:grid-cols-2 xl:max-w-none sm:text-left">
@@ -73,7 +73,7 @@ const Testimonials = () => {
                   </svg>
                 </div>
                 <blockquote className="mt-8">
-                  <p className="text-lg font-medium leading-8 text-gray-900">"We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want."</p>
+                  <p className="text-lg font-medium leading-8 text-gray-900">&quot;We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want.&quot;</p>
                 </blockquote>
                 <div className="flex flex-col flex-wrap items-center justify-center gap-1 mt-5 sm:flex-row sm:justify-start sm:gap-4">
                   <p className="text-base font-semibold text-gray-900">Jenny Wilson</p>
@@ -113,7 +113,7 @@ const Testimonials = () => {
                   </svg>
                 </div>
                 <blockquote className="mt-8">
-                  <p className="text-lg font-medium leading-8 text-gray-900">"We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want."</p>
+                  <p className="text-lg font-medium leading-8 text-gray-900">&quot;We love Landingfolio! Our designers were using it for their projects, so we already knew what kind of design they want.&quot;</p>
                 </blockquote>
                 <div className="flex flex-col flex-wrap items-center justify-center gap-1 mt-5 sm:flex-row sm:justify-start sm:gap-4">
                   <p className="text-base font-semibold text-gray-900">Devon Lane</p>
