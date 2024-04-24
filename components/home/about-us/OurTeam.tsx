@@ -1,9 +1,28 @@
 import { OUR_TEAM } from "@/constants/about";
+import { Members, TEAM } from "@/types/team";
+import { BASE_URL } from "@/utils/config";
+import { revalidatePath } from "next/cache";
 import Image from "next/image";
 
-const OurTeam = () => {
+const getTeams = async () => {
+  try {
+    const response = await fetch(BASE_URL + "/team-members", {
+      next: { revalidate: 10 },
+    });
+    return response.json();
+  } catch (error) {
+    console.error("Error while fetching FAQs", error);
+    return OUR_TEAM;
+  }
+};
+
+const OurTeam = async () => {
+  let data: Members = await getTeams();
+  if (data.length == 0) {
+    data = OUR_TEAM;
+  }
   return (
-    <section className="py-12 bg-white sm:py-16 lg:py-20 xl:py-24">
+    <section className="py-8 bg-white sm:py-16 lg:py-12 xl:py-12">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="overflow-hidden bg-[#FEF9E3] rounded-3xl">
           <div className="grid grid-cols-2 lg:grid-cols-4">
@@ -18,15 +37,15 @@ const OurTeam = () => {
               </p>
             </div>
 
-            {OUR_TEAM.map((member) => (
+            {data.map((member) => (
               <>
                 <div
-                  key={member.imageSrc}
-                  className={`relative overflow-hidden lg:order-${member.placement} group`}
+                  key={member.name}
+                  className={`relative overflow-hidden lg:order-${member.order} group`}
                 >
                   <img
                     className="object-cover w-full h-full transition-all duration-200 group-hover:scale-110"
-                    src={member.imageSrc}
+                    src={member.photo}
                     alt=""
                   />
 
@@ -37,7 +56,7 @@ const OurTeam = () => {
                         {member.name}
                       </p>
                       <p className="mt-1 text-sm font-normal text-gray-300">
-                        {member.position}
+                        {member.role}
                       </p>
                     </div>
                   </div>

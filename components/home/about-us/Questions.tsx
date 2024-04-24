@@ -7,11 +7,11 @@ const Questions = () => {
         <div className="grid grid-cols-1 gap-y-12 xl:grid-cols-6 gap-x-8">
           <div className="xl:col-span-2">
             <h2 className="tracking-tighter text-black">
-              <span className="font-sans text-4xl font-medium sm:text-5xl md:text-6xl">
+              <span className="font-sans text-3xl font-medium sm:text-5xl md:text-6xl">
                 {" "}
                 Is Yachu{" "}
               </span>
-              <span className="font-serif text-5xl italic font-medium sm:text-6xl sm:block md:text-7xl ">
+              <span className="font-serif text-3xl italic font-medium sm:text-6xl sm:block md:text-7xl ">
                 {" "}
                 for me?{" "}
               </span>
@@ -23,9 +23,9 @@ const Questions = () => {
               <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-lime-600 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
-                    <LeafIcon size={35} />
+                    <LeafIcon size={30} />
 
-                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                    <h3 className=" font-serif text-xl italic font-semibold pl-3 text-gray-100 md:text-2xl">
                       Why?
                     </h3>
                   </div>
@@ -40,9 +40,9 @@ const Questions = () => {
               <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-amber-700 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
-                    <LeafIcon size={35} />
+                    <LeafIcon size={30} />
 
-                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                    <h3 className=" font-serif text-xl italic font-semibold pl-3 text-gray-100 md:text-2xl">
                       How?
                     </h3>
                   </div>
@@ -57,9 +57,9 @@ const Questions = () => {
               <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-yellow-600 text-white pl-6 flex rounded-full items-center w-fit md:w-full ">
-                    <LeafIcon size={35} />
+                    <LeafIcon size={30} />
 
-                    <h3 className=" font-serif text-2xl italic font-semibold pl-3 text-gray-100">
+                    <h3 className=" font-serif text-xl italic font-semibold pl-3 text-gray-100 md:text-2xl">
                       What?
                     </h3>
                   </div>
