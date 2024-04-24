@@ -4,11 +4,11 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="container px-3 pt-0 sm:pt-12 md:pt-2 lg:px-12  xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center ">  
-      <div className="flex flex-col flex-1 w-full">
+    <div className="container px-6 pt-0 md:pt-2 lg:px-12 xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center">  
+      <div className="flex flex-col flex-1 justify-center w-full">
         
-          <p className=" text-xs md:text-xs font-semibold text-gray-700  mb-1"> Made in Nepal</p>
-          <h1 className="block xl:hidden text-5xl md:text-5xl lg:text-7xl font-bold">
+          <p className=" text-xs md:text-xs xl:text-base font-semibold text-gray-700  mb-1"> Made in Nepal</p>
+          <h1 className="block xl:py-6 xl:hidden text-5xl md:text-6xl lg:text-7xl lg:w-fit xl:text-9xl font-bold">
             <p className="text-[#B45309] font-bold">Yachu </p>Hair Oil
           </h1>
           <h1 className="hidden xl:block text-5xl md:text-5xl lg:text-7xl font-bold">
@@ -16,10 +16,10 @@ const Hero = () => {
             Hair Oil
           </h1>
           <div className=" space-y-2 my-4">
-            <p className="font-semibold text-base text-gray-700">❌ Dandruff, Hair Loss, Baldness ? </p>
-            <p className="font-semibold text-base text-gray-700">🟢 Ultimate Solution = Yachu Hair Oil</p>
-            <p className="font-semibold text-base text-gray-700">🍃 Crafted with a mix of 33 Jadibuti</p>
-            <p className="font-semibold text-base text-gray-700">✅ Easy, Affordable and Safe
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">❌ Dandruff, Hair Loss, Baldness ? </p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">🟢 Ultimate Solution = Yachu Hair Oil</p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">🍃 Crafted with a mix of 33 Jadibuti</p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">✅ Easy, Affordable and Safe
             </p>
           </div>
         
@@ -59,16 +59,16 @@ const Hero = () => {
           </div>
         </div>
         <div className=" flex flex-col gap-1 mb-2">
-          <p className=" text-amber-700 border-3 border-black-800 text-4xl md:text-6xl  font-extrabold">
+          <p className=" text-amber-700 border-3 border-black-800 text-4xl md:text-6xl xl:text-7xl xl:py-3 font-extrabold fill-none stroke-black">
             50K +
           </p>
-          <p className="font-semibold text-gray-600 ">Hair Problems Solved</p>
+          <p className="font-semibold text-gray-600 xl:text-xl">Hair Problems Solved</p>
         </div>
         <Button
           variant={"ghost"}
-          className="mt-4 bg-[#B45309] w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] flex gap-2  hover:gap-3 transition-all"
+          className="mt-4 bg-[#B45309] w-full sm:w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] flex gap-2  hover:gap-3 transition-all"
         >
-          <span className="">Explore More Transformation</span>{" "}
+          <span className="xl:text-xl xl:p-2">Explore More Transformation</span>{" "}
           <MoveRightIcon className="" />
         </Button>
       </div>
@@ -76,8 +76,8 @@ const Hero = () => {
         <Image
           src={"/yachu-hero.png"}
           alt="curve line"
-          height={400}
-          width={400}
+          height={450}
+          width={450}
           className="drop-shadow-xl "
         />
       </div>

@@ -3,8 +3,7 @@ import ProductCard from "./ProductCard";
 import { Button } from "../ui/button";
 import { PRODUCTS } from "@/constants/product";
 import { BASE_URL } from "@/utils/config";
-import { revalidateTag } from "next/cache";
-import { TProduct } from "@/types/product";
+import { Prod, TProduct } from "@/types/product";
 
 const getProducts= async()=>
 {
@@ -18,8 +17,10 @@ const getProducts= async()=>
   }
 }
 const ProductShowcase =async () => {
-let data: TProduct = await getProducts();
- 
+// let data: Prod = await getProducts();
+//   if (data.length === 0) {
+//     data = PRODUCTS;
+//   }
   return (
     <div className="container pb-6 md:pb-10" id="products">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
@@ -34,7 +35,7 @@ let data: TProduct = await getProducts();
         </div>
       </div>
 
-      <section className="py-2 bg-white sm:py-12 lg:py-0">
+      <section className=" bg-white sm:py-12 lg:py-0">
 
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
 

@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export type TProduct = {
+ type TProduct = {
   id: string;
   title: string;
   subtitle: string;
@@ -13,3 +13,5 @@ export type CartItem = {
   product: TProduct;
   count: number;
 };
+
+export type Prod= TProduct[];
