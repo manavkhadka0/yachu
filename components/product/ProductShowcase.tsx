@@ -2,8 +2,24 @@ import ProductCard from "./ProductCard";
 
 import { Button } from "../ui/button";
 import { PRODUCTS } from "@/constants/product";
+import { BASE_URL } from "@/utils/config";
+import { revalidateTag } from "next/cache";
+import { TProduct } from "@/types/product";
 
-const ProductShowcase = () => {
+const getProducts= async()=>
+{
+  try {
+    const res = await fetch(BASE_URL+'/products',{next:{revalidate:10}})
+    return res.json();
+  } 
+  catch (error) {
+    console.error("Error fetching Products", error)
+    return PRODUCTS;
+  }
+}
+const ProductShowcase =async () => {
+let data: TProduct = await getProducts();
+ 
   return (
     <div className="container pb-6 md:pb-10" id="products">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
