@@ -22,7 +22,7 @@ const BlogSection = () => {
           </Button>
         </div>
       </div>
-      <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
+      <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
         <div className="overflow-hidden bg-white rounded shadow">
           <div className="p-5">
             <div className="relative">
@@ -58,7 +58,7 @@ const BlogSection = () => {
             <a
               href="#"
               title=""
-              className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-blue-600 transition-all duration-200 border-b-2 border-transparent hover:border-blue-600 focus:border-blue-600"
+              className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
             >
               Continue Reading
               <svg

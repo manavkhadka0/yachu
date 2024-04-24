@@ -1,32 +1,39 @@
-export const OUR_TEAM = [
+import { Members } from "@/types/team";
+
+export const OUR_TEAM: Members = [
   {
-    placement: 3,
+    id: 1,
+    order: 3,
     name: "Ujjwol Manandhar",
-    imageSrc: "/team/ujjwol-manandhar-md.jpg",
-    position: "Managing Director",
+    photo: "/team/ujjwol-manandhar-md.jpg",
+    role: "Managing Director",
   },
   {
-    placement: 3,
+    id: 2,
+    order: 3,
     name: "Bimala Manandhar",
-    imageSrc: "/team/bimala-manandhar-md.jpg",
-    position: "Managing Director",
+    photo: "/team/bimala-manandhar-md.jpg",
+    role: "Managing Director",
   },
   {
-    placement: 3,
+    id: 3,
+    order: 3,
     name: "Parbati Shrestha",
-    imageSrc: "/team/parbati-shrestha-gm.jpg",
-    position: "General Manager",
+    photo: "/team/parbati-shrestha-gm.jpg",
+    role: "General Manager",
   },
   {
-    placement: 3,
+    id: 4,
+    order: 3,
     name: "Chaturman Limbu",
-    imageSrc: "/team/chaturman-limbu-mm.jpg",
-    position: "General Manager",
+    photo: "/team/chaturman-limbu-mm.jpg",
+    role: "General Manager",
   },
   {
-    placement: 3,
+    id: 5,
+    order: 3,
     name: "Rajesh Lama",
-    imageSrc: "/team/rajesh-lama-photographer.jpeg",
-    position: "Photo/Vplacementeographer",
+    photo: "/team/rajesh-lama-photographer.jpeg",
+    role: "Photo/Vplacementeographer",
   },
 ];
