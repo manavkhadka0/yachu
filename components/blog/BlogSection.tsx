@@ -1,9 +1,26 @@
-import { TBlog } from "@/types/blog";
+import { BlogType, TBlog } from "@/types/blog";
 import BlogCard from "./BlogCard";
 import { Button } from "../ui/button";
+import { BASE_URL } from "@/utils/config";
 import { BLOGS } from "@/constants/blog";
+import { error } from "console";
 
-const BlogSection = () => {
+const getBlogs = async () => {
+  try {
+    const blogs = await fetch(BASE_URL + '/latest-posts', { next: { revalidate: 10 } })
+    return blogs.json()
+  }
+  catch (error) {
+    console.error("Error fetching Blogs", error)
+    console.log(error);
+  }
+}
+
+const BlogSection = async () => {
+  let blogdata: BlogType = await getBlogs();
+  if (BLOGS.length === 0) {
+    console.log(error);
+  }
   return (
     <section className="container pb-14" id="blogsection">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
@@ -22,61 +39,64 @@ const BlogSection = () => {
           </Button>
         </div>
       </div>
-      <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
-        <div className="overflow-hidden bg-white rounded shadow">
-          <div className="p-5">
-            <div className="relative">
-              <a href="#" title="" className="block aspect-w-4 aspect-h-3">
-                <img
-                  className="object-cover w-full h-full"
-                  src="https://www.yachunepal.com/_next/image?url=%2Fyachu-hero.png&w=640&q=75"
-                  alt=""
-                />
-              </a>
+      {/* {blogdata.map((item, index) => ( */}
 
-              <div className="absolute top-4 left-4">
-                <span className="px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-[#B45309] rounded-full">
-                  {" "}
-                  Lifestyle{" "}
-                </span>
+        <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
+          <div className="overflow-hidden bg-white rounded shadow">
+            <div className="p-5">
+              <div className="relative">
+                <a href="#" title="" className="block aspect-w-4 aspect-h-3">
+                  {/* {item.image} */}
+                </a>
+
+                <div className="absolute top-4 left-4">
+                  <span className="px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-[#B45309] rounded-full">
+                    {" "}
+                    Lifestyle{" "}
+                  </span>
+                </div>
+
               </div>
-            </div>
-            <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
-              {" "}
-              March 21, 2020{" "}
-            </span>
-            <p className="mt-5 text-2xl font-semibold">
-              <a href="#" title="" className="text-black">
+
+              <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
                 {" "}
-                Learn about yachu{" "}
-              </a>
-            </p>
-            <p className="mt-4 text-base text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-            </p>
-            <a
-              href="#"
-              title=""
-              className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
-            >
-              Continue Reading
-              <svg
-                className="w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+                {/* {item.date}{" "} */}
+              </span>
+              
+              <p className="mt-5 text-2xl font-semibold">
+                <a href="#" title="" className="text-black">
+                  {" "}
+                  {/* {item.title}{" "} */}
+                </a>
+              </p>
+              
+              <p className="mt-4 text-base text-gray-600">
+                {/* {item.description} */}
+              </p>
+              <a
+                href="#"
+                title=""
+                className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a>
+                Continue Reading
+                <svg
+                  className="w-5 h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      {/* ))} */}
+
     </section>
   );
 };
