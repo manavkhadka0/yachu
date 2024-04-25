@@ -75,7 +75,7 @@ const ContactForm = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full text-lg py-6 font-bold"
+          className="w-full text-lg py-6 font-bold "
         >
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Submit
