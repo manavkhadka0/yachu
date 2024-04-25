@@ -29,13 +29,13 @@ const BlogSection = () => {
               <a href="#" title="" className="block aspect-w-4 aspect-h-3">
                 <img
                   className="object-cover w-full h-full"
-                  src="https://cdn.rareblocks.xyz/collection/celebration/images/blog/2/blog-post-1.jpg"
+                  src="https://www.yachunepal.com/_next/image?url=%2Fyachu-hero.png&w=640&q=75"
                   alt=""
                 />
               </a>
 
               <div className="absolute top-4 left-4">
-                <span className="px-4 py-2 text-xs font-semibold tracking-widest text-gray-900 uppercase bg-white rounded-full">
+                <span className="px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-[#B45309] rounded-full">
                   {" "}
                   Lifestyle{" "}
                 </span>
@@ -48,7 +48,7 @@ const BlogSection = () => {
             <p className="mt-5 text-2xl font-semibold">
               <a href="#" title="" className="text-black">
                 {" "}
-                How to build coffee inside your home in 5 minutes.{" "}
+                Learn about yachu{" "}
               </a>
             </p>
             <p className="mt-4 text-base text-gray-600">
