@@ -5,7 +5,7 @@ import { BLOGS } from "@/constants/blog";
 
 const BlogSection = () => {
   return (
-    <section className="container pb-14" id="blogsection">
+    <section className="container pb-24" id="blogsection">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
         <div className="mx-auto">
           <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">
@@ -23,7 +23,7 @@ const BlogSection = () => {
         </div>
       </div>
       <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
-        <div className="overflow-hidden bg-white rounded shadow">
+        <div className="overflow-hidden bg-white rounded shadow-md">
           <div className="p-5">
             <div className="relative">
               <a href="#" title="" className="block aspect-w-4 aspect-h-3">
@@ -43,7 +43,7 @@ const BlogSection = () => {
             </div>
             <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
               {" "}
-              March 21, 2020{" "}
+              March 21, 2024{" "}
             </span>
             <p className="mt-5 text-2xl font-semibold">
               <a href="#" title="" className="text-black">
@@ -58,7 +58,7 @@ const BlogSection = () => {
             <a
               href="#"
               title=""
-              className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
+              className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-bold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
             >
               Continue Reading
               <svg

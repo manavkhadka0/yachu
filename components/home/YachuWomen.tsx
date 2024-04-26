@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const YachuWomen = () => {
   return (
-    <div className="container relative my-12">
+    <div className="container pb-24 relative my-12">
       <Image
         src={"/yachu-women.jpeg"}
         height={1000}

@@ -1,12 +1,13 @@
 import ContactDetails from "./ContactDetails";
 import ContactForm from "./ContactForm";
 import FAQ from "./FAQ";
+import FlowerDivider from "@/components/shared/FlowerDivider";
 
 const Contact = () => {
   return (
-    <div className=" pt-12  pb-16 w-full" id="contact">
-      <div className=" grid sm:grid-flow-col grid-flow-row sm:grid-cols-2 w-full gap-10 ">
-        <div className=" p-5 sm:p-8 shadow-lg  rounded-lg ">
+    <div className=" pt-12 pb-24 w-full" id="contact">
+      <div className=" mx-auto pb-24">
+        <div className=" p-5 mx-auto sm:p-8 shadow max-w-3xl rounded-lg ">
           <div className=" mb-10 ">
             <h1 className=" text-2xl sm:text-3xl font-bold mb-1">
               Contact Yachu
@@ -17,10 +18,16 @@ const Contact = () => {
           </div>
           <ContactForm />
         </div>
+        <FlowerDivider />
         <ContactDetails />
       </div>
       <div className=" w-full mt-16 ">
-        <h3 className=" sm:text-2xl text-xl font-bold">FAQs</h3>
+        <h3 className="text-4xl text-center font-bold mt-5 pt-6">
+          Frequently Asked Questions
+        </h3>
+        <p className="text-center font-normal pb-4 pt-3 text-sm text-gray-400">
+          Here are some common questions about Yachu Hail Oil, Answered for you
+        </p>
         <FAQ />
       </div>
     </div>

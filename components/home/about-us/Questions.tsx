@@ -7,11 +7,11 @@ const Questions = () => {
         <div className="grid grid-cols-1 gap-y-12 xl:grid-cols-6 gap-x-8">
           <div className="xl:col-span-2">
             <h2 className="tracking-tighter text-black">
-              <span className="font-sans text-3xl font-medium sm:text-5xl md:text-6xl">
+              <span className="font-serif text-3xl font-medium sm:text-5xl md:text-6xl">
                 {" "}
                 Is Yachu{" "}
               </span>
-              <span className="font-serif text-3xl italic font-medium sm:text-6xl sm:block md:text-7xl ">
+              <span className="font-serif text-3xl font-medium sm:text-6xl sm:block md:text-7xl ">
                 {" "}
                 for me?{" "}
               </span>

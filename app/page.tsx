@@ -73,13 +73,12 @@ export default async function Home() {
         our_story={data[0].our_story}
       />
       {/* ---------------------------------- */}
-      <FlowerDivider />
+
       <Questions />
-      <FlowerDivider />
 
       <OurTeam />
       {/* ---------------------------------- */}
-      <FlowerDivider />
+
       <YachuWomen />
       <FlowerDivider />
       {/* --------- Instagram and Youtube------------*/}
