@@ -2,19 +2,19 @@ import { TBlog } from "@/types/blog";
 
 export const BLOGS: TBlog[] = [
   {
+    slug: "123",
     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "Sept 20, 2023",
-    description:
+    blog_content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non sapien ac arcu laoreet luctus ac vitae tortor.   ",
-    image: "/banner.jpg",
+    thumbnail_image: "/banner.jpg",
     href: "",
   },
   {
+    slug: "123",
     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    date: "Sept 20, 2023",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non sapien ac arcu laoreet luctus ac vitae tortor.  ",
-    image: "/banner.jpg",
+    blog_content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non sapien ac arcu laoreet luctus ac vitae tortor.   ",
+    thumbnail_image: "/banner.jpg",
     href: "",
   },
 ];
