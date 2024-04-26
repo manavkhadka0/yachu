@@ -13,11 +13,10 @@ import { PRODUCTS } from "@/constants/product";
 const PRODUCT: TProduct = {
   id: "1",
   title: "New Hair Growth for Dandruff Case",
-  subtitle:
+  description:
     "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
   price: 99.99,
-  tag: "Bestseller",
-  imageSrc: "/product.jpeg",
+  image1: "/product.jpeg",
 };
 
 interface IParams {
@@ -60,7 +59,7 @@ const ProductPage = ({ params }: { params: IParams }) => {
     <div className="flex sm:flex-row flex-col gap-10 container mx-auto my-16">
       <div className="p-4 border border-gray-300 rounded-lg flex justify-center  items-center">
         <Image
-          src={product.imageSrc}
+          src={product.image1}
           alt="yachu oil"
           height={400}
           width={500}
@@ -72,7 +71,7 @@ const ProductPage = ({ params }: { params: IParams }) => {
           {product.title}
         </p>
         <p className=" text-xs sm:text-base font-semibold text-lime-700 text-center mt-2">
-          {product.subtitle}
+          {product.description}
         </p>
         <div className=" space-y-2 my-2 ">
           <p>❌ Dandruff, Hair Loss, Baldness ? Multiple Hair Problems</p>
