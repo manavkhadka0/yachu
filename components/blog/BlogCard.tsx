@@ -7,12 +7,12 @@ type BlogCardProps = {
 };
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  const { title, date, image, description, href } = blog;
+  const { title, slug, thumbnail_image, blog_content, href } = blog;
   return (
     <div className="bg-white flex flex-col  lg:grid lg:grid-cols-5 grid-cols-1  gap-4 p-6 border shadow-lg rounded-lg ">
       <Link href={href} className=" block w-full overflow-hidden  col-span-2">
         <Image
-          src={image}
+          src={thumbnail_image}
           alt="blog"
           height={300}
           width={700}
@@ -26,8 +26,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         >
           {title}
         </Link>
-        <p className="text-xs text-gray-500 font-semibold">{date}</p>
-        <p>{description}</p>
+        <p>{blog_content}</p>
       </div>
     </div>
   );

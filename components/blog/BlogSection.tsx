@@ -46,7 +46,7 @@ const BlogSection = async () => {
             <div className="p-5">
               <div className="relative">
                 <a href="#" title="" className="block aspect-w-4 aspect-h-3">
-                  {/* {item.image} */}
+                  {/* {item.thumbnail_image} */}
                 </a>
 
                 <div className="absolute top-4 left-4">
@@ -58,10 +58,10 @@ const BlogSection = async () => {
 
               </div>
 
-              <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
+              {/* <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
                 {" "}
-                {/* {item.date}{" "} */}
-              </span>
+                {item.date}{" "}
+              </span> */}
               
               <p className="mt-5 text-2xl font-semibold">
                 <a href="#" title="" className="text-black">
@@ -71,7 +71,7 @@ const BlogSection = async () => {
               </p>
               
               <p className="mt-4 text-base text-gray-600">
-                {/* {item.description} */}
+                {/* {item.blog_content} */}
               </p>
               <a
                 href="#"
@@ -95,7 +95,7 @@ const BlogSection = async () => {
             </div>
           </div>
         </div>
-      {/* ))} */}
+       {/* ))}  */}
 
     </section>
   );
