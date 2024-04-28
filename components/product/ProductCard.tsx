@@ -8,7 +8,7 @@ import Link from "next/link";
 import { newCart } from "@/lib/utils";
 import { toast } from "sonner";
 import useProductCart from "@/store/zustand";
-import { BASE_URL } from "@/utils/config";
+import { BASE_API_URL } from "@/utils/config";
 
 type ProductCardProps = {
   product: TProduct;

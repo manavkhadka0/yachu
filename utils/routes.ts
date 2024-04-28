@@ -11,4 +11,8 @@ export const Routes = {
   notFound: {
     root: "/404",
   },
+  blog: {
+    root: "/blog",
+    detail: (slug: string) => `/blog/${slug}`,
+  },
 };

@@ -2,12 +2,12 @@ import ProductCard from "./ProductCard";
 
 import { Button } from "../ui/button";
 import { PRODUCTS } from "@/constants/product";
-import { BASE_URL } from "@/utils/config";
+import { BASE_API_URL } from "@/utils/config";
 import { Prod, TProduct } from "@/types/product";
 
 const getProducts = async () => {
   try {
-    const res = await fetch(BASE_URL + '/products', { next: { revalidate: 10 } })
+    const res = await fetch(BASE_API_URL + '/products', { next: { revalidate: 10 } })
     return res.json();
   }
   catch (error) {
