@@ -12,7 +12,7 @@ import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
 import BlogSection from "@/components/blog/BlogSection";
-import { BASE_URL } from "@/utils/config";
+import { BASE_API_URL } from "@/utils/config";
 import { TSiteSetting } from "@/types/site-setting";
 import Testimonials from "@/components/home/Testimonials";
 
@@ -33,7 +33,7 @@ const DUMMY_SITE_CONFIG: TSiteSetting = [
 
 async function getData() {
   try {
-    const response = await fetch(BASE_URL + "/site-configssss", {
+    const response = await fetch(BASE_API_URL + "/site-configssss", {
       next: { revalidate: 10 },
     });
     // The return value is *not* serialized

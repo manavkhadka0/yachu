@@ -6,7 +6,6 @@ const nextConfig = {
         protocol: "https",
         hostname: "yachu.baliyoventures.com",
         port: "",
-        pathname: "/media/**",
       },
     ],
   },
