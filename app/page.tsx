@@ -111,10 +111,10 @@ export default async function Home() {
           <ContactForm />
         </div>
         <FlowerDivider />
-        <h3 className="text-4xl text-center font-bold mt-5 pt-6">
+        <h3 className="text-4xl text-black text-center leading-tight font-bold mt-5 pt-6">
           Frequently Asked Questions
         </h3>
-        <p className="text-center font-normal pb-4 pt-3 text-sm text-gray-400">
+        <p className="text-center font-normal  pb-4 pt-3 text-sm text-gray-600">
           Here are some common questions about Yachu Hail Oil, Answered for you
         </p>
         <FAQ />
