@@ -41,10 +41,11 @@ const getFAQs = async () => {
     return response.json();
   }
   catch (error) {
+
     console.error("Error fetching FAQs", error);
     return FAQ_LIST;
   }
-}
+};
 
 const FAQ = async () => {
   let data: FAQs = await getFAQs();

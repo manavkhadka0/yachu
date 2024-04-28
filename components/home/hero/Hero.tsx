@@ -4,25 +4,34 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="container px-6 pt-0 md:pt-2 lg:px-12 xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center">  
-      <div className="flex flex-col flex-1 justify-center w-full">
-        
-          <p className=" text-xs md:text-xs xl:text-base font-semibold text-gray-700  mb-1"> Made in Nepal</p>
-          <h1 className="block xl:py-6 xl:hidden text-5xl md:text-6xl lg:text-7xl lg:w-fit xl:text-9xl font-bold">
-            <p className="text-[#B45309] font-bold">Yachu </p>Hair Oil
-          </h1>
-          <h1 className="hidden xl:block text-5xl md:text-5xl lg:text-7xl font-bold">
+    <div className="container px-6 pt-0 md:pt-2 lg:px-12 xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center">
+      <div className="pb-24 flex flex-col flex-1 justify-center w-full">
+        <p className=" text-xs md:text-xs xl:text-base font-semibold text-gray-700  mb-1">
+          {" "}
+          Made in Nepal
+        </p>
+        <h1 className="block xl:py-6 xl:hidden text-5xl md:text-6xl lg:text-7xl lg:w-fit xl:text-9xl font-bold">
+          <p className="text-[#B45309] font-bold">Yachu </p>Hair Oil
+        </h1>
+        <h1 className="hidden xl:block text-5xl md:text-5xl lg:text-7xl font-bold">
           <span className="text-[#B45309] font-bold">Yachu </span>
-            Hair Oil
-          </h1>
-          <div className=" space-y-2 my-4">
-          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">❌ Dandruff, Hair Loss, Baldness ? </p>
-          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">🟢 Ultimate Solution = Yachu Hair Oil</p>
-          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">🍃 Crafted with a mix of 33 Jadibuti</p>
-          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">✅ Easy, Affordable and Safe
-            </p>
-          </div>
-        
+          Hair Oil
+        </h1>
+        <div className=" space-y-2 my-4">
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">
+            ❌ Dandruff, Hair Loss, Baldness ?{" "}
+          </p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">
+            🟢 Ultimate Solution = Yachu Hair Oil
+          </p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">
+            🍃 Crafted with a mix of 33 Jadibuti
+          </p>
+          <p className="font-semibold text-base md:text-lg xl:text-2xl xl:p-1 text-gray-700">
+            ✅ Easy, Affordable and Safe
+          </p>
+        </div>
+
         <div className="md:hidden flex gap-1 md:gap-3 lg:gap-2 items-center mb-4 md:justify-start ">
           <div className=" flex flex-col items-center gap-3">
             <Image
@@ -62,7 +71,9 @@ const Hero = () => {
           <p className=" text-amber-700 border-3 border-black-800 text-4xl md:text-6xl xl:text-7xl xl:py-3 font-extrabold fill-none stroke-black">
             50K +
           </p>
-          <p className="font-semibold text-gray-600 xl:text-xl">Hair Problems Solved</p>
+          <p className="font-semibold text-gray-600 xl:text-xl">
+            Hair Problems Solved
+          </p>
         </div>
         <Button
           variant={"ghost"}

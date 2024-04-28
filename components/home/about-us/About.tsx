@@ -6,7 +6,7 @@ type AboutProps = {
 };
 const About = ({ about_founder, our_story }: AboutProps) => {
   return (
-    <div className=" ">
+    <div className=" pb-24 ">
       <section className=" bg-white ">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
