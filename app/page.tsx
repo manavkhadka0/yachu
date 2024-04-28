@@ -89,6 +89,8 @@ export default async function Home() {
       {/* ---------------------------------- */}
 
       <Testimonials />
+      <FlowerDivider />
+
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
           <div className=" mb-12  flex flex-col justify-center items-center gap-2">

@@ -35,7 +35,7 @@ const ProductCart = () => {
               onClick={() => removeItem(product.id)}
             />
             <div className="p-4 border min-w-[90px] border-gray-300 rounded-lg flex justify-center items-center">
-              <Image src={product.imageSrc} alt="item" height={60} width={60} />
+              <Image src={product.image1} alt="item" height={60} width={60} />
             </div>
 
             <div className=" space-y-2  ">

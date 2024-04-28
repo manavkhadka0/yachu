@@ -1,7 +1,9 @@
-export type TBlog = {
-  title: string;
-  date: string;
-  image: string;
-  description: string;
-  href: string;
-};
+ type TBlog = {
+   slug: string;
+   title: string;
+   thumbnail_image: string;
+   blog_content: string;
+   href: string;
+ };
+
+export type BlogType = TBlog[];
