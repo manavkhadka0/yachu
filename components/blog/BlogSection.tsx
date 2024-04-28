@@ -22,7 +22,7 @@ const BlogSection = async () => {
     console.log(error);
   }
   return (
-    <section className="container pb-14" id="blogsection">
+    <section className="container pb-24" id="blogsection">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
         <div className="mx-auto">
           <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">
@@ -39,6 +39,7 @@ const BlogSection = async () => {
           </Button>
         </div>
       </div>
+
       {/* {blogdata.map((item, index) => ( */}
 
         <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
@@ -56,7 +57,9 @@ const BlogSection = async () => {
                   </span>
                 </div>
 
+
               </div>
+
 
               {/* <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
                 {" "}

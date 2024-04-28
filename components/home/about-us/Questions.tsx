@@ -3,15 +3,15 @@ import { LeafIcon } from "lucide-react";
 const Questions = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-[#FEF9E3]">
-      <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
+      <div className="px-6 pb-5 mx-auto sm:px-8 lg:px-12 max-w-7xl">
         <div className="grid grid-cols-1 gap-y-12 xl:grid-cols-6 gap-x-8">
           <div className="xl:col-span-2">
             <h2 className="tracking-tighter text-black">
-              <span className="font-sans text-3xl font-medium sm:text-5xl md:text-6xl">
+              <span className="font-serif text-3xl font-medium sm:text-5xl md:text-6xl">
                 {" "}
                 Is Yachu{" "}
               </span>
-              <span className="font-serif text-3xl italic font-medium sm:text-6xl sm:block md:text-7xl ">
+              <span className="font-serif text-3xl font-medium sm:text-6xl sm:block md:text-7xl ">
                 {" "}
                 for me?{" "}
               </span>

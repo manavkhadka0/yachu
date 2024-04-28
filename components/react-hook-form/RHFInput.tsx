@@ -21,7 +21,6 @@ type RHFInputProps = InputProps & {
 
 const RHFInput: React.FC<RHFInputProps> = ({
   name,
-  label,
   placeholder,
   required,
   type,
@@ -35,10 +34,7 @@ const RHFInput: React.FC<RHFInputProps> = ({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>
-            {label}
-            {required && "*"}
-          </FormLabel>
+          <FormLabel>{required}</FormLabel>
           <FormControl>
             <Input
               placeholder={placeholder || ""}

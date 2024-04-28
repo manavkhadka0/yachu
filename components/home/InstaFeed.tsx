@@ -10,7 +10,7 @@ const InstaFeed = () => {
         type="module"
         strategy="lazyOnload"
       ></Script>
-      <div className=" p-4 text-center text-xl mb-6">
+      <div className=" p-4 pb-6 text-center text-xl mb-6">
         Follow{" "}
         <Link
           href={"https://www.instagram.com/yachu.np/"}

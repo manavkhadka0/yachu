@@ -15,7 +15,7 @@ const CartButton = () => {
         <Button variant={"link"} size={"icon"} className=" relative">
           <ShoppingCartIcon />{" "}
           {cart.length > 0 && (
-            <Badge className="absolute -top-1 -right-1 rounded-full h-5 w-5 p-2 flex items-center justify-center">
+            <Badge className="absolute -top-1 -right-1 rounded-full hover:text-blue-300 h-5 w-5 p-2 flex items-center justify-center">
               {getTotalCount(cart)}
             </Badge>
           )}
