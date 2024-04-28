@@ -3,7 +3,7 @@ import { LeafIcon } from "lucide-react";
 const Questions = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-[#FEF9E3]">
-      <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
+      <div className="px-6 pb-5 mx-auto sm:px-8 lg:px-12 max-w-7xl">
         <div className="grid grid-cols-1 gap-y-12 xl:grid-cols-6 gap-x-8">
           <div className="xl:col-span-2">
             <h2 className="tracking-tighter text-black">

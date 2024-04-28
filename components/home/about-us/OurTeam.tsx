@@ -22,7 +22,7 @@ const OurTeam = async () => {
     data = OUR_TEAM;
   }
   return (
-    <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
+    <section className="py-10 sm:py-16 lg:pt-5">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
@@ -39,7 +39,7 @@ const OurTeam = async () => {
             <>
               <div key={member.id}>
                 <img
-                  className="object-cover mx-auto rounded-lg w-38 h-38"
+                  className="object-cover mx-auto h-80 lg:h-fit rounded-lg w-38 h-38"
                   src={member.photo}
                   alt=""
                 />

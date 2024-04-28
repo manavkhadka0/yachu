@@ -76,6 +76,8 @@ export default async function Home() {
 
       <Questions />
 
+      <FlowerDivider />
+
       <OurTeam />
       {/* ---------------------------------- */}
 
@@ -85,7 +87,7 @@ export default async function Home() {
       <InstaFeed />
       {/* <VideoShowcase /> */}
       {/* ---------------------------------- */}
-      <FlowerDivider />
+
       <Testimonials />
       <div className="container mb-20 mt-10">
         <div className=" flex justify-center flex-col max-w-3xl mx-auto mb-16">
