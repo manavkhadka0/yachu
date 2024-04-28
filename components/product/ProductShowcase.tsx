@@ -7,7 +7,6 @@ import { Prod, TProduct } from "@/types/product";
 
 const getProducts = async () => {
   try {
-
     const res = await fetch(BASE_URL + "/products", {
       next: { revalidate: 10 },
     });
@@ -17,20 +16,7 @@ const getProducts = async () => {
     return PRODUCTS;
   }
 };
-const ProductShowcase = async () => {
-  // let data: Prod = await getProducts();
-  //   if (data.length === 0) {
-  //     data = PRODUCTS;
-  //   }
 
-    const res = await fetch(BASE_URL + '/products', { next: { revalidate: 10 } })
-    return res.json();
-  }
-  catch (error) {
-    console.error("Error fetching Products", error)
-    return PRODUCTS;
-  }
-}
 const ProductShowcase = async () => {
   let data: Prod = await getProducts();
   if (data.length === 0) {
