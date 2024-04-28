@@ -39,18 +39,18 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        <div className=" grid  sm:grid-cols-2 sm:gap-4 gap-8">
+        <div className=" grid sm:grid-cols-2 sm:gap-4 gap-8">
           <RHFInput
             name="name"
-            label="Full Name"
-            placeholder="eg. John Doe"
+            label="name"
+            placeholder="Full Name"
             required
             className="text-base"
           />
           <RHFInput
             name="phone"
             label="Phone Number"
-            placeholder="eg. 986543665"
+            placeholder="Phone"
             type="number"
             className="text-base"
             required
@@ -59,7 +59,7 @@ const ContactForm = () => {
         <RHFInput
           name="email"
           label="Email Address"
-          placeholder="eg. john@gmail.com"
+          placeholder="Your Email"
           type="email"
           required
           className="text-base"

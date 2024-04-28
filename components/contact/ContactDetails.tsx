@@ -4,22 +4,22 @@ import Link from "next/link";
 
 const ContactDetails = () => {
   return (
-    <div>
-      <div className="flex flex-col gap-4 mb-4">
-        <div className="flex gap-2">
+    <div className="my-6 py-4 max-w-3xl mx-auto">
+      <div className=" mx-auto py-4 justify-center flex gap-4 mb-4">
+        <div className="flex gap-4">
           <MapPin className="h-4 w-4 mt-1 text-amber-600" />
-          <div className="">
+          <div className="mx-4">
             <p className=" font-bold">Yachu Hair Oil</p>
             <p className=" text-gray-500">Kathmandu, Nepal</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex mx-4 items-center gap-2">
           <PhoneCallIcon className="h-4 w-4 text-amber-600" />
           <Link href={`tel:${yachuPhone}`} className=" hover:underline">
             {yachuPhone}
           </Link>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex mx-4 items-center gap-2">
           <MailIcon className="h-4 w-4 text-amber-600" />
           <Link href={`mailto:${yachuEmail}`} className="hover:underline">
             {yachuEmail}
