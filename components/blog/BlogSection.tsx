@@ -19,7 +19,6 @@ const getBlogs = async () => {
 const BlogSection = async () => {
 
   let data: TBlog[] = await getBlogs();
-  console.log(data);
   if (!data) {
     return
   }

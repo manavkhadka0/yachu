@@ -7,12 +7,11 @@ import Link from "next/link";
 type BlogCardProps = {
   blog: TBlog;
 };
-
-const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  const { title, slug, thumbnail_image, blog_content, category: { category_image, category_name } } = blog;
+const BlogCard: React.FC<BlogCardProps> = ({blog}) => {
+  const { title, slug, thumbnail_image, blog_content, category: { category_image, category_name }, author: { name, picture, role } } = blog;
   return (
-    <div className="grid max-w-md grid-cols-1 gap-6 pl-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
-      <div className="overflow-hidden bg-white rounded shadow">
+    <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
+      <div className="overflow-hidden bg-slate-100 rounded-md hover:shadow-xl">
         <div className="p-5">
           <div className="relative">
             <a href={Routes.blog.detail(slug)} title="" className="block aspect-w-4 aspect-h-3">
@@ -30,25 +29,33 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
           </div>
 
-          {/* <span className="block mt-6 text-sm font-semibold tracking-widest text-gray-500 uppercase">
-            {" "}
-            {date}{" "}
-          </span> */}
-
           <p className="mt-5 text-2xl font-semibold">
             <a href={Routes.blog.detail(slug)} title="" className="text-black">
               {" "}
               {title}{" "}
             </a>
           </p>
-
-          <p className="mt-4 text-base text-gray-600">
-            {blog_content}
-          </p>
+          <div className="flex justify-start items-center mt-6  gap-5">
+            <Image
+              height={40}
+              width={40}
+              src={BASE_URL + picture}
+              alt="image"
+              className="justify-center bg-red-400 rounded-full object-fill overflow-hidden">
+            </Image>
+            <div className="flex flex-col ">
+              <p className=" text-lg font-semibold text-gray-500">
+                {name}
+              </p>
+              <p className=" text-base text-gray-500">
+                {role}
+              </p>
+            </div>
+          </div>
           <a
-            href="#"
+            href={Routes.blog.detail(slug)}
             title=""
-            className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-[#B45309] transition-all duration-200 border-b-2 border-transparent hover:border-[#B45309] focus:border-[#B45309]"
+            className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-amber-600 transition-all duration-200 border-b-2 border-transparent hover:border-amber-600 focus:border-amber-600"
           >
             Continue Reading
             <svg

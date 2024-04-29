@@ -7,4 +7,10 @@ export type TBlog = {
     category_name: string;
     category_image: string;
   };
+  author: {
+    name: string;
+    role: string;
+    phone: string;
+    picture: string;
+  };
 };
