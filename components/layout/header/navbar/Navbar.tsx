@@ -16,7 +16,7 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div className=" hidden md:block">
+      <div className=" hidden lg:block">
         <NavMenus />
       </div>
       <NavActions />
