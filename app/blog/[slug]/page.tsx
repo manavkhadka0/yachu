@@ -2,13 +2,27 @@ import React from 'react'
 import BlogSection from '@/components/blog/BlogSection';
 import BlogCard from '@/components/blog/BlogCard';
 import { TBlog } from '@/types/blog';
+import { BASE_API_URL } from '@/utils/config';
 
 
-type BlogCardProps = {
-    blog: TBlog;
-};
 
-const BlogDetails: React.FC<BlogCardProps> = async ({blog}) => {
+const getBlogBySlug = async (slug: string) => {
+    try {
+        const res = await fetch(`${BASE_API_URL}/post-single/${slug}`);
+        const data = await res.json();
+        return data.data;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+const BlogDetails = async ({ params }: { params: { slug: string } }) => {
+
+    const blog = await getBlogBySlug(params.slug);
+
+
     const { title, slug, thumbnail_image, blog_content, category: { category_image, category_name }, author: { name, picture, role } } = blog;
 
     return (
@@ -16,7 +30,7 @@ const BlogDetails: React.FC<BlogCardProps> = async ({blog}) => {
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-5xl mx-auto">
                     <div className="max-w-2xl">
-                        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">{blog.title}</h1>
+                        <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">{title}</h1>
                         <p className="mt-6 text-base font-medium text-gray-500">November 22, 2021</p>
                     </div>
 
