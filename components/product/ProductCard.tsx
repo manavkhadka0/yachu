@@ -29,46 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     toast.success("Product added to cart. Checkout now!");
   };
 
-  return (
-    // <div classname="product-card-shadow py-4 sm:py-8 rounded-lg sm:rounded-2xl  r overflow-hidden">
-    //   <div classname=" rounded-t-3xl bg-white  flex flex-col h-full justify-between items-center overflow-hidden">
-    //     <div classname="flex p-4 flex-col justify-center items-center h-64">
-    //       <Image
-    //         src={image1}
-    //         alt="product"
-    //         height={400}
-    //         width={600}
-    //         classname=" object-contain h-full w-full  rounded-lg mb-4"
-    //       />
-    //     </div>
-    //     <div classname="sm:px-4 px-2 flex flex-col gap-2 items-center w-full">
-    //       <Link
-    //         href={"/product/" + id}
-    //         classname="sm:text-lg text-sm font-bold text-center px-4 sm:px-6 py-2 border-2 border-amber-600  rounded-xl hover:text-amber-600 transition-all "
-    //       >
-    //         {title}
-    //       </Link>
-    //       <p classname=" text-xs sm:text-base font-semibold text-lime-700 text-center mt-4">
-    //         {subtitle}
-    //       </p>
-    //     </div>
-    //     <div classname="w-full flex flex-col sm:px-4 px-2">
-    //       <div classname="sm:text-2xl text-lg font-bold my-2 sm:my-4 text-center">
-    //         Rs. {price}
-    //       </div>
-
-    //       <Button
-    //         classname="w-full bg-amber-700 hover:bg-amber-900 text-sm sm:text-lg flex items-center"
-    //         size={"lg"}
-    //         onClick={handleAddToCart}
-    //       >
-    //         <ShoppingCartIcon classname="mr-2" />
-    //         Add to cart
-    //       </Button>
-    //     </div>
-    //   </div>
-    // </div>
-
+  return (  
     <div className="flex flex-col overflow-hidden transition-all duration-300 border border-gray-200 rounded-md hover:shadow-xl bg-slate-100">
 
       <div className="flex-shrink-0  w-full h-80 ">
