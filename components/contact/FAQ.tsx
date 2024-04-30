@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/utils/config";
+import { BASE_API_URL } from "@/utils/config";
 import {
   Accordion,
   AccordionContent,
@@ -37,11 +37,11 @@ const FAQ_LIST: FAQs = [
 
 const getFAQs = async () => {
   try {
-    const response = await fetch(BASE_URL + "/faqs", {
-      next: { revalidate: 10 },
-    });
+    const response = await fetch(BASE_API_URL + "/faqs", { next: { revalidate: 10 } })
     return response.json();
-  } catch (error) {
+  }
+  catch (error) {
+
     console.error("Error fetching FAQs", error);
     return FAQ_LIST;
   }

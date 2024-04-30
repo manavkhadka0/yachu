@@ -1,12 +1,12 @@
 import { OUR_TEAM } from "@/constants/about";
 import { Members, TEAM } from "@/types/team";
-import { BASE_URL } from "@/utils/config";
+import { BASE_API_URL } from "@/utils/config";
 import { revalidatePath } from "next/cache";
 import Image from "next/image";
 
 const getTeams = async () => {
   try {
-    const response = await fetch(BASE_URL + "/team-members", {
+    const response = await fetch(BASE_API_URL + "/team-members", {
       next: { revalidate: 10 },
     });
     return response.json();
