@@ -42,7 +42,6 @@ const BlogSection = async () => {
       </div>
       {data.map((item, index) => (
         <BlogCard blog={item} key={index}></BlogCard>
-
       ))}
     </section>
   );

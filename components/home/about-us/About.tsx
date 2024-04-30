@@ -34,7 +34,7 @@ const getAboutData = async () => {
 const About: React.FC<AboutProps> = async () => {
   const aboutdetails = await getAboutData();
   console.log("Details:::", aboutdetails);
-  const { our_story, about_founder } = aboutdetails.length > 0 ? aboutdetails[0] : DUMMY_SITE_CONFIG[0];
+  const { our_story, about_founder, message_from_ceo } = aboutdetails.length > 0 ? aboutdetails[0] : DUMMY_SITE_CONFIG[0];
 
   return (
     <div className=" pb-24 ">
@@ -102,13 +102,11 @@ const About: React.FC<AboutProps> = async () => {
                 </div>
                 <div className="absolute left-0 pr-12 bottom-8 xl:bottom-20">
                   <div className="max-w-xs bg-amber-600 rounded-lg sm:max-w-md xl:max-w-md">
-                    <div className="px-3 py-4 sm:px-5 sm:py-8">
+                    <div className="px-3 py-4 sm:py-6 sm:px-4 ">
                       <div className="flex items-start">
                         <p className="text-3xl sm:text-4xl">👋</p>
-                        <blockquote className="ml-5">
-                          <p className="text-sm font-medium text-white sm:text-lg">
-                            “Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Quo earum eum aliquid”
+                        <blockquote className="">
+                          <p className="text-sm font-medium text-white sm:text-lg" dangerouslySetInnerHTML={{ __html: message_from_ceo }}>
                           </p>
                         </blockquote>
                       </div>
