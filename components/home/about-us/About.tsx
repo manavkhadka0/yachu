@@ -3,7 +3,7 @@ import { BASE_API_URL } from "@/utils/config";
 import Image from "next/image";
 
 type AboutProps = {
-  aboutdetails: TSiteSetting
+  aboutdetails: TSiteSetting;
 };
 
 const DUMMY_SITE_CONFIG: TSiteSetting = [
@@ -23,7 +23,9 @@ const DUMMY_SITE_CONFIG: TSiteSetting = [
 
 const getAboutData = async () => {
   try {
-    const res = await fetch(`${BASE_API_URL}/site-configs`, { next: { revalidate: 10 } });
+    const res = await fetch(`${BASE_API_URL}/site-configs`, {
+      next: { revalidate: 10 },
+    });
     const data: TSiteSetting = await res.json();
     return data;
   } catch (error) {
