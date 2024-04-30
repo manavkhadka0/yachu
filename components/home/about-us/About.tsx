@@ -4,6 +4,7 @@ type AboutProps = {
   about_founder: string;
   our_story: string;
 };
+
 const About = ({ about_founder, our_story }: AboutProps) => {
   return (
     <div className=" pb-24 ">
