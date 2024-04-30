@@ -16,41 +16,9 @@ import { BASE_API_URL } from "@/utils/config";
 import { TSiteSetting } from "@/types/site-setting";
 import Testimonials from "@/components/home/Testimonials";
 
-const DUMMY_SITE_CONFIG: TSiteSetting = [
-  {
-    id: 1,
-    meta_title: "Meta Title Landing Page",
-    meta_description: "Meta Description Landing Page",
-    hero_title: "Title",
-    hero_section_subtitle:
-      "Discover The Best Hiking Trails And Bee-Watching Spots On Your Next Adventure. Book A Trip Now",
-    hero_section_image: "./yachu-hero.png",
-    about_founder: "dummy_founder",
-    message_from_ceo: "dummy_messgae",
-    our_story: "dummy_story",
-  },
-];
 
-async function getData() {
-  try {
-    const response = await fetch(BASE_API_URL + "/site-configssss", {
-      next: { revalidate: 10 },
-    });
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return response.json();
-  } catch (error) {
-    // This will activate the closest `error.js` Error Boundary
-    return DUMMY_SITE_CONFIG;
-  }
-}
 
 export default async function Home() {
-  const data: TSiteSetting = await getData();
-
   return (
     <main className="flex flex-col ">
       <Hero />
@@ -68,10 +36,7 @@ export default async function Home() {
       {/* ---------------------------------- */}
       <FlowerDivider />
       {/* --------- About Yachu ------------*/}
-      <About
-        about_founder={data[0].about_founder}
-        our_story={data[0].our_story}
-      />
+      <About aboutdetails={[]}  />
       {/* ---------------------------------- */}
 
       <Questions />
