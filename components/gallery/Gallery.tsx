@@ -1,65 +1,55 @@
-import React from "react";
-import Image from "next/image";
-import { Button } from "../ui/button";
+// "use client";
+// import LightGallery from "lightgallery/react";
+// import Link from "next/link";
+// import "lightgallery/css/lightgallery.css";
+// import "lightgallery/css/lg-zoom.css";
+// import "lightgallery/css/lg-thumbnail.css";
 
-const gallery = () => {
-  return (
-    <section className="py-12 sm:py-16 lg:py-12">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-center items-center mb-8">
-          <div className="mx-auto">
-            <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">
-              Gallery
-            </h3>
-          </div>
-          <div className=" md:flex-row md:mr-7">
-            <Button
-              variant={"ghost"}
-              className=" h-7 sm:h-9 w-auto mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0"
-              size={"lg"}
-            >
-              <a href="/components/gallery/GallerySection.tsx"></a>
-              View all
-            </Button>
-          </div>
-        </div>
-      </div>
+// import lgThumbnail from "lightgallery/plugins/thumbnail";
+// import lgZoom from "lightgallery/plugins/zoom";
+// import { BASE_API_URL } from "@/utils/config";
 
-      <div className="flex flex-col items-center lg:pl-16 gap-10 pb-24 mt-12 lg:flex-row sm:mt-16">
-        <div className="relative shrink-0 px-auto">
-          <img
-            className="h-auto w-[280px]"
-            src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/gallery/2/image-2.png"
-            alt=""
-          />
-        </div>
+// export default function Gallery(props: { images: any[]; project_name: string; project_address: string; }) {
+//   const onInit = () => {
+//     console.log("lightGallery has been initialized");
+//   };
 
-        <div className="relative shrink-0 first:pl-6 last:pr-6">
-          <img
-            className="h-auto w-[280px]"
-            src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/gallery/2/image-2.png"
-            alt=""
-          />
-        </div>
+//   const newImages = (images:any[]) => {
+//     let neImgs = images;
+//     neImgs.forEach((image) => {
+//       image.image = BASE_API_URL + image.image;
+//     });
+//     for (let i = images.length; i < 7; i++) {
+//       neImgs.push({
+//         id: 0,
+//         image: "https://condomonk.ca/noimage.webp",
+//       });
+//     }
+//     return neImgs;
+//   };
 
-        <div className="relative  shrink-0 first:pl-6 last:pr-6">
-          <img
-            className="h-auto w-[280px]"
-            src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/gallery/2/image-3.png"
-            alt=""
-          />
-        </div>
-
-        <div className="relative shrink-0 first:pl-6 last:pr-6">
-          <img
-            className="h-auto w-[280px]"
-            src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/gallery/2/image-4.png"
-            alt=""
-          />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default gallery;
+//   return (
+//     <div className="my-3 grid-cont">
+//       <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]}>
+//         {newImages(props.images)
+//           ?.slice(0, 7)
+//           .map((image, no) => (
+//             <Link
+//               href={`${image.image}`}
+//               className={`position-relative g-item grid-item${parseInt(
+//                 no + 1
+//               )}`} /* Adjusted class assignment */
+//               key={no}
+//             >
+//               <img
+//                 alt={`${props.project_name} located at ${props.project_address
+//                   } image ${no + 1}`}
+//                 className="img-fluid w-100 h-100 rounded-mine lazy"
+//                 src={`${image.image}`}
+//               />
+//             </Link>
+//           ))}
+//       </LightGallery>
+//     </div>
+//   );
+// }
