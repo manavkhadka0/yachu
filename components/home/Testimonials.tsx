@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
 import { TESTIMONIALS } from "@/constants/product";
 import Image from "next/image";
@@ -21,32 +21,34 @@ const images = [
   "https://images.unsplash.com/photo-1549737328-8b9f3252b927?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
   "https://images.unsplash.com/photo-1549833284-6a7df91c1f65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
   "https://images.unsplash.com/photo-1549985908-597a09ef0a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+  "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
 ];
 const texts = [
   "Appending currency sign to a purchase form in your e-commerce site using plain JavaScript.",
   "Fixing CSS load order/style.chunk.css incorrect in Nextjs",
   "React Carousel with Server Side Rendering Support – Part 1",
   "React Carousel with Server Side Rendering Support – Part 2",
-  "Flutter Xcode couldn’t find any iOS App Development provisioning profiles"
+  "Flutter Xcode couldn’t find any iOS App Development provisioning profiles",
 ];
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3 // optional, default to 1.
+    items: 2,
+    partialVisibilityGutter: 40,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    slidesToSlide: 2 // optional, default to 1.
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+    partialVisibilityGutter: 40,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    slidesToSlide: 1 // optional, default to 1.
-  }
+    slidesToSlide: 1, // optional, default to 1.
+    partialVisibilityGutter: 40,
+  },
 };
 
 const fakerData = Array(12)
@@ -55,7 +57,7 @@ const fakerData = Array(12)
     return {
       image: images[index],
       headline: "w3js -> web front-end studio",
-      description: texts[index] || texts[0]
+      description: texts[index] || texts[0],
     };
   });
 
@@ -64,83 +66,70 @@ const getTestimonials = async () => {
     const res = await fetch(`${BASE_API_URL}/testimonials`);
     const data = await res.json();
     return data;
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
-const Testimonials = async () => {
-  const testimonial: TestimonialType = await getTestimonials();
-  const { title, name, before, after, rating, source, review } = testimonial;
-
+const Testimonials = () => {
   return (
     <div className=" bg-gradient-to-r from-lime-700  from-10%  to-lime-900 to-90% text-white ">
       <section className="py-4 bg-white sm:py-16 lg:py-12 xl:py-12">
-        <p className=" text-sm  mb-4  md:text-base text-center sm:text-base font-semibold text-amber-600">200+ Happy And Satisfied Yachu Users</p>
+        <p className=" text-sm  mb-4  md:text-base text-center sm:text-base font-semibold text-amber-600">
+          200+ Happy And Satisfied Yachu Users
+        </p>
 
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col lg:flex-row w-full justify-center items-center mb-8">
             <div className="mx-auto ">
-              <h3 className="sm:text-2xl lg:pl-40 font-semibold text-black md:text-5xl text-center ">Don&apos;t just take our words</h3>
+              <h3 className="sm:text-2xl lg:pl-40 font-semibold text-black md:text-5xl text-center ">
+                Don&apos;t just take our words
+              </h3>
             </div>
             <div className=" md:flex-row md:mr-7 ">
-              <Button variant={"ghost"} className=" h-7 sm:h-9 w-auto text-black mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0" size={"lg"}>
+              <Button
+                variant={"ghost"}
+                className=" h-7 sm:h-9 w-auto text-black mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0"
+                size={"lg"}
+              >
                 View all
               </Button>
             </div>
           </div>
 
           <Carousel
-            /*
             swipeable={false}
             draggable={false}
-            */
             responsive={responsive}
             ssr
-            infinite={false}
+            infinite={true}
             containerClass="first-carousel-container container"
           >
-            {fakerData.map(card => {
-              return <div className="flex flex-col sm:flex-row lg:items-center">
-                <img className="object-cover w-48 h-48 mx-auto sm:mx-0 lg:w-60 lg:h-60 shrink-0 rounded-2xl" src={BASE_URL + card.image} alt="" />
-                <div className="mt-8 sm:mt-0 sm:ml-10">
-                  <div className="flex items-center justify-center sm:justify-start">
-                    <svg className="w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg className="w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg className="w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg className="w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                    <svg className="w-5 h-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      />
-                    </svg>
-                  </div>
-                  <blockquote className="mt-8">
-                    <p className="text-lg font-medium leading-8 text-gray-900">Review</p>
-                  </blockquote>
-                  <div className="flex flex-col flex-wrap items-center justify-center gap-1 mt-5 sm:flex-row sm:justify-start sm:gap-4">
-                    <p className="text-base font-semibold text-gray-900">Devon Lane</p>
-                    <p className="text-base font-normal text-gray-600">{card.description}</p>
+            {fakerData.map((card, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex gap-4 flex-col md:flex-row mx-8 p-4 bg-gray-200 rounded-3xl  md:items-start"
+                >
+                  <Image
+                    height={192}
+                    width={192}
+                    className="object-cover mx-auto sm:mx-0 lg:w-60 lg:h-60 shrink-0 rounded-2xl"
+                    src={card.image}
+                    alt=""
+                  />
+                  <div className="">
+                    <div className="flex flex-col justify-start gap-1 mt-5">
+                      <p className="text-base font-semibold text-gray-900">
+                        Devon Lane
+                      </p>
+                      <p className="text-base font-normal text-gray-600">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              );
             })}
           </Carousel>
 
@@ -165,12 +154,8 @@ const Testimonials = async () => {
           {/* {testimonial.map((item, index) => (
             <TestimonialsCard testimonial={item} key={index}/>
           ))} */}
-
-
-
         </div>
       </section>
-
     </div>
   );
 };
