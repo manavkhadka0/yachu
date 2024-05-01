@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: "yachu.baliyoventures.com",
         port: "",
       },
+      // images.unsplash.com"
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+      },
     ],
   },
 };
