@@ -3236,7 +3236,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prop-types@^15.8.1:
+prop-types@^15.5.8, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -3291,10 +3291,22 @@ react-dom@^18:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
+react-easy-swipe@^0.0.23:
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.23.tgz#67bea5a92d75ae23e24c99771cb36e32ecc5a4fa"
+  integrity sha512-bOSwpZQVPbckL3aN2HdcvYD0j+mgAgISS+AGHmdhpPoNh3Mh3l3NfNQ0mVHuWGyBBvH+VIrU/6GbS1XoST9Pxw==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-hook-form@^7.48.2:
   version "7.51.3"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.3.tgz#7486dd2d52280b6b28048c099a98d2545931cab3"
   integrity sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==
+
+react-icons@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.2.0.tgz#790c92d5f1888ef2dbbd3468c553fd4bb5c8bf7e"
+  integrity sha512-n52Y7Eb4MgQZHsSZOhSXv1zs2668/hBYKfSRIvKh42yExjyhZu0d1IK2CLLZ3BZB1oo13lDfwx2vOh2z9FTV6Q==
 
 react-is@^16.13.1:
   version "16.13.1"
@@ -3308,6 +3320,11 @@ react-map-gl@^7.1.6:
   dependencies:
     "@maplibre/maplibre-gl-style-spec" "^19.2.1"
     "@types/mapbox-gl" ">=1.0.0"
+
+react-multi-carousel@^2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/react-multi-carousel/-/react-multi-carousel-2.8.5.tgz#033e35426ee2d2ddd46a5b3967a654cd901a80d1"
+  integrity sha512-C5DAvJkfzR2JK9YixZ3oyF9x6R4LW6nzTpIXrl9Oujxi4uqP9SzVVCjl+JLM3tSdqdjAx/oWZK3dTVBSR73Q+w==
 
 react-remove-scroll-bar@^2.3.3:
   version "2.3.6"
