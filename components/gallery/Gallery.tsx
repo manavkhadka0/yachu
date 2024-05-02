@@ -1,55 +1,68 @@
-// "use client";
-// import LightGallery from "lightgallery/react";
-// import Link from "next/link";
-// import "lightgallery/css/lightgallery.css";
-// import "lightgallery/css/lg-zoom.css";
-// import "lightgallery/css/lg-thumbnail.css";
+"use client";
 
-// import lgThumbnail from "lightgallery/plugins/thumbnail";
-// import lgZoom from "lightgallery/plugins/zoom";
-// import { BASE_API_URL } from "@/utils/config";
+import React from 'react';
+import LightGallery from "lightgallery/react";
+import Link from "next/link";
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import { BASE_API_URL,  } from '@/utils/config';
 
-// export default function Gallery(props: { images: any[]; project_name: string; project_address: string; }) {
-//   const onInit = () => {
-//     console.log("lightGallery has been initialized");
-//   };
+interface ImageProps {
+    id: number;
+    title: string;
+    image: string;
+    updated_at: string;
+    created: string;
+}
 
-//   const newImages = (images:any[]) => {
-//     let neImgs = images;
-//     neImgs.forEach((image) => {
-//       image.image = BASE_API_URL + image.image;
-//     });
-//     for (let i = images.length; i < 7; i++) {
-//       neImgs.push({
-//         id: 0,
-//         image: "https://condomonk.ca/noimage.webp",
-//       });
-//     }
-//     return neImgs;
-//   };
+const getImages = async () => {
+    try {
+        const res = await fetch(`${BASE_API_URL}/image-galleries`, {
+            next: { revalidate: 10 },
+        });
+        const data: ImageProps[] = await res.json();
+        return data;
+    } catch (error) {
+        return null;
+    }
+};
 
-//   return (
-//     <div className="my-3 grid-cont">
-//       <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]}>
-//         {newImages(props.images)
-//           ?.slice(0, 7)
-//           .map((image, no) => (
-//             <Link
-//               href={`${image.image}`}
-//               className={`position-relative g-item grid-item${parseInt(
-//                 no + 1
-//               )}`} /* Adjusted class assignment */
-//               key={no}
-//             >
-//               <img
-//                 alt={`${props.project_name} located at ${props.project_address
-//                   } image ${no + 1}`}
-//                 className="img-fluid w-100 h-100 rounded-mine lazy"
-//                 src={`${image.image}`}
-//               />
-//             </Link>
-//           ))}
-//       </LightGallery>
-//     </div>
-//   );
-// }
+const Gallery = async () => {
+
+    const images = await getImages();
+
+    const onInit = () => {
+        console.log("lightGallery has been initialized");
+    };
+
+    if (!images) {
+        return null;
+    }
+
+    return (
+        <div className="my-3 grid grid-cols-1  gap-3">
+            <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]}>
+                {images.slice(0, 10).map((image, no) => (
+                        <Link
+                            href={`${image.image || ''}`} // Handle undefined image.image
+                            className={`relative grid-item${no + 1}`}
+                            key={no}
+                        >
+                            <img
+                                alt={image.title}
+                                className="w-60 h-auto rounded-lg object-cover lazy"
+                                src={`${image.image || ''}`} // Handle undefined image.image
+                            />
+                        </Link>
+                    ))}
+            </LightGallery>
+        </div>
+
+
+    );
+};
+
+export default Gallery;

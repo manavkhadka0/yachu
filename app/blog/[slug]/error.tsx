@@ -13,16 +13,16 @@ export default function Error({
   }, [error])
 
   return (
-    <div className='flex flex-col justify-center items-center pt-56'>
-      <h2 className='text-gray-500 text-3xl '>404 ERROR !!!</h2>
-      <h2 className='text-gray-800 pt-2 font-extrabold text-6xl'>Something went wrong!</h2>
-      <button className='text-xl text-gray-500 pt-8 font-semibold'
+    <div className='flex flex-col justify-center items-center pt-44 md:pt-48'>
+      <h2 className='text-gray-500 text-xl sm:text-3xl '>404 ERROR !!!</h2>
+      <h2 className='text-gray-800 pt-2 font-black md:font-bold text-2xl sm:text-5xl'>Something went wrong!</h2>
+      <button className='text-xl text-gray-500 pt-5 md:pt-8 sm:font-semibold'
         onClick={
           () => reset()
         }
       >
         Try again
-      </button>
+      </button> 
     </div>
   )
 }

@@ -8,8 +8,6 @@ import { TestimonialType } from "@/types/testi";
 import TestimonialsCard from "./TestimonialsCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import CustomLeftArrow from "./CustomLeftArrow";
-import CustomRighttArrow from "./CustomRighttArrow";
 
 const images = [
   "https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
@@ -54,12 +52,12 @@ const responsive = {
 };
 
 const fakerData = Array(12).fill(0).map((item, index) => {
-    return {
-      image: images[index],
-      headline: "w3js -> web front-end studio",
-      description: texts[index] || texts[0],
-    };
-  });
+  return {
+    image: images[index],
+    headline: "w3js -> web front-end studio",
+    description: texts[index] || texts[0],
+  };
+});
 
 const getTestimonials = async () => {
   try {
@@ -102,8 +100,6 @@ const Testimonials = () => {
             draggable={false}
             responsive={responsive}
             ssr
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRighttArrow />}
             infinite={true}
             containerClass="first-carousel-container container"
           >
@@ -123,7 +119,7 @@ const Testimonials = () => {
                   <div className="">
                     <div className="flex flex-col justify-start gap-1 mt-5">
                       <p className="text-base font-semibold text-gray-900">
-{}                      </p>
+                        { card.headline}</p>
                       <p className="text-base font-normal text-gray-600">
                         {card.description}
                       </p>
