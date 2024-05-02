@@ -81,3 +81,32 @@
 .buttonbg{
   background-color:#b4530933;
 }
+
+.lg-container__custom {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+
+  grid-gap:0.5rem;
+}
+.lg-container__card-image {
+  background: linear-gradient(
+    110deg,
+    #ececec 8%,
+    #f5f5f5 18%,
+    #ececec 33%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: shine 1.5s linear infinite;
+  width: 100%;
+  height: 220px;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  object-position: center !important;
+}
+.gallery-item:first-child .lg-container__card-image {
+  height:450px;
+}
+.gallery-item {
+  grid-row: span 1;
+}

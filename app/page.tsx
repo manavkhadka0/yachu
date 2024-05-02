@@ -42,7 +42,7 @@ export default async function Home() {
 
       <Questions />
       <FlowerDivider />
-      {/* <Gallery   /> */}
+      <Gallery   />
 
       <FlowerDivider />
 

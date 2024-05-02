@@ -8,7 +8,8 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
-import { BASE_API_URL,  } from '@/utils/config';
+import { BASE_API_URL, } from '@/utils/config';
+import Image from 'next/image';
 
 interface ImageProps {
     id: number;
@@ -43,23 +44,38 @@ const Gallery = async () => {
     }
 
     return (
-        <div className="my-3 grid grid-cols-1  gap-3">
-            <LightGallery onInit={onInit} speed={500} plugins={[lgThumbnail, lgZoom]}>
-                {images.slice(0, 10).map((image, no) => (
-                        <Link
-                            href={`${image.image || ''}`} // Handle undefined image.image
-                            className={`relative grid-item${no + 1}`}
-                            key={no}
-                        >
-                            <img
-                                alt={image.title}
-                                className="w-60 h-auto rounded-lg object-cover lazy"
-                                src={`${image.image || ''}`} // Handle undefined image.image
-                            />
-                        </Link>
-                    ))}
-            </LightGallery>
-        </div>
+
+        <>
+            {LightGallery ? (
+                <LightGallery
+                    onInit={onInit}
+                    speed={500}
+                    plugins={[lgThumbnail, lgZoom]}
+                    elementClassNames="lg-container__custom overflow-auto gap-2"
+                >
+                    <>
+                        {images.length > 0 ? (
+                            images.map((url, index) => (
+                                <a href={`${url}`} key={index} className={`gallery-item ${index === 0 ? 'first-item' : ''} ${index >= 5 ? 'no-img__dis' : ''}`}>
+                                    <Image
+                                        loader={() => `${url}`}
+                                        src={`${url}`}
+                                        width={500}
+                                        height={index === 0 ? 320 : 207}
+                                        className="lg-container__card-image "
+                                        alt={`Image ${index + 1}`}
+                                    />
+                                </a>
+                            ))
+                        ) : (
+                            <p>NO Image</p>
+                        )}
+                    </>
+                </LightGallery >
+            ) : (
+                <p>Loading...</p>
+            )}
+        </>
 
 
     );

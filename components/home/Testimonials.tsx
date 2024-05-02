@@ -102,12 +102,13 @@ const Testimonials = () => {
             ssr
             infinite={true}
             containerClass="first-carousel-container container"
+            className="pt-8"
           >
             {fakerData.map((card, index) => {
               return (
                 <div
                   key={index}
-                  className="flex gap-4 flex-col md:flex-row mx-8 p-4 bg-gray-200 rounded-3xl  md:items-start"
+                  className=" flex gap-4 flex-col md:flex-row mx-8 p-4 bg-slate-200 rounded-2xl  md:items-start"
                 >
                   <Image
                     height={192}
@@ -117,9 +118,9 @@ const Testimonials = () => {
                     alt=""
                   />
                   <div className="">
-                    <div className="flex flex-col justify-start gap-1 mt-5">
+                    <div className=" flex flex-col justify-start gap-1 mt-5">
                       <p className="text-base font-semibold text-gray-900">
-                        { card.headline}</p>
+                        { }</p>
                       <p className="text-base font-normal text-gray-600">
                         {card.description}
                       </p>
