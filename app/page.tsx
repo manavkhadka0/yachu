@@ -15,7 +15,7 @@ import BlogSection from "@/components/blog/BlogSection";
 import { BASE_API_URL } from "@/utils/config";
 import { TSiteSetting } from "@/types/site-setting";
 import Testimonials from "@/components/home/Testimonials";
-// import Gallery from "@/components/gallery/Gallery";
+import Gallery from "@/components/gallery/Gallery";
 
 
 
@@ -42,7 +42,7 @@ export default async function Home() {
 
       <Questions />
       <FlowerDivider />
-      {/* <Gallery /> */}
+      <Gallery   />
 
       <FlowerDivider />
 
