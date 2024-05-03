@@ -1,84 +1,119 @@
-"use client";
+'use client';
 
-import React from 'react';
-import LightGallery from "lightgallery/react";
-import Link from "next/link";
-import "lightgallery/css/lightgallery.css";
-import "lightgallery/css/lg-zoom.css";
-import "lightgallery/css/lg-thumbnail.css";
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
-import { BASE_API_URL, } from '@/utils/config';
+import React, { useEffect, useState } from 'react';
+import Lightbox, { SlideImage } from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import NextJsImage from '../NextJsImage';
+import { BASE_API_URL } from '@/utils/config';
+import PhotoAlbum from 'react-photo-album';
+import { Button } from '../ui/button';
 import Image from 'next/image';
-
-interface ImageProps {
-    id: number;
-    title: string;
-    image: string;
-    updated_at: string;
-    created: string;
-}
 
 const getImages = async () => {
     try {
-        const res = await fetch(`${BASE_API_URL}/image-galleries`, {
-            next: { revalidate: 10 },
-        });
-        const data: ImageProps[] = await res.json();
+        const response = await fetch(BASE_API_URL + '/image-galleries');
+        const data = await response.json();
         return data;
     } catch (error) {
-        return null;
+        console.log(error);
     }
+}
+
+type ImageData = {
+    id: number;
+    title: string;
+    image: string;
+    created_at: string;
+    updated_at: string;
 };
 
-const Gallery = async () => {
+type ImagesArray = ImageData[];
 
-    const images = await getImages();
+const Gallery = () => {
+    const [index, setIndex] = React.useState(-1);
+    const [pictures, setPictures] = useState<ImagesArray | null>(null);
 
-    const onInit = () => {
-        console.log("lightGallery has been initialized");
-    };
+    useEffect(() => {
+        const fetchImages = async () => {
+            const fetchedImages = await getImages();
+            setPictures(fetchedImages);
+        };
 
-    if (!images) {
-        return null;
-    }
+        fetchImages();
+    }, []);
+
+
 
     return (
+        <section className="container pb-24" id="blogsection">
+            <div className="flex flex-col md:flex-row justify-center items-center mb-8">
+                <div className="mx-auto">
+                    <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">
+                        Gallery
+                    </h3>
+                </div>
+                <div className="">
+                    <Button
+                        variant={"outline"}
+                        className=" h-7 sm:h-9 w-auto mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0"
+                        size={"lg"}
+                    >
+                        View all
+                    </Button>
+                </div>
+            </div>
 
-        <>
-            {LightGallery ? (
-                <LightGallery
-                    onInit={onInit}
-                    speed={500}
-                    plugins={[lgThumbnail, lgZoom]}
-                    elementClassNames="lg-container__custom overflow-auto gap-2"
-                >
-                    <>
-                        {images.length > 0 ? (
-                            images.map((url, index) => (
-                                <a href={`${url}`} key={index} className={`gallery-item ${index === 0 ? 'first-item' : ''} ${index >= 5 ? 'no-img__dis' : ''}`}>
-                                    <Image
-                                        loader={() => `${url}`}
-                                        src={`${url}`}
-                                        width={500}
-                                        height={index === 0 ? 320 : 207}
-                                        className="lg-container__card-image "
-                                        alt={`Image ${index + 1}`}
-                                    />
-                                </a>
-                            ))
-                        ) : (
-                            <p>NO Image</p>
-                        )}
-                    </>
-                </LightGallery >
-            ) : (
-                <p>Loading...</p>
+            {pictures && <PhotoAlbum
+                layout="rows"
+                photos={pictures.map((image) => ({
+                    src: image.image,
+                    width: 900,
+                    height: 900,
+                }))}
+                targetRowHeight={150}
+                onClick={({ index: current }) => setIndex(current)}
+                renderPhoto={({ imageProps: { src, alt, style, ...restImageProps } }) => (
+                    <div
+                        style={{
+                            height:'300px',
+                            width:'300px',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            borderRadius: '8px',
+                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        }}
+                    >
+                        <Image
+                            {...restImageProps}
+                            src={src}
+                            alt='xyz_image'
+                            width={900}
+                            height={900}
+                            style={{
+                                display: 'block',
+                                width: '100%',
+                                height: '100%',
+                                objectFit:'cover',
+                                transition: 'transform 0.3s ease-in-out',
+                            }}
+                        />
+                    </div>
+                )}
+            />}
+            {pictures && (
+                <Lightbox
+                    open={index >= 0}
+                    close={() => setIndex(-1)}
+                    slides={pictures.map(image => ({
+                        src: image.image,
+                        width: undefined,
+                        height: undefined,
+                    }))}
+                    render={{ slide: NextJsImage }}
+                />
             )}
-        </>
-
-
+        </section>
     );
-};
+}
 
 export default Gallery;
