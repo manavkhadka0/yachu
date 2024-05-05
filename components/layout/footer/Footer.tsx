@@ -10,22 +10,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SOCIAL_LINKS = [
-  { Icon: FacebookIcon, href: "/" },
-  { Icon: InstagramIcon, href: "/" },
-  { Icon: YoutubeIcon, href: "/" },
-  { Icon: TwitterIcon, href: "/" },
+  { Icon: FacebookIcon, href: "https://www.facebook.com/Yachu.in" },
+  { Icon: InstagramIcon, href: "https://www.instagram.com/yachu.np/" },
+  { Icon: YoutubeIcon, href: "https://www.youtube.com/@yachu_np" },
 ];
 
 const CATEGORIES_LINKS = [
-  { name: "For Dandruff", href: "/" },
-  { name: "For Hairfall", href: "/" },
-  { name: "For Baldness", href: "/" },
+  { name: "For Dandruff", href: "/#products" },
+  { name: "For Hairfall", href: "/#products" },
+  { name: "For Baldness", href: "/#products" },
 ];
 
 const SUPPORT_LINKS = [
-  { name: "Privacy Policy", href: "/" },
-  { name: "Refund Policy", href: "/" },
-  { name: "Shipping Policy", href: "/" },
+  { name: "Privacy Policy", href: "/contact" },
+  { name: "Refund Policy", href: "/contact" },
+  { name: "Shipping Policy", href: "/contact" },
   { name: "Terms of Service", href: "/" },
   { name: "Proposal", href: "/proposal" },
 ];
@@ -36,11 +35,11 @@ const Footer = () => {
       <div className=" container mx-auto grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 py-8 ">
         <div className="flex flex-col gap-4">
           <Image
-            src="/logo-white.png"
+            src="/yachu-logo.svg"
             alt="me"
-            width="500"
-            height="500"
-            className="w-44"
+            width="300"
+            height="300"
+            className="w-36"
           />
           <p className="text-slate-300 text-sm">
             Experience the beauty of naturally nourished hair with Yachu Hair

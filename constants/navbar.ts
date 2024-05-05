@@ -16,15 +16,19 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     href: Routes.home.root,
   },
   {
-    title: "Contact",
-    href: "/contact",
-  },
-  {
     title: "Our Products",
     href: "/#products",
   },
   {
     title: "Blog",
     href: "/#blogsection",
+  },
+  {
+    title: "Gallery",
+    href: "/gallery",
+  },
+  {
+    title: "Contact",
+    href: "/contact",
   },
 ];
