@@ -8,6 +8,7 @@ import { BASE_API_URL } from '@/utils/config';
 import PhotoAlbum from 'react-photo-album';
 import { Button } from '../ui/button';
 import Image from 'next/image';
+import { randomInt } from 'crypto';
 
 const getImages = async () => {
     try {
@@ -28,6 +29,33 @@ type ImageData = {
 };
 
 type ImagesArray = ImageData[];
+
+const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
+
+const unsplashPhotos = [
+    {  height: 800 },
+    {  height: 1620 },
+    {  height: 720 },
+    {  height: 721 },
+    {  height: 1620 },
+    {  height: 607 },
+    {  height: 608 },
+    {  height: 720 },
+    {  height: 1549 },
+    {  height: 720 },
+    {  height: 694 },
+    {  height: 1620 },
+    {  height: 720 },
+    {  height: 1440 },
+    {  height: 1620 },
+    {  height: 810 },
+    {  height: 610 },
+    {  height: 160 },
+    {  height: 810 },
+    {  height: 720 },
+    {  height: 1440 },
+  ];
+
 
 const Gallery = () => {
     const [index, setIndex] = React.useState(-1);
@@ -63,17 +91,26 @@ const Gallery = () => {
                 </div>
             </div>
 
+
             {pictures && <PhotoAlbum
-                layout="masonry"
-                photos={pictures.map((image) => ({
+                layout="rows"
+                photos={pictures.slice(0,7).map((image,index) => ({
                     src: image.image,
-                    width: 900,
-                    height: 900,
-                }))}
-                targetRowHeight={150}
+                    width: 1080,
+                    height: 800,
+                    srcSet: breakpoints.map((breakpoint) => {
+                        const height = Math.round(( 800/ 1080) * breakpoint);
+                        return {
+                          src: image.image,
+                          width: breakpoint,
+                          height,
+                        };
+                      }),
+                    }))}
                 onClick={({ index: current }) => setIndex(current)}
 
-            />}
+            />
+            }
             {pictures && (
                 <Lightbox
                     open={index >= 0}
