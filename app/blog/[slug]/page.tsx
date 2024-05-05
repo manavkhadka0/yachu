@@ -32,19 +32,19 @@ const BlogDetails = async ({ params }: { params: { slug: string } }) => {
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-5xl mx-auto">
                     {/* NAV */}
-                    <div className='flex mb-10' >
+                    <div className='flex mb-10 text-xs' >
                         <ul className="flex align-items-center p-0 m-0 pt-4 ">
                             <li className="mx-1">
                                 <a href="/">Home</a>
                             </li>
                             <span>
-                                <svg className="svg minearr size-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.866-1.896z" fill="#869099"></path></svg>
+                                <svg className="svg minearr size-4" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.866-1.896z" fill="#869099"></path></svg>
                             </span>
                             <li className="mx-1">
                                 <a href="/#blogsection">Blogs</a>
                             </li>
                             <span>
-                                <svg className="svg minearr size-6" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.866-1.896z" fill="#869099"></path></svg>
+                                <svg className="svg minearr size-4" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.866-1.896z" fill="#869099"></path></svg>
                             </span>
                             <li className="mx-1 text-dark ">
                                 <a href="#">{title}</a>
@@ -58,7 +58,7 @@ const BlogDetails = async ({ params }: { params: { slug: string } }) => {
                         className=" h-7 sm:h-9 mb-10 w-auto mt-3 md:mt-0 sm:text-lg font-bold hover:border-2 hover:border-amber-600 bg-amber-600  text-white outline:none"
                         size={"lg"}
                     >
-                        Yachu
+                        {category_name}
                     </Button>
 
 

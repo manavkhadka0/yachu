@@ -31,16 +31,11 @@ const BlogSection = async () => {
           <h2 className="tracking-tighter text-gray-800">
             <span className="font-sans text-4xl font-normal sm:text-5xl md:text-6xl">
               {" "}
-              Course{" "}
-            </span>
-            <span className="font-serif text-5xl italic sm:text-6xl md:text-7xl">
-              {" "}
-              content{" "}
+              Blogs{" "}
             </span>
           </h2>
           <p className="max-w-md mx-auto mt-6 font-sans text-lg text-opacity-50 text-gray-800">
-            Ac phasellus nunc urna, nec. Cursus tristique vitae porttitor arcu
-            libero amet.
+            Read our latest blogs about your hair growth, hair care, and hair loss.
           </p>
         </div>
       </div>
