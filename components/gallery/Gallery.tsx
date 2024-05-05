@@ -64,7 +64,7 @@ const Gallery = () => {
             </div>
 
             {pictures && <PhotoAlbum
-                layout="rows"
+                layout="masonry"
                 photos={pictures.map((image) => ({
                     src: image.image,
                     width: 900,
@@ -72,33 +72,7 @@ const Gallery = () => {
                 }))}
                 targetRowHeight={150}
                 onClick={({ index: current }) => setIndex(current)}
-                renderPhoto={({ imageProps: { src, alt, style, ...restImageProps } }) => (
-                    <div
-                        style={{
-                            height:'300px',
-                            width:'300px',
-                            position: 'relative',
-                            overflow: 'hidden',
-                            borderRadius: '8px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                        }}
-                    >
-                        <Image
-                            {...restImageProps}
-                            src={src}
-                            alt='xyz_image'
-                            width={900}
-                            height={900}
-                            style={{
-                                display: 'block',
-                                width: '100%',
-                                height: '100%',
-                                objectFit:'cover',
-                                transition: 'transform 0.3s ease-in-out',
-                            }}
-                        />
-                    </div>
-                )}
+
             />}
             {pictures && (
                 <Lightbox
