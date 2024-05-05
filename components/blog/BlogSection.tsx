@@ -26,19 +26,17 @@ const BlogSection = async () => {
       className="container py-12 sm:py-16 lg:py-20"
       id="blogsection"
     >
-      <div className="px-6 mx-auto sm:px-8 lg:px-12 max-w-7xl">
-        <div className="text-center">
+        <div className="">
           <h2 className="tracking-tighter text-gray-800">
-            <span className="font-sans text-4xl font-normal sm:text-5xl md:text-6xl">
+            <span className="font-sans text-2xl font-normal sm:text-5xl md:text-6xl">
               {" "}
-              Blogs{" "}
+              Latest Blogs{" "}
             </span>
           </h2>
-          <p className="max-w-md mx-auto mt-6 font-sans text-lg text-opacity-50 text-gray-800">
+          <p className=" mt-6 font-sans text-lg text-opacity-50 text-gray-800">
             Read our latest blogs about your hair growth, hair care, and hair loss.
           </p>
         </div>
-      </div>
       <div className="grid grid-cols-1 gap-5 mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:mt-16">
 
       {data.map((item, index) => (
