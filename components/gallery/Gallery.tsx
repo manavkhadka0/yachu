@@ -9,6 +9,7 @@ import PhotoAlbum from 'react-photo-album';
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import { randomInt } from 'crypto';
+import { Link } from 'lucide-react';
 
 const getImages = async () => {
     try {
@@ -81,13 +82,16 @@ const Gallery = () => {
                     </h3>
                 </div>
                 <div className="">
-                    <Button
-                        variant={"outline"}
-                        className=" h-7 sm:h-9 w-auto mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0"
-                        size={"lg"}
-                    >
-                        View all
-                    </Button>
+                    <a href="/gallery" >
+                        <Button
+
+                            variant={"outline"}
+                            className=" h-7 sm:h-9 w-auto mt-3 md:mt-0 sm:text-lg border-2 border-amber-600 hover:bg-amber-600 hover:text-white  hover:ring-0 focus:ring-0"
+                            size={"lg"}
+                        >
+                            View all
+                        </Button>
+                    </a>
                 </div>
             </div>
 

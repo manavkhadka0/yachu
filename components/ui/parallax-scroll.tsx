@@ -7,9 +7,11 @@ import { cn } from "@/utils/cn";
 
 export const ParallaxScroll = ({
   images,
+  header,
   className,
 }: {
   images: string[];
+  header?: string;
   className?: string;
 }) => {
   const gridRef = useRef<any>(null);
@@ -36,8 +38,12 @@ export const ParallaxScroll = ({
       )}
       ref={gridRef}
     >
+      {header ?
+        <h1 className="flex justify-center items-center text-center text-5xl text-gray-700 font-semibold pt-10 -mb-16">Our <span className=" text-amber-700">&nbsp;Gallery</span></h1>
+        : null}
+        
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start  max-w-5xl mx-auto gap-10 py-40 px-10"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start  max-w-7xl mx-auto gap-10 py-40 px-10"
         ref={gridRef}
       >
         <div className="grid gap-10">

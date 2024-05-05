@@ -35,7 +35,7 @@ const getAboutData = async () => {
 
 const About: React.FC<AboutProps> = async () => {
   const aboutdetails = await getAboutData();
-  console.log("Details:::", aboutdetails);
+  // console.log("Details:::", aboutdetails);
   const { our_story, about_founder, message_from_ceo } = aboutdetails.length > 0 ? aboutdetails[0] : DUMMY_SITE_CONFIG[0];
 
   return (
