@@ -37,11 +37,11 @@ const BlogCard: React.FC<BlogCardProps> = ({blog}) => {
           </p>
           <div className="flex justify-start items-center mt-6  gap-5">
             <Image
-              height={40}
-              width={40}
+              height={50}
+              width={50}
               src={BASE_URL + picture}
               alt="image"
-              className="justify-center bg-red-400 rounded-full object-fill overflow-hidden">
+              className="justify-center border-2 border-amber-600 bg-slate-400 rounded-full object-fill overflow-hidden">
             </Image>
             <div className="flex flex-col ">
               <p className=" text-lg font-semibold text-gray-500">

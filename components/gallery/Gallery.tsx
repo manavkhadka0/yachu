@@ -33,28 +33,28 @@ type ImagesArray = ImageData[];
 const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
 
 const unsplashPhotos = [
-    {  height: 800 },
-    {  height: 1620 },
-    {  height: 720 },
-    {  height: 721 },
-    {  height: 1620 },
-    {  height: 607 },
-    {  height: 608 },
-    {  height: 720 },
-    {  height: 1549 },
-    {  height: 720 },
-    {  height: 694 },
-    {  height: 1620 },
-    {  height: 720 },
-    {  height: 1440 },
-    {  height: 1620 },
-    {  height: 810 },
-    {  height: 610 },
-    {  height: 160 },
-    {  height: 810 },
-    {  height: 720 },
-    {  height: 1440 },
-  ];
+    { height: 800 },
+    { height: 1620 },
+    { height: 720 },
+    { height: 721 },
+    { height: 1620 },
+    { height: 607 },
+    { height: 608 },
+    { height: 720 },
+    { height: 1549 },
+    { height: 720 },
+    { height: 694 },
+    { height: 1620 },
+    { height: 720 },
+    { height: 1440 },
+    { height: 1620 },
+    { height: 810 },
+    { height: 610 },
+    { height: 160 },
+    { height: 810 },
+    { height: 720 },
+    { height: 1440 },
+];
 
 
 const Gallery = () => {
@@ -94,19 +94,19 @@ const Gallery = () => {
 
             {pictures && <PhotoAlbum
                 layout="rows"
-                photos={pictures.slice(0,7).map((image,index) => ({
+                photos={[...pictures].reverse().slice(0, 8).map((image, index) => ({
                     src: image.image,
                     width: 1080,
                     height: 800,
                     srcSet: breakpoints.map((breakpoint) => {
-                        const height = Math.round(( 800/ 1080) * breakpoint);
+                        const height = Math.round((800 / 1080) * breakpoint);
                         return {
-                          src: image.image,
-                          width: breakpoint,
-                          height,
+                            src: image.image,
+                            width: breakpoint,
+                            height,
                         };
-                      }),
-                    }))}
+                    }),
+                }))}
                 onClick={({ index: current }) => setIndex(current)}
 
             />
@@ -114,8 +114,9 @@ const Gallery = () => {
             {pictures && (
                 <Lightbox
                     open={index >= 0}
+                    index={index}
                     close={() => setIndex(-1)}
-                    slides={pictures.map(image => ({
+                    slides={[...pictures].reverse().map(image => ({
                         src: image.image,
                         width: undefined,
                         height: undefined,
