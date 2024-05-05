@@ -10,70 +10,30 @@ type BlogCardProps = {
 const BlogCard: React.FC<BlogCardProps> = ({blog}) => {
   const { title, slug, thumbnail_image, blog_content, category: { category_image, category_name }, author: { name, picture, role } } = blog;
   return (
-    <div className="grid max-w-md grid-cols-1 gap-6 mx-auto mt-8 lg:mt-16 lg:grid-cols-3 lg:max-w-full">
-      <div className="overflow-hidden bg-slate-100 rounded-md hover:shadow-xl">
-        <div className="p-5">
-          <div className="relative">
-            <a href={Routes.blog.detail(slug)} title="" className="block aspect-w-4 aspect-h-3">
-              <Image height={300} width={300} className='' src={BASE_URL + thumbnail_image} alt={""}>
+    <Link href={Routes.blog.detail(slug)} passHref>
 
-              </Image>
-            </a>
-
-            <div className="absolute top-4 left-4">
-              <span className="px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-[#B45309] rounded-full">
-                {" "}
-                {category_name}
-              </span>
-            </div>
-
-          </div>
-
-          <p className="mt-5 text-2xl font-semibold">
-            <a href={Routes.blog.detail(slug)} title="" className="text-black">
-              {" "}
-              {title}{" "}
-            </a>
-          </p>
-          <div className="flex justify-start items-center mt-6  gap-5">
-            <Image
-              height={50}
-              width={50}
-              src={BASE_URL + picture}
-              alt="image"
-              className="justify-center border-2 border-amber-600 bg-slate-400 rounded-full object-fill overflow-hidden">
-            </Image>
-            <div className="flex flex-col ">
-              <p className=" text-lg font-semibold text-gray-500">
-                {name}
-              </p>
-              <p className=" text-base text-gray-500">
-                {role}
-              </p>
-            </div>
-          </div>
-          <a
-            href={Routes.blog.detail(slug)}
-            title=""
-            className="inline-flex items-center justify-center pb-0.5 mt-5 text-base font-semibold text-amber-600 transition-all duration-200 border-b-2 border-transparent hover:border-amber-600 focus:border-amber-600"
-          >
-            Continue Reading
-            <svg
-              className="w-5 h-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </a>
+    <div className="relative overflow-auto transition-all duration-200 border rounded-lg group border-neutral hover:bg-dark-gray">
+    <div className="relative">
+        <div className="overflow-hidden aspect-w-4 aspect-h-2">
+            <Image height={200} width={200} className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-125" src={BASE_URL +thumbnail_image} alt="" />
         </div>
-      </div>
     </div>
+
+    <div className="px-5 py-6">
+        <h3 className="font-sans text-base font-normal text-black">{title}</h3>
+        <p className="mt-2 font-sans text-sm font-normal text-opacity-50 text-black">{name}</p>
+        <div className="mt-6">
+            <a href="#" title="" className="inline-flex items-center font-sans text-sm font-normal group text-black">
+                Read More
+                <svg className="w-5 h-5 ml-2 transition-all duration-200 transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+                <span className="absolute inset-0" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</div>
+    </Link>
   );
 };
 export default BlogCard;
