@@ -16,8 +16,7 @@ import { BASE_API_URL } from "@/utils/config";
 import { TSiteSetting } from "@/types/site-setting";
 import Testimonials from "@/components/home/Testimonials";
 import Gallery from "@/components/gallery/Gallery";
-
-
+import StickyScrollRevealDemo from "./franchises/page";
 
 export default async function Home() {
   return (
@@ -42,7 +41,7 @@ export default async function Home() {
 
       <Questions />
       <FlowerDivider />
-      <Gallery   />
+      <Gallery />
 
       <FlowerDivider />
 
@@ -78,6 +77,11 @@ export default async function Home() {
           </div>
           <ContactForm />
         </div>
+        <FlowerDivider />
+        <p className="text-4xl text-black text-center leading-tight font-bold mt-5 pb-12">
+          Our Franchises
+        </p>
+        <StickyScrollRevealDemo />
         <FlowerDivider />
         <h3 className="text-4xl text-black text-center leading-tight font-bold mt-5 pt-6">
           Frequently Asked Questions

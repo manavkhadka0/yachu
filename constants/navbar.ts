@@ -21,7 +21,7 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
   },
   {
     title: "Blog",
-    href: "/#blogsection",
+    href: "/blog",
   },
   {
     title: "Gallery",
