@@ -20,10 +20,10 @@ const BlogCard: React.FC<BlogCardProps> = ({blog}) => {
     </div>
 
     <div className="px-5 py-6">
-        <h3 className="font-sans text-base font-normal text-black">{title}</h3>
-        <p className="mt-2 font-sans text-sm font-normal text-opacity-50 text-black">{name}</p>
+        <h3 className="font-sans text-base font-semibold text-gray-900">{title}</h3>
+        <p className="mt-2 font-sans text-sm font-medium text-opacity-50 text-black">{name}</p>
         <div className="mt-6">
-            <a href="#" title="" className="inline-flex items-center font-sans text-sm font-normal group text-black">
+            <a href="#" title="" className="inline-flex items-center text-amber-700 text-sm font-medium group">
                 Read More
                 <svg className="w-5 h-5 ml-2 transition-all duration-200 transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>

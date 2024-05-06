@@ -41,7 +41,7 @@ const ParallaxScrollDemo = () => {
   }, []);
   return (
     <>
-      <div className="container">
+      <div className="container ">
         {pictures && (
           <><ParallaxScroll header="dsaa" images={[...pictures].reverse().map((image, index) => {
             return (image.image);
