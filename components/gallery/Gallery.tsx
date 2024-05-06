@@ -74,7 +74,7 @@ const Gallery = () => {
 
 
     return (
-        <section className="container pb-24" id="blogsection">
+        <section className="container pb-24 " id="blogsection">
             <div className="flex flex-col md:flex-row justify-center items-center mb-8">
                 <div className="mx-auto">
                     <h3 className="sm:text-2xl md:pl-40 font-bold text-center uppercase">
@@ -94,7 +94,7 @@ const Gallery = () => {
                     </a>
                 </div>
             </div>
-
+            <div className="px-16">
 
             {pictures && <PhotoAlbum
                 layout="rows"
@@ -128,6 +128,7 @@ const Gallery = () => {
                     render={{ slide: NextJsImage }}
                 />
             )}
+            </div>
         </section>
     );
 }
