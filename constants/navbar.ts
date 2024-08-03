@@ -31,4 +31,8 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     title: "Contact",
     href: "/contact",
   },
+  {
+    title: "Privacy Policy",
+    href: "/privacy-policy",
+  },
 ];
