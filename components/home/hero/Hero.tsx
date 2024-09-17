@@ -4,12 +4,8 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="container px-6 pt-0 md:pt-2 lg:px-12 xl:px-20 xl:py-7  md:flex-row flex-col flex justify-between md:items-start items-center">
+    <div className="container px-6 pt-0 md:pt-2 lg:px-12 xl:px-20 xl:py-20  md:flex-row flex-col flex justify-between md:items-start items-center">
       <div className="pb-24 flex flex-col flex-1 justify-center w-full">
-        <p className=" text-xs md:text-xs xl:text-base font-semibold text-gray-700  mb-1">
-          {" "}
-          Made in Nepal
-        </p>
         <h1 className="block xl:py-6 xl:hidden text-5xl md:text-6xl lg:text-7xl lg:w-fit xl:text-9xl font-bold">
           <p className="text-[#B45309] font-bold">Yachu </p>Hair Oil
         </h1>
@@ -85,7 +81,7 @@ const Hero = () => {
       </div>
       <div className=" w-auto pt-9 justify-end md:flex hidden">
         <Image
-          src={"/yachu-hero.png"}
+          src={"/yachu-hair-oil-bottle.png"}
           alt="curve line"
           height={450}
           width={450}
