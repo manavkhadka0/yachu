@@ -18,6 +18,10 @@ const getBlogBySlug: any = async (slug: string) => {
   }
 };
 
+type Props = {
+  params: { slug: string };
+};
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
