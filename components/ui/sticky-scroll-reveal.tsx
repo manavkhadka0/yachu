@@ -54,7 +54,7 @@ export const StickyScroll = ({
       className="h-[30rem] overflow-y-auto no-scrollbar flex justify-evenly relative space-x-10 rounded-md p-10"
       ref={ref}
     >
-      <div className="div relative flex items-start px-4">
+      <div className="relative flex items-start px-4">
         <div className="max-w-2xl">
           {content.map((item, index) => (
             <div key={item.title + index} className="my-20">
@@ -77,9 +77,10 @@ export const StickyScroll = ({
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
                 className="text-kg text-slate-700 max-w-xl mt-10"
-              >
-                {item.description}
-              </motion.p>
+                dangerouslySetInnerHTML={{
+                  __html: item.description,
+                }}
+              />
             </div>
           ))}
           <div className="h-40" />

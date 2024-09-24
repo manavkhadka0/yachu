@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import Footer from "@/components/layout/footer/Footer";
 import "./globals.css";
 import Header from "@/components/layout/header/Header";
-import { PopoverFranchise } from "@/components/popover/PopoverFranchise";
 import { Toaster } from "sonner";
 
-const inter = Figtree({ subsets: ["latin"] });
+const br = Bricolage_Grotesque({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yachuhair Oil - 33 Jadibuti Hair Treatment from Nepal",
@@ -45,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={br.className}>
         <Header />
         <Toaster position="bottom-left" richColors />
         <main className="min-h-screen"> {children}</main>

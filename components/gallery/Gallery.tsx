@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { randomInt } from "crypto";
 import { Link } from "lucide-react";
+import { CSSProperties } from "react";
 
 const getImages = async () => {
   try {
@@ -70,6 +71,33 @@ const Gallery = () => {
     fetchImages();
   }, []);
 
+  const imageStyle: CSSProperties = {
+    objectFit: "cover",
+    width: "100%",
+    height: "100%",
+  };
+
+  const preparedPhotos = React.useMemo(() => {
+    if (!pictures) return [];
+    return [...pictures]
+      .reverse()
+      .slice(0, 8)
+      .map((image, index) => ({
+        key: `${image.id}-${index}`, // Unique key combining id and index
+        src: image.image,
+        width: 1080,
+        height: 800,
+        srcSet: breakpoints.map((breakpoint) => {
+          const height = Math.round((800 / 1080) * breakpoint);
+          return {
+            src: image.image,
+            width: breakpoint,
+            height,
+          };
+        }),
+      }));
+  }, [pictures]);
+
   return (
     <section className="container pb-24 " id="blogsection">
       <div className="flex flex-col md:flex-row justify-center items-center mb-8">
@@ -94,23 +122,16 @@ const Gallery = () => {
         {pictures && (
           <PhotoAlbum
             layout="rows"
-            photos={[...pictures]
-              .reverse()
-              .slice(0, 8)
-              .map((image, index) => ({
-                src: image.image,
-                width: 1080,
-                height: 800,
-                srcSet: breakpoints.map((breakpoint) => {
-                  const height = Math.round((800 / 1080) * breakpoint);
-                  return {
-                    src: image.image,
-                    width: breakpoint,
-                    height,
-                  };
-                }),
-              }))}
+            photos={preparedPhotos}
             onClick={({ index: current }) => setIndex(current)}
+            renderPhoto={({ photo, wrapperStyle, imageProps }) => (
+              <div
+                key={photo.key}
+                style={{ ...wrapperStyle, position: "relative" }}
+              >
+                <img {...imageProps} style={imageStyle} />
+              </div>
+            )}
           />
         )}
         {pictures && (
@@ -118,11 +139,7 @@ const Gallery = () => {
             open={index >= 0}
             index={index}
             close={() => setIndex(-1)}
-            slides={[...pictures].reverse().map((image) => ({
-              src: image.image,
-              width: undefined,
-              height: undefined,
-            }))}
+            slides={preparedPhotos.map(({ src }) => ({ src }))}
             render={{ slide: NextJsImage }}
           />
         )}

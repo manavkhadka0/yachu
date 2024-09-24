@@ -43,27 +43,16 @@ const About: React.FC<AboutProps> = async () => {
     <div className=" pb-24 ">
       <section className=" bg-white ">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
-            <div className="hidden lg:block h-full pr-12 lg:order-2 lg:mb-40">
-              <div className="relative h-full mt-12 lg:h-auto">
-                <div className="absolute xl:h-screen md:w-auto w-full h-full -mb-12 overflow-hidden bg-gradient-to-r from-amber-400 to-amber-700 top-12 left-12 xl:left-16 lg:top-0 lg:scale-y-105 lg:origin-top">
-                  <img
-                    className="object-cover object-right w-full h-full scale-150"
-                    src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/lines.svg"
-                    alt=""
-                  />
-                </div>
-                <div className="relative ">
-                  <img
-                    className="shadow-2xl h-screen "
-                    src="/hair.webp"
-                    alt=""
-                  />
-                </div>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24 items-center py-40">
+            <div className="hidden lg:block h-full pr-12 lg:order-2">
+              <img
+                className="shadow-2xl p-5"
+                src="/yachu-hero.png"
+                alt="yachu hair oil product image"
+              />
             </div>
 
-            <div className="flex items-center justify-center lg:order-1 ">
+            <div className="flex items-center justify-center lg:order-1">
               <div>
                 <p className="text-sm pt-4  font-semibold tracking-widest text-gray-500 uppercase">
                   Wanna know us better?
@@ -71,7 +60,7 @@ const About: React.FC<AboutProps> = async () => {
                 <h2 className="mt-4 text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">
                   Our Story
                 </h2>
-                <p className="text-lg md:text-lg text-gray-600 font-medium leading-relaxed  mt-5">
+                <p className="text-lg md:text-lg text-gray-600 font-normal leading-relaxed  mt-5">
                   <div dangerouslySetInnerHTML={{ __html: our_story }}></div>
                 </p>
                 <a
@@ -104,7 +93,7 @@ const About: React.FC<AboutProps> = async () => {
                         <p className="text-3xl sm:text-4xl">👋</p>
                         <blockquote className="">
                           <p
-                            className="text-sm font-medium text-white sm:text-lg"
+                            className="text-sm font-normal text-white sm:text-lg"
                             dangerouslySetInnerHTML={{
                               __html: message_from_ceo,
                             }}

@@ -20,7 +20,7 @@ const Questions = () => {
 
           <div className="xl:col-span-4">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+              <div className="transition-all duration-200 bg-white shadow-2xl shadow-md rounded-lg border-neutral hover:bg-dark-gray">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-lime-600 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
                     <LeafIcon size={30} />
@@ -36,8 +36,7 @@ const Questions = () => {
                   </p>
                 </div>
               </div>
-
-              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+              <div className="transition-all duration-200 shadow-md rounded-lg border-neutral hover:bg-dark-gray bg-white shadow-2xl">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-amber-700 text-white flex pl-6 rounded-full items-center w-fit md:w-full">
                     <LeafIcon size={30} />
@@ -54,7 +53,7 @@ const Questions = () => {
                 </div>
               </div>
 
-              <div className="transition-all duration-200 border shadow-md rounded-lg border-neutral hover:bg-dark-gray">
+              <div className="transition-all duration-200 bg-white shadow-2xl shadow-md rounded-lg border-neutral hover:bg-dark-gray">
                 <div className="px-4 py-5 sm:px-6 sm:py-8">
                   <div className=" p-4 bg-yellow-600 text-white pl-6 flex rounded-full items-center w-fit md:w-full ">
                     <LeafIcon size={30} />
