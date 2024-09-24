@@ -14,9 +14,9 @@ const NavActions = () => {
       </Button> */}
       <CartButton />
       <div className=" hidden lg:flex gap-2 flex-col items-center">
-        <Link href={"tel:+9779745671024"}>
+        <Link href={"tel:++977 984-0412788"}>
           <Button className="  inline-flex gap-2 " variant={"secondary"}>
-            <PhoneCallIcon size={15} /> +9779745671024{" "}
+            <PhoneCallIcon size={15} /> +977 984-0412788{" "}
           </Button>
         </Link>
         <p className="text-xs">Questions? Speak with Yachu</p>
