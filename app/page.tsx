@@ -1,6 +1,8 @@
 import About from "@/components/home/about-us/About";
 import OurTeam from "@/components/home/about-us/OurTeam";
 import ContactForm from "@/components/contact/ContactForm";
+import YachuHairOilBenefits from "@/components/home/YachuHairOilBenefits";
+import YachuHairOilHowToUse from "@/components/home/YachuHairOilHowToUse";
 import FAQ from "@/components/contact/FAQ";
 import FlowerDivider from "@/components/shared/FlowerDivider";
 
@@ -29,6 +31,9 @@ export default async function Home() {
       <FlowerDivider />
 
       <Ingredients />
+      <YachuHairOilBenefits />
+      <FlowerDivider />
+      <YachuHairOilHowToUse />
 
       <FlowerDivider />
       <BlogSection />

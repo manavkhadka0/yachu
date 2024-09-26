@@ -1,5 +1,5 @@
 import { MoveRightIcon } from "lucide-react";
-import { Button } from "../../ui/button";
+import Link from "next/link";
 import Image from "next/image";
 
 const Hero = () => {
@@ -71,13 +71,15 @@ const Hero = () => {
             Hair Problems Solved
           </p>
         </div>
-        <Button
-          variant={"ghost"}
-          className="mt-4 bg-[#B45309] w-full sm:w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] flex gap-2  hover:gap-3 transition-all"
+        <Link
+          href={"tel:++977 984-0412788"}
+          className="mt-4 bg-[#B45309] w-full sm:w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] gap-2  hover:gap-3 transition-all rounded flex items-center"
         >
-          <span className="xl:text-xl xl:p-2">Explore More Transformation</span>{" "}
-          <MoveRightIcon className="" />
-        </Button>
+          <span className="xl:text-xl xl:p-4">
+            Call Now to Order Yachu Hair Oil
+          </span>{" "}
+          <MoveRightIcon className="me-3" />
+        </Link>
       </div>
       <div className=" w-auto pt-9 justify-end md:flex hidden">
         <Image

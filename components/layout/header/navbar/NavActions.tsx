@@ -13,13 +13,13 @@ const NavActions = () => {
         <UserIcon />
       </Button> */}
       <CartButton />
-      <div className=" hidden lg:flex gap-2 flex-col items-center">
+      <div className="flex lg:flex gap-2 flex-col items-center">
         <Link href={"tel:++977 984-0412788"}>
-          <Button className="  inline-flex gap-2 " variant={"secondary"}>
+          <Button className="inline-flex gap-2 " variant={"secondary"}>
             <PhoneCallIcon size={15} /> +977 984-0412788{" "}
           </Button>
         </Link>
-        <p className="text-xs">Questions? Speak with Yachu</p>
+        <p className="hidden lg:block text-xs">Questions? Speak with Yachu</p>
       </div>
       <div className=" lg:hidden block">
         <Sheet>
