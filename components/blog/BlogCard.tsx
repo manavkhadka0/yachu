@@ -17,7 +17,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
     author: { name, picture, role },
   } = blog;
   return (
-    <Link href={Routes.blog.detail(slug)} passHref>
+    <Link href={`/blog/${slug}`} passHref>
       <div className="relative overflow-auto transition-all duration-200 border rounded-lg group border-neutral hover:bg-dark-gray">
         <div className="relative">
           <div className="overflow-hidden aspect-w-4 aspect-h-2">

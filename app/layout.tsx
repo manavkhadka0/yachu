@@ -4,6 +4,7 @@ import Footer from "@/components/layout/footer/Footer";
 import "./globals.css";
 import Header from "@/components/layout/header/Header";
 import { Toaster } from "sonner";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const br = Bricolage_Grotesque({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Header />
         <Toaster position="bottom-left" richColors />
         <main className="min-h-screen"> {children}</main>
+        <WhatsAppButton />
         <Footer />
       </body>
     </html>

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import FlowerDivider from "@/components/shared/FlowerDivider";
 import { Metadata, ResolvingMetadata } from "next";
+import { Link } from "lucide-react";
 
 const getBlogBySlug: any = async (slug: string) => {
   try {
@@ -86,7 +87,7 @@ const BlogDetails = async ({ params }: { params: { slug: string } }) => {
                   </svg>
                 </span>
                 <li className="mx-1 hover:underline">
-                  <a href="/#blogsection">Blogs</a>
+                  <Link href="/blog">Blogs</Link>
                 </li>
                 <span>
                   <svg
