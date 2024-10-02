@@ -122,22 +122,25 @@
 .gallery-item {
   grid-row: span 1;
 }
-ol, ul, menu {
+.blg ul, .blg menu {
   /* list-style: none; */
   /* margin: 0; */
   /* padding: 0; */
   list-style: disc;
   margin-left: 50px;
 }
-
-p{
+.blg ol{
+  list-style: decimal;
+  margin-left: 50px;
+}
+.blg p{
   margin-bottom: 40px;
 }
 
-h1,h2,h3,h4,h5,h6{
+.blg h1, .blg h2, .blg h3, .blg h4, .blg h5, .blg h6{
   margin-top: 40px;
 }
-a{
+.blg a{
   color: #b45309 !important;
 }
 

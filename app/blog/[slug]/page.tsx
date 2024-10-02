@@ -248,7 +248,7 @@ const BlogDetails = async ({ params }: { params: { slug: string } }) => {
                   </svg>
                 </blockquote>
                 <p
-                  className="leading-10"
+                  className="blg leading-10"
                   dangerouslySetInnerHTML={{ __html: blog_content }}
                 ></p>
               </article>
