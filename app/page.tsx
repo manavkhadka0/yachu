@@ -5,7 +5,7 @@ import YachuHairOilBenefits from "@/components/home/YachuHairOilBenefits";
 import YachuHairOilHowToUse from "@/components/home/YachuHairOilHowToUse";
 import FAQ from "@/components/contact/FAQ";
 import FlowerDivider from "@/components/shared/FlowerDivider";
-
+import InstagramEmbed from "@/components/home/InstagramEmbed";
 import Hero from "@/components/home/hero/Hero";
 import Ingredients from "@/components/home/Ingredients";
 import ProductShowcase from "@/components/product/ProductShowcase";
@@ -14,9 +14,6 @@ import YachuWomen from "@/components/home/YachuWomen";
 import InstaFeed from "@/components/home/InstaFeed";
 import Image from "next/image";
 import BlogSection from "@/components/blog/BlogSection";
-import { BASE_API_URL } from "@/utils/config";
-import { TSiteSetting } from "@/types/site-setting";
-import Testimonials from "@/components/home/Testimonials";
 import Gallery from "@/components/gallery/Gallery";
 import StickyScrollRevealDemo from "./franchises/page";
 
@@ -25,7 +22,17 @@ export default async function Home() {
     <main className="flex flex-col ">
       <Hero />
       <FlowerDivider />
+      <p className=" text-4xl  mb-4 text-center font-bold text-black">
+        50K+ Happy And Satisfied Yachu Users
+      </p>
+      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 py-20 pb-40">
+        <InstagramEmbed url="https://www.instagram.com/p/C58RkJHN9XK/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C86-8o0S33P/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C_fjtIvu6Ze/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C8W70eMyTFn/" />
+      </div>
       {/* ------------ Products ------------*/}
+
       <ProductShowcase />
 
       <FlowerDivider />
@@ -57,10 +64,9 @@ export default async function Home() {
       <FlowerDivider />
       {/* --------- Instagram and Youtube------------*/}
       <InstaFeed />
-      {/* <VideoShowcase /> */}
       {/* ---------------------------------- */}
 
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FlowerDivider />
 
       <div className="container mb-20 mt-10">

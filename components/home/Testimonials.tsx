@@ -51,13 +51,15 @@ const responsive = {
   },
 };
 
-const fakerData = Array(12).fill(0).map((item, index) => {
-  return {
-    image: images[index],
-    headline: "w3js -> web front-end studio",
-    description: texts[index] || texts[0],
-  };
-});
+const fakerData = Array(12)
+  .fill(0)
+  .map((item, index) => {
+    return {
+      image: images[index],
+      headline: "w3js -> web front-end studio",
+      description: texts[index] || texts[0],
+    };
+  });
 
 const getTestimonials = async () => {
   try {
@@ -120,7 +122,8 @@ const Testimonials = () => {
                   <div className="">
                     <div className=" flex flex-col justify-start gap-1 mt-5">
                       <p className="text-base font-semibold text-gray-900">
-                        { }</p>
+                        {}
+                      </p>
                       <p className="text-base font-normal text-gray-600">
                         {card.description}
                       </p>
