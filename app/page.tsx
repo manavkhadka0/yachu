@@ -26,10 +26,10 @@ export default async function Home() {
         50K+ Happy And Satisfied Yachu Users
       </p>
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 py-20 pb-40">
-        <InstagramEmbed url="https://www.instagram.com/p/C58RkJHN9XK/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C86-8o0S33P/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C_fjtIvu6Ze/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C8W70eMyTFn/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C-PhVnuAgj6/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C-PhjiBA_lp/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C_47iTVor2a/" />
+        <InstagramEmbed url="https://www.instagram.com/p/C_46Dk2I1gl/" />
       </div>
       {/* ------------ Products ------------*/}
 
