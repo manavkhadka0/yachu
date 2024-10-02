@@ -19,7 +19,9 @@ const NavActions = () => {
             <PhoneCallIcon size={15} /> +977 984-0412788{" "}
           </Button>
         </Link>
-        <p className="hidden lg:block text-xs">Questions? Speak with Yachu</p>
+        <div className="hidden lg:block text-xs">
+          Questions? Speak with Yachu
+        </div>
       </div>
       <div className=" lg:hidden block">
         <Sheet>
