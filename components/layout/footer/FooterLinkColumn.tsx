@@ -20,7 +20,7 @@ const FooterLinkColumn: React.FC<FooterLinkColumnProps> = ({
           <Link
             href={href}
             key={index}
-            className=" hover:text-amber-700 transition-all "
+            className=" hover:text-amber-700 transition-all text-white"
           >
             {name}
           </Link>
