@@ -11,20 +11,20 @@ const CartButton = () => {
   const { cart } = useProductCart();
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button variant={"link"} size={"icon"} className=" relative">
-          <ShoppingCartIcon />{" "}
-          {cart.length > 0 && (
-            <Badge className="absolute -top-1 -right-1 rounded-full hover:text-blue-300 h-5 w-5 p-2 flex items-center justify-center">
-              {getTotalCount(cart)}
-            </Badge>
-          )}
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="w-[300px] sm:w-[540px]">
-        <ProductCart />
-      </SheetContent>
-    </Sheet>
+  <SheetTrigger asChild>
+    <Button variant={"link"} size={"icon"} className="relative">
+      <ShoppingCartIcon />{" "}
+      {cart.length > 0 && (
+        <Badge className="absolute -top-1 -right-1 rounded-full hover:text-blue-300 h-5 w-5 p-2 flex items-center justify-center">
+          {getTotalCount(cart)}
+        </Badge>
+      )}
+    </Button>
+  </SheetTrigger>
+  <SheetContent className="w-[300px] sm:w-[540px]">
+    <ProductCart />
+  </SheetContent>
+</Sheet>
   );
 };
 export default CartButton;

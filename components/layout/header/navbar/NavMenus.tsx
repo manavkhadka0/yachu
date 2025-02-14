@@ -18,14 +18,16 @@ import { NAVBAR_LINKS } from "@/constants/navbar";
 export function NavMenus() {
   return (
     <NavigationMenu className="max-w-full">
-      <NavigationMenuList>
+      <NavigationMenuList className="flex flex-col lg:flex-row lg:gap-4">
         {NAVBAR_LINKS.map(({ title, href, options }, index) => (
-          <NavigationMenuItem key={index}>
+          <NavigationMenuItem key={index} className="relative">
             {options ? (
               <>
-                <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <NavigationMenuTrigger className="text-lg lg:text-base">
+                  {title}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="absolute left-0 mt-2 z-10 bg-white border border-gray-200 rounded-lg shadow-md">
+                  <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {options.map((option) => (
                       <ListItem
                         key={option.title}

@@ -16,32 +16,33 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
     category: { category_image, category_name },
     author: { name, picture, role },
   } = blog;
+
   return (
     <Link href={`/blog/${slug}`} passHref>
-      <div className="relative overflow-auto transition-all duration-200 border rounded-lg group border-neutral hover:bg-dark-gray">
+      <div className="relative overflow-hidden transition-all duration-200 border rounded-lg group border-neutral hover:bg-dark-gray shadow-md hover:shadow-lg">
         <div className="relative">
-          <div className="overflow-hidden aspect-w-4 aspect-h-2">
+          <div className="overflow-hidden aspect-w-4 aspect-h-3 sm:aspect-h-2 md:aspect-w-4 md:aspect-h-3">
             <Image
               height={200}
-              width={200}
-              className="object-cover h-40 w-full transition-all duration-300 transform group-hover:scale-125"
+              width={400}
+              className="object-cover w-full h-40 transition-all duration-300 transform group-hover:scale-110"
               src={BASE_URL + thumbnail_image}
-              alt=""
+              alt={title}
             />
           </div>
         </div>
 
-        <div className="px-5 py-6">
-          <h3 className="font-sans text-base font-semibold text-gray-900">
+        <div className="px-4 py-6 sm:px-6 sm:py-8">
+          <h3 className="font-sans text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2">
             {title}
           </h3>
-          <p className="mt-2 font-sans text-sm font-medium text-opacity-50 text-black">
+          <p className="mt-2 text-sm sm:text-base font-medium text-opacity-50 text-gray-700">
             {name}
           </p>
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <a
               href="#"
-              title=""
+              title="Read More"
               className="inline-flex items-center text-amber-700 text-sm font-medium group"
             >
               Read More
@@ -53,13 +54,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M13 7l5 5m0 0l-5 5m5-5H6"
                 ></path>
               </svg>
-              <span className="absolute inset-0" aria-hidden="true"></span>
             </a>
           </div>
         </div>

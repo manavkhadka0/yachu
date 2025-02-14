@@ -47,7 +47,7 @@ const About: React.FC<AboutProps> = async () => {
             <div className="hidden lg:block h-full pr-12 lg:order-2">
               <img
                 className="shadow-2xl p-5"
-                src="/yachu-hero.png"
+                src="/1024.png"
                 alt="yachu hair oil product image"
               />
             </div>

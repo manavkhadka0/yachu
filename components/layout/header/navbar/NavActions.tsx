@@ -8,32 +8,30 @@ import CartButton from "./CartButton";
 
 const NavActions = () => {
   return (
-    <div className=" flex gap-2 items-center   justify-end">
-      {/* <Button variant={"ghost"} size={"icon"} className="lg:block hidden">
-        <UserIcon />
-      </Button> */}
-      <CartButton />
-      <div className="flex lg:flex gap-2 flex-col items-center">
-        <Link href={"tel:++977 984-0412788"}>
-          <Button className="inline-flex gap-2 " variant={"secondary"}>
-            <PhoneCallIcon size={15} /> +977 984-0412788{" "}
-          </Button>
-        </Link>
-        <div className="hidden lg:block text-xs">
-          Questions? Speak with Yachu
-        </div>
-      </div>
-      <div className=" lg:hidden block">
-        <Sheet>
-          <SheetTrigger>
-            <MenuIcon />
-          </SheetTrigger>
-          <SheetContent className="w-[200px] sm:w-[540px]">
-            <NavMenusMobile />
-          </SheetContent>
-        </Sheet>
-      </div>
-    </div>
+   <div className="flex gap-2 items-center justify-end">
+  <div className="hidden lg:block">
+    <CartButton />
+  </div>
+  <div className="hidden lg:flex gap-2 flex-col items-center">
+    <Link href={"tel:++977 984-0412788"}>
+      <Button className="inline-flex gap-2" variant={"secondary"}>
+        <PhoneCallIcon size={15} /> +977 984-0412788
+      </Button>
+    </Link>
+    <div className="hidden lg:block text-xs">Questions? Speak with Yachu</div>
+  </div>
+  <div className="lg:hidden block">
+    <Sheet>
+      <SheetTrigger>
+        <MenuIcon />
+      </SheetTrigger>
+      <SheetContent className="w-[200px] sm:w-[540px]">
+        <NavMenusMobile />
+      </SheetContent>
+    </Sheet>
+  </div>
+</div>
   );
 };
+
 export default NavActions;

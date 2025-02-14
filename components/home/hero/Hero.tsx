@@ -83,11 +83,11 @@ const Hero = () => {
       </div>
       <div className=" w-auto pt-9 justify-end md:flex hidden">
         <Image
-          src={"/yachu-hair-oil-bottle.png"}
+          src={"/1024.png"}
           alt="curve line"
-          height={450}
-          width={450}
-          className="drop-shadow-xl "
+          height={550}
+          width={550}
+          className=" "
         />
       </div>
     </div>

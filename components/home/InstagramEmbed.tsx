@@ -9,7 +9,7 @@ interface InstagramEmbedProps {
 
 const InstagramEmbed: React.FC<InstagramEmbedProps> = ({
   url,
-  maxWidth = 540,
+  maxWidth = 540, // Default max width
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -35,8 +35,8 @@ const InstagramEmbed: React.FC<InstagramEmbedProps> = ({
       blockquote.setAttribute("data-instgrm-version", "14");
       blockquote.style.margin = "1px";
       blockquote.style.maxWidth = `${maxWidth}px`;
-      blockquote.style.width = "99.375%";
-      blockquote.style.width = "calc(100% - 2px)";
+      blockquote.style.width = "100%"; // Set full width
+      blockquote.style.boxSizing = "border-box"; // To avoid overflow
 
       containerRef.current.innerHTML = "";
       containerRef.current.appendChild(blockquote);
@@ -46,7 +46,12 @@ const InstagramEmbed: React.FC<InstagramEmbedProps> = ({
     }
   }, [url, maxWidth]);
 
-  return <div ref={containerRef} />;
+  return (
+    <div
+      ref={containerRef}
+      className="w-full mx-auto" // Ensures full width and centers on larger screens
+    />
+  );
 };
 
 export default InstagramEmbed;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { BASE_API_URL } from "@/utils/config";
 
-// Assuming FranchiseData type matches the structure of the data returned from the API
+// FranchiseData type matches the structure of the data returned from the API
 type FranchiseData = {
   id: number;
   franchise_name: string;
@@ -20,7 +20,7 @@ type FranchiseData = {
   updated_at: string;
 };
 
-// Assuming ContentItem type matches the structure of the content you want to display
+// ContentItem type matches the structure of the content you want to display
 type ContentItem = {
   title: string;
   description: string;
@@ -41,12 +41,12 @@ export default function StickyScrollRevealDemo() {
           title: item.franchise_name,
           description: item.description,
           content: (
-            <div className="h-full w-full  flex items-center justify-center text-white">
+            <div className="h-full w-full flex items-center justify-center text-white">
               <Image
                 src={item.image}
                 width={300}
                 height={300}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4" // Responsive image size
                 alt="linear board demo"
               />
             </div>
@@ -62,7 +62,7 @@ export default function StickyScrollRevealDemo() {
   }, []);
 
   return (
-    <div className="container pb-14">
+    <div className="container pb-14 px-4 sm:px-6 lg:px-8">
       {content && <StickyScroll content={content} />}
     </div>
   );

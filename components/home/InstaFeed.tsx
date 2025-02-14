@@ -4,13 +4,15 @@ import Script from "next/script";
 
 const InstaFeed = () => {
   return (
-    <div className=" mb-20">
+    <div className="mb-20">
       <Script
         src="https://w.behold.so/widget.js"
         type="module"
         strategy="lazyOnload"
       ></Script>
-      <div className=" p-4 pb-6 text-center text-xl mb-6">
+      
+      {/* Text and Link Section */}
+      <div className="p-4 pb-6 text-center text-xl mb-6">
         Follow{" "}
         <Link
           href={"https://www.instagram.com/yachu.np/"}
@@ -22,8 +24,13 @@ const InstaFeed = () => {
         on Instagram
       </div>
 
-      <figure data-behold-id={beholdId}></figure>
+      {/* Behold Widget */}
+      <figure 
+        data-behold-id={beholdId}
+        className="w-full max-w-screen-lg mx-auto" // Ensures the widget is centered and has max width on large screens
+      ></figure>
     </div>
   );
 };
+
 export default InstaFeed;
