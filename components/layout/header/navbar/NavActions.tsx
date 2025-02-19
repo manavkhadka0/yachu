@@ -3,34 +3,36 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { MenuIcon, PhoneCallIcon, ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 import NavMenusMobile from "./NavMenusMobile";
-import { Badge } from "@/components/ui/badge";
 import CartButton from "./CartButton";
 
 const NavActions = () => {
   return (
-   <div className="flex gap-2 items-center justify-end">
-  <div className="hidden lg:block">
-    <CartButton />
-  </div>
-  <div className="hidden lg:flex gap-2 flex-col items-center">
-    <Link href={"tel:++977 984-0412788"}>
-      <Button className="inline-flex gap-2" variant={"secondary"}>
-        <PhoneCallIcon size={15} /> +977 984-0412788
-      </Button>
-    </Link>
-    <div className="hidden lg:block text-xs">Questions? Speak with Yachu</div>
-  </div>
-  <div className="lg:hidden block">
-    <Sheet>
-      <SheetTrigger>
-        <MenuIcon />
-      </SheetTrigger>
-      <SheetContent className="w-[200px] sm:w-[540px]">
-        <NavMenusMobile />
-      </SheetContent>
-    </Sheet>
-  </div>
-</div>
+    <div className="flex items-center justify-between w-full lg:w-auto gap-3">
+      {/* Cart Button */}
+      <CartButton className="scale-90" />
+
+      {/* Phone Section (Smaller on mobile) */}
+      <div className="hidden lg:flex flex-col items-center text-sm">
+        <Link href={"tel:+9779840412788"}>
+          <Button className="gap-1 px-2 py-1 text-xs" variant="secondary">
+            <PhoneCallIcon size={13} /> +977 984-0412788
+          </Button>
+        </Link>
+        <div className="text-[10px]">Speak with Yachu</div>
+      </div>
+
+      {/* Mobile Menu Icon */}
+      <div className="lg:hidden">
+        <Sheet>
+          <SheetTrigger>
+            <MenuIcon size={20} />
+          </SheetTrigger>
+          <SheetContent className="w-[240px] sm:w-[360px]">
+            <NavMenusMobile />
+          </SheetContent>
+        </Sheet>
+      </div>
+    </div>
   );
 };
 

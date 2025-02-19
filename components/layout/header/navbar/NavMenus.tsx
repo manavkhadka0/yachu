@@ -26,7 +26,7 @@ export function NavMenus() {
                 <NavigationMenuTrigger className="text-lg lg:text-base">
                   {title}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute left-0 mt-2 z-10 bg-white border border-gray-200 rounded-lg shadow-md">
+                <NavigationMenuContent className="absolute left-0 mt-2 z-10 hidden lg:block bg-white border border-gray-200 rounded-lg shadow-md">
                   <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {options.map((option) => (
                       <ListItem

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { OUR_TEAM } from "@/constants/about";
 import { Members, TEAM } from "@/types/team";
 import { BASE_API_URL } from "@/utils/config";
@@ -29,8 +30,8 @@ const OurTeam = async () => {
             Meet the brains
           </h2>
           <p className="max-w-md mx-auto mt-4 text-base leading-relaxed text-gray-600">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-            sint. Velit officia consequat duis.
+            This is the team that makes everything possible and makes sure that
+            everything runs smoothly.
           </p>
         </div>
 
@@ -39,9 +40,9 @@ const OurTeam = async () => {
             <>
               <div key={member.id}>
                 <img
-                  className="object-cover mx-auto h-80 lg:h-fit rounded-lg w-38 h-38"
+                  className="object-cover mx-auto rounded-lg w-48 h-48" // Increased width to w-80
                   src={member.photo}
-                  alt=""
+                  alt={member.name}
                 />
                 <p className="mt-8 text-lg font-semibold leading-tight text-black">
                   {member.name}

@@ -5,7 +5,7 @@ export const OUR_TEAM: Members = [
     id: 1,
     order: 2,
     name: "Ujjwol Manandhar",
-    photo: "/team/ujjwol-manandhar-md.jpg",
+    photo: "/team/ujjwol-manandhar-md.png",
     role: "Managing Director",
   },
   {
