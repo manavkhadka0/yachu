@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     "hair oil",
     "Nepal",
     "jadibuti",
-    "herbal hair care",
-    "natural hair product",
+    "Natural hair care",
+    "Natural hair product",
   ],
   openGraph: {
     title: "Yachu Hair Oil - Made in Nepal with 33 Jadibuti",
