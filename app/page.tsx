@@ -73,7 +73,7 @@ export default async function Home() {
         <div className="flex justify-center flex-col max-w-3xl mx-auto mb-16">
           <div className="mb-12 flex flex-col justify-center items-center gap-2">
             <Image
-              src={"/team/parbati-shrestha-gm.jpg"}
+              src={"/team/bimala-manandhar-md.jpg"}
               alt="contact-person"
               width={150}
               height={150}

@@ -35,14 +35,14 @@ const OurTeam = async () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 mt-8 text-center sm:mt-16 lg:mt-20 sm:grid-cols-4 gap-y-8 lg:grid-cols-4 gap-x-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 text-center sm:mt-16 lg:mt-20 gap-y-8 gap-x-4">
           {data.map((member) => (
             <div
               key={member.id}
               className="flex flex-col items-center p-4 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
             >
               <img
-                className="object-cover mx-auto rounded-lg w-80 h-96 overflow-hidden"
+                className="object-cover mx-auto rounded-lg w-full h-48 sm:w-80 sm:h-96 overflow-hidden"
                 src={member.photo}
                 alt={member.name}
               />
