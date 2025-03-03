@@ -35,24 +35,24 @@ const OurTeam = async () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 mt-8 text-center sm:mt-16 lg:mt-20 sm:grid-cols-4 gap-y-8 lg:grid-cols-9 gap-x-0">
+        <div className="grid grid-cols-2 mt-8 text-center sm:mt-16 lg:mt-20 sm:grid-cols-4 gap-y-8 lg:grid-cols-4 gap-x-4">
           {data.map((member) => (
-            <>
-              <div key={member.id}>
-                <img
-                  className="object-cover mx-auto rounded-lg w-48 h-48" // Increased width to w-80
-                  src={member.photo}
-                  alt={member.name}
-                />
-                <p className="mt-8 text-lg font-semibold leading-tight text-black">
-                  {member.name}
-                </p>
-                <p className="mt-1 text-base leading-tight text-gray-600">
-                  {member.role}
-                </p>
-              </div>
-              <div className="hidden lg:block"></div>
-            </>
+            <div
+              key={member.id}
+              className="flex flex-col items-center p-4 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+            >
+              <img
+                className="object-cover mx-auto rounded-lg w-80 h-96 overflow-hidden"
+                src={member.photo}
+                alt={member.name}
+              />
+              <p className="mt-4 text-lg font-semibold leading-tight text-black">
+                {member.name}
+              </p>
+              <p className="mt-1 text-base leading-tight text-gray-600">
+                {member.role}
+              </p>
+            </div>
           ))}
         </div>
       </div>

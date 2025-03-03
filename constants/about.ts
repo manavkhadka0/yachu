@@ -17,20 +17,13 @@ export const OUR_TEAM: Members = [
   },
   {
     id: 3,
-    order: 5,
-    name: "Parbati Shrestha",
-    photo: "/team/parbati-shrestha-gm.jpg",
-    role: "General Manager",
-  },
-  {
-    id: 4,
     order: 6,
     name: "Chaturman Limbu",
     photo: "/team/chaturman-limbu-mm.jpg",
     role: "General Manager",
   },
   {
-    id: 5,
+    id: 4,
     order: 7,
     name: "Rajesh Lama",
     photo: "/team/rajesh-lama-photographer.jpeg",
