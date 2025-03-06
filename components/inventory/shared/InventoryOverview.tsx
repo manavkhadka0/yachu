@@ -22,10 +22,61 @@ import {
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdStorefront } from "react-icons/md";
 
+// Define a more specific type for the data prop
+interface InventoryData {
+  inventory?: {
+    total?: number;
+    value?: number;
+  };
+  rawMaterials?: {
+    total?: number;
+    value?: number;
+    lowStock?: number;
+  };
+  finishedProducts?: {
+    total?: number;
+    available?: number;
+    allocated?: number;
+  };
+  sales?: {
+    daily?: number;
+    weekly?: number;
+    monthly?: number;
+  };
+  production?: {
+    daily?: number;
+    weekly?: number;
+    monthly?: number;
+  };
+  orders?: {
+    pending?: number;
+    inTransit?: number;
+    completed?: number;
+  };
+  distribution?: {
+    pending?: number;
+    inTransit?: number;
+    completed?: number;
+  };
+  customers?: {
+    total?: number;
+    new?: number;
+    returning?: number;
+  };
+  distributors?: {
+    total?: number;
+    active?: number;
+  };
+  retailers?: {
+    total?: number;
+    active?: number;
+  };
+}
+
 interface InventoryOverviewProps {
   title: string;
   description: string;
-  data: any;
+  data: InventoryData;
   role: "factory" | "distributor" | "franchise";
 }
 
@@ -35,8 +86,66 @@ const InventoryOverview = ({
   data,
   role,
 }: InventoryOverviewProps) => {
+  // Get inventory data based on role
+  const getInventoryData = () => {
+    switch (role) {
+      case "factory":
+        return {
+          total: data.rawMaterials?.total || 0,
+          value: data.rawMaterials?.value || 0,
+        };
+      case "distributor":
+      case "franchise":
+      default:
+        return {
+          total: data.inventory?.total || 0,
+          value: data.inventory?.value || 0,
+        };
+    }
+  };
+
+  // Get sales/production data based on role
+  const getSalesData = () => {
+    switch (role) {
+      case "factory":
+        return {
+          daily: data.production?.daily || 0,
+          monthly: data.production?.monthly || 0,
+        };
+      case "distributor":
+      case "franchise":
+      default:
+        return {
+          daily: data.sales?.daily || 0,
+          monthly: data.sales?.monthly || 0,
+        };
+    }
+  };
+
+  // Get orders/distribution data based on role
+  const getOrdersData = () => {
+    switch (role) {
+      case "factory":
+        return {
+          pending: data.distribution?.pending || 0,
+          completed: data.distribution?.completed || 0,
+        };
+      case "distributor":
+      case "franchise":
+      default:
+        return {
+          pending: data.orders?.pending || 0,
+          completed: data.orders?.completed || 0,
+        };
+    }
+  };
+
   // Role-specific icons and labels
   const getRoleSpecificContent = () => {
+    const inventoryData = getInventoryData();
+    const salesData = getSalesData();
+    const ordersData = getOrdersData();
+
     switch (role) {
       case "factory":
         return {
@@ -50,6 +159,12 @@ const InventoryOverview = ({
           fourthMetricSubtext: `${
             data.distributors?.active || 0
           } active distributors`,
+          inventoryTotal: inventoryData.total,
+          inventoryValue: inventoryData.value,
+          salesDaily: salesData.daily,
+          salesMonthly: salesData.monthly,
+          ordersPending: ordersData.pending,
+          ordersCompleted: ordersData.completed,
         };
       case "distributor":
         return {
@@ -65,6 +180,12 @@ const InventoryOverview = ({
           fourthMetricSubtext: `${
             data.retailers?.active || 0
           } active retailers`,
+          inventoryTotal: inventoryData.total,
+          inventoryValue: inventoryData.value,
+          salesDaily: salesData.daily,
+          salesMonthly: salesData.monthly,
+          ordersPending: ordersData.pending,
+          ordersCompleted: ordersData.completed,
         };
       case "franchise":
         return {
@@ -76,6 +197,12 @@ const InventoryOverview = ({
           fourthMetricLabel: "Customers",
           fourthMetricValue: data.customers?.total || 0,
           fourthMetricSubtext: `${data.customers?.new || 0} new this week`,
+          inventoryTotal: inventoryData.total,
+          inventoryValue: inventoryData.value,
+          salesDaily: salesData.daily,
+          salesMonthly: salesData.monthly,
+          ordersPending: ordersData.pending,
+          ordersCompleted: ordersData.completed,
         };
       default:
         return {
@@ -87,6 +214,12 @@ const InventoryOverview = ({
           fourthMetricLabel: "Users",
           fourthMetricValue: 0,
           fourthMetricSubtext: "",
+          inventoryTotal: 0,
+          inventoryValue: 0,
+          salesDaily: 0,
+          salesMonthly: 0,
+          ordersPending: 0,
+          ordersCompleted: 0,
         };
     }
   };
@@ -113,10 +246,10 @@ const InventoryOverview = ({
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {data.inventory.total} items
+              {roleContent.inventoryTotal} items
             </div>
             <p className="text-xs text-muted-foreground">
-              ₹{data.inventory.value.toLocaleString()} total value
+              ₹{roleContent.inventoryValue.toLocaleString()} total value
             </p>
           </CardContent>
         </Card>
@@ -129,9 +262,11 @@ const InventoryOverview = ({
             <TrendingUp className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.sales.daily} units</div>
+            <div className="text-2xl font-bold">
+              {roleContent.salesDaily} units
+            </div>
             <p className="text-xs text-muted-foreground">
-              {data.sales.monthly} units this month
+              {roleContent.salesMonthly} units this month
             </p>
           </CardContent>
         </Card>
@@ -145,10 +280,10 @@ const InventoryOverview = ({
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {data.orders.pending} pending
+              {roleContent.ordersPending} pending
             </div>
             <p className="text-xs text-muted-foreground">
-              {data.orders.completed} completed this month
+              {roleContent.ordersCompleted} completed this month
             </p>
           </CardContent>
         </Card>
