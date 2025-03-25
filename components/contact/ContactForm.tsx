@@ -58,7 +58,7 @@ const ContactForm = () => {
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold">Contact Us</CardTitle>
         <CardDescription>
-          Send us a message and we'll get back to you as soon as possible.
+          Send us a message and we&apos;ll get back to you as soon as possible.
         </CardDescription>
       </CardHeader>
       <CardContent>
