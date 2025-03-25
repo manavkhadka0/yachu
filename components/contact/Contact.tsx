@@ -7,17 +7,7 @@ const Contact = () => {
   return (
     <div className=" pt-12 pb-24 w-full" id="contact">
       <div className=" mx-auto pb-24">
-        <div className=" p-5 mx-auto sm:p-8 shadow max-w-3xl rounded-lg ">
-          <div className=" mb-10 ">
-            <h1 className=" text-2xl sm:text-3xl font-bold mb-1">
-              Contact Yachu
-            </h1>
-            <p className=" text-slate-500 font-medium text-sm sm:text-base">
-              Fill in your details and send us a message
-            </p>
-          </div>
-          <ContactForm />
-        </div>
+        <ContactForm />
         <FlowerDivider />
         <ContactDetails />
       </div>

@@ -17,22 +17,18 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
   },
   {
     title: "Our Products",
-    href: "/#products",
+    href: "/products",
   },
   {
-    title: "Blog",
-    href: "/blog",
-  },
-  {
-    title: "Gallery",
-    href: "/gallery",
+    title: "About Us",
+    href: "/about",
   },
   {
     title: "Contact",
     href: "/contact",
   },
   {
-    title: "Privacy Policy",
-    href: "/privacy-policy",
+    title: "Blog",
+    href: "/blog",
   },
 ];

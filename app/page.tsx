@@ -43,37 +43,14 @@ const getBlogs = async () => {
   }
 };
 
-const getTeams = async () => {
-  try {
-    const response = await fetch(BASE_API_URL + "/team-members", {
-      next: { revalidate: 10 },
-    });
-    return response.json();
-  } catch (error) {
-    console.error("Error while fetching FAQs", error);
-    return OUR_TEAM;
-  }
-};
-
 export default async function Home() {
   const products = await getProducts();
   const blogs = await getBlogs();
-  const teams = await getTeams();
   return (
     <main className="flex flex-col ">
       <Hero />
       <FlowerDivider />
-      <p className="text-4xl mb-4 text-center font-bold text-black">
-        50K+ Happy And Satisfied Yachu Users
-      </p>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-20 pb-40">
-        <InstagramEmbed url="https://www.instagram.com/p/C-PhVnuAgj6/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C-PhjiBA_lp/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C_47iTVor2a/" />
-        <InstagramEmbed url="https://www.instagram.com/p/C_46Dk2I1gl/" />
-      </div>
 
-      {/* ------------ Products ------------*/}
       <ProductShowcase products={products} />
 
       <FlowerDivider />
@@ -84,49 +61,15 @@ export default async function Home() {
       <YachuHairOilHowToUse />
 
       <FlowerDivider />
+      <Questions />
+      <FlowerDivider />
       <BlogSection blogs={blogs} />
 
-      {/* ---------------------------------- */}
-      <FlowerDivider />
-      {/* --------- About Yachu ------------*/}
-      <About aboutdetails={[]} />
-      {/* ---------------------------------- */}
-
-      <Questions />
-
-      <FlowerDivider />
-
-      <OurTeam teams={OUR_TEAM} />
-      {/* ---------------------------------- */}
-
-      <YachuWomen />
       <FlowerDivider />
 
       <div className="container mb-20 mt-10">
-        <div className="flex justify-center flex-col max-w-3xl mx-auto mb-16">
-          <div className="mb-12 flex flex-col justify-center items-center gap-2">
-            <Image
-              src={"/team/bimala-manandhar-md.jpg"}
-              alt="contact-person"
-              width={150}
-              height={150}
-              className="rounded-full h-28 w-28 object-cover"
-            />
-            <h1 className="text-center text-2xl sm:text-3xl font-bold mb-1">
-              Contact Yachu
-            </h1>
-            <p className="text-center text-slate-500 font-medium text-sm sm:text-base">
-              Fill in your details and send us a message
-            </p>
-          </div>
-          <ContactForm />
-        </div>
-        <FlowerDivider />
-        <p className="text-4xl text-black text-center leading-tight font-bold mt-5 pb-12">
-          Our Franchises
-        </p>
-        <div className="py-20"></div>
-        <StickyScrollRevealDemo />
+        <ContactForm />
+
         <div className="py-20"></div>
         <FlowerDivider />
         <h3 className="text-4xl text-black text-center leading-tight font-bold mt-5 pt-6">

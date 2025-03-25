@@ -72,12 +72,10 @@ const Hero = () => {
           </p>
         </div>
         <Link
-          href={"tel:++977 984-0412788"}
+          href={"/products"}
           className="mt-4 bg-[#B45309] w-full sm:w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] gap-2  hover:gap-3 transition-all rounded flex items-center"
         >
-          <span className="xl:text-xl xl:p-4">
-            Call Now to Order Yachu Hair Oil
-          </span>{" "}
+          <span className="xl:text-xl xl:p-4">Order Yachu Hair Oil Now</span>{" "}
           <MoveRightIcon className="me-3" />
         </Link>
       </div>
