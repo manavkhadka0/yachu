@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import FlowerDivider from "@/components/shared/FlowerDivider";
 import { Metadata, ResolvingMetadata } from "next";
 import { Link } from "lucide-react";
+import { getBlogs } from "@/utils/api";
 
 const getBlogBySlug: any = async (slug: string) => {
   try {
@@ -52,6 +53,7 @@ export async function generateMetadata(
 
 const BlogDetails = async ({ params }: { params: { slug: string } }) => {
   const blog = await getBlogBySlug(params.slug);
+  const blogs = await getBlogs();
 
   const {
     title,
@@ -257,7 +259,7 @@ const BlogDetails = async ({ params }: { params: { slug: string } }) => {
         </div>
       </section>
       <FlowerDivider />
-      <BlogSection />
+      <BlogSection blogs={blogs} />
     </>
   );
 };
