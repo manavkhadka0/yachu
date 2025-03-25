@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/layout/header/Header";
 import { Toaster } from "sonner";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Analytics from "@/components/google-analytics";
 
 const br = Bricolage_Grotesque({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={br.className}>
         <Header />
+        <Analytics gid="G-HB06VVN470" />
         <Toaster position="bottom-left" richColors />
         <main className="min-h-screen"> {children}</main>
         <WhatsAppButton />

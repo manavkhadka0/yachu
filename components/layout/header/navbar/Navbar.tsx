@@ -2,25 +2,35 @@ import Image from "next/image";
 import { NavMenus } from "./NavMenus";
 import NavActions from "./NavActions";
 import Link from "next/link";
+
 const Navbar = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 items-center  p-4 container mx-auto  ">
-      <div className="">
-        <Link href={"/"}>
-          <Image
-            src="/yachuoil.jpg"
-            alt="me"
-            width="500"
-            height="500"
-            className="w-16"
-          />
-        </Link>
+    <nav className="border-b">
+      <div className="container mx-auto">
+        <div className="flex items-center py-2 justify-between px-4">
+          <div className="flex-shrink-0">
+            <Link href={"/"}>
+              <Image
+                src="/yachuoil.jpg"
+                alt="Yachu Logo"
+                width={64}
+                height={64}
+                className="w-16 h-auto object-contain"
+              />
+            </Link>
+          </div>
+
+          <div className="hidden lg:flex flex-1 justify-center">
+            <NavMenus />
+          </div>
+
+          <div className="flex items-center">
+            <NavActions />
+          </div>
+        </div>
       </div>
-      <div className=" hidden lg:block">
-        <NavMenus />
-      </div>
-      <NavActions />
-    </div>
+    </nav>
   );
 };
+
 export default Navbar;

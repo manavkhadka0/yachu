@@ -16,8 +16,49 @@ import Image from "next/image";
 import BlogSection from "@/components/blog/BlogSection";
 import Gallery from "@/components/gallery/Gallery";
 import StickyScrollRevealDemo from "./franchises/page";
+import { BASE_API_URL } from "@/utils/config";
+import { OUR_TEAM } from "@/constants/about";
+
+const getProducts = async () => {
+  try {
+    const res = await fetch(BASE_API_URL + "/products", {
+      next: { revalidate: 10 },
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching Products", error);
+  }
+};
+
+const getBlogs = async () => {
+  try {
+    const blogs = await fetch(BASE_API_URL + "/latest-posts", {
+      next: { revalidate: 10 },
+    });
+    const data = await blogs.json();
+    return data.recent_posts;
+  } catch (error) {
+    console.error("Error fetching Blogs", error);
+    console.log(error);
+  }
+};
+
+const getTeams = async () => {
+  try {
+    const response = await fetch(BASE_API_URL + "/team-members", {
+      next: { revalidate: 10 },
+    });
+    return response.json();
+  } catch (error) {
+    console.error("Error while fetching FAQs", error);
+    return OUR_TEAM;
+  }
+};
 
 export default async function Home() {
+  const products = await getProducts();
+  const blogs = await getBlogs();
+  const teams = await getTeams();
   return (
     <main className="flex flex-col ">
       <Hero />
@@ -33,7 +74,7 @@ export default async function Home() {
       </div>
 
       {/* ------------ Products ------------*/}
-      <ProductShowcase />
+      <ProductShowcase products={products} />
 
       <FlowerDivider />
 
@@ -43,7 +84,7 @@ export default async function Home() {
       <YachuHairOilHowToUse />
 
       <FlowerDivider />
-      <BlogSection />
+      <BlogSection blogs={blogs} />
 
       {/* ---------------------------------- */}
       <FlowerDivider />
@@ -52,21 +93,13 @@ export default async function Home() {
       {/* ---------------------------------- */}
 
       <Questions />
-      <FlowerDivider />
-      <Gallery />
 
       <FlowerDivider />
 
-      <OurTeam />
+      <OurTeam teams={OUR_TEAM} />
       {/* ---------------------------------- */}
 
       <YachuWomen />
-      <FlowerDivider />
-      {/* --------- Instagram and Youtube------------*/}
-      <InstaFeed />
-      {/* ---------------------------------- */}
-
-      {/* <Testimonials /> */}
       <FlowerDivider />
 
       <div className="container mb-20 mt-10">

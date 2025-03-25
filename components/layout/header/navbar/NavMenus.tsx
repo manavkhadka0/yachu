@@ -17,17 +17,17 @@ import { NAVBAR_LINKS } from "@/constants/navbar";
 
 export function NavMenus() {
   return (
-    <NavigationMenu className="max-w-full">
-      <NavigationMenuList className="flex flex-col lg:flex-row lg:gap-4">
+    <NavigationMenu>
+      <NavigationMenuList className="flex items-center space-x-4">
         {NAVBAR_LINKS.map(({ title, href, options }, index) => (
-          <NavigationMenuItem key={index} className="relative">
+          <NavigationMenuItem key={index}>
             {options ? (
               <>
-                <NavigationMenuTrigger className="text-lg lg:text-base">
+                <NavigationMenuTrigger className="text-base font-medium hover:text-primary">
                   {title}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute left-0 mt-2 z-10 hidden lg:block bg-white border border-gray-200 rounded-lg shadow-md">
-                  <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {options.map((option) => (
                       <ListItem
                         key={option.title}
@@ -42,7 +42,12 @@ export function NavMenus() {
               </>
             ) : (
               <Link href={href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "text-base font-medium hover:text-primary transition-colors"
+                  )}
+                >
                   {title}
                 </NavigationMenuLink>
               </Link>
@@ -70,7 +75,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground mt-1">
             {children}
           </p>
         </a>

@@ -35,28 +35,10 @@ const FAQ_LIST: FAQs = [
   },
 ];
 
-const getFAQs = async () => {
-  try {
-    const response = await fetch(BASE_API_URL + "/faqs", { next: { revalidate: 10 } })
-    return response.json();
-  }
-  catch (error) {
-
-    console.error("Error fetching FAQs", error);
-    return FAQ_LIST;
-  }
-};
-
-const FAQ = async () => {
-  let data: FAQs = await getFAQs();
-
-  if (data.length === 0) {
-    data = FAQ_LIST;
-  }
-
+const FAQ = () => {
   return (
     <Accordion type="single" collapsible className="w-full">
-      {data.map(({ question, answer }, index) => (
+      {FAQ_LIST.map(({ question, answer }, index) => (
         <AccordionItem value={`item-${index + 1}`} key={index + 1}>
           <AccordionTrigger>{question}</AccordionTrigger>
           <AccordionContent>{answer}</AccordionContent>

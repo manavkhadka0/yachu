@@ -1,27 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { OUR_TEAM } from "@/constants/about";
-import { Members, TEAM } from "@/types/team";
-import { BASE_API_URL } from "@/utils/config";
-import { revalidatePath } from "next/cache";
-import Image from "next/image";
+import { Members } from "@/types/team";
 
-const getTeams = async () => {
-  try {
-    const response = await fetch(BASE_API_URL + "/team-members", {
-      next: { revalidate: 10 },
-    });
-    return response.json();
-  } catch (error) {
-    console.error("Error while fetching FAQs", error);
-    return OUR_TEAM;
-  }
-};
-
-const OurTeam = async () => {
-  let data: Members = await getTeams();
-  if (data.length == 0) {
-    data = OUR_TEAM;
-  }
+const OurTeam = ({ teams }: { teams: Members }) => {
   return (
     <section className="py-10 sm:py-16 lg:pt-5">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -36,7 +16,7 @@ const OurTeam = async () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 text-center sm:mt-16 lg:mt-20 gap-y-8 gap-x-4">
-          {data.map((member) => (
+          {teams.map((member) => (
             <div
               key={member.id}
               className="flex flex-col items-center p-4 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
