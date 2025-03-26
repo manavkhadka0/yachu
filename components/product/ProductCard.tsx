@@ -36,8 +36,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="flex flex-col overflow-hidden transition-all duration-500 border border-gray-100 rounded-2xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white group relative">
-      <div className="absolute top-4 right-4 z-10">
-        <div className="px-3 py-1 text-xs font-medium bg-amber-100 text-amber-800 rounded-full">
+      <div className="absolute top-4 right-4 z-[1]">
+        <div className="px-3  py-1 text-xs font-medium bg-amber-100 text-amber-800 rounded-full">
           In Stock
         </div>
       </div>

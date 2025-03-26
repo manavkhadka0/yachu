@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="border-b">
+    <nav className="border-b z-10">
       <div className="container mx-auto">
         <div className="flex items-center py-2 justify-between px-4">
           <div className="flex-shrink-0">
