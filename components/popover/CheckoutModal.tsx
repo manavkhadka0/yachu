@@ -14,22 +14,26 @@ import CheckoutForm from "../product/CheckoutForm";
 interface Props {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  onCloseSheet?: () => void;
 }
 
-export function CheckoutModal({ isOpen, setIsOpen }: Props) {
+export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild></DialogTrigger>
       <DialogContent className="sm:max-w-[725px]">
         <DialogHeader className="mb-8">
-          <DialogTitle className=" text-xl sm:text-2xl text-center">
+          <DialogTitle className="text-xl sm:text-2xl text-center">
             Place your order now
           </DialogTitle>
           <DialogDescription className="text-center">
             We will call you shortly to confirm your order
           </DialogDescription>
         </DialogHeader>
-        <CheckoutForm />
+        <CheckoutForm
+          onSuccess={() => setIsOpen(false)}
+          onCloseSheet={onCloseSheet}
+        />
       </DialogContent>
     </Dialog>
   );

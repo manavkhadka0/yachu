@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React from "react";
 import ProductCart from "@/components/product/ProductCart";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,10 +14,16 @@ interface CartButtonProps {
 
 const CartButton: React.FC<CartButtonProps> = ({ className }) => {
   const { cart } = useProductCart();
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant={"link"} size={"icon"} className={`relative ${className}`}>
+        <Button
+          variant={"link"}
+          size={"icon"}
+          className={`relative ${className}`}
+        >
           <ShoppingCartIcon />{" "}
           {cart.length > 0 && (
             <Badge className="absolute -top-1 -right-1 rounded-full hover:text-blue-300 h-5 w-5 p-2 flex items-center justify-center">
@@ -27,9 +33,10 @@ const CartButton: React.FC<CartButtonProps> = ({ className }) => {
         </Button>
       </SheetTrigger>
       <SheetContent className="w-[300px] sm:w-[540px]">
-        <ProductCart />
+        <ProductCart onCloseSheet={() => setIsOpen(false)} />
       </SheetContent>
     </Sheet>
   );
 };
+
 export default CartButton;

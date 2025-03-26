@@ -7,6 +7,7 @@ interface ProductCartStore {
   increaseCount: (productId: string) => void;
   decreaseCount: (productId: string) => void;
   removeItem: (productId: string) => void;
+  clearCart: () => void;
 }
 
 const useProductCart = create<ProductCartStore>((set) => ({
@@ -32,6 +33,7 @@ const useProductCart = create<ProductCartStore>((set) => ({
     set((state) => ({
       cart: state.cart.filter((item) => item.product.id !== productId),
     })),
+  clearCart: () => set({ cart: [] }),
 }));
 
 export default useProductCart;

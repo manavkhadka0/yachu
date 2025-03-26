@@ -46,13 +46,13 @@ export const checkoutFormSchema = z.object({
   name: z.string().min(4, {
     message: "Name is required",
   }),
-  email: z.string().min(10, {
-    message: "Email is required",
+  email: z.string().optional(),
+  phone: z.string().min(10, {
+    message: "Phone number must be at least 10 digits",
   }),
-  phone: z.string().min(1, {
-    message: "Phone No. is required",
-  }),
+  alternate_phone: z.string().optional(),
   address: z.string().min(1, {
     message: "Address is required",
   }),
+  remarks: z.string().optional(),
 });
