@@ -130,62 +130,110 @@ const CheckoutForm = ({ onSuccess, onCloseSheet }: CheckoutFormProps) => {
         </Alert>
 
         <div className="space-y-4">
-          <RHFInput
-            name="name"
-            label="Full Name"
-            placeholder="eg. John Doe"
-            required
-            className="text-base"
-            disabled={isSubmitting}
-          />
-
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Full Name
+            </label>
             <RHFInput
-              name="phone"
-              label="Phone Number"
-              placeholder="eg. 9865436650"
-              type="tel"
-              className="text-base"
+              name="name"
+              label="name"
+              placeholder="eg. John Doe"
               required
-              disabled={isSubmitting}
-            />
-            <RHFInput
-              name="alternate_phone"
-              label="Alternate Phone Number (Optional)"
-              placeholder="eg. 9865436651"
-              type="tel"
               className="text-base"
               disabled={isSubmitting}
             />
           </div>
 
-          <RHFInput
-            name="email"
-            label="Email Address (Optional)"
-            placeholder="eg. john@gmail.com"
-            type="email"
-            className="text-base"
-            disabled={isSubmitting}
-          />
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Phone Number
+              </label>
+              <RHFInput
+                name="phone"
+                label="Phone Number"
+                placeholder="eg. 9865436650"
+                type="tel"
+                className="text-base"
+                required
+                disabled={isSubmitting}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="alternate_phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Alternate Phone Number (Optional)
+              </label>
+              <RHFInput
+                name="alternate_phone"
+                label="Alternate Phone Number (Optional)"
+                placeholder="eg. 9865436651"
+                type="tel"
+                className="text-base"
+                disabled={isSubmitting}
+              />
+            </div>
+          </div>
 
-          <RHFTextarea
-            name="address"
-            label="Delivery Address"
-            rows={3}
-            placeholder="eg. New baneshwor - 10, Kathmandu"
-            className="text-base"
-            required
-            disabled={isSubmitting}
-          />
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email Address (Optional)
+            </label>
+            <RHFInput
+              name="email"
+              label="email"
+              placeholder="eg. john@gmail.com"
+              type="email"
+              className="text-base"
+              disabled={isSubmitting}
+            />
+          </div>
 
-          <RHFTextarea
-            name="remarks"
-            label="Remarks (Optional)"
-            rows={2}
-            placeholder="Any special instructions or notes for your order"
-            className="text-base"
-            disabled={isSubmitting}
-          />
+          <div>
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Delivery Address
+            </label>
+            <RHFTextarea
+              name="address"
+              label="address"
+              rows={3}
+              placeholder="eg. New baneshwor - 10, Kathmandu"
+              className="text-base"
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="remarks"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Remarks (Optional)
+            </label>
+            <RHFTextarea
+              label="remarks"
+              name="remarks"
+              rows={2}
+              placeholder="Any special instructions or notes for your order"
+              className="text-base"
+              disabled={isSubmitting}
+            />
+          </div>
         </div>
 
         <Button
