@@ -73,10 +73,15 @@ const Hero = () => {
         </div>
         <Link
           href={"/products"}
-          className="mt-4 bg-[#B45309] w-full sm:w-fit hover:bg-gray-100 text-white text-lg shadow-lg hover:text-[#B45309] hover:border-3 hover:border-[#B45309] gap-2  hover:gap-3 transition-all rounded flex items-center"
+          className="mt-6 group relative overflow-hidden w-full sm:max-w-xs md:w-fit bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold text-base sm:text-lg rounded-full shadow-xl hover:shadow-amber-200/50 transition-all duration-300 flex items-center justify-center py-2 sm:py-3 px-4 sm:px-6 border-2 border-amber-600"
         >
-          <span className="xl:text-xl xl:p-4">Order Yachu Hair Oil Now</span>{" "}
-          <MoveRightIcon className="me-3" />
+          <span className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+          <div className="relative flex items-center justify-center gap-2 w-full">
+            <span className="text-center text-sm sm:text-base md:text-lg xl:text-xl whitespace-nowrap">
+              Order Yachu Hair Oil Now
+            </span>
+            <MoveRightIcon className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
+          </div>
         </Link>
       </div>
       <div className=" w-auto pt-9 justify-end md:flex hidden">
