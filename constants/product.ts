@@ -63,6 +63,7 @@ export const INGREDIENTS = [
   "Alo-weed (शंखपुस्पी)",
   "Coconut (नरिवल)",
   "Black Cumin (कालो जीरा)",
+  "Onion Seed (प्याजको बीउ)"
 ];
 
 export const VIDEOS = [
