@@ -93,12 +93,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   View Details
                 </Button>
               </Link>
+              <Link href={`/checkout`} className="flex-1">
               <Button
                 className="col-span-2 bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition-all duration-300 hover:shadow-md"
-                onClick={() => setOpenCheckoutForm(true)}
+                
               >
                 Proceed to Checkout
               </Button>
+              </Link>
             </>
           ) : (
             <>

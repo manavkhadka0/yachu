@@ -18,6 +18,7 @@ import Gallery from "@/components/gallery/Gallery";
 import StickyScrollRevealDemo from "./franchises/page";
 import { BASE_API_URL } from "@/utils/config";
 import { OUR_TEAM } from "@/constants/about";
+import { TProduct } from "@/types/product";
 
 const getProducts = async () => {
   try {
@@ -29,6 +30,8 @@ const getProducts = async () => {
     console.error("Error fetching Products", error);
   }
 };
+
+
 
 const getBlogs = async () => {
   try {
