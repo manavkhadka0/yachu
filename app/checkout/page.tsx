@@ -251,27 +251,7 @@ const CheckoutPage = () => {
                             <p className="text-sm text-muted-foreground">No recommended products available</p>
                         )}
 
-                        {activeAddOnsFromLocalState.length > 0 && (
-                            <div className="mt-3 pt-3 border-t">
-                                <h3 className="font-medium text-sm text-gray-700 mb-2">Selected Add-ons</h3>
-                                <div className="space-y-2">
-                                    {activeAddOnsFromLocalState.map((addon) => (
-                                        <div key={addon.id} className="flex justify-between items-center text-xs relative bg-gray-50 p-2 rounded-lg">
-                                            <Button
-                                                variant="ghost"
-                                                size="icon"
-                                                className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-white shadow-sm hover:bg-red-50 hover:text-red-600"
-                                                onClick={() => removeItem(addon.id)}
-                                            >
-                                                <X className="h-3 w-3" />
-                                            </Button>
-                                            <span>{addon.title} × {addon.count}</span>
-                                            <span>Rs. {(addon.price * addon.count).toLocaleString()}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                      
                     </div>
                 )}
 
@@ -548,28 +528,7 @@ const CheckoutPage = () => {
                                     </div>
                                 )}
                                 
-                                {/* Selected Add-ons Section for Desktop */}
-                                {activeAddOnsFromLocalState.length > 0 && (
-                                    <div className="mt-4 pt-4 border-t">
-                                        <h3 className="font-medium text-sm text-gray-700 mb-2">Selected Add-ons</h3>
-                                        <div className="space-y-2">
-                                            {activeAddOnsFromLocalState.map((addon) => (
-                                                <div key={addon.id} className="flex justify-between items-center text-sm bg-gray-50 p-2 rounded-lg relative">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-white shadow-sm hover:bg-red-50 hover:text-red-600"
-                                                        onClick={() => removeItem(addon.id)}
-                                                    >
-                                                        <X className="h-4 w-4" />
-                                                    </Button>
-                                                    <span>{addon.title} × {addon.count}</span>
-                                                    <span>Rs. {(addon.price * addon.count).toLocaleString()}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                               
 
                                 <div className="mt-4 space-y-3 pt-4 border-t">
                                     <div className="flex justify-between text-sm">

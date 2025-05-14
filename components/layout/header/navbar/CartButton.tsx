@@ -7,7 +7,7 @@ import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { getTotalCount } from "@/lib/utils";
 import useProductCart from "@/store/zustand";
 import { ShoppingCartIcon } from "lucide-react";
-
+import Link from "next/link";
 interface CartButtonProps {
   className?: string;
 }
@@ -17,9 +17,9 @@ const CartButton: React.FC<CartButtonProps> = ({ className }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button
+    
+      <Link href="/checkout">
+          <Button
           variant={"link"}
           size={"icon"}
           className={`relative ${className}`}
@@ -31,11 +31,8 @@ const CartButton: React.FC<CartButtonProps> = ({ className }) => {
             </Badge>
           )}
         </Button>
-      </SheetTrigger>
-      <SheetContent className="w-[300px] sm:w-[540px]">
-        <ProductCart onCloseSheet={() => setIsOpen(false)} />
-      </SheetContent>
-    </Sheet>
+        </Link>
+      
   );
 };
 
