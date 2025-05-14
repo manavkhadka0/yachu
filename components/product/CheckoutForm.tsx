@@ -17,6 +17,32 @@ import { Alert, AlertDescription } from "../ui/alert";
 interface CheckoutFormProps {
   onSuccess?: () => void;
   onCloseSheet?: () => void;
+  orderSummary?: {
+    cartItems: {
+      productId: string;
+      title: string;
+      price: number;
+      quantity: number;
+      image: string;
+    }[];
+    addOns: {
+      productId: string;
+      title: string;
+      price: number;
+      quantity: number;
+      image: string;
+    }[];
+    subtotal: number;
+    addOnsTotal: number;
+    shippingCharge: number;
+    deliveryLocation: "inside" | "outside";
+    totalAmount: number;
+    includeAddOns: boolean;
+    deliveryCharge: number;
+    total: number;
+  };
+  deliveryLocation?: "inside" | "outside";
+  setDeliveryLocation?: (location: "inside" | "outside") => void;
 }
 
 const CheckoutForm = ({ onSuccess, onCloseSheet }: CheckoutFormProps) => {
