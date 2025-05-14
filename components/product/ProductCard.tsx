@@ -95,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               </Link>
               <Link href={`/checkout`} className="flex-1">
               <Button
-                className="col-span-2 bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition-all duration-300 hover:shadow-md"
+                className="col-span-2 bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition-all duration-300 hover:shadow-m"
                 
               >
                 Proceed to Checkout

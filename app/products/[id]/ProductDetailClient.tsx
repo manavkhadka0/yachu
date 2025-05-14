@@ -233,9 +233,7 @@ export default function ProductDetailClient({
       </div>
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-medium tracking-wider uppercase mb-4">
-            Our Collection
-          </span>
+          
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             Our Products
           </h1>

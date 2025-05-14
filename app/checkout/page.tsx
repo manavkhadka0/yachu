@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CheckoutForm from "@/components/product/CheckoutForm";
 import useProductCart from "@/store/zustand"; 
 import { TProduct, CartItem } from "@/types/product"; 
 import Image from "next/image";
 import { calculateTotalPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, ShoppingBag, X } from "lucide-react";
+import { Minus, Plus, ShoppingBag, X, ArrowRight } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
@@ -22,10 +22,30 @@ const CheckoutPage = () => {
     const [isClient, setIsClient] = useState(false);
     const [shampooAddOns, setShampooAddOns] = useState<Array<TProduct & { count: number }>>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const checkoutFormRef = useRef<HTMLDivElement>(null);
+    const [formInView, setFormInView] = useState(false);
 
     useEffect(() => {
         setIsClient(true);
         window.scrollTo(0, 0);
+        
+        // Set up intersection observer for form element visibility
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setFormInView(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+        
+        if (checkoutFormRef.current) {
+            observer.observe(checkoutFormRef.current);
+        }
+        
+        return () => {
+            if (checkoutFormRef.current) {
+                observer.disconnect();
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -84,7 +104,7 @@ const CheckoutPage = () => {
     const shippingCharge = deliveryLocation === "inside" ? 100 : 150;
     const finalTotal = totalPrice + addOnsTotal + shippingCharge;
 
-    const increaseAddOnCount = (id: string) => {
+    const handleAddToCart = (id: string) => {
         const addonData = shampooAddOns.find(a => a.id === id);
         if (!addonData) {
             console.error("Addon not found in shampooAddOns state:", id);
@@ -163,6 +183,21 @@ const CheckoutPage = () => {
         }, 3000);
     };
 
+    const scrollToCheckoutForm = () => {
+        checkoutFormRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleMobileConfirmOrder = () => {
+        scrollToCheckoutForm();
+        // Find the submit button in the form and click it
+        const submitButton = document.querySelector('form button[type="submit"]');
+        if (submitButton) {
+            setTimeout(() => {
+                (submitButton as HTMLButtonElement).click();
+            }, 500);
+        }
+    };
+
     if (!isClient) {
         return null;
     }
@@ -195,8 +230,8 @@ const CheckoutPage = () => {
     };
 
     return (
-        <div className="container py-8 md:py-12">
-            <h1 className="text-3xl font-bold mb-8 text-gray-800">Checkout</h1>
+        <div className="container py-4 md:py-8 pb-24 lg:pb-8">
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">Checkout</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Mobile-only Recommendations Section - Only show when cart has items */}
@@ -223,26 +258,14 @@ const CheckoutPage = () => {
                                         <div className="flex flex-col">
                                             <h3 className="font-medium text-xs line-clamp-1">{addon.title}</h3>
                                             <p className="text-xs font-semibold">Rs. {addon.price.toLocaleString()}</p>
-                                            <div className="flex items-center gap-1 mt-1">
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    className="h-5 w-5"
-                                                    onClick={() => decreaseAddOnCount(addon.id)}
-                                                    disabled={addon.count === 0}
-                                                >
-                                                    <Minus className="h-2 w-2" />
-                                                </Button>
-                                                <span className="w-5 text-center text-xs font-medium">{addon.count}</span>
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    className="h-5 w-5"
-                                                    onClick={() => increaseAddOnCount(addon.id)}
-                                                >
-                                                    <Plus className="h-2 w-2" />
-                                                </Button>
-                                            </div>
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                className="mt-1 h-8 text-xs"
+                                                onClick={() => handleAddToCart(addon.id)}
+                                            >
+                                                Add to Cart
+                                            </Button>
                                         </div>
                                     </div>
                                 ))}
@@ -250,8 +273,6 @@ const CheckoutPage = () => {
                         ) : (
                             <p className="text-sm text-muted-foreground">No recommended products available</p>
                         )}
-
-                      
                     </div>
                 )}
 
@@ -386,7 +407,7 @@ const CheckoutPage = () => {
                 )}
 
                 {/* Left Column - Checkout Form */}
-                <div className="lg:col-span-7 bg-white p-6 rounded-xl border shadow-sm">
+                <div ref={checkoutFormRef} className="lg:col-span-7 bg-white p-6 rounded-xl border shadow-sm scroll-mt-20" id="checkout-form-section">
                     <h2 className="text-xl font-semibold mb-6 text-gray-800">Shipping & Billing Details</h2>
                     <CheckoutForm 
                         orderSummary={orderSummary}
@@ -501,26 +522,14 @@ const CheckoutPage = () => {
                                                                 Rs. {addon.price.toLocaleString()}
                                                             </p>
                                                         </div>
-                                                        <div className="flex items-center gap-2 mt-2">
-                                                            <Button
-                                                                variant="outline"
-                                                                size="icon"
-                                                                className="h-6 w-6"
-                                                                onClick={() => decreaseAddOnCount(addon.id)} 
-                                                                disabled={addon.count === 0}
-                                                            >
-                                                                <Minus className="h-3 w-3" />
-                                                            </Button>
-                                                            <span className="w-6 text-center text-sm font-medium">{addon.count}</span>
-                                                            <Button
-                                                                variant="outline"
-                                                                size="icon"
-                                                                className="h-6 w-6"
-                                                                onClick={() => increaseAddOnCount(addon.id)} 
-                                                            >
-                                                                <Plus className="h-3 w-3" />
-                                                            </Button>
-                                                        </div>
+                                                        <Button
+                                                            variant="outline"
+                                                            size="sm"
+                                                            className="mt-2 h-8 text-xs"
+                                                            onClick={() => handleAddToCart(addon.id)}
+                                                        >
+                                                            Add to Cart
+                                                        </Button>
                                                     </div>
                                                 </div>
                                             ))}
@@ -528,8 +537,6 @@ const CheckoutPage = () => {
                                     </div>
                                 )}
                                 
-                               
-
                                 <div className="mt-4 space-y-3 pt-4 border-t">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-muted-foreground">Subtotal (Cart Items)</span>
@@ -578,6 +585,27 @@ const CheckoutPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile-only fixed Confirm Order button */}
+            {cart.length > 0 && (
+                <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 shadow-lg">
+                    <Button 
+                        className={`w-full h-16 text-xl flex justify-between items-center ${!formInView ? "bg-amber-700 hover:bg-amber-800" : ""}`}
+                        onClick={handleMobileConfirmOrder}
+                    >
+                        <span className="font-medium">
+                            {formInView ? 
+                                "Complete Checkout" : 
+                                "Confirm Order"
+                            }
+                        </span>
+                        <div className="flex items-center">
+                            <span className="mr-2">Rs. {finalTotal.toLocaleString()}</span>
+                            {!formInView && <ArrowRight className="h-4 w-4" />}
+                        </div>
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };

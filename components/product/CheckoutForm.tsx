@@ -43,6 +43,7 @@ interface CheckoutFormProps {
   };
   deliveryLocation?: "inside" | "outside";
   setDeliveryLocation?: (location: "inside" | "outside") => void;
+  
 }
 
 const CheckoutForm = ({ onSuccess, onCloseSheet }: CheckoutFormProps) => {
