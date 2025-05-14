@@ -376,7 +376,7 @@ const CheckoutPage = () => {
                         <div className="flex flex-col items-center justify-center py-8 text-center">
                             <ShoppingBag className="h-12 w-12 text-muted-foreground mb-3" />
                             <p className="text-lg font-medium text-muted-foreground">Your cart is empty</p>
-                            <Link href="/" className="mt-4">
+                            <Link href="/products" className="mt-4">
                                 <Button variant="outline" className="mt-4">
                                     Continue Shopping
                                 </Button>
@@ -413,7 +413,7 @@ const CheckoutPage = () => {
                             <div className="flex flex-col items-center justify-center py-8 text-center">
                                 <ShoppingBag className="h-12 w-12 text-muted-foreground mb-3" />
                                 <p className="text-lg font-medium text-muted-foreground">Your cart is empty</p>
-                                <Link href="/" className="mt-4">
+                                <Link href="/products" className="mt-4">
                                     <Button variant="outline" className="mt-4">
                                         Continue Shopping
                                     </Button>
