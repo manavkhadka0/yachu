@@ -1,5 +1,5 @@
 export const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export const beholdId = process.env.NEXT_PUBLIC_BEHOLD_ID;
 
-export const yachuPhone = "+9779709065821";
+export const yachuPhone = "+9779840412788";
 export const yachuEmail = "baliyoventures@gmail.com";
