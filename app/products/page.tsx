@@ -21,9 +21,6 @@ export default async function ProductsPage() {
     <div className="bg-gradient-to-b from-white to-amber-50 min-h-screen">
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-16 lg:py-20 lg:max-w-7xl lg:px-8">
         <div className="text-center mb-6 sm:mb-10 lg:mb-16">
-          <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-full bg-amber-100 text-amber-800 text-xs sm:text-sm font-medium tracking-wider uppercase mb-2 sm:mb-3 md:mb-4">
-            Our Collection
-          </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 lg:text-5xl xl:text-6xl">
             Our Products
           </h1>

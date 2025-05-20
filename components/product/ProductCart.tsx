@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-
+import Link from "next/link";
 interface ProductCartProps {
   onCloseSheet?: () => void;
 }
@@ -61,9 +61,11 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
           <p className="text-lg font-medium text-muted-foreground">
             Your cart is empty
           </p>
+          <Link href="/products" className="w-full">
           <Button variant="outline" onClick={onCloseSheet}>
             Continue Shopping
           </Button>
+          </Link>
         </div>
       ) : (
         <>
