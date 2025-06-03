@@ -5,7 +5,7 @@ import Link from "next/link";
 const WhatsAppButton = () => {
   return (
     <Link
-      href="https://api.whatsapp.com/send?phone=9779840412788&text=Hello%20yachu%20hair%20oil,%20i%20want%20to%20know%20more%20bout%20yachu%20hair%20oil%20and%20its%20benifits"
+      href="https://api.whatsapp.com/send?phone=9779709065821&text=Hello%20yachu%20hair%20oil,%20i%20want%20to%20know%20more%20bout%20yachu%20hair%20oil%20and%20its%20benifits"
       className="group fixed bottom-3 right-14"
       target="_blank"
     >
