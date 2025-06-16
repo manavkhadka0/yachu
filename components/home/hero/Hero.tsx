@@ -43,7 +43,7 @@ const Hero = () => {
           <MoveRightIcon className=" mb-2 " />
           <div className="flex flex-col items-center gap-2">
             <Image
-              src={"/before.jpeg"}
+              src={"/hairfall.webp"}
               alt="hairfall"
               height={200}
               width={200}
