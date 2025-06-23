@@ -13,9 +13,9 @@ const NavActions = () => {
 
       {/* Phone Section (Smaller on mobile) */}
       <div className="hidden lg:flex flex-col items-center text-sm">
-        <Link href={"tel:+9779709065821"}>
+        <Link href={"tel:+9779709066929"}>
           <Button className="gap-1 px-2 py-1 text-xs" variant="secondary">
-            <PhoneCallIcon size={13} /> +977 9709065821
+            <PhoneCallIcon size={13} /> +977 9709066929
           </Button>
         </Link>
         <div className="text-[10px]">Speak with Yachu</div>
