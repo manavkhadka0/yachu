@@ -4,13 +4,7 @@ import { useState } from "react";
 import { useGetContacts } from "@/hooks/use-contact";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Loader2,
-  Mail,
-  Phone,
-  MessageSquare,
-  Calendar,
-} from "lucide-react";
+import { Loader2, Mail, Phone, MessageSquare, Calendar } from "lucide-react";
 import { format } from "date-fns";
 import Pagination from "@/components/ui/pagination";
 import { ContactFilters } from "@/types/contact";
@@ -123,20 +117,6 @@ const ContactDetails = () => {
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">Items per page:</span>
-          <select
-            value={filters.page_size}
-            onChange={(e) => handlePageSizeChange(Number(e.target.value))}
-            className="border rounded-md px-2 py-1 text-sm"
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
-          </select>
-        </div>
-
         <Pagination
           currentPage={filters.page || 1}
           totalPages={Math.ceil(count / (filters.page_size || 10))}
