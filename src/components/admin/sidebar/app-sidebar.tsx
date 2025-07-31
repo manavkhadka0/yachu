@@ -47,7 +47,7 @@ export function AppSidebar() {
           {isCollapsed && (
             <div className="flex items-center justify-center w-full py-3">
               <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg shadow-sm">
-                <span className="text-white font-bold text-sm">N</span>
+                <span className="text-white font-bold text-sm">B</span>
               </div>
             </div>
           )}
