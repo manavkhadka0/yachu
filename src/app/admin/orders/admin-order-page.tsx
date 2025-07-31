@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useOrders, useUpdateOrderStatus } from "@/hooks/use-orders";
-import { OrderStatus, TOrderFilters,TOrdersResponse } from "@/types/order";
+import { OrderStatus, TOrderFilters, TOrdersResponse } from "@/types/order";
 import {
   SearchFilters,
   OrdersTable,
@@ -19,8 +19,6 @@ interface SortState {
   column: string;
   direction: SortDirection;
 }
-
-
 
 export default function AdminOrdersPage() {
   // UI State Management
@@ -55,7 +53,8 @@ export default function AdminOrdersPage() {
     isFetching,
     refetch,
   } = useOrders(filters, {
-  placeholderData: (previousData: TOrdersResponse | undefined) => previousData,
+    placeholderData: (previousData: TOrdersResponse | undefined) =>
+      previousData,
   });
 
   const {

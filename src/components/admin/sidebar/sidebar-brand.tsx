@@ -20,7 +20,7 @@ export function SidebarBrand({ isCollapsed = false }: SidebarBrandProps) {
         )}
       >
         {isCollapsed ? (
-          <span className="text-white font-bold text-xs">N</span>
+          <span className="text-white font-bold text-xs">B</span>
         ) : (
           <LayoutDashboard className="w-4 h-4 md:w-5 md:h-5 text-white" />
         )}
