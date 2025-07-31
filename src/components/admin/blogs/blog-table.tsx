@@ -13,7 +13,6 @@ import Link from "next/link";
 import { Edit, Trash2 } from "lucide-react";
 import { TBlog } from "@/types/blog";
 import { formatDistanceToNow } from "date-fns";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -95,16 +94,16 @@ export function BlogsTable({ blogs, onDelete, isLoading }: BlogsTableProps) {
             blogs.map((blog) => (
               <TableRow key={blog.id}>
                 <TableCell>
-                  <Image
+                  <img
                     src={blog.thumbnail_image}
                     alt={blog.title}
-                    width={64}
-                    height={40}
+                    width="64"
+                    height="40"
                     className="object-cover rounded-md aspect-video"
                   />
                 </TableCell>
                 <Link href={`/admin/blogs/edit/${blog.slug}`}>
-                <TableCell className="font-medium">{blog.title}</TableCell>
+                  <TableCell className="font-medium">{blog.title}</TableCell>
                 </Link>
                 <TableCell>{blog.category.category_name}</TableCell>
                 <TableCell className="text-muted-foreground">

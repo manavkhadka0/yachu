@@ -64,15 +64,15 @@ export function ThumbnailImageField({
                 <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                   {imagePreview ? (
                     <div className="relative w-full h-full">
-                      <Image
+                      <img
                         src={getImageUrl(imagePreview)}
                         alt="Preview"
-                        fill
-                        className="object-cover rounded-lg"
+                        className="object-cover rounded-lg w-full h-full"
                         onError={(e) => {
                           console.error("Image failed to load:", imagePreview);
                         }}
                       />
+
                       <Button
                         type="button"
                         variant="destructive"

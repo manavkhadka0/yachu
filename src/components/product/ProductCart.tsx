@@ -110,11 +110,11 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                         <CardContent className="flex gap-4 p-4">
                           {/* Product Image */}
                           <div className="flex-shrink-0 h-20 w-20 overflow-hidden rounded-lg border border-border">
-                            <Image
+                            <img
                               src={product.image1}
                               alt={product.title}
-                              height={80}
-                              width={80}
+                              width="80"
+                              height="80"
                               className="h-full w-full object-cover object-center"
                             />
                           </div>
