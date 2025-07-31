@@ -28,11 +28,11 @@ const WhatsAppButton = () => {
             className="fixed bottom-3 right-14 bg-secondary hover:bg-secondary/80 text-foreground rounded-full p-3 shadow-lg transition-colors duration-300 h-auto w-auto"
           >
             <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <Image
+              <img
                 src="/whatsapp.png"
                 alt="WhatsApp icon"
-                width={40}
-                height={40}
+                width="40"
+                height="40"
                 className="w-10 h-10"
               />
             </Link>
