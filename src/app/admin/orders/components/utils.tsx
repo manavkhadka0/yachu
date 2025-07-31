@@ -57,11 +57,11 @@ export const getStatusIcon = (status?: OrderStatus): React.ReactNode => {
 
 export const getStatusColor = (status?: OrderStatus): string => {
   const colors: Record<OrderStatus, string> = {
-    Delivered: "bg-green-100 text-green-800",
-    Pending: "bg-yellow-100 text-yellow-800",
-    Processing: "bg-indigo-100 text-indigo-800",
-    Shipped: "bg-purple-100 text-purple-800",
-    Cancelled: "bg-red-100 text-red-800",
+    Delivered: "bg-gray-100 text-green-800",
+    Pending: "bg-gray-100 text-yellow-800",
+    Processing: "bg-gray-100 text-indigo-800",
+    Shipped: "bg-gray-100 text-purple-800",
+    Cancelled: "bg-gray-100 text-red-800",
   };
   return status ? colors[status] : "bg-gray-100 text-gray-800";
 };
