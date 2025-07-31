@@ -93,13 +93,12 @@ const BlogDetailsContent = ({ slug }: BlogDetailsContentProps) => {
             <div className="mt-8">
               <article className="prose dark:prose-invert lg:prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary hover:prose-a:text-primary/80">
                 <div className="mb-8">
-                  <Image
-                    height={500}
-                    width={800}
+                  <img
                     src={BASE_URL + thumbnail_image}
                     alt={title}
+                    width={800}
+                    height={500}
                     className="rounded-lg shadow-lg w-full object-cover border"
-                    priority
                   />
                 </div>
 
@@ -124,7 +123,3 @@ const BlogDetailsContent = ({ slug }: BlogDetailsContentProps) => {
 };
 
 export default BlogDetailsContent;
-
-
-
-

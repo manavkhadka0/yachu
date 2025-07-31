@@ -46,12 +46,11 @@ export const OurTeam = ({ teams, isLoading = false }: OurTeamProps) => {
                       <CardContent className="flex flex-col items-center p-0">
                         <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-lg bg-gray-200">
                           {member.photo ? (
-                            <Image
+                            <img
                               src={member.photo}
                               alt={member.name}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                              loading="lazy"
+                              className="object-cover w-full h-full"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gray-100">

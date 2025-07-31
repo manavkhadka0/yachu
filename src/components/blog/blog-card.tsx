@@ -22,13 +22,11 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
   return (
     <Link href={`/blog/${slug}`}>
       <Card className="group flex h-full flex-col overflow-hidden transition-all hover:shadow-lg">
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            fill
-            className="object-cover transition-all duration-300 group-hover:scale-105"
+        <div className="relative w-full h-full">
+          <img
             src={getImageUrl(thumbnail_image)}
             alt={title}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105"
           />
         </div>
 
