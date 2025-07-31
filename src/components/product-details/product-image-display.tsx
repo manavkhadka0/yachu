@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -24,16 +23,13 @@ export const ProductImageDisplay = ({
             {!imageLoaded && (
               <Skeleton className="absolute inset-0 rounded-lg" />
             )}
-            <Image
+            <img
               src={image}
               alt={title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className={`object-contain rounded-lg transition-opacity duration-300 ${
+              onLoad={() => setImageLoaded(true)}
+              className={`object-contain rounded-lg w-full h-full absolute top-0 left-0 transition-opacity duration-300 ${
                 imageLoaded ? "opacity-100" : "opacity-0"
               }`}
-              priority
-              onLoad={() => setImageLoaded(true)}
             />
           </div>
         </CardContent>
