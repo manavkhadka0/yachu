@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+
 import { useBlog, useBlogs } from "@/hooks/use-blogs";
 import { BASE_URL } from "@/utils/config";
 import { sanitizeBlogContent } from "@/utils/htmlsanitizer";

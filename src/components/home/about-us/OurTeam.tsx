@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { Members } from "@/types/team";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";

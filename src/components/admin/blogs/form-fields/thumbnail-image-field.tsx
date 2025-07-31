@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Control } from "react-hook-form";
 import { Upload, X } from "lucide-react";
 import {

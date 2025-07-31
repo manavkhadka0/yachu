@@ -7,9 +7,9 @@ export const yachuWhatsApp = "9779709066929";
 export const yachuAddress = "Sankhamul, Kathmandu, Nepal";
 
 // footer Social media links
-export const yachuFacebook = "https://www.facebook.com/baliyoventures";
-export const yachuInstagram = "https://www.instagram.com/baliyoventures";
-export const yachuYoutube = "https://www.youtube.com/@baliyoventures";
+export const yachuFacebook = "https://www.facebook.com/baliyocha";
+export const yachuInstagram = "https://www.instagram.com/baliyoventures/";
+export const yachuYoutube = "https://www.youtube.com/@BaliyoVentures";
 
 // Instagram embed URLs
 export const INSTAGRAM_EMBED_URLS = [
@@ -20,7 +20,7 @@ export const INSTAGRAM_EMBED_URLS = [
 ];
 
 // footer company details
-export const yachuCompanyName = "Baliyo Venturres";
+export const yachuCompanyName = "Baliyo Ventures";
 export const yachuLogoPath = "/yachu-logo.svg";
 export const yachuDescription =
   "Experience the beauty of naturally nourished hair with Baliyo Venturesres. Our premium botanical blends, crafted with care and tradition, are designed to elevate your hair care routine. Join our community of enthusiasts and indulge in the goodness of healthy, beautiful hair, sustainably and responsibly";
@@ -30,4 +30,4 @@ export const yachuDescription =
 export const yachuMapEmbedUrl =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.152298647558!2d85.32600277605418!3d27.681687376197164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19001703e43f%3A0x3e93ada32406d5b4!2sYachu%20Hair%20Oil!5e0!3m2!1sen!2snp!4v1753418058046!5m2!1sen!2snp";
 
-export const franchise= "sankhamul";
+export const franchise = "sankhamul";

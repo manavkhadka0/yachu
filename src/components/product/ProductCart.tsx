@@ -2,7 +2,6 @@
 
 import { calculateTotalPrice } from "@/services/lib/utils";
 import useProductCart from "@/store/zustand";
-import Image from "next/image";
 import { Button } from "../ui/button";
 import { Minus, Plus, X, ShoppingBag, ArrowRight } from "lucide-react";
 import { CheckoutModal } from "../popover/CheckoutModal";
