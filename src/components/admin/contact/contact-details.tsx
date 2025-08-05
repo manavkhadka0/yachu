@@ -69,9 +69,9 @@ const ContactDetails = () => {
       <div className="grid gap-4">
         {contacts.map((contact) => (
           <Card key={contact.id} className="w-full">
-            <CardHeader className="pb-3">
+            <CardHeader className="p-5">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">{contact.full_name}</CardTitle>
+                <CardTitle className="text-lg capitalize">{contact.full_name}</CardTitle>
                 <Badge variant="outline">
                   {format(new Date(contact.created_at), "MMM dd, yyyy")}
                 </Badge>
