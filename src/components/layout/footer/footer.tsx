@@ -35,7 +35,7 @@ const SUPPORT_LINKS = [
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-primary">
+    <footer className="w-full border-t bg-blue-950">
       <div className="container mx-auto grid gap-10 py-12 px-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
         {/* Company Info & Socials */}
         <div className="flex flex-col gap-4">
@@ -49,7 +49,12 @@ const Footer = () => {
           <p className="text-sm text-primary-foreground">{yachuDescription}</p>
           <div className="flex items-center gap-4">
             {SOCIAL_LINKS.map(({ Icon, href }, index) => (
-              <Button asChild key={index} size="icon" className="rounded-full bg-secondary hover:underline">
+              <Button
+                asChild
+                key={index}
+                size="icon"
+                className="rounded-full bg-secondary hover:underline"
+              >
                 <Link href={href} target="_blank" rel="noopener noreferrer">
                   <Icon className="text-primary-foreground" size={20} />
                 </Link>
