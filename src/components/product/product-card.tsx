@@ -25,7 +25,7 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id, title, description, price, image1 } = product;
+  const { id,slug, title, description, price, image1 } = product;
   const { cart, addToCart } = useProductCart();
   const [openCheckoutForm, setOpenCheckoutForm] = useState(false);
 
@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Badge>
       </div>
 
-      <Link href={`/products/${id}`} className="relative overflow-hidden">
+      <Link href={`/products/${slug}`} className="relative overflow-hidden">
         <div className="flex-shrink-0 w-full h-48 xs:h-56 sm:h-64 lg:h-80 overflow-hidden bg-muted">
           <Image
             height={300}
@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="flex flex-col gap-1 xs:gap-2">
           <CardTitle className="text-sm xs:text-base sm:text-lg line-clamp-2 leading-tight">
             <Link
-              href={`/products/${id}`}
+              href={`/products/${slug}`}
               className="hover:text-primary transition-colors duration-200"
             >
               {title}
@@ -99,7 +99,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   <span className="hidden xs:inline">Add More</span>
                   <span className="xs:hidden">Add</span>
                 </Button>
-                <Link href={`/products/${id}`} className="flex-1">
+                <Link href={`/products/${slug}`} className="flex-1">
                   <Button
                     className="w-full shadow-sm transition-all duration-300 hover:shadow-md hov text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
                     variant="outline"
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <span className="hidden xs:inline">Add to Cart</span>
                 <span className="xs:hidden">Add</span>
               </Button>
-              <Link href={`/products/${id}`} className="flex-1">
+              <Link href={`/products/${slug}`} className="flex-1">
                 <Button
                   className="w-full shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
                   variant="outline"

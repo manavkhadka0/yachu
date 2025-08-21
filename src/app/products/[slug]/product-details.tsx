@@ -18,16 +18,16 @@ import {
 } from "@/components/product-details";
 
 interface ProductDetailProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export default function ProductDetail({ params }: ProductDetailProps) {
-  const { id } = use(params);
+  const {  slug} = use(params);
   const {
     data: product,
     isLoading: productLoading,
     error: productError,
-  } = useProduct(id);
+  } = useProduct(slug);
   const { data: allProducts, isLoading: productsLoading } = useProducts();
 
   const { cart, addToCart, increaseCount, decreaseCount, removeItem } =
@@ -35,7 +35,7 @@ export default function ProductDetail({ params }: ProductDetailProps) {
   const [quantity, setQuantity] = useState(1);
   const [isInCart, setIsInCart] = useState(false);
 
-  const otherProducts = allProducts?.filter((p) => p.id !== id) || [];
+  const otherProducts = allProducts?.filter((p) => p.slug !== slug) || [];
 
   useEffect(() => {
     if (!product) return;

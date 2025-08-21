@@ -16,14 +16,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
-        hostname:
-          "experienced-sufficient-instrument-automatic.trycloudflare.com",
+        hostname: "latina-trail-yards-encyclopedia.trycloudflare.com",
         port: "",
       },
       {
         protocol: "https",
-        hostname:
-          "experienced-sufficient-instrument-automatic.trycloudflare.com",
+        hostname: "latina-trail-yards-encyclopedia.trycloudflare.com",
         port: "",
       },
     ],

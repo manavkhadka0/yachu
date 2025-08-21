@@ -19,9 +19,9 @@ export const productsApi = {
     }
   },
 
-  async getProductById(id: string): Promise<TProduct> {
+  async getProductBySlug(slug: string): Promise<TProduct> {
     try {
-      const res = await fetch(`${BASE_API_URL}/products/${id}`, {
+      const res = await fetch(`${BASE_API_URL}/products/${slug}`, {
         next: { revalidate: 10 },
       });
       
@@ -31,7 +31,7 @@ export const productsApi = {
       
       return res.json();
     } catch (error) {
-      console.error(`Error fetching product ${id}:`, error);
+      console.error(`Error fetching product ${slug}:`, error);
       throw error;
     }
   }

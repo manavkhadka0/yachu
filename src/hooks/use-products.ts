@@ -12,11 +12,11 @@ export const useProducts = () => {
   });
 };
 
-export const useProduct = (id: string) => {
+export const useProduct = (slug: string) => {
   return useQuery<TProduct, Error>({
-    queryKey: ["product", id],
-    queryFn: () => productsApi.getProductById(id),
-    enabled: !!id,
+    queryKey: ["product", slug],
+    queryFn: () => productsApi.getProductBySlug(slug),
+    enabled: !!slug,
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
     refetchOnWindowFocus: false,

@@ -3,6 +3,7 @@ import { TProduct } from "@/types/product";
 export const PRODUCTS: TProduct[] = [
   {
     id: "1",
+    slug: "new-hair-growth-for-dandruff-case",
     title: "New Hair Growth for Dandruff Case",
     description:
       "It helps to remove dandruff from the hair, stops hair fall and grows new hair.",
@@ -11,6 +12,7 @@ export const PRODUCTS: TProduct[] = [
   },
   {
     id: "2",
+    slug: "new-hair-growth-for-hairfall-case",
     title: "New Hair Growth for Hairfall Case",
     description: "It helps to stop hair fall and grows new hair.",
     price: 2500,
@@ -18,6 +20,7 @@ export const PRODUCTS: TProduct[] = [
   },
   {
     id: "3",
+    slug: "re-growth-for-baldness-case",
     title: "Re Growth for Baldness Case",
     description: "It helps to grow new hair.",
     price: 2500,

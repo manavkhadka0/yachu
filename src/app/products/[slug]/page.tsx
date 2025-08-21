@@ -2,17 +2,17 @@ import { Metadata } from "next";
 import ProductDetail from "./product-details";
 
 interface ProductDetailPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { slug } = await params;
   return {
-    title: `Product Details | Product ${id}`,
+    title: `Product Details | Product ${slug}`,
     description: `Detailed information about our natural hair care product. High-quality ingredients and traditional craftsmanship.`,
-    keywords: ["natural hair care", "organic product", "hair treatment", "beauty product", `product ${id}`],
+    keywords: ["natural hair care", "organic product", "hair treatment", "beauty product", `product ${slug}`],
     openGraph: {
-      title: `Product Details | Product ${id}`,
+      title: `Product Details | Product ${slug}`,
       description: `Detailed information about our natural hair care product. High-quality ingredients and traditional craftsmanship.`,
       type: "website",
       images: [
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     },
     twitter: {
       card: "summary_large_image",
-      title: `Product Details | Product ${id}`,
+      title: `Product Details | Product ${slug}`,
       description: `Detailed information about our natural hair care product.`,
       images: ["/og-product-detail.jpg"], 
     },

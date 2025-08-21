@@ -1,7 +1,6 @@
-
-
 type TProduct = {
   id: string;
+  slug: string;
   title: string;
   description: string;
   price: number;
