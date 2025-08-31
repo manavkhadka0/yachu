@@ -36,9 +36,9 @@ export const ProductInfoSection = ({
         </div>
 
         <div className="mt-4 xs:mt-5 sm:mt-6">
-          <div className="space-y-3 xs:space-y-4 sm:space-y-6 text-sm xs:text-base text-muted-foreground leading-relaxed">
+          {/* <div className="space-y-3 xs:space-y-4 sm:space-y-6 text-sm xs:text-base text-muted-foreground leading-relaxed">
             <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-6 xs:mt-7 sm:mt-8 lg:mt-10 space-y-3 xs:space-y-4">

@@ -80,10 +80,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </CardHeader>
 
       <CardContent>
-        <CardDescription
+        {/* <CardDescription
           className="text-xs xs:text-sm line-clamp-2 leading-relaxed"
           dangerouslySetInnerHTML={{ __html: description }}
-        />
+        /> */}
       </CardContent>
 
       <CardFooter>
