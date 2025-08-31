@@ -47,9 +47,6 @@ const CheckoutForm = ({
   const { handleSubmit, reset } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // Calculate total using the updated utility function that includes bulk pricing
-    const totalAmount = calculateTotalPrice(cart);
-    
     const orderData: TCreateOrderRequest = {
       full_name: data.name,
       email: data.email || null,
@@ -57,7 +54,7 @@ const CheckoutForm = ({
       alternate_phone_number: data.alternate_phone || null,
       delivery_address: data.address,
       payment_method: "Cash on Delivery",
-      total_amount: totalAmount, // Now uses bulk pricing calculation
+      total_amount: calculateTotalPrice(cart),
       order_products: cart.map((item) => ({
         product_id: Number(item.product.id),
         quantity: item.count,
@@ -112,22 +109,8 @@ const CheckoutForm = ({
       <CardContent className="p-0">
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <div>
-              <Alert className="border-l-4 border-l-warning bg-warning/5 border-warning/20">
-                <Info className=" text-warning" />
-
-                <AlertDescription className="text-foreground">
-                  <div className="grid grid-cols-3 gap-4 text-sm">
-                    <div>3 pcs oil- Rs.2200 </div>
-                    <div>6 pcs oil - Rs.2150</div>
-                    <div>12 pcs oil - Rs.2050</div>{" "}
-                  </div>
-                </AlertDescription>
-              </Alert>
-            </div>
             <Alert className="border-l-4 border-l-warning bg-warning/5 border-warning/20">
               <Info className="h-5 w-5 text-warning" />
-
               <AlertDescription className="text-foreground">
                 Delivery charge: Rs. 100 for inside Kathmandu Valley, Rs. 150
                 for outside Kathmandu Valley
