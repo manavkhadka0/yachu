@@ -82,7 +82,7 @@ const HeroSection = () => {
 
       {/* Right-side image (hidden on mobile) */}
       <div className="w-auto pt-9 hidden md:flex justify-end">
-        <Image
+        <img
           src="/hero.png"
           alt="curve line"
           height={550}

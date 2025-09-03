@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="flex items-center py-2 justify-between">
           <div className="flex-shrink-0">
             <Link href={"/"}>
-              <Image
+              <img
                 src="/yachuoil.webp"
                 alt="Yachu Logo"
                 width={64}
