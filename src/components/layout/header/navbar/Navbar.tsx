@@ -5,13 +5,13 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="shadow-md">
-      <div className="container mx-auto px-6 lg:px-12 xl:px-24 bg-background">
+    <nav>
+      <div className="container mx-auto w-full px-6 lg:px-12 xl:px-24">
         <div className="flex items-center py-2 justify-between">
           <div className="flex-shrink-0">
             <Link href={"/"}>
               <Image
-                src="/yachuoil.jpg"
+                src="/yachuoil.webp"
                 alt="Yachu Logo"
                 width={64}
                 height={64}

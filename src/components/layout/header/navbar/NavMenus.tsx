@@ -44,7 +44,7 @@ export function NavMenus() {
                 </svg>
               </Button>
               {openDropdown === index && (
-                <div className="absolute top-full left-0 mt-2 w-[400px] md:w-[500px] lg:w-[600px] bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <div className="absolute top-full left-0 mt-2 w-[400px] md:w-[500px] lg:w-[600px]  border border-gray-200 rounded-md shadow-lg z-50">
                   <div className="grid gap-3 p-4 md:grid-cols-2">
                     {options.map((option) => (
                       <Link
@@ -68,7 +68,7 @@ export function NavMenus() {
           ) : (
             <Link
               href={href || "#"}
-              className="text-[18px] font-medium text-black transition-colors bg-white px-4 "
+              className="text-[18px] font-medium text-black transition-colors px-4 "
             >
               {title}
             </Link>

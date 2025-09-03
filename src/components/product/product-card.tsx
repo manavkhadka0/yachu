@@ -25,7 +25,7 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id,slug, title, description, price, image1 } = product;
+  const { id, slug, title, description, price, image1 } = product;
   const { cart, addToCart } = useProductCart();
   const [openCheckoutForm, setOpenCheckoutForm] = useState(false);
 

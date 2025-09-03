@@ -11,6 +11,7 @@ import { Questions } from "@/components/home/about-us/Questions";
 import { BlogSection } from "@/components/blog/blog-section";
 import { useProducts } from "@/hooks/use-products";
 import { useBlogs } from "@/hooks/use-blogs";
+import Image from "next/image";
 
 export default function HomePage() {
   const {
@@ -19,15 +20,15 @@ export default function HomePage() {
     error: productsError,
   } = useProducts();
 
-  const { 
-    data: blogsResponse, 
-    isLoading: blogsLoading, 
-    error: blogsError 
+  const {
+    data: blogsResponse,
+    isLoading: blogsLoading,
+    error: blogsError,
   } = useBlogs({
     page: 1,
     page_size: 4, // Changed to 4 to match maxItems in BlogSection
   });
-  
+
   const blogs = blogsResponse?.results;
 
   return (

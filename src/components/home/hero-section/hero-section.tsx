@@ -6,9 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const HeroSection = () => {
   return (
-    <div className="container mx-auto px-6 pt-0 md:pt-2 lg:px-12 xl:px-30 xl:py-16 flex flex-col md:flex-row justify-between items-center md:items-start">
+    <div className="container mx-auto px-6 pt-0 md:pt-2 lg:px-12 xl:px-30 lg:pb-20 flex flex-col md:flex-row justify-between items-center md:items-center">
       {/* Left content */}
-      <div className="pb-24 flex flex-col flex-1 justify-center w-full">
+      <div className="flex flex-col flex-1 justify-center w-full">
         {/* Title */}
         <h1 className="block xl:py-6 xl:hidden text-4xl md:text-6xl lg:text-7xl xl:text-9xl font-bold text-foreground">
           <span className="text-primary">Yachu </span> <br />
@@ -54,7 +54,7 @@ const HeroSection = () => {
 
         {/* Stats Section */}
         <Card className="flex flex-col gap-1 border-none shadow-none bg-transparent">
-          <p className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold w-fit text-primary">
+          <p className="text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold w-fit">
             50K +
           </p>
           <p className="font-semibold text-muted-foreground text-sm md:text-base xl:text-xl">
@@ -83,7 +83,7 @@ const HeroSection = () => {
       {/* Right-side image (hidden on mobile) */}
       <div className="w-auto pt-9 hidden md:flex justify-end">
         <Image
-          src="/1024.png"
+          src="/hero.png"
           alt="curve line"
           height={550}
           width={550}

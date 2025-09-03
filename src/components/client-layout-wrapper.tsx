@@ -13,10 +13,11 @@ export default function ClientLayoutWrapper({
   children,
 }: ClientLayoutWrapperProps) {
   const pathname = usePathname();
-  
+
   // Add any routes where you don't want header/footer
   const isAdmin = pathname.startsWith("/admin");
-  const isSpecialPage = pathname.startsWith("/auth") || pathname.startsWith("/checkout");
+  const isSpecialPage =
+    pathname.startsWith("/auth") || pathname.startsWith("/checkout");
 
   return (
     <>

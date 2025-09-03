@@ -19,14 +19,13 @@ const NavActions = () => {
             <PhoneCallIcon size={13} /> {yachuPhone}
           </Button>
         </Link>
-        <div className="text-sm text-primary">Speak with Yachu</div>
       </div>
 
       {/* Mobile Menu Icon */}
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger>
-            <MenuIcon size={25} className="pt-2 text-black"/>
+            <MenuIcon size={25} className="pt-2 text-black" />
           </SheetTrigger>
           <SheetContent className="w-[240px] sm:w-[360px]">
             <NavMenusMobile />
