@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Header from "@/components/layout/header/Header";
 import Footer from "@/components/layout/footer/footer";
-import WhatsAppButton from "@/components/whats-app-button";
+import CallNowButton from "@/components/call-now-button";
 
 interface ClientLayoutWrapperProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default function ClientLayoutWrapper({
     <>
       {!isAdmin && !isSpecialPage && <Header />}
       {children}
-      {!isAdmin && !isSpecialPage && <WhatsAppButton />}
+      {!isAdmin && !isSpecialPage && <CallNowButton />}
       {!isAdmin && !isSpecialPage && <Footer />}
     </>
   );
