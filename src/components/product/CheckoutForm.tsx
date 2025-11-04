@@ -16,6 +16,7 @@ import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useCreateOrder } from "@/hooks/use-orders";
 import { TCreateOrderRequest } from "@/types/order";
+import { useRouter } from "next/navigation";
 
 interface CheckoutFormProps {
   onSuccess?: () => void;
@@ -30,7 +31,9 @@ const CheckoutForm = ({
 }: CheckoutFormProps) => {
   const { cart, clearCart } = useProductCart();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [orderId, setOrderId] = useState<number | null>(null);
   const createOrderMutation = useCreateOrder();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof checkoutFormSchema>>({
     resolver: zodResolver(checkoutFormSchema),
@@ -63,17 +66,19 @@ const CheckoutForm = ({
     };
 
     try {
-      await createOrderMutation.mutateAsync(orderData);
+      const response = await createOrderMutation.mutateAsync(orderData);
 
       // Clear cart and reset form on success
       clearCart();
       reset();
       setIsSuccess(true);
+      setOrderId(response.id);
 
-      // Close modal and sheet after 2 seconds
+      // Redirect to order details page after 2 seconds
       setTimeout(() => {
-        onSuccess?.();
         onCloseSheet?.();
+        router.push(`/orders/${response.id}`);
+        onSuccess?.();
       }, 2000);
     } catch (error) {
       // Error handling is done in the mutation hook
@@ -93,9 +98,13 @@ const CheckoutForm = ({
               Order Placed Successfully!
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              Thank you for your order. One of our representatives will contact
-              you shortly to confirm your order details.
+              Thank you for your order. Redirecting you to order details...
             </CardDescription>
+            {orderId && (
+              <p className="text-sm text-muted-foreground">
+                Order ID: #{orderId}
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -105,95 +114,101 @@ const CheckoutForm = ({
   const isSubmitting = createOrderMutation.isPending;
 
   return (
-    <Card className={cn("border-0 shadow-none", className)}>
-      <CardContent className="p-0">
+    <Card className={cn("border-0 shadow-none flex flex-col h-full", className)}>
+      <CardContent className="p-0 flex flex-col flex-1 min-h-0">
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <Alert className="border-l-4 border-l-warning bg-warning/5 border-warning/20">
-              <Info className="h-5 w-5 text-warning" />
-              <AlertDescription className="text-foreground">
-                Delivery charge: Rs. 100 for inside Kathmandu Valley, Rs. 150
-                for outside Kathmandu Valley
-              </AlertDescription>
-            </Alert>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col h-full">
+            {/* Scrollable content area */}
+            <div className="flex-1 overflow-y-auto space-y-8 pr-2">
+              <Alert className="border-l-4 border-l-warning bg-warning/5 border-warning/20">
+                <Info className="h-5 w-5 text-warning" />
+                <AlertDescription className="text-foreground">
+                  Delivery charge: Rs. 100 for inside Kathmandu Valley, Rs. 150
+                  for outside Kathmandu Valley
+                </AlertDescription>
+              </Alert>
 
-            <div className="space-y-4">
-              <RHFInput
-                name="name"
-                label="Full Name"
-                placeholder="eg. John Doe"
-                required
-                className="text-base"
-                disabled={isSubmitting}
-              />
-
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <RHFInput
-                  name="phone"
-                  label="Phone Number"
-                  placeholder="eg. 9865436650"
-                  type="tel"
+                  name="name"
+                  label="Full Name"
+                  placeholder="eg. John Doe"
+                  required
+                  className="text-base"
+                  disabled={isSubmitting}
+                />
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <RHFInput
+                    name="phone"
+                    label="Phone Number"
+                    placeholder="eg. 9865436650"
+                    type="tel"
+                    className="text-base"
+                    required
+                    disabled={isSubmitting}
+                  />
+                  <RHFInput
+                    name="alternate_phone"
+                    label="Alternate Phone Number (Optional)"
+                    placeholder="eg. 9865436651"
+                    type="tel"
+                    className="text-base"
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                <RHFInput
+                  name="email"
+                  label="Email Address (Optional)"
+                  placeholder="eg. john@gmail.com"
+                  type="email"
+                  className="text-base"
+                  disabled={isSubmitting}
+                />
+
+                <RHFTextarea
+                  name="address"
+                  label="Delivery Address"
+                  rows={3}
+                  placeholder="eg. New baneshwor - 10, Kathmandu"
                   className="text-base"
                   required
                   disabled={isSubmitting}
                 />
-                <RHFInput
-                  name="alternate_phone"
-                  label="Alternate Phone Number (Optional)"
-                  placeholder="eg. 9865436651"
-                  type="tel"
+
+                <RHFTextarea
+                  name="remarks"
+                  label="Remarks (Optional)"
+                  rows={2}
+                  placeholder="Any special instructions or notes for your order"
                   className="text-base"
                   disabled={isSubmitting}
                 />
               </div>
-
-              <RHFInput
-                name="email"
-                label="Email Address (Optional)"
-                placeholder="eg. john@gmail.com"
-                type="email"
-                className="text-base"
-                disabled={isSubmitting}
-              />
-
-              <RHFTextarea
-                name="address"
-                label="Delivery Address"
-                rows={3}
-                placeholder="eg. New baneshwor - 10, Kathmandu"
-                className="text-base"
-                required
-                disabled={isSubmitting}
-              />
-
-              <RHFTextarea
-                name="remarks"
-                label="Remarks (Optional)"
-                rows={2}
-                placeholder="Any special instructions or notes for your order"
-                className="text-base"
-                disabled={isSubmitting}
-              />
             </div>
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className={cn(
-                "w-full sm:text-lg p-6 transition-all relative",
-                isSubmitting && "animate-pulse"
-              )}
-              variant="default"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-                  <span>Processing Order...</span>
-                </>
-              ) : (
-                "Confirm Order"
-              )}
-            </Button>
+            {/* Sticky button at the bottom */}
+            <div className="sticky bottom-0 pt-6 pb-2 bg-background border-t mt-6">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className={cn(
+                  "w-full sm:text-lg p-6 transition-all relative",
+                  isSubmitting && "animate-pulse"
+                )}
+                variant="default"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                    <span>Processing Order...</span>
+                  </>
+                ) : (
+                  "Confirm Order"
+                )}
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>
