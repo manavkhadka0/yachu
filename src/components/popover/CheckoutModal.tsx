@@ -30,10 +30,12 @@ export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
   </DialogHeader>
   
   <div className="overflow-y-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 flex-1">
-    <CheckoutForm
-      onSuccess={() => setIsOpen(false)}
-      onCloseSheet={onCloseSheet}
-    />
+   <CheckoutForm
+  onSuccess={() => {
+    setIsOpen(false);  // Close modal
+    onCloseSheet?.();  // Close side cart
+  }}
+/>
   </div>
 </DialogContent>
     </Dialog>

@@ -75,11 +75,12 @@ const CheckoutForm = ({
       setOrderId(response.id);
 
       // Redirect to order details page after 2 seconds
-      setTimeout(() => {
-        onCloseSheet?.();
-        router.push(`/orders/${response.id}`);
-        onSuccess?.();
-      }, 2000);
+     setTimeout(() => {
+  onSuccess?.();  
+  onCloseSheet?.();  
+  setIsSuccess(false); 
+  router.push(`/orders/${response.id}`); 
+}, 2000);
     } catch (error) {
       // Error handling is done in the mutation hook
       console.error("Order submission failed:", error);

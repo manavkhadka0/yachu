@@ -22,7 +22,7 @@ interface SortState {
 
 export default function AdminOrdersPage() {
   // UI State Management
-  const [pagination, setPagination] = useState({ page: 1, pageSize: 10 });
+  const [pagination, setPagination] = useState({ page: 1, pageSize: 25 });
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [sort, setSort] = useState<SortState>({

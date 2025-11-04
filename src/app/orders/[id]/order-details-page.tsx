@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -22,6 +23,7 @@ import {
   FileText,
 } from "lucide-react";
 import { format } from "date-fns";
+import Image from "next/image";
 
 const OrderDetailsPage = () => {
   const params = useParams();
