@@ -31,4 +31,8 @@ export const NAVBAR_LINKS: NavbarLinkProps[] = [
     title: "Blog",
     href: "/blog",
   },
+  {
+    title: "How to Apply",
+    href: "/blog/how-to-apply-yachu-hair-oil",
+  },
 ];
