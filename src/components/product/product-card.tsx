@@ -1,12 +1,14 @@
 "use client";
 
 import { CartItem, TProduct } from "@/types/product";
-import { ShoppingCart, ExternalLink, ShoppingBag, Plus, Minus } from "lucide-react";
+import { ShoppingCartIcon, ExternalLinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { newCart } from "@/services/lib/utils";
 import { toast } from "sonner";
 import useProductCart from "@/store/zustand";
+import { useState } from "react";
+import { CheckoutModal } from "../popover/CheckoutModal";
 import {
   Card,
   CardContent,
@@ -24,11 +26,10 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { id, slug, title, description, price, image1 } = product;
-  const { cart, addToCart  } = useProductCart();
+  const { cart, addToCart } = useProductCart();
+  const [openCheckoutForm, setOpenCheckoutForm] = useState(false);
 
-  const cartItem = cart.find((item) => item.product.id === id);
-  const isInCart = !!cartItem;
-  const quantity = cartItem?.count || 0;
+  const isInCart = cart.some((item) => item.product.id === id);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -38,43 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     };
     const updatedCart = newCart(cartItem, cart);
     addToCart(updatedCart);
-    toast.success("Product added to cart!");
-  };
-
-  const handleIncrement = () => {
-    if (cartItem) {
-      const updatedCart = cart.map((item) =>
-        item.product.id === id
-          ? { ...item, count: item.count + 1 }
-          : item
-      );
-      addToCart(updatedCart);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (cartItem) {
-      if (cartItem.count > 1) {
-        const updatedCart = cart.map((item) =>
-          item.product.id === id
-            ? { ...item, count: item.count - 1 }
-            : item
-        );
-        addToCart(updatedCart);
-      } else {
-        const updatedCart = cart.filter((item) => item.product.id !== id);
-        addToCart(updatedCart);
-        toast.info("Product removed from cart");
-      }
-    }
-  };
-
-  const handleViewCart = () => {
-    // Trigger the cart button click to open the sheet
-    const cartButton = document.querySelector('[data-cart-trigger]');
-    if (cartButton instanceof HTMLElement) {
-      cartButton.click();
-    }
+    toast.success("Product added to cart. Checkout now!");
   };
 
   return (
@@ -126,51 +91,31 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {isInCart ? (
             <div className="space-y-2 xs:space-y-3">
               <div className="grid grid-cols-2 gap-2 xs:gap-3">
-                {/* Quantity Control */}
-                <div className="flex items-center justify-between bg-muted rounded-md p-1">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="h-6 w-6 xs:h-7 xs:w-7 hover:bg-background"
-                    onClick={handleDecrement}
-                  >
-                    <Minus className="h-3 w-3 xs:h-4 xs:w-4" />
-                  </Button>
-                  <span className="text-sm xs:text-base font-semibold px-2">
-                    {quantity}
-                  </span>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="h-6 w-6 xs:h-7 xs:w-7 hover:bg-background"
-                    onClick={handleIncrement}
-                  >
-                    <Plus className="h-3 w-3 xs:h-4 xs:w-4" />
-                  </Button>
-                </div>
-
-                {/* View Details Button */}
+                <Button
+                  className="shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
+                  onClick={handleAddToCart}
+                >
+                  <ShoppingCartIcon className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
+                  <span className="hidden xs:inline">Add More</span>
+                  <span className="xs:hidden">Add</span>
+                </Button>
                 <Link href={`/products/${slug}`} className="flex-1">
                   <Button
-                    className="w-full shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
+                    className="w-full shadow-sm transition-all duration-300 hover:shadow-md hov text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
                     variant="outline"
                   >
-                    <ExternalLink className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
+                    <ExternalLinkIcon className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
                     <span className="hidden xs:inline">View Details</span>
                     <span className="xs:hidden">View</span>
                   </Button>
                 </Link>
               </div>
-
-              {/* View Cart Button */}
               <Button
                 className="w-full shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
-                variant="default"
-                onClick={handleViewCart}
+                onClick={() => setOpenCheckoutForm(true)}
               >
-                <ShoppingBag className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
-                <span className="hidden xs:inline">View Cart</span>
-                <span className="xs:hidden">View Cart</span>
+                <span className="hidden xs:inline">Proceed to Checkout</span>
+                <span className="xs:hidden">Checkout</span>
               </Button>
             </div>
           ) : (
@@ -179,7 +124,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 className="shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
                 onClick={handleAddToCart}
               >
-                <ShoppingCart className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
+                <ShoppingCartIcon className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
                 <span className="hidden xs:inline">Add to Cart</span>
                 <span className="xs:hidden">Add</span>
               </Button>
@@ -188,7 +133,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   className="w-full shadow-sm transition-all duration-300 hover:shadow-md text-xs xs:text-sm h-8 xs:h-9 sm:h-10"
                   variant="outline"
                 >
-                  <ExternalLink className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
+                  <ExternalLinkIcon className="w-3 h-3 xs:w-4 xs:h-4 mr-1 xs:mr-2" />
                   <span className="hidden xs:inline">View Details</span>
                   <span className="xs:hidden">View</span>
                 </Button>
@@ -197,6 +142,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </div>
       </CardFooter>
+
+      <CheckoutModal
+        isOpen={openCheckoutForm}
+        setIsOpen={setOpenCheckoutForm}
+      />
     </Card>
   );
 };

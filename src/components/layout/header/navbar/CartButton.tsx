@@ -20,7 +20,6 @@ const CartButton: React.FC<CartButtonProps> = ({ className }) => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button
-          data-cart-trigger // Add this attribute
           variant={"link"}
           size={"icon"}
           className={`relative text-primary ${className}`}

@@ -17,27 +17,22 @@ interface Props {
 
 export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen} >
-      <DialogTrigger asChild> </DialogTrigger>
-     <DialogContent className="sm:max-w-[725px] max-w-full mx-auto p-0 h-full sm:h-auto sm:max-h-[90vh] flex flex-col">
-  <DialogHeader className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 shrink-0">
-    <DialogTitle className="text-xl sm:text-2xl text-center">
-      Place your order now
-    </DialogTitle>
-    <DialogDescription className="text-center">
-      We will call you shortly to confirm your order
-    </DialogDescription>
-  </DialogHeader>
-  
-  <div className="overflow-y-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 flex-1">
-   <CheckoutForm
-  onSuccess={() => {
-    setIsOpen(false);  // Close modal
-    onCloseSheet?.();  // Close side cart
-  }}
-/>
-  </div>
-</DialogContent>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild></DialogTrigger>
+      <DialogContent className="sm:max-w-[725px] max-w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto h-full sm:h-auto">
+        <DialogHeader className="mb-8">
+          <DialogTitle className="text-xl sm:text-2xl text-center">
+            Place your order now
+          </DialogTitle>
+          <DialogDescription className="text-center">
+            We will call you shortly to confirm your order
+          </DialogDescription>
+        </DialogHeader>
+        <CheckoutForm
+          onSuccess={() => setIsOpen(false)}
+          onCloseSheet={onCloseSheet}
+        />
+      </DialogContent>
     </Dialog>
   );
 }
