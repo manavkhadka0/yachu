@@ -17,7 +17,9 @@ export default function ClientLayoutWrapper({
   // Add any routes where you don't want header/footer
   const isAdmin = pathname.startsWith("/admin");
   const isSpecialPage =
-    pathname.startsWith("/auth") || pathname.startsWith("/checkout");
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/checkout") ||
+    pathname.startsWith("/purchase");
 
   return (
     <>

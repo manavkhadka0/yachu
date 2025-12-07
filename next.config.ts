@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "yachu.baliyoventures.com",
         port: "",
       },
+      {
+        protocol: "http",
+        hostname: "yachu.baliyoventures.com",
+        port: "",
+      },
       // images.unsplash.com"
       {
         protocol: "https",
