@@ -4,24 +4,18 @@ export type ConversationTurn = {
   model: string;
 };
 
-export type OrderItem = {
-  name: string;
-  quantity?: number;
-  notes?: string;
-};
-
 export type OrderDetails = {
-  confirmationStatus: "confirmed" | "pending" | "missing";
-  fullName?: string;
-  location?: string;
-  phoneNumber?: string;
-  products?: OrderItem[];
+  name: string | null;
+  location: string | null;
+  phoneNumber: string | null;
+  product: string | null;
 };
 
 export type OrderExtractionResult = {
-  hasOrder: boolean;
-  orderDetails?: OrderDetails;
-  followUpMessage: string;
+  name: string | null;
+  location: string | null;
+  phoneNumber: string | null;
+  product: string | null;
 };
 
 export type OrderAnalysisStatus =

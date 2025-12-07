@@ -3,9 +3,11 @@
 import { OrderAnalysisStatus } from "../types";
 
 interface ControlPanelProps {
+  showTakeOrder: boolean;
   isRecording: boolean;
   status: string;
   error: string;
+  onTakeOrder: () => void;
   onStartRecording: () => void;
   onStopRecording: () => void;
   onReset: () => void;
@@ -15,9 +17,11 @@ interface ControlPanelProps {
 }
 
 export default function ControlPanel({
+  showTakeOrder,
   isRecording,
   status,
   error,
+  onTakeOrder,
   onStartRecording,
   onStopRecording,
   onReset,
@@ -28,6 +32,27 @@ export default function ControlPanel({
   const statusRowClasses = `flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-slate-200 ${
     isRecording ? "recording" : ""
   } ${error ? "error" : ""}`;
+
+  if (showTakeOrder) {
+    return (
+      <section className="fixed bottom-0 left-0 right-0 sm:bottom-12 sm:left-1/2 sm:-translate-x-1/2 w-full sm:max-w-[400px] px-6 py-4 sm:px-8 sm:py-6 z-30 backdrop-blur-[22px] bg-[rgba(2,6,23,0.78)] border-t sm:border border-white/5 rounded-t-3xl sm:rounded-3xl shadow-[0_30px_70px_rgba(2,6,23,0.45)]">
+        <button
+          onClick={onTakeOrder}
+          className="w-full flex items-center justify-center gap-3 rounded-2xl p-4 sm:p-5 text-base sm:text-lg font-semibold text-slate-50 transition-all bg-gradient-to-br from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(2,6,23,0.45)]"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            className="w-6 h-6 sm:w-7 sm:h-7"
+          >
+            <circle cx="50" cy="50" r="50" />
+          </svg>
+          <span>अर्डर लिनुहोस्</span>
+        </button>
+      </section>
+    );
+  }
 
   return (
     <section className="fixed bottom-0 left-0 right-0 sm:bottom-12 sm:left-1/2 sm:-translate-x-1/2 w-full sm:max-w-[620px] px-3 py-3 sm:px-7 sm:py-6 z-30 flex flex-col gap-3 sm:gap-5 backdrop-blur-[22px] bg-[rgba(2,6,23,0.78)] border-t sm:border border-white/5 rounded-t-3xl sm:rounded-3xl shadow-[0_30px_70px_rgba(2,6,23,0.45)]">

@@ -6,7 +6,6 @@ interface OrderSummaryModalProps {
   isOpen: boolean;
   orderAnalysisStatus: OrderAnalysisStatus;
   extractedOrder: OrderDetails | null;
-  orderFollowUpMessage: string;
   onClose: () => void;
 }
 
@@ -24,7 +23,6 @@ export default function OrderSummaryModal({
   isOpen,
   orderAnalysisStatus,
   extractedOrder,
-  orderFollowUpMessage,
   onClose,
 }: OrderSummaryModalProps) {
   if (!isOpen || orderAnalysisStatus === "idle") return null;
@@ -62,9 +60,9 @@ export default function OrderSummaryModal({
 
         {extractedOrder ? (
           <div className="flex flex-col gap-2 text-sm text-slate-200">
-            {extractedOrder.fullName && (
+            {extractedOrder.name && (
               <p className="m-0">
-                <strong>ग्राहक:</strong> {extractedOrder.fullName}
+                <strong>ग्राहक:</strong> {extractedOrder.name}
               </p>
             )}
             {extractedOrder.location && (
@@ -77,33 +75,16 @@ export default function OrderSummaryModal({
                 <strong>सम्पर्क:</strong> {extractedOrder.phoneNumber}
               </p>
             )}
-            {extractedOrder.products?.length ? (
-              <ul className="list-none p-0 m-1 mt-2 flex flex-col gap-1">
-                {extractedOrder.products.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="px-2.5 py-1.5 rounded-xl bg-[rgba(15,23,42,0.8)] border border-slate-400/30"
-                  >
-                    {item.quantity ? `${item.quantity}× ` : ""}
-                    {item.name}
-                    {item.notes && (
-                      <small className="block text-slate-400 text-xs mt-1">
-                        {item.notes}
-                      </small>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
+            {extractedOrder.product && (
+              <p className="m-0">
+                <strong>उत्पादन:</strong> {extractedOrder.product}
+              </p>
+            )}
           </div>
         ) : (
           <p className="m-0 text-slate-200/90 leading-relaxed">
-            अहिलेसम्म अर्डर पुष्टि भएको छैन। {orderFollowUpMessage}
+            अहिलेसम्म अर्डर पुष्टि भएको छैन।
           </p>
-        )}
-
-        {orderFollowUpMessage && (
-          <p className="m-0 text-sky-300 text-sm">{orderFollowUpMessage}</p>
         )}
 
         <footer className="flex justify-end mt-3">
@@ -118,4 +99,3 @@ export default function OrderSummaryModal({
     </div>
   );
 }
-
