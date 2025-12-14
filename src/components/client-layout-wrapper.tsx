@@ -19,7 +19,9 @@ export default function ClientLayoutWrapper({
   const isSpecialPage =
     pathname.startsWith("/auth") ||
     pathname.startsWith("/checkout") ||
-    pathname.startsWith("/purchase");
+    pathname.startsWith("/purchase") ||
+    pathname.startsWith("/info") ||
+    pathname.startsWith("/price-guess");
 
   return (
     <>
