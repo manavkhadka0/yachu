@@ -3,6 +3,7 @@ export interface InstantOrder {
   name: string;
   address: string;
   phone_number: string;
+  quantity: number;
   franchise: number | null;
   created_at: string;
   updated_at: string;

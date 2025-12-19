@@ -23,3 +23,5 @@ const EmptyState: React.FC<EmptyStateProps> = ({ searchQuery }) => {
 
 export default EmptyState;
 
+
+

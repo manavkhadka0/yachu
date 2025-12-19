@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, MapPin, User, Calendar } from "lucide-react";
+import { Phone, MapPin, User, Calendar, Package } from "lucide-react";
 import { InstantOrder } from "@/types/instant-order";
 import { format } from "date-fns";
 import SortIcon from "@/app/admin/orders/components/sort-icon";
@@ -47,6 +47,10 @@ const InstantOrdersTable: React.FC<InstantOrdersTableProps> = ({
                 <MapPin className="h-3 w-3 text-muted-foreground flex-shrink-0" />
                 <span className="text-xs text-gray-600 break-words">{order.address}</span>
               </div>
+              <div className="flex items-center gap-2">
+                <Package className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                <span className="text-xs text-gray-600">Quantity: {order.quantity}</span>
+              </div>
               {order.created_at && (
                 <div className="flex items-center gap-2 pt-2 border-t">
                   <Calendar className="h-3 w-3 text-muted-foreground flex-shrink-0" />
@@ -70,6 +74,7 @@ const InstantOrdersTable: React.FC<InstantOrdersTableProps> = ({
                 { key: "name", label: "Name" },
                 { key: "phone_number", label: "Phone Number" },
                 { key: "address", label: "Address" },
+                { key: "quantity", label: "Quantity" },
                 { key: "created_at", label: "Created At" },
               ].map((column) => (
                 <th
@@ -115,6 +120,12 @@ const InstantOrdersTable: React.FC<InstantOrdersTableProps> = ({
                   </div>
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    <Package className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                    <span className="font-medium">{order.quantity}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                   {order.created_at ? (
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-muted-foreground flex-shrink-0" />
@@ -134,4 +145,6 @@ const InstantOrdersTable: React.FC<InstantOrdersTableProps> = ({
 };
 
 export default InstantOrdersTable;
+
+
 
