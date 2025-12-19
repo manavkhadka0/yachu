@@ -123,35 +123,9 @@ const InstantOrderForm = () => {
       <div className="max-w-md md:max-w-2xl mx-auto relative z-10">
         {/* Single Column Layout */}
         <div className="w-full">
-          <Card className="border-0 shadow-2xl ring-1 ring-slate-900/5 bg-white/80 backdrop-blur-xl relative overflow-hidden md:shadow-3xl">
-            {/* Progress Bar visual */}
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-100 z-10">
-              <div className="h-full w-2/3 bg-secondary rounded-r-full" />
-            </div>
-
+          <Card className="border-0   bg-white/80  relative overflow-hidden rounded-none">
             {/* Product Image Area */}
             <div className="relative h-64 md:h-80 w-full overflow-hidden bg-slate-100 group">
-              {/* Authentic Badge */}
-              <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-secondary" />
-                <span className="text-xs font-bold text-secondary uppercase tracking-wider">
-                  Authentic
-                </span>
-              </div>
-
-              {/* Growth Animation Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-                className="absolute top-4 right-4 z-20 bg-primary/90 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm text-primary-foreground"
-              >
-                <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-wider">
-                  Promotes Growth
-                </span>
-              </motion.div>
-
               <img
                 src="/yachu-hair-oil-bottle.png"
                 alt="Yachu Hair Oil"
@@ -337,7 +311,7 @@ const InstantOrderForm = () => {
                           type="tel"
                           placeholder="98XXXXXXXX"
                           className={cn(
-                            "pl-16 bg-slate-50 transition-all focus:bg-white h-14 text-base",
+                            " bg-slate-50 transition-all focus:bg-white h-14 text-base",
                             errors.phone_number && "border-red-500 bg-red-50"
                           )}
                         />
