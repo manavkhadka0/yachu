@@ -120,7 +120,7 @@ const InstantOrderForm = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-primary/20 relative overflow-hidden pb-24 md:pb-28">
-      <div className="max-w-md md:max-w-2xl mx-auto p-4 md:pt-8 md:px-6 relative z-10">
+      <div className="max-w-md md:max-w-2xl mx-auto relative z-10">
         {/* Single Column Layout */}
         <div className="w-full">
           <Card className="border-0 shadow-2xl ring-1 ring-slate-900/5 bg-white/80 backdrop-blur-xl relative overflow-hidden md:shadow-3xl">
