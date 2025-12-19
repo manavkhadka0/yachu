@@ -34,21 +34,21 @@ const RHFInput: React.FC<RHFInputProps> = ({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel>
+        <FormItem className="w-full">
+          <FormLabel className="text-sm sm:text-base font-medium">
             {label}
-            {required && <span className="text-destructive">*</span>}
+            {required && <span className="text-destructive ml-1">*</span>}
           </FormLabel>
           <FormControl>
             <Input
               placeholder={placeholder || ""}
-              className={cn("bg-muted/50 border-border", className)}
+              className={cn("bg-muted/50 border-border w-full", className)}
               type={type}
               {...field}
               {...others}
             />
           </FormControl>
-          <FormMessage />
+          <FormMessage className="text-xs sm:text-sm" />
         </FormItem>
       )}
     />

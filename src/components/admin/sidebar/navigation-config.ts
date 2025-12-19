@@ -2,7 +2,8 @@ import {
   ShoppingCart,
   FileText,
   ContactIcon,
-  Users
+  Users,
+  Zap
 } from "lucide-react";
 
 export const navItems = [
@@ -11,6 +12,12 @@ export const navItems = [
     url: "/admin/orders",
     icon: ShoppingCart,
     isActive: (pathname: string) => pathname.startsWith("/admin/orders"),
+  },
+  {
+    title: "Instant Orders",
+    url: "/admin/instant-orders",
+    icon: Zap,
+    isActive: (pathname: string) => pathname.startsWith("/admin/instant-orders"),
   },
   {
     title: "Blogs",

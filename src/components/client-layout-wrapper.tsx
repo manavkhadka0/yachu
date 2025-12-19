@@ -21,7 +21,8 @@ export default function ClientLayoutWrapper({
     pathname.startsWith("/checkout") ||
     pathname.startsWith("/purchase") ||
     pathname.startsWith("/info") ||
-    pathname.startsWith("/price-guess");
+    pathname.startsWith("/price-guess") ||
+    pathname.startsWith("/instant-order");
 
   return (
     <>

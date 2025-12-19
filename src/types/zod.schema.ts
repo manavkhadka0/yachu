@@ -56,3 +56,21 @@ export const checkoutFormSchema = z.object({
   }),
   remarks: z.string().optional(),
 });
+
+export const instantOrderFormSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters",
+  }),
+  address: z.string().min(2, {
+    message: "Address is required",
+  }),
+  phone_number: z
+    .string()
+    .min(10, {
+      message: "Phone number must be at least 10 digits",
+    })
+    .refine((value) => /^\d{10,}$/.test(value.replace(/\s+/g, "")), {
+      message: "Please enter a valid phone number",
+    }),
+  quantity: z.number().min(1).max(3).default(1),
+});
