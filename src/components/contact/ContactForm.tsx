@@ -18,6 +18,7 @@ import {
 } from "../ui/card";
 import { toast } from "sonner";
 import { useCreateContact } from "@/hooks/use-contact";
+import posthog from "posthog-js";
 
 const ContactForm = () => {
   const createContactMutation = useCreateContact();
@@ -45,13 +46,28 @@ const ContactForm = () => {
         phone: data.phone,
         message: data.message,
       });
-      
+
+      // Track contact form submission with PostHog
+      posthog.capture("contact_form_submitted", {
+        has_message: !!data.message,
+      });
+
+      // Identify user with email if provided
+      if (data.email) {
+        posthog.identify(data.email, {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+        });
+      }
+
       toast.success("Message sent successfully!", {
         description: "We'll get back to you as soon as possible.",
       });
       form.reset();
     } catch (error) {
       console.error("Error sending message:", error);
+      posthog.captureException(error);
       toast.error("Error sending message", {
         description: "Please try again later.",
       });

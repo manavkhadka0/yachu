@@ -29,6 +29,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { z } from "zod";
+import posthog from "posthog-js";
 
 type InstantOrderFormData = z.infer<typeof instantOrderFormSchema>;
 
@@ -102,11 +103,23 @@ const InstantOrderForm = () => {
         phone_number: data.phone_number,
         quantity: data.quantity || 1,
       });
+
+      // Track instant order submission with PostHog
+      posthog.capture("instant_order_submitted", {
+        quantity: data.quantity || 1,
+        total_price: data.quantity === 3 ? 6750 : 2500,
+        product_name: "Yachu Hair Oil",
+        delivery_address: data.address,
+        offer_type: data.quantity === 3 ? "family_pack" : "trial_pack",
+      });
+
       setIsSuccessDialogOpen(true);
       reset({ ...data, name: "", address: "", phone_number: "" }); // Reset fields but keep quantity logic if needed
     } catch (error) {
       console.error("Error:", error);
       setIsError(true);
+      // Track order error with PostHog
+      posthog.captureException(error);
     }
   };
 

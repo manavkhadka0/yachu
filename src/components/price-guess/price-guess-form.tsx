@@ -15,6 +15,7 @@ import {
 import { toast } from "sonner";
 import { BASE_API_URL } from "@/utils/config";
 import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
+import posthog from "posthog-js";
 
 interface PriceGuessData {
   name: string;
@@ -170,11 +171,22 @@ export default function PriceGuessForm() {
         "Your price guess has been submitted successfully! Good luck! 🎉"
       );
 
+      // Track price guess submission with PostHog
+      posthog.capture("price_guess_submitted", {
+        products_guessed: products.length,
+        facewash_guess: parseFloat(formData.yachu_facewash_price),
+        bodylotion_guess: parseFloat(formData.yachu_bodylotion_price),
+        brightening_cream_guess: parseFloat(
+          formData.yachu_brightening_cream_price
+        ),
+      });
+
       // Close modal and show thank you screen
       setIsModalOpen(false);
       setShowThankYou(true);
     } catch (error) {
       console.error("Error submitting price guess:", error);
+      posthog.captureException(error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);

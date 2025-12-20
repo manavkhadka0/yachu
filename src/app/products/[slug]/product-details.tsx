@@ -16,6 +16,8 @@ import {
   ProductInfoSection,
   OtherProductsSection,
 } from "@/components/product-details";
+import posthog from "posthog-js";
+import { useRef } from "react";
 
 interface ProductDetailProps {
   params: Promise<{ slug: string }>;
@@ -36,6 +38,20 @@ export default function ProductDetail({ params }: ProductDetailProps) {
   const [isInCart, setIsInCart] = useState(false);
 
   const otherProducts = allProducts?.filter((p) => p.slug !== slug) || [];
+
+  // Track product view with a ref to prevent duplicate captures
+  const hasTrackedView = useRef(false);
+  useEffect(() => {
+    if (product && !hasTrackedView.current) {
+      posthog.capture("product_viewed", {
+        product_id: product.id,
+        product_title: product.title,
+        product_slug: product.slug,
+        product_price: product.price,
+      });
+      hasTrackedView.current = true;
+    }
+  }, [product]);
 
   useEffect(() => {
     if (!product) return;

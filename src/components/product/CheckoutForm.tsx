@@ -16,6 +16,7 @@ import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useCreateOrder } from "@/hooks/use-orders";
 import { TCreateOrderRequest } from "@/types/order";
+import posthog from "posthog-js";
 
 interface CheckoutFormProps {
   onSuccess?: () => void;
@@ -64,6 +65,25 @@ const CheckoutForm = ({
 
     try {
       await createOrderMutation.mutateAsync(orderData);
+
+      // Track successful order placement with PostHog
+      posthog.capture("order_placed", {
+        total_amount: orderData.total_amount,
+        payment_method: orderData.payment_method,
+        products_count: cart.length,
+        product_ids: cart.map((item) => item.product.id),
+        product_titles: cart.map((item) => item.product.title),
+        delivery_address: orderData.delivery_address,
+      });
+
+      // Identify user if email is provided
+      if (data.email) {
+        posthog.identify(data.email, {
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+        });
+      }
 
       // Clear cart and reset form on success
       clearCart();

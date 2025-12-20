@@ -26,6 +26,7 @@ import {
   OrderAnalysisStatus,
   OrderExtractionResult,
 } from "./types";
+import posthog from "posthog-js";
 
 export default function PurchasePage() {
   const [isRecording, setIsRecording] = useState(false);
@@ -369,6 +370,11 @@ export default function PurchasePage() {
       return;
     }
 
+    // Track AI voice order started with PostHog
+    posthog.capture("ai_voice_order_started", {
+      session_ready: true,
+    });
+
     // Hide the "Take Order" button immediately
     setShowTakeOrderButton(false);
 
@@ -488,6 +494,14 @@ export default function PurchasePage() {
         ) {
           setOrderAnalysisStatus("confirmed");
           setHasOrderPlaced(true);
+
+          // Track AI voice order completed with PostHog
+          posthog.capture("ai_voice_order_completed", {
+            customer_name: parsed.name,
+            product: parsed.product,
+            has_phone: true,
+            has_location: true,
+          });
         } else if (
           parsed.name ||
           parsed.location ||

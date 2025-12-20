@@ -1,10 +1,19 @@
+"use client";
+
 import { MoveRightIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import posthog from "posthog-js";
 
 const HeroSection = () => {
+  const handleCtaClick = () => {
+    posthog.capture("cta_hero_clicked", {
+      cta_text: "Order Yachu Hair Oil Now",
+      destination: "/products",
+    });
+  };
   return (
     <div className="container mx-auto px-6 pt-0 md:pt-2 lg:px-12 xl:px-30 lg:pb-20 flex flex-col md:flex-row justify-between items-center md:items-center">
       {/* Left content */}
@@ -68,7 +77,7 @@ const HeroSection = () => {
           size="lg"
           className="group relative overflow-hidden w-full sm:max-w-xs md:w-fit p-6 rounded-full shadow-xl hover:shadow-primary/50 transition-all duration-300 border-2"
         >
-          <Link href="/products">
+          <Link href="/products" onClick={handleCtaClick}>
             <span className="absolute inset-0 bg-white/10 dark:bg-white/5 transform -skew-x-12 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             <div className="relative flex items-center justify-center gap-2 w-full">
               <span className="text-sm sm:text-base md:text-lg xl:text-xl whitespace-nowrap">

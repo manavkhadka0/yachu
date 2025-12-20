@@ -11,11 +11,26 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { yachuWhatsApp, yachuViber } from "@/constants/constant";
+import posthog from "posthog-js";
 
 const CallNowButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOptions = () => setIsOpen(!isOpen);
+
+  const handleWhatsAppClick = () => {
+    posthog.capture("whatsapp_contact_clicked", {
+      channel: "whatsapp",
+      device: typeof window !== "undefined" && window.innerWidth < 768 ? "mobile" : "desktop",
+    });
+  };
+
+  const handleViberClick = () => {
+    posthog.capture("viber_contact_clicked", {
+      channel: "viber",
+      device: typeof window !== "undefined" && window.innerWidth < 768 ? "mobile" : "desktop",
+    });
+  };
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${yachuWhatsApp.replace(
     "+",
@@ -59,6 +74,7 @@ const CallNowButton = () => {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleWhatsAppClick}
                     >
                       <MessageCircle size={20} className="mr-2" />
                       <span className="text-sm font-medium">WhatsApp</span>
@@ -81,6 +97,7 @@ const CallNowButton = () => {
                       href={viberUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleViberClick}
                     >
                       <Smartphone size={20} className="mr-2" />
                       <span className="text-sm font-medium">Viber</span>
@@ -129,6 +146,7 @@ const CallNowButton = () => {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleWhatsAppClick}
                     >
                       <MessageCircle size={18} className="mr-2" />
                       <span className="text-sm font-medium">WhatsApp</span>
@@ -151,6 +169,7 @@ const CallNowButton = () => {
                       href={viberUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleViberClick}
                     >
                       <Smartphone size={18} className="mr-2" />
                       <span className="text-sm font-medium">Viber</span>

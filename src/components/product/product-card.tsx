@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import posthog from "posthog-js";
 
 type ProductCardProps = {
   product: TProduct;
@@ -40,6 +41,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const updatedCart = newCart(cartItem, cart);
     addToCart(updatedCart);
     toast.success("Product added to cart. Checkout now!");
+
+    // Track add to cart event with PostHog
+    posthog.capture("add_to_cart", {
+      product_id: id,
+      product_title: title,
+      product_slug: slug,
+      product_price: price,
+      quantity: 1,
+      is_already_in_cart: isInCart,
+    });
   };
 
   return (

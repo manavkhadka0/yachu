@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Lock, Mail, AlertCircle, Shield } from "lucide-react";
+import posthog from "posthog-js";
 
 interface FormData {
   email: string;
@@ -93,16 +94,32 @@ export default function AdminLogin() {
         localStorage.setItem('adminAuthTime', currentTime.toString());
         localStorage.setItem('adminUser', formData.email);
 
+        // Track successful admin login with PostHog
+        posthog.capture("admin_login_success", {
+          admin_email: formData.email,
+        });
+
+        // Identify admin user
+        posthog.identify(formData.email, {
+          email: formData.email,
+          role: "admin",
+        });
+
         setFormData({ email: '', password: '' });
 
         router.push('/admin/orders');
       } else {
         setError('Invalid credentials. Please check your email and password.');
- 
+
+        // Track failed admin login attempt with PostHog
+        posthog.capture("admin_login_failed", {
+          attempted_email: formData.email,
+        });
+
         console.warn('Failed login attempt:', {
           email: formData.email,
           timestamp: new Date().toISOString(),
-          ip: 'client-side' 
+          ip: 'client-side'
         });
       }
     } catch (err) {
