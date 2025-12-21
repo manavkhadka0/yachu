@@ -102,4 +102,4 @@ export const ProductInfoSection = ({
       </CardContent>
     </Card>
   </div>
-);
+)};
