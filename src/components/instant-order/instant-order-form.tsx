@@ -140,7 +140,7 @@ const InstantOrderForm = () => {
             {/* Product Image Area */}
             <div className="relative h-64 md:h-80 w-full overflow-hidden bg-slate-100 group">
               <img
-                src="/yachu-hair-oil-bottle.png"
+                src="/yachu-hair-oil-bottle.jpg"
                 alt="Yachu Hair Oil"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
