@@ -57,7 +57,7 @@ export default function RootLayout({
           <ClientLayoutWrapper>
             <main className="min-h-screen">{children}</main>
           </ClientLayoutWrapper>
-          <Toaster position="bottom-left" richColors />
+          <Toaster position="bottom-right" richColors />
         </QueryProvider>
       </body>
     </html>

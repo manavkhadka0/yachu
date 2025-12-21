@@ -56,11 +56,11 @@ export const BlogSection = ({
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:mt-16">
           {Array.from({ length: maxItems }).map((_, index) => (
             <Card key={index}>
-              <div className="space-y-4 p-6">
+              <div className="space-y-4 p-4">
                 <Skeleton className="h-40 w-full rounded-lg" />
-                <Skeleton className="h-6 w-3/4" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-1/2" />
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-6 w-full" />
               </div>
             </Card>
           ))}

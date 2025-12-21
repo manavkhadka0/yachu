@@ -14,7 +14,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({
   title,
   description,
 }) => (
-  <Card className="h-full">
+  <Card className="h-full py-2">
     <CardHeader>
       <CardTitle className="flex items-center text-foreground  text-lg font-semibold">
         {icon}
