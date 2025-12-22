@@ -434,6 +434,9 @@ const InstantOrderForm = () => {
             <div className="text-xl md:text-2xl font-extrabold text-slate-900">
               Rs. {price}
             </div>
+            <div className="text-[9px] md:text-[10px] text-slate-400 mt-0.5">
+              Delivery charges apply
+            </div>
           </div>
           <Button
             size="lg"
