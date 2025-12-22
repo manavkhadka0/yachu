@@ -36,7 +36,11 @@ type InstantOrderFormData = z.infer<typeof instantOrderFormSchema>;
 // Declare fbq for TypeScript
 declare global {
   interface Window {
-    fbq?: (track: string, event: string, params?: Record<string, any>) => void;
+    fbq?: (
+      track: string,
+      event: string,
+      params?: Record<string, unknown>
+    ) => void;
   }
 }
 
