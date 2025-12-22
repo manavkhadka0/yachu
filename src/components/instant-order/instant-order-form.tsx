@@ -33,6 +33,13 @@ import posthog from "posthog-js";
 
 type InstantOrderFormData = z.infer<typeof instantOrderFormSchema>;
 
+// Declare fbq for TypeScript
+declare global {
+  interface Window {
+    fbq?: (track: string, event: string, params?: Record<string, any>) => void;
+  }
+}
+
 const InstantOrderForm = () => {
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -104,14 +111,27 @@ const InstantOrderForm = () => {
         quantity: data.quantity || 1,
       });
 
+      const totalPrice = data.quantity === 3 ? 6750 : 2500;
+
       // Track instant order submission with PostHog
       posthog.capture("instant_order_submitted", {
         quantity: data.quantity || 1,
-        total_price: data.quantity === 3 ? 6750 : 2500,
+        total_price: totalPrice,
         product_name: "Yachu Hair Oil",
         delivery_address: data.address,
         offer_type: data.quantity === 3 ? "family_pack" : "trial_pack",
       });
+
+      // Track Facebook Pixel Purchase event
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Purchase", {
+          value: totalPrice,
+          currency: "NPR",
+          content_name: "Yachu Hair Oil",
+          content_type: "product",
+          num_items: data.quantity || 1,
+        });
+      }
 
       setIsSuccessDialogOpen(true);
       reset({ ...data, name: "", address: "", phone_number: "" }); // Reset fields but keep quantity logic if needed
