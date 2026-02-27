@@ -1,3 +1,6 @@
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/get-query-client";
+import { productsApi } from "@/services/api/products";
 import { Metadata } from "next";
 import Product from "./products-page";
 
@@ -35,6 +38,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage() {
-  return <Product />;
+export default async function ProductsPage() {
+  const queryClient = getQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["products"],
+    queryFn: productsApi.getProducts,
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Product />
+    </HydrationBoundary>
+  );
 }

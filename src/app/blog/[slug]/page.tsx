@@ -1,12 +1,15 @@
 import React from "react";
 import { Metadata, ResolvingMetadata } from "next";
 import { blogAPI } from "@/services/api/blogs";
+import { blogQueryKeys } from "@/hooks/use-blogs";
+import { getQueryClient } from "@/lib/get-query-client";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { BASE_URL } from "@/utils/config";
 import BlogDetails from "./blog-details";
 import { yachuCompanyName } from "@/constants/constant";
 
 type Props = {
-  params: Promise<{ slug: string }>; 
+  params: Promise<{ slug: string }>;
 };
 
 // Generate metadata for SEO
@@ -15,7 +18,6 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   try {
-
     const { slug } = await params;
 
     const blog = await blogAPI.getBlogBySlug(slug);
@@ -69,14 +71,14 @@ export async function generateMetadata(
         siteName: siteName,
         images: imageUrl
           ? [
-              {
-                url: imageUrl,
-                width: 1200,
-                height: 630,
-                alt: blog.title,
-                type: "image/jpeg",
-              },
-            ]
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: blog.title,
+              type: "image/jpeg",
+            },
+          ]
           : undefined,
       },
       twitter: {
@@ -141,5 +143,31 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  return <BlogDetails slug={slug} />;
+  const queryClient = getQueryClient();
+
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: blogQueryKeys.detail(slug),
+      queryFn: () => blogAPI.getBlogBySlug(slug),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: blogQueryKeys.list({
+        page: 1,
+        page_size: 6,
+        is_published: true,
+      }),
+      queryFn: () =>
+        blogAPI.getBlogs({
+          page: 1,
+          page_size: 6,
+          is_published: true,
+        }),
+    }),
+  ]);
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <BlogDetails slug={slug} />
+    </HydrationBoundary>
+  );
 }

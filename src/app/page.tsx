@@ -12,6 +12,7 @@ import { BlogSection } from "@/components/blog/blog-section";
 import { useProducts } from "@/hooks/use-products";
 import { useBlogs } from "@/hooks/use-blogs";
 import Image from "next/image";
+import HowToUseYachuHairOil from "@/components/home/HowTOUse";
 
 export default function HomePage() {
   const {
@@ -34,6 +35,8 @@ export default function HomePage() {
   return (
     <main className="flex flex-col">
       <HeroSection />
+      <FlowerDivider />
+      <HowToUseYachuHairOil />
       <FlowerDivider />
       <ProductShowcase
         products={products}

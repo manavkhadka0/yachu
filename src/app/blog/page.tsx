@@ -1,3 +1,7 @@
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib/get-query-client";
+import { blogAPI } from "@/services/api/blogs";
+import { blogQueryKeys } from "@/hooks/use-blogs";
 import Blog from "./blog";
 import { Metadata } from "next";
 
@@ -23,6 +27,18 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
 };
-export default function Page() {
-  return <Blog />;
+export default async function Page() {
+  const queryClient = getQueryClient();
+  const filters = { page: 1, page_size: 10 };
+
+  await queryClient.prefetchQuery({
+    queryKey: blogQueryKeys.list(filters),
+    queryFn: () => blogAPI.getBlogs(filters),
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Blog />
+    </HydrationBoundary>
+  );
 }
