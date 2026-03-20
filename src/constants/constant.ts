@@ -2,7 +2,7 @@ export const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export const beholdId = process.env.NEXT_PUBLIC_BEHOLD_ID;
 
 export const yachuPhone = "+977 9709066929";
-export const yachuEmail = "baliyoventures@gmail.com";
+export const yachuEmail = "yachusales@gmail.com";
 export const yachuWhatsApp = "+9779709066929";
 export const yachuViber = "+9779709066929";
 export const yachuAddress = "Sankhamul, Kathmandu, Nepal";
