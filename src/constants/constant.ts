@@ -8,9 +8,9 @@ export const yachuViber = "+9779709066929";
 export const yachuAddress = "Swayambhu, Kathmandu, Nepal";
 
 // footer Social media links
-export const yachuFacebook = "https://www.facebook.com/yachuhairoil";
-export const yachuInstagram = "https://www.instagram.com/yachuhairoil/";
-export const yachuYoutube = "https://www.youtube.com/@yachuhairoil";
+export const yachuFacebook = "https://www.facebook.com/yachunepal";
+export const yachuInstagram = "https://www.instagram.com/yachu.np";
+export const yachuYoutube = "https://www.youtube.com/@yachu_np";
 
 // Instagram embed URLs
 export const INSTAGRAM_EMBED_URLS = [
