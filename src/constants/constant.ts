@@ -5,7 +5,7 @@ export const yachuPhone = "+977 9709066929";
 export const yachuEmail = "yachusales@gmail.com";
 export const yachuWhatsApp = "+9779709066929";
 export const yachuViber = "+9779709066929";
-export const yachuAddress = "Swoyambhu, Kathmandu, Nepal";
+// export const yachuAddress = "";
 
 // footer Social media links
 export const yachuFacebook = "https://www.facebook.com/yachunepal";
@@ -28,7 +28,7 @@ export const yachuDescription =
 
 // footer Navigation links
 
-export const yachuMapEmbedUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.152298647558!2d85.32600277605418!3d27.681687376197164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19001703e43f%3A0x3e93ada32406d5b4!2sYachu%20Hair%20Oil!5e0!3m2!1sen!2snp!4v1753418058046!5m2!1sen!2snp";
+// export const yachuMapEmbedUrl =
+//   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.152298647558!2d85.32600277605418!3d27.681687376197164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19001703e43f%3A0x3e93ada32406d5b4!2sYachu%20Hair%20Oil!5e0!3m2!1sen!2snp!4v1753418058046!5m2!1sen!2snp";
 
 export const franchise = "sankhamul";

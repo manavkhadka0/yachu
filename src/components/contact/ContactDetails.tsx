@@ -1,9 +1,7 @@
 import {
   yachuEmail,
   yachuPhone,
-  yachuAddress,
   yachuCompanyName,
-  yachuMapEmbedUrl,
 } from "@/constants/constant";
 import { MailIcon, MapPin, PhoneCallIcon } from "lucide-react";
 import Link from "next/link";
@@ -18,7 +16,6 @@ const ContactDetails = () => {
           <MapPin className="h-5 w-5 text-amber-600 mt-0.5" />
           <div>
             <p className="font-bold">{yachuCompanyName}</p>
-            <p className="text-gray-500">{yachuAddress}</p>
           </div>
         </div>
 
@@ -40,12 +37,12 @@ const ContactDetails = () => {
       </div>
 
       {/* Map */}
-      <iframe
+      {/* <iframe
         src={yachuMapEmbedUrl}
         loading="lazy"
         className="w-full h-64 sm:h-80 rounded-md"
         title={`${yachuCompanyName} Location Map`}
-      ></iframe>
+      ></iframe> */}
     </div>
   );
 };

@@ -10,8 +10,6 @@ const Contact = () => {
       <div className="w-full flex justify-center">
         <div className="w-full max-w-5xl px-4">
           <ContactForm />
-          <FlowerDivider />
-          <ContactDetails />
         </div>
       </div>
 
