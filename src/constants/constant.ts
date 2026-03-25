@@ -5,7 +5,7 @@ export const yachuPhone = "+977 9709066929";
 export const yachuEmail = "yachusales@gmail.com";
 export const yachuWhatsApp = "+9779709066929";
 export const yachuViber = "+9779709066929";
-export const yachuAddress = "Swayambhu, Kathmandu, Nepal";
+export const yachuAddress = "Swoyambhu, Kathmandu, Nepal";
 
 // footer Social media links
 export const yachuFacebook = "https://www.facebook.com/yachunepal";
