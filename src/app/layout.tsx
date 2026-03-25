@@ -13,21 +13,21 @@ import ClientLayoutWrapper from "@/components/client-layout-wrapper";
 const br = Bricolage_Grotesque({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Yachu Hair Oil - Made in Nepal with 33 Jadibuti",
+  title: "Yachu Hair Oil - Made in Nepal with 33 Ingredients",
   description:
-    "Are you suffering from hair loss, dandruff, or baldness? Try Yachuhair oil, made in Nepal with 33 Jadibuti for healthier, stronger hair.",
+    "Are you suffering from hair loss, dandruff, or baldness? Try Yachuhair oil, made in Nepal with 33 Ingredients for healthier, stronger hair.",
   keywords: [
     "Yachu",
     "hair oil",
     "Nepal",
-    "jadibuti",
+    "Ingredients",
     "Natural hair care",
     "Natural hair product",
   ],
   openGraph: {
-    title: "Yachu Hair Oil - Made in Nepal with 33 Jadibuti",
+    title: "Yachu Hair Oil - Made in Nepal with 33 Ingredients",
     description:
-      "Are you suffering from hair loss, dandruff, or baldness? Try Yachuhair oil, made in Nepal with 33 Jadibuti for healthier, stronger hair.",
+      "Are you suffering from hair loss, dandruff, or baldness? Try Yachuhair oil, made in Nepal with 33 Ingredients for healthier, stronger hair.",
     images: [
       {
         url: "/yachu-hair-oil-bottle.png",

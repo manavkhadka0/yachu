@@ -36,7 +36,7 @@ const HeroSection = () => {
           <CardContent className="space-y-2 p-0 text-sm md:text-base lg:text-lg xl:text-2xl text-foreground font-semibold">
             <p>❌ Dandruff, Hair Loss, Baldness?</p>
             <p>🟢 Ultimate Solution = Yachu Hair Oil</p>
-            <p>🍃 Crafted with a mix of 33 Jadibuti</p>
+            <p>🍃 Crafted with a mix of 33 Ingredients</p>
             <p>✅ Easy, Affordable and Safe</p>
           </CardContent>
         </Card>

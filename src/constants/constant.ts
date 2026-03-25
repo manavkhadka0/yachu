@@ -5,12 +5,12 @@ export const yachuPhone = "+977 9709066929";
 export const yachuEmail = "yachusales@gmail.com";
 export const yachuWhatsApp = "+9779709066929";
 export const yachuViber = "+9779709066929";
-export const yachuAddress = "Sankhamul, Kathmandu, Nepal";
+export const yachuAddress = "Swayambhu, Kathmandu, Nepal";
 
 // footer Social media links
-export const yachuFacebook = "https://www.facebook.com/baliyocha";
-export const yachuInstagram = "https://www.instagram.com/baliyoventures/";
-export const yachuYoutube = "https://www.youtube.com/@BaliyoVentures";
+export const yachuFacebook = "https://www.facebook.com/yachuhairoil";
+export const yachuInstagram = "https://www.instagram.com/yachuhairoil/";
+export const yachuYoutube = "https://www.youtube.com/@yachuhairoil";
 
 // Instagram embed URLs
 export const INSTAGRAM_EMBED_URLS = [
@@ -21,10 +21,10 @@ export const INSTAGRAM_EMBED_URLS = [
 ];
 
 // footer company details
-export const yachuCompanyName = "Baliyo Ventures";
+export const yachuCompanyName = "Yachu Hair Oil";
 export const yachuLogoPath = "/yachu-logo.svg";
 export const yachuDescription =
-  "Experience the beauty of naturally nourished hair with Baliyo Venturesres. Our premium botanical blends, crafted with care and tradition, are designed to elevate your hair care routine. Join our community of enthusiasts and indulge in the goodness of healthy, beautiful hair, sustainably and responsibly";
+  "Experience the beauty of naturally nourished hair with Yachu Hair Oil. Our premium botanical blends, crafted with care and tradition, are designed to elevate your hair care routine. Join our community of enthusiasts and indulge in the goodness of healthy, beautiful hair, sustainably and responsibly";
 
 // footer Navigation links
 
