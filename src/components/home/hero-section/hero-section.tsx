@@ -17,10 +17,8 @@ const HeroSection = () => {
 
   return (
     <div className="container mx-auto px-6 pt-0 md:pt-2 lg:px-12 xl:px-30 lg:pb-20 flex flex-col md:flex-row justify-between items-center">
-
       {/* Left Content */}
       <div className="flex flex-col flex-1 justify-center w-full">
-
         {/* Title */}
         <h1 className="block xl:hidden text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
           <span className="text-primary">Yachu</span> <br />
@@ -62,9 +60,7 @@ const HeroSection = () => {
                   {item.label}
                 </p>
               </Card>
-              {index < 2 && (
-                <ChevronRight className="text-primary h-4 w-4" />
-              )}
+              {index < 2 && <ChevronRight className="text-primary h-4 w-4" />}
             </div>
           ))}
         </div>
@@ -75,13 +71,12 @@ const HeroSection = () => {
             50K +
           </p>
           <p className="font-semibold text-muted-foreground text-sm md:text-base xl:text-xl">
-            Hair Problems Solved
+            Customers Trust Yachu
           </p>
         </Card>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-
           {/* Primary Button */}
           <Button
             asChild
@@ -104,8 +99,7 @@ const HeroSection = () => {
               className="flex items-center justify-center gap-2 text-center"
             >
               <span className="text-sm sm:text-base md:text-lg font-semibold whitespace-normal break-words">
-                <span className="sm:hidden">                  Order Yachu Hair Oil Now
-                </span>
+                <span className="sm:hidden"> Order Yachu Hair Oil Now</span>
                 <span className="hidden sm:inline">
                   Order Yachu Hair Oil Now
                 </span>
@@ -129,15 +123,12 @@ const HeroSection = () => {
           >
             <Link
               href="/how-to-use"
-              onClick={() =>
-                handleCtaClick("How to Use", "/how-to-use")
-              }
+              onClick={() => handleCtaClick("How to Use", "/how-to-use")}
               className="flex items-center justify-center"
             >
               How to Use Yachu Hair Oil
             </Link>
           </Button>
-
         </div>
       </div>
 
