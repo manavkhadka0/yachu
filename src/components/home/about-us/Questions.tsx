@@ -6,17 +6,20 @@ export const Questions = () => {
   const questionData = [
     {
       title: "Why?",
-      description: "We understand that hair is more than just strands – it's a reflection of one's identity and confidence.",
+      description:
+        "We understand that hair is more than just strands – it's a reflection of one's identity and confidence.",
       bgColor: "bg-primary/90",
     },
     {
       title: "How?",
-      description: "Yachu Hair Oil: Blending traditional techniques with modern precision, featuring coconut, olive, almond, and castor oils for nourishment.",
+      description:
+        "Yachu Hair Oil: Blending traditional techniques with modern precision, crafted with 33 carefully selected natural ingredients, each chosen for its unique benefits to support stronger, healthier, and nourished hair.",
       bgColor: "bg-primary/80",
     },
     {
       title: "What?",
-      description: "Yachu Hair Oil is not just a product; it's a promise to care for your hair and the planet simultaneously.",
+      description:
+        "Yachu Hair Oil is not just a product; it's a promise to care for your hair and the planet simultaneously.",
       bgColor: "bg-primary/70",
     },
   ];
@@ -39,12 +42,12 @@ export const Questions = () => {
           <div className="xl:col-span-4">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
               {questionData.map((item, index) => (
-                <Card 
+                <Card
                   key={index}
                   className="transition-all duration-200 shadow-2xl border-0 hover:shadow-lg hover:scale-105"
                 >
                   <CardContent className="px-4 py-5 sm:px-6 sm:py-8">
-                    <Badge 
+                    <Badge
                       className={`p-4 ${item.bgColor} text-primary-foreground flex pl-6 rounded-full items-center w-fit md:w-full hover:${item.bgColor}/90`}
                     >
                       <LeafIcon size={30} />
