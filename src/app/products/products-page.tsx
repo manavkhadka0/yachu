@@ -7,6 +7,19 @@ import { Badge } from "@/components/ui/badge";
 export default function ProductsPage() {
   const { data: products, isLoading, error } = useProducts();
 
+  const allowedSlugsOrder = [
+    "yachu-hair-oil",
+    "yachu-shampoo-300-ml",
+    "sachet-oil-90-ml",
+    "sachet-shampoo",
+  ];
+
+  const filteredProducts = products
+    ? allowedSlugsOrder
+        .map((slug) => products.find((p) => p.slug === slug))
+        .filter((p): p is NonNullable<typeof p> => p !== undefined)
+    : undefined;
+
   return (
     <div className="bg-white min-h-screen">
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-16 lg:py-20 lg:max-w-7xl lg:px-8">
@@ -22,7 +35,7 @@ export default function ProductsPage() {
           </h1>
         </div>
         <ProductShowcase
-          products={products}
+          products={filteredProducts}
           isLoading={isLoading}
           error={error}
           showHeader={false}

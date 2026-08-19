@@ -4,7 +4,7 @@ import { TProduct } from "@/types/product";
 export const productsApi = {
   async getProducts(): Promise<TProduct[]> {
     try {
-      const res = await fetch(`${BASE_API_URL}/products/`, {
+      const res = await fetch(`${BASE_API_URL}/products/?product=all`, {
         next: { revalidate: 10 },
       });
       
