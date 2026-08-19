@@ -129,6 +129,19 @@ const ProductShowcase = ({
   }
 
   // Success state with products
+  const allowedSlugsOrder = [
+    "yachu-hair-oil",
+    "yachu-shampoo-300-ml",
+    "sachet-oil-90-ml",
+    "sachet-shampoo",
+  ];
+
+  const filteredProducts = allowedSlugsOrder
+    .map((slug) => products.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => p !== undefined);
+
+  const displayProducts = filteredProducts.length > 0 ? filteredProducts : products;
+
   return (
     <section id="products" className={`py-10 sm:py-12 md:py-16 ${className}`}>
       {showHeader && (
@@ -148,7 +161,7 @@ const ProductShowcase = ({
 
       <div className="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {products.map((product) => (
+          {displayProducts.map((product) => (
             <div
               key={product.id}
               className="transition-transform duration-200 ease-out will-change-transform hover:-translate-y-1"
