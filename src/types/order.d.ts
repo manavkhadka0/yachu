@@ -28,6 +28,9 @@ export interface TOrder {
   total_amount: string;
   order_products: TOrderProduct[];
   remarks: string | null;
+  payment_type?: "COD" | "NPS" | string;
+  transaction_id?: string | null;
+  is_paid?: boolean;
 }
 
 export interface TCreateOrderRequest {

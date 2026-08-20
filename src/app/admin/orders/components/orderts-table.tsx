@@ -38,6 +38,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
     <div className="p-2 space-y-3 sm:hidden">
       {orders.map((order) => {
         const isCurrentlyUpdating = isUpdating && updatingOrderId === order.id;
+        const isNps = order.payment_type === "NPS" || order.payment_type === "Nepal Payment Solution";
         return (
           <div
             key={order.id}
@@ -64,18 +65,52 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                   <p className="text-sm font-medium text-gray-900">
                     {formatCurrency(order.total_amount)}
                   </p>
-                  <span
-                    className={`px-2 py-1 mt-1 inline-flex text-xs leading-5 font-semibold rounded-full items-center ${getStatusColor(
-                      order.order_status
-                    )}`}
-                  >
-                    {getStatusIcon(order.order_status)}
-                    <span className="ml-1 capitalize">
-                      {order.order_status}
+                  <div className="flex items-center justify-end gap-1.5 mt-1">
+                    <span
+                      className={`px-2 py-0.5 inline-flex text-xs leading-5 font-semibold rounded-full items-center ${getStatusColor(
+                        order.order_status
+                      )}`}
+                    >
+                      {getStatusIcon(order.order_status)}
+                      <span className="ml-1 capitalize">
+                        {order.order_status}
+                      </span>
                     </span>
-                  </span>
+                  </div>
                 </div>
               </div>
+
+              {/* Payment Type & Paid Badge */}
+              <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                <span
+                  className={`px-2 py-0.5 text-xs font-semibold rounded-md border ${
+                    isNps
+                      ? "bg-purple-50 text-purple-700 border-purple-200"
+                      : "bg-gray-100 text-gray-700 border-gray-200"
+                  }`}
+                >
+                  {order.payment_type || "COD"}
+                </span>
+
+                {isNps && (
+                  <span
+                    className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
+                      order.is_paid
+                        ? "bg-emerald-100 text-emerald-800"
+                        : "bg-amber-100 text-amber-800"
+                    }`}
+                  >
+                    {order.is_paid ? "Paid" : "Unpaid"}
+                  </span>
+                )}
+              </div>
+
+              {isNps && order.transaction_id && (
+                <p className="mt-1 text-xs font-mono text-gray-500 break-all">
+                  Txn ID: {order.transaction_id}
+                </p>
+              )}
+
               <p className="mt-2 text-xs text-gray-500">
                 {formatDate(order.created_at)}
               </p>
@@ -93,7 +128,6 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
               >
                 {[
                   "Pending",
-
                   "Processing",
                   "Shipped",
                   "Delivered",
@@ -156,6 +190,12 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
               scope="col"
               className="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
             >
+              Payment
+            </th>
+            <th
+              scope="col"
+              className="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
               Status
             </th>
             <th
@@ -170,6 +210,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
           {orders.map((order) => {
             const isCurrentlyUpdating =
               isUpdating && updatingOrderId === order.id;
+            const isNps = order.payment_type === "NPS" || order.payment_type === "Nepal Payment Solution";
             return (
               <React.Fragment key={order.id}>
                 <tr
@@ -196,6 +237,37 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                   </td>
                   <td className="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                     {formatCurrency(order.total_amount)}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-900 whitespace-nowrap">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`px-2 py-0.5 text-xs font-semibold rounded-md border ${
+                            isNps
+                              ? "bg-purple-50 text-purple-700 border-purple-200"
+                              : "bg-gray-100 text-gray-700 border-gray-200"
+                          }`}
+                        >
+                          {order.payment_type || "COD"}
+                        </span>
+                        {isNps && (
+                          <span
+                            className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
+                              order.is_paid
+                                ? "bg-emerald-100 text-emerald-800"
+                                : "bg-amber-100 text-amber-800"
+                            }`}
+                          >
+                            {order.is_paid ? "Paid" : "Unpaid"}
+                          </span>
+                        )}
+                      </div>
+                      {isNps && order.transaction_id && (
+                        <span className="font-mono text-xs text-gray-500">
+                          {order.transaction_id}
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span
