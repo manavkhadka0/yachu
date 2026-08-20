@@ -43,6 +43,9 @@ export interface TCreateOrderRequest {
     quantity: number;
   }[];
   remarks: string | null;
+  transaction_id?: string | null;
+  is_paid?: boolean;
+  payment_type?: "COD" | "NPS" | string;
 }
 
 export interface TOrderFilters {

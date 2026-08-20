@@ -21,12 +21,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
-        hostname: "latina-trail-yards-encyclopedia.trycloudflare.com",
+        hostname: "qualify-ruling-heater-sbjct.trycloudflare.com",
         port: "",
       },
       {
         protocol: "https",
-        hostname: "latina-trail-yards-encyclopedia.trycloudflare.com",
+        hostname: "qualify-ruling-heater-sbjct.trycloudflare.com",
         port: "",
       },
     ],
