@@ -11,7 +11,7 @@ interface OrderDetailsProps {
 
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => (
   <td
-    colSpan={6}
+    colSpan={7}
     className="px-2 py-4 bg-gradient-to-br from-blue-50 to-indigo-50 sm:px-3 sm:py-6 md:px-6"
   >
     <div className="max-w-6xl mx-auto">
@@ -48,6 +48,46 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => (
                   {order.order_status}
                 </span>
               </div>
+            </div>
+
+            {/* Payment Meta Info */}
+            <div className="p-2.5 rounded-lg bg-gray-50 space-y-1.5 border border-gray-200/80">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                  Payment Method
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={`px-2 py-0.5 text-xs font-semibold rounded-md border ${
+                      order.payment_type === "NPS" || order.payment_type === "Nepal Payment Solution"
+                        ? "bg-purple-50 text-purple-700 border-purple-200"
+                        : "bg-gray-100 text-gray-700 border-gray-200"
+                    }`}
+                  >
+                    {order.payment_type || "COD"}
+                  </span>
+                  {(order.payment_type === "NPS" || order.payment_type === "Nepal Payment Solution") && (
+                    <span
+                      className={`px-2 py-0.5 text-xs font-semibold rounded-full ${
+                        order.is_paid
+                          ? "bg-emerald-100 text-emerald-800"
+                          : "bg-amber-100 text-amber-800"
+                      }`}
+                    >
+                      {order.is_paid ? "Paid" : "Unpaid"}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {order.transaction_id && (
+                <div className="flex items-center justify-between pt-1 border-t border-gray-200/60">
+                  <span className="text-xs text-gray-500">Transaction ID</span>
+                  <span className="font-mono text-xs font-semibold text-gray-800 break-all">
+                    {order.transaction_id}
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2 sm:space-y-3">
