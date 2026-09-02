@@ -37,7 +37,7 @@ const FooterContactDetails = () => {
 
         <div className="pt-2 border-t border-slate-700/50 flex flex-col gap-3">
           <p className="font-medium text-white ">
-            Chibe Traders Details
+            Chibe Traders
           </p>
           <div className="flex items-center gap-3 text-sm">
             <PhoneCallIcon className="h-4 w-4 text-primary-foreground shrink-0" />
