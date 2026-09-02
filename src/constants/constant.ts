@@ -7,6 +7,12 @@ export const yachuWhatsApp = "+9779709066929";
 export const yachuViber = "+9779709066929";
 // export const yachuAddress = "";
 
+// Chibeko Details
+export const chibekoPhone = "9811309291";
+export const chibekoEmail = "chibetraders1@gmail.com";
+export const chibekoVatNo = "622451415";
+export const chibekoRegistrationNo = "375824/82/83";
+
 // footer Social media links
 export const yachuFacebook = "https://www.facebook.com/yachunepal";
 export const yachuInstagram = "https://www.instagram.com/yachu.np";
