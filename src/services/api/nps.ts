@@ -21,13 +21,13 @@ export interface NPSInitiateResponse {
 }
 
 export interface NPSVerifyResponse {
-  id: number;
+  id?: number;
   merchant_txn_id: string;
-  process_id: string;
+  process_id?: string;
   gateway_txn_id?: string;
   amount: string;
   service_charge?: string;
-  status: string;
+  status: "Success" | "Fail" | "Pending" | string;
   institution?: string;
   instrument?: string;
   transaction_remarks?: string;
@@ -63,9 +63,12 @@ export const initiateNPSPayment = async (
 
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
-    throw new Error(
-      errorData.detail || errorData.message || "Failed to initiate NPS payment",
-    );
+    const errorMessage =
+      (Array.isArray(errorData?.errors) && errorData.errors[0]?.error_message) ||
+      errorData.detail ||
+      errorData.message ||
+      "Failed to initiate NPS payment";
+    throw new Error(errorMessage);
   }
 
   return await res.json();
@@ -98,11 +101,12 @@ export const verifyNPSTransaction = async (
 
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
-    throw new Error(
+    const errorMessage =
+      (Array.isArray(errorData?.errors) && errorData.errors[0]?.error_message) ||
       errorData.detail ||
-        errorData.message ||
-        "Failed to verify payment status",
-    );
+      errorData.message ||
+      "Unable to verify transaction status";
+    throw new Error(errorMessage);
   }
 
   return await res.json();
