@@ -293,7 +293,7 @@ export default function NPSCallbackContent() {
 
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-foreground">
-            Couldn't Verify Payment
+            Couldn&apos;t Verify Payment
           </h1>
           <p className="text-sm text-muted-foreground">
             {errorMessage ||
