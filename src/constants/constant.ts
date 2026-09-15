@@ -1,6 +1,7 @@
 export const mapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 export const beholdId = process.env.NEXT_PUBLIC_BEHOLD_ID;
 
+export const yachuCustomerService = "Sapana Dhakal";
 export const yachuPhone = "+977 9709066929";
 export const yachuEmail = "yachusales@gmail.com";
 export const yachuWhatsApp = "+9779709066929";
@@ -12,6 +13,8 @@ export const chibekoPhone = "9811309291";
 export const chibekoEmail = "chibetraders1@gmail.com";
 export const chibekoVatNo = "622451415";
 export const chibekoRegistrationNo = "375824/82/83";
+export const chibekoOffice = "Office of Company Registrar";
+export const chibekoAddress = "UN park lane-6, Sankhamul, Lalitpur";
 
 // footer Social media links
 export const yachuFacebook = "https://www.facebook.com/yachunepal";
