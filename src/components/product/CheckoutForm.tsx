@@ -19,6 +19,7 @@ import RHFTextarea from "../react-hook-form/RHFTextarea";
 import useProductCart from "@/store/zustand";
 import { calculateTotalPrice } from "@/services/lib/utils";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { Alert, AlertDescription } from "../ui/alert";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
@@ -309,13 +310,19 @@ const CheckoutForm = ({
                     onClick={() => setPaymentMethod("nps")}
                     disabled={isSubmitting}
                     className={cn(
-                      "flex items-center justify-center p-2.5 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
+                      "flex items-center justify-center p-2 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
                       paymentMethod === "nps"
                         ? "border-primary bg-primary/5 text-primary shadow-xs"
                         : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground",
                     )}
                   >
-                    <CreditCard className="h-4 w-4 shrink-0" />
+                    <Image
+                      src="/nps.png"
+                      alt="NPS Logo"
+                      width={20}
+                      height={20}
+                      className="h-4 w-auto shrink-0 object-contain"
+                    />
                     <span>Pay with NPS</span>
                   </button>
 
