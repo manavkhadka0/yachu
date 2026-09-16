@@ -21,12 +21,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
-        hostname: "qualify-ruling-heater-sbjct.trycloudflare.com",
+        hostname: "officer-pumps-bufing-diploma.trycloudflare.com",
         port: "",
       },
       {
         protocol: "https",
-        hostname: "qualify-ruling-heater-sbjct.trycloudflare.com",
+        hostname: "officer-pumps-bufing-diploma.trycloudflare.com",
         port: "",
       },
     ],

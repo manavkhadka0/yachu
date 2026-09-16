@@ -228,32 +228,32 @@ const CheckoutForm = ({
     <Card className={cn("border-0 shadow-none", className)}>
       <CardContent className="p-0">
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <Alert className="border-l-4 border-l-amber-500 bg-amber-500/5 border-amber-500/20">
-              <Info className="h-5 w-5 text-amber-600" />
-              <AlertDescription className="text-foreground">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <Alert className="border-l-4 border-l-amber-500 bg-amber-500/5 border-amber-500/20 py-2.5 px-3">
+              <Info className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+              <AlertDescription className="text-xs text-foreground leading-relaxed">
                 Delivery charge: Rs. 100 for inside Kathmandu Valley, Rs. 150
                 for outside Kathmandu Valley
               </AlertDescription>
             </Alert>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <RHFInput
                 name="name"
                 label="Full Name"
                 placeholder="eg. John Doe"
                 required
-                className="text-base"
+                className="text-sm h-9"
                 disabled={isSubmitting}
               />
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3">
                 <RHFInput
                   name="phone"
                   label="Phone Number"
                   placeholder="eg. 9865436650"
                   type="tel"
-                  className="text-base"
+                  className="text-sm h-9"
                   required
                   disabled={isSubmitting}
                 />
@@ -262,7 +262,7 @@ const CheckoutForm = ({
                   label="Alternate Phone Number (Optional)"
                   placeholder="eg. 9865436651"
                   type="tel"
-                  className="text-base"
+                  className="text-sm h-9"
                   disabled={isSubmitting}
                 />
               </div>
@@ -272,16 +272,16 @@ const CheckoutForm = ({
                 label="Email Address (Optional)"
                 placeholder="eg. john@gmail.com"
                 type="email"
-                className="text-base"
+                className="text-sm h-9"
                 disabled={isSubmitting}
               />
 
               <RHFTextarea
                 name="address"
                 label="Delivery Address"
-                rows={3}
+                rows={2}
                 placeholder="eg. New baneshwor - 10, Kathmandu"
-                className="text-base"
+                className="text-sm min-h-[64px]"
                 required
                 disabled={isSubmitting}
               />
@@ -291,31 +291,31 @@ const CheckoutForm = ({
                 label="Remarks (Optional)"
                 rows={2}
                 placeholder="Any special instructions or notes for your order"
-                className="text-base"
+                className="text-sm min-h-[56px]"
                 disabled={isSubmitting}
               />
             </div>
 
             {/* Payment Method Selector */}
             {isNpsEnabled && (
-              <div className="space-y-3 pt-2">
-                <label className="text-sm font-semibold text-foreground">
+              <div className="space-y-2 pt-1 border-t border-border/40">
+                <label className="text-xs font-semibold text-foreground">
                   Payment Method
                 </label>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5">
                   <button
                     type="button"
                     onClick={() => setPaymentMethod("nps")}
                     disabled={isSubmitting}
                     className={cn(
-                      "flex flex-col items-center justify-center p-3.5 rounded-xl border-2 transition-all gap-2 text-center text-sm font-medium cursor-pointer",
+                      "flex items-center justify-center p-2.5 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
                       paymentMethod === "nps"
-                        ? "border-primary bg-primary/5 text-primary shadow-sm"
+                        ? "border-primary bg-primary/5 text-primary shadow-xs"
                         : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground",
                     )}
                   >
-                    <CreditCard className="h-5 w-5" />
+                    <CreditCard className="h-4 w-4 shrink-0" />
                     <span>Pay with NPS</span>
                   </button>
 
@@ -324,20 +324,20 @@ const CheckoutForm = ({
                     onClick={() => setPaymentMethod("cod")}
                     disabled={isSubmitting}
                     className={cn(
-                      "flex flex-col items-center justify-center p-3.5 rounded-xl border-2 transition-all gap-2 text-center text-sm font-medium cursor-pointer",
+                      "flex items-center justify-center p-2.5 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
                       paymentMethod === "cod"
-                        ? "border-primary bg-primary/5 text-primary shadow-sm"
+                        ? "border-primary bg-primary/5 text-primary shadow-xs"
                         : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground",
                     )}
                   >
-                    <Banknote className="h-5 w-5" />
+                    <Banknote className="h-4 w-4 shrink-0" />
                     <span>Cash on Delivery</span>
                   </button>
                 </div>
 
                 {paymentMethod === "nps" && (
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 p-2.5 rounded-lg border border-border/50">
-                    <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground bg-muted/30 px-2.5 py-1.5 rounded-md border border-border/50">
+                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
                     <span>
                       Secured by Nepal Payment Solution (Mobile Banking,
                       Wallets, Cards)
@@ -351,19 +351,19 @@ const CheckoutForm = ({
               type="submit"
               disabled={isSubmitting}
               className={cn(
-                "w-full sm:text-lg p-6 transition-all relative font-semibold",
+                "w-full text-sm h-10 px-4 transition-all font-semibold shadow-xs mt-2",
                 isSubmitting && "animate-pulse",
               )}
               variant="default"
             >
               {isInitiatingNps ? (
                 <>
-                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   <span>Redirecting to NPS Gateway...</span>
                 </>
               ) : createOrderMutation.isPending ? (
                 <>
-                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   <span>Processing Order...</span>
                 </>
               ) : paymentMethod === "nps" ? (
