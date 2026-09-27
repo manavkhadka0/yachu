@@ -9,9 +9,9 @@ import {
   Loader2,
   Info,
   CheckCircle2,
-  CreditCard,
   Banknote,
   ShieldCheck,
+  Truck,
 } from "lucide-react";
 import { checkoutFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
@@ -37,6 +37,8 @@ interface CheckoutFormProps {
   onSuccess?: () => void;
   onCloseSheet?: () => void;
   className?: string;
+  initialDeliveryLocation?: "inside" | "outside";
+  onDeliveryLocationChange?: (location: "inside" | "outside") => void;
 }
 
 type PaymentMethodType = "cod" | "nps";
@@ -45,8 +47,13 @@ const CheckoutForm = ({
   onSuccess,
   onCloseSheet,
   className,
+  initialDeliveryLocation = "inside",
+  onDeliveryLocationChange,
 }: CheckoutFormProps) => {
   const { cart, clearCart } = useProductCart();
+  const [deliveryLocation, setDeliveryLocation] = useState<"inside" | "outside">(
+    initialDeliveryLocation || "inside"
+  );
   const [isSuccess, setIsSuccess] = useState(false);
   const [isNpsEnabled, setIsNpsEnabled] = useState<boolean | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethodType>("cod");
@@ -57,6 +64,21 @@ const CheckoutForm = ({
 
   const formRef = useRef<HTMLFormElement>(null);
   const createOrderMutation = useCreateOrder();
+
+  useEffect(() => {
+    if (initialDeliveryLocation) {
+      setDeliveryLocation(initialDeliveryLocation);
+    }
+  }, [initialDeliveryLocation]);
+
+  const handleDeliveryLocationChange = (loc: "inside" | "outside") => {
+    setDeliveryLocation(loc);
+    onDeliveryLocationChange?.(loc);
+  };
+
+  const subtotal = calculateTotalPrice(cart);
+  const deliveryCharge = deliveryLocation === "inside" ? 100 : 150;
+  const totalAmount = subtotal + deliveryCharge;
 
   useEffect(() => {
     getNPSStatus()
@@ -90,10 +112,18 @@ const CheckoutForm = ({
   const { handleSubmit, reset } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const totalAmount = calculateTotalPrice(cart);
+    const locationLabel =
+      deliveryLocation === "inside"
+        ? "Inside Kathmandu Valley"
+        : "Outside Kathmandu Valley";
+    const formattedAddress = `${data.address.trim()} (${locationLabel})`;
+    const deliveryRemarks = `Delivery: ${locationLabel} (Rs. ${deliveryCharge})`;
+    const formattedRemarks = data.remarks
+      ? `${data.remarks.trim()} | ${deliveryRemarks}`
+      : deliveryRemarks;
 
     if (paymentMethod === "nps") {
-      // --- OPTION B: Payment-First Method (Create Order After Payment Success) ---
+      // --- Payment-First Method (Create Order After Payment Success) ---
       setIsInitiatingNps(true);
       try {
         // Save checkout customer form details into localStorage for backend verification on redirect callback
@@ -102,8 +132,12 @@ const CheckoutForm = ({
           email: data.email || null,
           phone: data.phone,
           alternate_phone: data.alternate_phone || null,
-          address: data.address,
-          remarks: data.remarks || null,
+          address: formattedAddress,
+          delivery_location: deliveryLocation,
+          delivery_charge: deliveryCharge,
+          subtotal: subtotal,
+          total_amount: totalAmount,
+          remarks: formattedRemarks,
           order_products: cart.map((item) => ({
             product_id: Number(item.product.id),
             quantity: item.count,
@@ -111,21 +145,24 @@ const CheckoutForm = ({
         };
         localStorage.setItem(
           "nps_pending_checkout",
-          JSON.stringify(checkoutPayload),
+          JSON.stringify(checkoutPayload)
         );
 
         const callbackUrl = `${window.location.origin}/payment/nps/callback`;
 
-        // Call /api/nps/initiate/ with order_id: null
+        // Call /api/nps/initiate/ with order_id: null and full total amount with delivery charge
         const npsResponse = await initiateNPSPayment(
           totalAmount,
           null,
           `Checkout for ${data.name}`,
-          callbackUrl,
+          callbackUrl
         );
 
         posthog.capture("nps_payment_initiated", {
           total_amount: totalAmount,
+          subtotal: subtotal,
+          delivery_charge: deliveryCharge,
+          delivery_location: deliveryLocation,
           products_count: cart.length,
           merchant_txn_id: npsResponse.merchant_txn_id,
         });
@@ -158,7 +195,7 @@ const CheckoutForm = ({
       email: data.email || null,
       phone_number: data.phone,
       alternate_phone_number: data.alternate_phone || null,
-      delivery_address: data.address,
+      delivery_address: formattedAddress,
       payment_method: "Cash on Delivery",
       payment_type: "COD",
       total_amount: totalAmount,
@@ -166,7 +203,7 @@ const CheckoutForm = ({
         product_id: Number(item.product.id),
         quantity: item.count,
       })),
-      remarks: data.remarks || null,
+      remarks: formattedRemarks,
     };
 
     try {
@@ -174,6 +211,9 @@ const CheckoutForm = ({
 
       posthog.capture("order_placed", {
         total_amount: orderData.total_amount,
+        subtotal: subtotal,
+        delivery_charge: deliveryCharge,
+        delivery_location: deliveryLocation,
         payment_method: orderData.payment_method,
         products_count: cart.length,
         product_ids: cart.map((item) => item.product.id),
@@ -277,11 +317,71 @@ const CheckoutForm = ({
                 disabled={isSubmitting}
               />
 
+              {/* Delivery Location Selector */}
+              <div className="space-y-1.5 pt-1">
+                <label className="text-xs font-semibold text-foreground flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    Delivery Location
+                  </span>
+                  <span className="text-[11px] font-medium text-primary">
+                    + Rs. {deliveryCharge} shipping applied
+                  </span>
+                </label>
+
+                <div className="grid grid-cols-2 gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => handleDeliveryLocationChange("inside")}
+                    disabled={isSubmitting}
+                    className={cn(
+                      "flex flex-col items-start p-2.5 rounded-lg border text-left transition-all cursor-pointer",
+                      deliveryLocation === "inside"
+                        ? "border-primary bg-primary/5 text-primary shadow-xs ring-1 ring-primary/20"
+                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
+                    )}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <span className="text-xs font-semibold text-foreground">
+                        Inside Valley
+                      </span>
+                      <span className="text-xs font-bold text-primary">
+                        Rs. 100
+                      </span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleDeliveryLocationChange("outside")}
+                    disabled={isSubmitting}
+                    className={cn(
+                      "flex flex-col items-start p-2.5 rounded-lg border text-left transition-all cursor-pointer",
+                      deliveryLocation === "outside"
+                        ? "border-primary bg-primary/5 text-primary shadow-xs ring-1 ring-primary/20"
+                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
+                    )}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <span className="text-xs font-semibold text-foreground">
+                        Outside Valley
+                      </span>
+                      <span className="text-xs font-bold text-primary">
+                        Rs. 150
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
               <RHFTextarea
                 name="address"
                 label="Delivery Address"
                 rows={2}
-                placeholder="eg. New baneshwor - 10, Kathmandu"
+                placeholder={
+                  deliveryLocation === "inside"
+                    ? "eg. New Baneshwor - 10, Kathmandu"
+                    : "eg. Lakeside, Ward 6, Pokhara"
+                }
                 className="text-sm min-h-[64px]"
                 required
                 disabled={isSubmitting}
@@ -296,6 +396,8 @@ const CheckoutForm = ({
                 disabled={isSubmitting}
               />
             </div>
+
+           
 
             {/* Payment Method Selector */}
             {isNpsEnabled && (
@@ -313,7 +415,7 @@ const CheckoutForm = ({
                       "flex items-center justify-center p-2 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
                       paymentMethod === "nps"
                         ? "border-primary bg-primary/5 text-primary shadow-xs"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground",
+                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
                     )}
                   >
                     <Image
@@ -334,7 +436,7 @@ const CheckoutForm = ({
                       "flex items-center justify-center p-2.5 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
                       paymentMethod === "cod"
                         ? "border-primary bg-primary/5 text-primary shadow-xs"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground",
+                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
                     )}
                   >
                     <Banknote className="h-4 w-4 shrink-0" />
@@ -358,8 +460,8 @@ const CheckoutForm = ({
               type="submit"
               disabled={isSubmitting}
               className={cn(
-                "w-full text-sm h-10 px-4 transition-all font-semibold shadow-xs mt-2",
-                isSubmitting && "animate-pulse",
+                "w-full text-sm h-11 px-4 transition-all font-semibold shadow-xs mt-2",
+                isSubmitting && "animate-pulse"
               )}
               variant="default"
             >
@@ -374,9 +476,9 @@ const CheckoutForm = ({
                   <span>Processing Order...</span>
                 </>
               ) : paymentMethod === "nps" ? (
-                `Pay Rs. ${calculateTotalPrice(cart)} with NPS`
+                `Pay Rs. ${totalAmount} with NPS`
               ) : (
-                "Confirm Order (COD)"
+                `Confirm Order (COD) - Rs. ${totalAmount}`
               )}
             </Button>
           </form>

@@ -15,9 +15,17 @@ interface Props {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
   onCloseSheet?: () => void;
+  deliveryLocation?: "inside" | "outside";
+  onDeliveryLocationChange?: (value: "inside" | "outside") => void;
 }
 
-export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
+export function CheckoutModal({
+  isOpen,
+  setIsOpen,
+  onCloseSheet,
+  deliveryLocation,
+  onDeliveryLocationChange,
+}: Props) {
   const hasTrackedOpen = useRef(false);
 
   // Track checkout modal opened with PostHog
@@ -34,8 +42,8 @@ export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild></DialogTrigger>
-      <DialogContent className="sm:max-w-[725px] max-w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto h-full sm:h-auto">
-        <DialogHeader className="mb-8">
+      <DialogContent className="sm:max-w-[725px] max-w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-[90vh]">
+        <DialogHeader className="mb-6">
           <DialogTitle className="text-xl sm:text-2xl text-center">
             Place your order now
           </DialogTitle>
@@ -46,6 +54,8 @@ export function CheckoutModal({ isOpen, setIsOpen, onCloseSheet }: Props) {
         <CheckoutForm
           onSuccess={() => setIsOpen(false)}
           onCloseSheet={onCloseSheet}
+          initialDeliveryLocation={deliveryLocation}
+          onDeliveryLocationChange={onDeliveryLocationChange}
         />
       </DialogContent>
     </Dialog>

@@ -242,6 +242,9 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
       <CheckoutModal
         isOpen={openCheckoutForm}
         setIsOpen={setOpenCheckoutForm}
+        onCloseSheet={onCloseSheet}
+        deliveryLocation={deliveryLocation}
+        onDeliveryLocationChange={setDeliveryLocation}
       />
     </div>
   );

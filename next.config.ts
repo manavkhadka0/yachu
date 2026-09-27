@@ -21,12 +21,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
-        hostname: "officer-pumps-bufing-diploma.trycloudflare.com",
+        hostname: "supervisor-acceptable-palmer-snow.trycloudflare.com",
         port: "",
       },
       {
         protocol: "https",
-        hostname: "officer-pumps-bufing-diploma.trycloudflare.com",
+        hostname: "supervisor-acceptable-palmer-snow.trycloudflare.com",
         port: "",
       },
     ],
