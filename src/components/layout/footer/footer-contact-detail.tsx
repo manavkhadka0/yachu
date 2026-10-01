@@ -26,7 +26,7 @@ const FooterContactDetails = () => {
       </h3>
       <div className="flex flex-col gap-3 text-primary-foreground">
         <div>
-          <p className="font-medium text-white">{yachuCustomerService}</p>
+          {/* <p className="font-medium text-white">{yachuCustomerService}</p> */}
           <p className="text-sm text-slate-300">Customer Service</p>
         </div>
         <div className="flex items-center gap-3 text-sm">
