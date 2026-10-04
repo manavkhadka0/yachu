@@ -11,8 +11,9 @@ import { Questions } from "@/components/home/about-us/Questions";
 import { BlogSection } from "@/components/blog/blog-section";
 import { useProducts } from "@/hooks/use-products";
 import { useBlogs } from "@/hooks/use-blogs";
-import Image from "next/image";
 import HowToUseYachuHairOil from "@/components/home/HowTOUse";
+import DashainBanner from "@/components/home/DashainBanner";
+import DashainOfferSection from "@/components/home/DashainOfferSection";
 
 export default function HomePage() {
   const {
@@ -34,6 +35,7 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col">
+      <DashainBanner />
       <HeroSection />
       <FlowerDivider />
       <HowToUseYachuHairOil />
@@ -43,6 +45,8 @@ export default function HomePage() {
         isLoading={productsLoading}
         error={productsError}
       />
+      <FlowerDivider />
+      <DashainOfferSection />
       <FlowerDivider />
       <Ingredients />
       <FlowerDivider />

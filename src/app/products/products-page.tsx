@@ -3,6 +3,7 @@
 import ProductShowcase from "@/components/product/product-showcase";
 import { useProducts } from "@/hooks/use-products";
 import { Badge } from "@/components/ui/badge";
+import DashainOfferSection from "@/components/home/DashainOfferSection";
 
 export default function ProductsPage() {
   const { data: products, isLoading, error } = useProducts();
@@ -34,6 +35,12 @@ export default function ProductsPage() {
             Our Products
           </h1>
         </div>
+      </div>
+
+      {/* Dashain Bundle Pricing Offers */}
+      <DashainOfferSection />
+
+      <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 sm:pb-16 lg:pb-20 lg:max-w-7xl lg:px-8">
         <ProductShowcase
           products={filteredProducts}
           isLoading={isLoading}
@@ -46,3 +53,4 @@ export default function ProductsPage() {
     </div>
   );
 }
+
