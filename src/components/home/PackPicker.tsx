@@ -23,7 +23,7 @@ const PackPicker = ({ tiers, selected, onSelect, label }: PackPickerProps) => (
           aria-checked={active}
           onClick={() => onSelect(index)}
           className={cn(
-            "flex w-full cursor-pointer items-center gap-3 rounded-2xl border px-3.5 py-3 text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "flex min-h-[4.5rem] w-full min-w-0 cursor-pointer items-center gap-2.5 rounded-2xl border px-3 py-2.5 text-left sm:gap-3 sm:px-3.5 sm:py-3 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             active
               ? "border-forest bg-forest/[0.06] shadow-sm"
               : "border-border/80 bg-background hover:border-forest/25"
@@ -48,12 +48,12 @@ const PackPicker = ({ tiers, selected, onSelect, label }: PackPickerProps) => (
                 </span>
               )}
             </span>
-            <span className="mt-0.5 block truncate text-[11px] text-foreground/60 sm:text-xs">
+            <span className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-foreground/60 sm:text-xs">
               {tier.perk}
             </span>
           </span>
 
-          <span className="shrink-0 text-right">
+          <span className="shrink-0 whitespace-nowrap text-right">
             <span className="block text-[15px] font-bold tabular-nums leading-none text-forest sm:text-base">
               Rs. {tier.price.toLocaleString()}
             </span>

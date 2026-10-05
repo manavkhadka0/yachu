@@ -330,9 +330,9 @@ export default function DashainDhamakaPage() {
             className="mb-6 md:mb-10"
           />
 
-          <div className="mx-auto grid max-w-lg items-start gap-6 lg:max-w-none lg:grid-cols-2 lg:gap-10">
+          <div className="mx-auto grid max-w-lg grid-cols-1 items-start gap-6 lg:max-w-none lg:grid-cols-2 lg:gap-10">
             {/* Selection card — one clear job */}
-            <div className="rounded-3xl border border-border/70 bg-background p-3.5 shadow-[0_20px_50px_-40px_oklch(0.32_0.07_150/0.5)] sm:p-5">
+            <div className="min-w-0 rounded-3xl border border-border/70 bg-background p-3.5 shadow-[0_20px_50px_-40px_oklch(0.32_0.07_150/0.5)] sm:p-5">
               <div
                 role="tablist"
                 aria-label="Product"
@@ -351,7 +351,7 @@ export default function DashainDhamakaPage() {
                       aria-selected={active}
                       onClick={() => choose(index, 0)}
                       className={cn(
-                        "flex h-12 cursor-pointer items-center justify-center gap-1.5 rounded-full px-1.5 text-sm font-semibold transition-all sm:h-14 sm:gap-2 sm:px-2 sm:text-base",
+                        "flex h-12 min-w-0 cursor-pointer items-center justify-center gap-1.5 rounded-full px-2 text-sm font-semibold transition-all sm:h-14 sm:gap-2 sm:px-3 sm:text-base",
                         active
                           ? "bg-forest text-cream shadow-sm"
                           : "text-foreground/70 hover:text-forest"
@@ -368,7 +368,13 @@ export default function DashainDhamakaPage() {
                           />
                         </span>
                       )}
-                      <span className="truncate">{item.name}</span>
+                      {/* Phones get the short name so both tabs fit side by side */}
+                      <span className="min-w-0 truncate">
+                        <span className="sm:hidden">
+                          {item.name.replace(/^Yachu\s+/, "")}
+                        </span>
+                        <span className="hidden sm:inline">{item.name}</span>
+                      </span>
                     </button>
                   );
                 })}
