@@ -8,7 +8,7 @@
 export class Analyser {
   private analyser: AnalyserNode;
   private bufferLength = 0;
-  private dataArray: Uint8Array;
+  private dataArray: Uint8Array<ArrayBuffer>;
 
   constructor(node: AudioNode) {
     this.analyser = node.context.createAnalyser();
