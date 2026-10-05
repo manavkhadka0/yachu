@@ -137,7 +137,7 @@ export default function DashainOfferSection() {
             <div className="flex items-center justify-center gap-2">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-[11px] font-bold uppercase tracking-widest text-primary">
-                बडा दशैं विशेष अफर · Dashain 2081
+                बडा दशैं विशेष अफर · Dashain 2083
               </span>
               <Sparkles className="w-4 h-4 text-primary" />
             </div>
@@ -262,7 +262,7 @@ export default function DashainOfferSection() {
 
           {/* Footer */}
           <p className="text-center text-[11px] text-muted-foreground">
-            * Festive offer valid during Dashain 2081 season. Discounted prices applied automatically at checkout. All Nepal delivery available.
+            * Festive offer valid during Dashain 2083 season. Discounted prices applied automatically at checkout. All Nepal delivery available.
           </p>
         </div>
       </section>
