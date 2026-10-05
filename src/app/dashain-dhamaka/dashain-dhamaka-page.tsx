@@ -123,8 +123,17 @@ function SisanCoverage() {
             >
               {inView && (
                 <img
-                  src={`https://img.youtube.com/vi/${SISAN_VIDEO_ID}/hqdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${SISAN_VIDEO_ID}/maxresdefault.jpg`}
                   alt="Sisan Baniya covering Yachu Hair Oil on YouTube"
+                  onError={(e) => {
+                    // Some videos lack maxres; fall back to sd then hq
+                    const img = e.currentTarget;
+                    if (img.src.includes("maxresdefault")) {
+                      img.src = `https://img.youtube.com/vi/${SISAN_VIDEO_ID}/sddefault.jpg`;
+                    } else if (img.src.includes("sddefault")) {
+                      img.src = `https://img.youtube.com/vi/${SISAN_VIDEO_ID}/hqdefault.jpg`;
+                    }
+                  }}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
