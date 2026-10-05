@@ -1,9 +1,0 @@
-export { productsApi } from "./products";
-export { blogApi } from "./blog";
-export { ordersApi } from "./orders";
-export { instantOrdersApi } from "./instantOrders";
-export { contactApi } from "./contact";
-export { teamApi } from "./team";
-export { siteSettingsApi } from "./siteSettings";
-export { testimonialsApi } from "./testimonials";
-export { videoApi } from "./video";
