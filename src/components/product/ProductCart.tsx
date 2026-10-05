@@ -1,6 +1,6 @@
 "use client";
 
-import { calculateTotalPrice } from "@/services/lib/utils";
+import { calculateTotalPrice, getDiscountRate, getDiscountedPricePerBottle } from "@/services/lib/utils";
 import useProductCart from "@/store/zustand";
 import { Button } from "../ui/button";
 import { Minus, Plus, X, ShoppingBag, ArrowRight } from "lucide-react";
@@ -32,6 +32,10 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
   const [deliveryLocation, setDeliveryLocation] = useState<
     "inside" | "outside"
   >("inside");
+  const totalBottles = cart.reduce((sum, item) => sum + item.count, 0);
+  const discountRate = getDiscountRate(totalBottles);
+  const discountedPricePerBottle = getDiscountedPricePerBottle(totalBottles);
+  const discountPercent = Math.round(discountRate * 100);
   const totalPrice = calculateTotalPrice(cart);
   const shippingCharge = deliveryLocation === "inside" ? 100 : 150;
   const finalTotal = totalPrice + shippingCharge;
@@ -124,9 +128,19 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                               <h3 className="font-medium text-foreground text-base mb-1 truncate">
                                 {product.title}
                               </h3>
-                              <p className="text-muted-foreground text-sm">
-                                Rs. {product.price}
-                              </p>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <p className="text-foreground text-sm font-semibold">
+                                  Rs. {discountedPricePerBottle}
+                                </p>
+                                <p className="text-muted-foreground text-xs line-through">
+                                  Rs. 2,500
+                                </p>
+                                {discountPercent > 0 && (
+                                  <Badge variant="secondary" className="text-xs px-1.5 py-0 text-green-700 bg-green-100 dark:bg-green-900 dark:text-green-300">
+                                    {discountPercent}% off
+                                  </Badge>
+                                )}
+                              </div>
                             </div>
 
                             {/* Quantity Controls */}

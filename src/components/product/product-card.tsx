@@ -93,13 +93,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <button
             type="button"
             onClick={handleOrderNow}
-            className="flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-yellow-cta py-3.5 text-xs font-bold uppercase tracking-widest text-[oklch(0.2_0.04_55)] transition-all hover:brightness-95"
+            className="flex cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-yellow-cta px-4 py-3.5 text-[11px] font-bold uppercase tracking-wide text-[oklch(0.2_0.04_55)] transition-all hover:brightness-95"
           >
-            <ShoppingCart className="h-4 w-4" /> Order Now
+            <ShoppingCart className="h-4 w-4 shrink-0" /> Order Now
           </button>
           <Link
             href={`/products/${slug}`}
-            className="flex items-center justify-center rounded-xl border border-border py-3.5 text-xs font-bold uppercase tracking-widest text-forest transition-all hover:bg-muted"
+            className="flex items-center justify-center rounded-xl border border-border py-3.5 text-[11px] font-bold uppercase tracking-wide text-forest transition-all hover:bg-muted"
           >
             Details
           </Link>
