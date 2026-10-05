@@ -7,11 +7,13 @@ import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import {
   Loader2,
-  Info,
   CheckCircle2,
   Banknote,
-  ShieldCheck,
-  Truck,
+  Minus,
+  Plus,
+  ChevronDown,
+  ShoppingBag,
+  Gift,
 } from "lucide-react";
 import { checkoutFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
@@ -20,7 +22,6 @@ import useProductCart from "@/store/zustand";
 import { calculateTotalPrice } from "@/services/lib/utils";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Alert, AlertDescription } from "../ui/alert";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { useCreateOrder } from "@/hooks/use-orders";
@@ -32,6 +33,7 @@ import {
 } from "@/services/api/nps";
 import posthog from "posthog-js";
 import { toast } from "sonner";
+import { DASHAIN_PACKS, dashainUnitPrice } from "@/constants/offers";
 
 interface CheckoutFormProps {
   onSuccess?: () => void;
@@ -50,11 +52,52 @@ const CheckoutForm = ({
   initialDeliveryLocation = "inside",
   onDeliveryLocationChange,
 }: CheckoutFormProps) => {
-  const { cart, clearCart } = useProductCart();
+  const { cart, clearCart, addToCart, increaseCount, decreaseCount } =
+    useProductCart();
+
+  // Keep pack products on the Dashain price that matches their quantity
+  useEffect(() => {
+    let changed = false;
+    const next = cart.map((item) => {
+      const price = dashainUnitPrice(item.product.slug, item.count);
+      if (price === undefined || price === item.product.price) return item;
+      changed = true;
+      return { ...item, product: { ...item.product, price } };
+    });
+    if (changed) addToCart(next);
+  }, [cart, addToCart]);
+
+  // Offer the best-value pack when a pack product is below it
+  const upsell = cart
+    .map((item) => {
+      const pack = DASHAIN_PACKS.find((p) => p.slug === item.product.slug);
+      const best = pack?.tiers.find((t) => t.best);
+      return best && item.count < best.qty ? { item, best } : null;
+    })
+    .find((entry) => entry !== null);
+
+  const applyUpsell = () => {
+    if (!upsell) return;
+    posthog.capture("checkout_upsell_accepted", {
+      product_slug: upsell.item.product.slug,
+      quantity: upsell.best.qty,
+    });
+    addToCart(
+      cart.map((item) =>
+        item.product.id === upsell.item.product.id
+          ? {
+              product: { ...item.product, price: upsell.best.perPcs },
+              count: upsell.best.qty,
+            }
+          : item
+      )
+    );
+  };
   const [deliveryLocation, setDeliveryLocation] = useState<"inside" | "outside">(
     initialDeliveryLocation || "inside"
   );
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [isNpsEnabled, setIsNpsEnabled] = useState<boolean | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethodType>("cod");
   const [isInitiatingNps, setIsInitiatingNps] = useState(false);
@@ -80,20 +123,13 @@ const CheckoutForm = ({
   const deliveryCharge = deliveryLocation === "inside" ? 100 : 150;
   const totalAmount = subtotal + deliveryCharge;
 
+  // Cash on Delivery stays the default; online payment is offered when enabled
   useEffect(() => {
     getNPSStatus()
-      .then((res) => {
-        setIsNpsEnabled(res.is_enabled);
-        if (res.is_enabled) {
-          setPaymentMethod("nps");
-        } else {
-          setPaymentMethod("cod");
-        }
-      })
+      .then((res) => setIsNpsEnabled(res.is_enabled))
       .catch((err) => {
         console.warn("Could not check NPS status:", err);
         setIsNpsEnabled(false);
-        setPaymentMethod("cod");
       });
   }, []);
 
@@ -246,8 +282,8 @@ const CheckoutForm = ({
     return (
       <Card className={cn("border-0 shadow-none", className)}>
         <CardContent className="flex flex-col items-center justify-center py-12 px-4 space-y-6 text-center">
-          <div className="rounded-full bg-emerald-500/10 p-3 border border-emerald-500/20">
-            <CheckCircle2 className="h-12 w-12 text-emerald-600" />
+          <div className="rounded-full bg-primary/10 p-3 border border-primary/20">
+            <CheckCircle2 className="h-12 w-12 text-primary" />
           </div>
           <div className="space-y-2">
             <CardTitle className="text-2xl text-foreground">
@@ -265,222 +301,274 @@ const CheckoutForm = ({
 
   const isSubmitting = createOrderMutation.isPending || isInitiatingNps;
 
+  if (cart.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-3 px-4 py-12 text-center">
+        <ShoppingBag className="h-10 w-10 text-muted-foreground" />
+        <p className="text-lg font-semibold text-foreground">
+          Your cart is empty
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Add a product to place your order.
+        </p>
+      </div>
+    );
+  }
+
+  const choiceClass = (active: boolean) =>
+    cn(
+      "flex h-14 cursor-pointer flex-col items-start justify-center gap-0.5 whitespace-nowrap rounded-xl border-2 px-3.5 text-sm font-semibold text-foreground transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:text-base",
+      active
+        ? "border-forest bg-accent/60"
+        : "border-border bg-background hover:border-forest/30"
+    );
+
   return (
-    <Card className={cn("border-0 shadow-none", className)}>
+    <Card className={cn("border-0 bg-transparent py-0 shadow-none", className)}>
       <CardContent className="p-0">
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <Alert className="border-l-4 border-l-amber-500 bg-amber-500/5 border-amber-500/20 py-2.5 px-3">
-              <Info className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-              <AlertDescription className="text-xs text-foreground leading-relaxed">
-                Delivery charge: Rs. 100 for inside Kathmandu Valley, Rs. 150
-                for outside Kathmandu Valley
-              </AlertDescription>
-            </Alert>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            {/* Order summary */}
+            <div className="rounded-2xl bg-cream p-3.5">
+              <ul className="space-y-3">
+                {cart.map(({ product, count }) => (
+                  <li key={product.id} className="flex items-center gap-3">
+                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-white">
+                      <img
+                        src={product.image1}
+                        alt=""
+                        width="48"
+                        height="48"
+                        className="h-full w-full object-contain p-1"
+                      />
+                    </div>
+                    <p className="min-w-0 flex-1 truncate text-base font-semibold text-foreground">
+                      {product.title}
+                    </p>
+                    <div className="flex shrink-0 items-center rounded-full border bg-white">
+                      <button
+                        type="button"
+                        aria-label={`Decrease quantity of ${product.title}`}
+                        onClick={() => decreaseCount(product.id)}
+                        disabled={isSubmitting || count <= 1}
+                        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:cursor-not-allowed disabled:opacity-30"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="w-6 text-center text-base font-bold tabular-nums">
+                        {count}
+                      </span>
+                      <button
+                        type="button"
+                        aria-label={`Increase quantity of ${product.title}`}
+                        onClick={() => increaseCount(product.id)}
+                        disabled={isSubmitting}
+                        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:opacity-30"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
 
-            <div className="space-y-3">
+              {upsell && (
+                <button
+                  type="button"
+                  onClick={applyUpsell}
+                  disabled={isSubmitting}
+                  className="mt-3 flex w-full cursor-pointer items-center gap-2.5 rounded-xl border border-gold/40 bg-gold/10 px-3 py-2.5 text-left transition-colors hover:bg-gold/20"
+                >
+                  <Gift className="h-5 w-5 shrink-0 text-gold" />
+                  <span className="min-w-0 flex-1 text-sm font-medium leading-snug text-forest">
+                    Get {upsell.best.qty} and save Rs.{" "}
+                    {(
+                      upsell.best.originalPrice - upsell.best.price
+                    ).toLocaleString()}
+                    {upsell.best.perk.startsWith("Free") && " + free Facewash"}
+                  </span>
+                  <span className="shrink-0 rounded-full bg-forest px-3 py-1.5 text-xs font-bold text-cream">
+                    Get {upsell.best.qty}
+                  </span>
+                </button>
+              )}
+
+              <div className="mt-3 flex items-baseline justify-between border-t border-border pt-3">
+                <span className="text-sm text-foreground">
+                  Total with delivery
+                </span>
+                <span className="text-xl font-extrabold text-foreground">
+                  Rs. {totalAmount.toLocaleString()}
+                </span>
+              </div>
+            </div>
+
+            <RHFInput
+              name="name"
+              label="Full name"
+              floatingLabel
+              autoComplete="name"
+              disabled={isSubmitting}
+            />
+
+            <RHFInput
+              name="phone"
+              label="Phone number"
+              floatingLabel
+              type="tel"
+              inputMode="numeric"
+              autoComplete="tel"
+              disabled={isSubmitting}
+            />
+
+            {/* Delivery Location Selector */}
+            <div
+              role="radiogroup"
+              aria-label="Delivery location"
+              className="grid grid-cols-2 gap-2.5"
+            >
+              {(
+                [
+                  { value: "inside", label: "Inside Valley", charge: 100 },
+                  { value: "outside", label: "Outside Valley", charge: 150 },
+                ] as const
+              ).map((option) => {
+                const active = deliveryLocation === option.value;
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    role="radio"
+                    aria-checked={active}
+                    onClick={() => handleDeliveryLocationChange(option.value)}
+                    disabled={isSubmitting}
+                    className={choiceClass(active)}
+                  >
+                    {option.label}
+                    <span className="text-xs font-medium text-muted-foreground sm:text-sm">
+                      Rs. {option.charge}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <RHFTextarea
+              name="address"
+              label="Delivery address"
+              floatingLabel
+              rows={2}
+              autoComplete="street-address"
+              className="min-h-[80px]"
+              disabled={isSubmitting}
+            />
+
+            {/* Payment Method Selector */}
+            {isNpsEnabled && (
+              <div
+                role="radiogroup"
+                aria-label="Payment method"
+                className="grid grid-cols-2 gap-2.5"
+              >
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={paymentMethod === "cod"}
+                  onClick={() => setPaymentMethod("cod")}
+                  disabled={isSubmitting}
+                  className={choiceClass(paymentMethod === "cod")}
+                >
+                  Cash on Delivery
+                  <Banknote className="hidden h-5 w-5 shrink-0 text-primary sm:block" />
+                </button>
+
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked={paymentMethod === "nps"}
+                  onClick={() => setPaymentMethod("nps")}
+                  disabled={isSubmitting}
+                  className={choiceClass(paymentMethod === "nps")}
+                >
+                  Pay online
+                  <Image
+                    src="/nps.png"
+                    alt="NPS"
+                    width={40}
+                    height={18}
+                    className="hidden h-4 w-auto shrink-0 object-contain sm:block"
+                  />
+                </button>
+              </div>
+            )}
+
+            {/* Optional details stay out of the way until asked for */}
+            <button
+              type="button"
+              aria-expanded={showMore}
+              onClick={() => setShowMore((open) => !open)}
+              className="flex cursor-pointer items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 transition-transform",
+                  showMore && "rotate-180"
+                )}
+              />
+              Add a note or email
+            </button>
+
+            <div className={cn("space-y-3", !showMore && "hidden")}>
               <RHFInput
-                name="name"
-                label="Full Name"
-                placeholder="eg. John Doe"
-                required
-                className="text-sm h-9"
+                name="alternate_phone"
+                label="Alternate phone number"
+                floatingLabel
+                type="tel"
+                inputMode="numeric"
                 disabled={isSubmitting}
               />
-
-              <div className="grid sm:grid-cols-2 gap-3">
-                <RHFInput
-                  name="phone"
-                  label="Phone Number"
-                  placeholder="eg. 9865436650"
-                  type="tel"
-                  className="text-sm h-9"
-                  required
-                  disabled={isSubmitting}
-                />
-                <RHFInput
-                  name="alternate_phone"
-                  label="Alternate Phone Number (Optional)"
-                  placeholder="eg. 9865436651"
-                  type="tel"
-                  className="text-sm h-9"
-                  disabled={isSubmitting}
-                />
-              </div>
-
               <RHFInput
                 name="email"
-                label="Email Address (Optional)"
-                placeholder="eg. john@gmail.com"
+                label="Email address"
+                floatingLabel
                 type="email"
-                className="text-sm h-9"
+                autoComplete="email"
                 disabled={isSubmitting}
               />
-
-              {/* Delivery Location Selector */}
-              <div className="space-y-1.5 pt-1">
-                <label className="text-xs font-semibold text-foreground flex items-center justify-between">
-                  <span className="flex items-center gap-1.5">
-                    Delivery Location
-                  </span>
-                  <span className="text-[11px] font-medium text-primary">
-                    + Rs. {deliveryCharge} shipping applied
-                  </span>
-                </label>
-
-                <div className="grid grid-cols-2 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => handleDeliveryLocationChange("inside")}
-                    disabled={isSubmitting}
-                    className={cn(
-                      "flex flex-col items-start p-2.5 rounded-lg border text-left transition-all cursor-pointer",
-                      deliveryLocation === "inside"
-                        ? "border-primary bg-primary/5 text-primary shadow-xs ring-1 ring-primary/20"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
-                    )}
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <span className="text-xs font-semibold text-foreground">
-                        Inside Valley
-                      </span>
-                      <span className="text-xs font-bold text-primary">
-                        Rs. 100
-                      </span>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleDeliveryLocationChange("outside")}
-                    disabled={isSubmitting}
-                    className={cn(
-                      "flex flex-col items-start p-2.5 rounded-lg border text-left transition-all cursor-pointer",
-                      deliveryLocation === "outside"
-                        ? "border-primary bg-primary/5 text-primary shadow-xs ring-1 ring-primary/20"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
-                    )}
-                  >
-                    <div className="flex items-center justify-between w-full">
-                      <span className="text-xs font-semibold text-foreground">
-                        Outside Valley
-                      </span>
-                      <span className="text-xs font-bold text-primary">
-                        Rs. 150
-                      </span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              <RHFTextarea
-                name="address"
-                label="Delivery Address"
-                rows={2}
-                placeholder={
-                  deliveryLocation === "inside"
-                    ? "eg. New Baneshwor - 10, Kathmandu"
-                    : "eg. Lakeside, Ward 6, Pokhara"
-                }
-                className="text-sm min-h-[64px]"
-                required
-                disabled={isSubmitting}
-              />
-
               <RHFTextarea
                 name="remarks"
-                label="Remarks (Optional)"
+                label="Note for your order"
+                floatingLabel
                 rows={2}
-                placeholder="Any special instructions or notes for your order"
-                className="text-sm min-h-[56px]"
                 disabled={isSubmitting}
               />
             </div>
 
-           
-
-            {/* Payment Method Selector */}
-            {isNpsEnabled && (
-              <div className="space-y-2 pt-1 border-t border-border/40">
-                <label className="text-xs font-semibold text-foreground">
-                  Payment Method
-                </label>
-
-                <div className="grid grid-cols-2 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod("nps")}
-                    disabled={isSubmitting}
-                    className={cn(
-                      "flex items-center justify-center p-2 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
-                      paymentMethod === "nps"
-                        ? "border-primary bg-primary/5 text-primary shadow-xs"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
-                    )}
-                  >
-                    <Image
-                      src="/nps.png"
-                      alt="NPS Logo"
-                      width={20}
-                      height={20}
-                      className="h-4 w-auto shrink-0 object-contain"
-                    />
-                    <span>Pay with NPS</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod("cod")}
-                    disabled={isSubmitting}
-                    className={cn(
-                      "flex items-center justify-center p-2.5 rounded-lg border transition-all gap-2 text-center text-xs font-medium cursor-pointer",
-                      paymentMethod === "cod"
-                        ? "border-primary bg-primary/5 text-primary shadow-xs"
-                        : "border-border/60 hover:border-border hover:bg-muted/30 text-muted-foreground"
-                    )}
-                  >
-                    <Banknote className="h-4 w-4 shrink-0" />
-                    <span>Cash on Delivery</span>
-                  </button>
-                </div>
-
-                {paymentMethod === "nps" && (
-                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground bg-muted/30 px-2.5 py-1.5 rounded-md border border-border/50">
-                    <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                    <span>
-                      Secured by Nepal Payment Solution (Mobile Banking,
-                      Wallets, Cards)
-                    </span>
-                  </div>
+            {/* Submit stays pinned to the bottom of the sheet */}
+            <div className="sticky bottom-0 -mx-5 rounded-b-3xl bg-background px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 sm:-mx-7 sm:px-7">
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="h-14 w-full rounded-full text-base font-bold shadow-lg shadow-primary/30 sm:text-lg"
+                variant="default"
+              >
+                {isInitiatingNps ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    <span>Redirecting to NPS Gateway...</span>
+                  </>
+                ) : createOrderMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    <span>Placing your order...</span>
+                  </>
+                ) : paymentMethod === "nps" ? (
+                  `Pay Rs. ${totalAmount.toLocaleString()}`
+                ) : (
+                  `Confirm Order · Rs. ${totalAmount.toLocaleString()}`
                 )}
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className={cn(
-                "w-full text-sm h-11 px-4 transition-all font-semibold shadow-xs mt-2",
-                isSubmitting && "animate-pulse"
-              )}
-              variant="default"
-            >
-              {isInitiatingNps ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  <span>Redirecting to NPS Gateway...</span>
-                </>
-              ) : createOrderMutation.isPending ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  <span>Processing Order...</span>
-                </>
-              ) : paymentMethod === "nps" ? (
-                `Pay Rs. ${totalAmount} with NPS`
-              ) : (
-                `Confirm Order (COD) - Rs. ${totalAmount}`
-              )}
-            </Button>
+              </Button>
+            </div>
           </form>
 
           {/* Hidden Gateway Form for Auto-Submit */}

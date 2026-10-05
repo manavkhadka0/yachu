@@ -1,32 +1,18 @@
-import ContactDetails from "./ContactDetails";
-import ContactForm from "./ContactForm";
+import ContactSection from "@/components/home/ContactSection";
+import SectionHeading from "@/components/home/SectionHeading";
 import FAQ from "./FAQ";
-import FlowerDivider from "@/components/shared/FlowerDivider";
 
 const Contact = () => {
   return (
-    <div className="pt-12 pb-24 w-full" id="contact">
-      {/* Central container for ContactForm + ContactDetails */}
-      <div className="w-full flex justify-center">
-        <div className="w-full max-w-5xl px-4">
-          <ContactForm />
-          <FlowerDivider />
-        </div>
-      </div>
+    <div className="flex flex-col">
+      <ContactSection as="h1" />
 
-      {/* FAQ Section */}
-      <div className="w-full mt-16 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h3 className="text-4xl font-bold mt-5 pt-6">
-            Frequently Asked Questions
-          </h3>
-          <p className="font-normal pb-4 pt-3 text-sm text-gray-400">
-            Here are some common questions about Yachu Hair Oil, answered for
-            you
-          </p>
+      <section className="relative py-20 md:py-28">
+        <div className="mx-auto max-w-4xl px-6">
+          <SectionHeading eyebrow="Good questions" title="Frequently asked" />
           <FAQ />
         </div>
-      </div>
+      </section>
     </div>
   );
 };

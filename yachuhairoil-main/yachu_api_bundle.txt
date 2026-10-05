@@ -1,0 +1,672 @@
+import { Members, TEAM } from "@/types/team";
+import { BASE_API_URL } from "@/utils/config";
+import { franchise } from "@/constants/constant";
+
+export const teamAPI = {
+  getTeamMembers: async (): Promise<Members> => {
+    const url = new URL(`${BASE_API_URL}/team-members/`);
+    if (franchise) {
+      url.searchParams.append("franchise", franchise);
+    }
+    const response = await fetch(url.toString(), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch team members: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  },
+
+  createTeamMember: async (memberData: FormData): Promise<TEAM> => {
+    const url = new URL(`${BASE_API_URL}/team-members/`);
+    const response = await fetch(url.toString(), {
+      method: "POST",
+
+      body: memberData,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to create team member: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  },
+
+  updateTeamMember: async (id: number, memberData: FormData): Promise<TEAM> => {
+    const url = new URL(`${BASE_API_URL}/team-members/${id}/`);
+    const response = await fetch(url.toString(), {
+      method: "PUT",
+
+      body: memberData,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to update team member: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  },
+
+  deleteTeamMember: async (id: number): Promise<void> => {
+    const url = new URL(`${BASE_API_URL}/team-members/${id}/`);
+    const response = await fetch(url.toString(), {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to delete team member: ${response.status}`);
+    }
+  },
+};
+import { BASE_API_URL } from "@/utils/config";
+import { TProduct } from "@/types/product";
+
+export const productsApi = {
+  async getProducts(): Promise<TProduct[]> {
+    try {
+      const res = await fetch(`${BASE_API_URL}/products/`, {
+        next: { revalidate: 10 },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
+  },
+
+  async getProductBySlug(slug: string): Promise<TProduct> {
+    try {
+      const res = await fetch(`${BASE_API_URL}/products/${slug}`, {
+        next: { revalidate: 10 },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error(`Error fetching product ${slug}:`, error);
+      throw error;
+    }
+  }
+};import {
+  TBlog,
+  PaginatedBlogResponse,
+  CreateBlogData,
+  UpdateBlogData,
+  BlogFilters,
+  TCategory,
+  TTag,
+  TAuthor,
+} from "@/types/blog";
+import { BASE_API_URL } from "@/utils/config";
+import { franchise } from "@/constants/constant";
+
+class BlogAPI {
+  private toFormData(
+    data: CreateBlogData | UpdateBlogData,
+    isUpdate = false
+  ): FormData {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (value === null || value === undefined) return;
+
+      if (key === "tags" && Array.isArray(value)) {
+        // Append each tag individually
+        value.forEach((tagId) => formData.append("tags", tagId.toString()));
+      } else if (key === "thumbnail_image") {
+        if (value instanceof File) {
+          // New file uploaded
+          formData.append("thumbnail_image", value, value.name);
+        } else if (typeof value === "string" && isUpdate) {
+          // Existing image URL - don't append to FormData for updates
+          // The backend should keep the existing image if no new file is provided
+          console.log("Keeping existing image:", value);
+        }
+      } else if (value instanceof File) {
+        // Handle other file types
+        formData.append(key, value, value.name);
+      } else if (typeof value === "boolean") {
+        // Handle boolean values
+        formData.append(key, value.toString());
+      } else if (typeof value !== "object") {
+        formData.append(key, value.toString());
+      }
+    });
+
+    if (franchise) {
+      formData.append("franchise", franchise);
+    }
+
+    // Debug: Log FormData contents
+    console.log("FormData contents:");
+    for (const [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        console.log(
+          `${key}: File(${value.name}, ${value.size} bytes, ${value.type})`
+        );
+      } else {
+        console.log(`${key}:`, value);
+      }
+    }
+
+    return formData;
+  }
+
+  async getBlogs(filters: BlogFilters): Promise<PaginatedBlogResponse> {
+    const url = new URL(`${BASE_API_URL}/posts/`);
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== "") {
+        url.searchParams.append(key, String(value));
+      }
+    });
+
+    if (franchise) {
+      url.searchParams.append("franchise", franchise);
+    }
+
+    const response = await fetch(url.toString(), {
+      next: { revalidate: 10 },
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "Failed to fetch blogs");
+    }
+
+    return response.json();
+  }
+
+  async getBlogBySlug(slug: string): Promise<TBlog> {
+    const response = await fetch(`${BASE_API_URL}/post-single/${slug}/`, {
+      next: { revalidate: 10 },
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `Failed to fetch blog: ${slug}`);
+    }
+    const result = await response.json();
+    return result.data;
+  }
+
+  async createBlog(blogData: CreateBlogData): Promise<TBlog> {
+    const formData = this.toFormData(blogData, false);
+
+    const response = await fetch(`${BASE_API_URL}/posts/create/`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch {
+        errorData = { detail: errorText };
+      }
+      console.error("Create blog error:", errorData);
+      throw new Error(errorData.detail || "Failed to create blog");
+    }
+    return response.json();
+  }
+
+  async updateBlog(slug: string, blogData: UpdateBlogData): Promise<TBlog> {
+    const formData = this.toFormData(blogData, true);
+
+    const response = await fetch(`${BASE_API_URL}/posts/${slug}/`, {
+      method: "PATCH",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch {
+        errorData = { detail: errorText };
+      }
+      console.error("Update blog error:", errorData);
+      throw new Error(errorData.detail || "Failed to update blog");
+    }
+    return response.json();
+  }
+
+  async deleteBlog(slug: string): Promise<void> {
+    const response = await fetch(`${BASE_API_URL}/posts/${slug}/`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok && response.status !== 204) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "Failed to delete blog");
+    }
+  }
+
+  async getBlogCategories(): Promise<TCategory[]> {
+    const response = await fetch(`${BASE_API_URL}/categories/`);
+    if (!response.ok) throw new Error("Failed to fetch blog categories");
+    const data = await response.json();
+    return data;
+  }
+
+  async getBlogTags(): Promise<TTag[]> {
+    const response = await fetch(`${BASE_API_URL}/tags/`);
+    if (!response.ok) throw new Error("Failed to fetch blog tags");
+    const data = await response.json();
+    return data;
+  }
+
+  async getAuthors(): Promise<TAuthor[]> {
+    const url = new URL(`${BASE_API_URL}/authors/`);
+    if (franchise) {
+      url.searchParams.append("franchise", franchise);
+    }
+    const response = await fetch(url.toString());
+    if (!response.ok) throw new Error("Failed to fetch authors");
+    const data = await response.json();
+    return data;
+  }
+
+  async createTag(tagName: string): Promise<TTag> {
+    const response = await fetch(`${BASE_API_URL}/tags/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tag_name: tagName,
+        ...(franchise && { franchise }),
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || "Failed to create tag");
+    }
+    return response.json();
+  }
+}
+
+export const blogAPI = new BlogAPI();
+import {
+  Contact,
+  ContactFormData,
+  PaginatedContacts,
+  ContactFilters,
+} from "@/types/contact";
+import { BASE_API_URL } from "@/utils/config";
+import { franchise } from "@/constants/constant";
+
+export const contactAPI = {
+  getContacts: async (
+    filters: ContactFilters = {}
+  ): Promise<PaginatedContacts> => {
+    const { page = 1, page_size = 10 } = filters;
+
+    const url = new URL(`${BASE_API_URL}/contacts/`);
+    url.searchParams.append("page", page.toString());
+    url.searchParams.append("page_size", page_size.toString());
+
+    if (franchise) {
+      url.searchParams.append("franchise", franchise);
+    }
+
+    const response = await fetch(url.toString(), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch contacts: ${response.status}`);
+    }
+
+    return await response.json();
+  },
+
+  createContact: async (contactData: ContactFormData): Promise<Contact> => {
+    const response = await fetch(`${BASE_API_URL}/contacts/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...contactData,
+        franchise: franchise,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to create contact: ${response.status}`);
+    }
+
+    return await response.json();
+  },
+};
+
+import { BASE_API_URL } from "@/utils/config";
+
+export interface SiteConfig {
+  id: number;
+  meta_title: string;
+  meta_description: string;
+  hero_title: string;
+  hero_section_subtitle: string;
+  hero_section_image: string;
+  about_founder: string;
+  message_from_ceo: string;
+  our_story: string;
+}
+
+const DUMMY_SITE_CONFIG: SiteConfig = {
+  id: 1,
+  meta_title: "Meta Title Landing Page",
+  meta_description: "Meta Description Landing Page",
+  hero_title: "Title",
+  hero_section_subtitle: "yachu hair oil is a natural hair care product made with traditional ingredients",
+  hero_section_image: "./yachu-hero.png",
+  about_founder: "dummy_founder",
+  message_from_ceo: "dummy_message",
+  our_story: "dummy_story",
+};
+
+export const siteSettingsAPI = {
+  getSiteConfig: async (): Promise<SiteConfig> => {
+    try {
+      const response = await fetch(`${BASE_API_URL}/site-configs/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        next: { revalidate: 10 },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: SiteConfig[] = await response.json();
+
+      // Return the first config or fallback to dummy
+      return data.length > 0 ? data[0] : DUMMY_SITE_CONFIG;
+    } catch (error) {
+      console.error('Error fetching site config:', error);
+      // Return dummy data on error
+      return DUMMY_SITE_CONFIG;
+    }
+  },
+};import { BASE_API_URL } from "@/utils/config";
+import { franchise } from "@/constants/constant";
+import {
+  TCreateOrderRequest,
+  TCreateOrderResponse,
+  TOrderFilters,
+  TOrdersResponse,
+  TUpdateOrderRequest,
+  TOrder,
+} from "@/types/order";
+
+export const ordersApi = {
+  // Get orders with filters
+  async getOrders(filters: TOrderFilters = {}): Promise<TOrdersResponse> {
+    try {
+      const params = new URLSearchParams();
+
+      // Add franchise filter
+      params.append("franchise", franchise);
+
+      // Add other filters
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          params.append(key, String(value));
+        }
+      });
+
+      const res = await fetch(`${BASE_API_URL}/orders/?${params.toString()}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `HTTP error! status: ${res.status}`
+        );
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      throw error;
+    }
+  },
+
+  // Get single order by ID
+  async getOrder(id: number): Promise<TOrder> {
+    try {
+      const res = await fetch(
+        `${BASE_API_URL}/orders/${id}/?franchise=${franchise}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `HTTP error! status: ${res.status}`
+        );
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching order:", error);
+      throw error;
+    }
+  },
+
+  // Create new order
+  async createOrder(
+    orderData: TCreateOrderRequest
+  ): Promise<TCreateOrderResponse> {
+    try {
+      const res = await fetch(`${BASE_API_URL}/orders/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...orderData,
+          franchise: franchise,
+        }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `HTTP error! status: ${res.status}`
+        );
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error("Error creating order:", error);
+      throw error;
+    }
+  },
+
+  // Update order
+  async updateOrder(
+    id: number,
+    updateData: TUpdateOrderRequest
+  ): Promise<TOrder> {
+    try {
+      const res = await fetch(`${BASE_API_URL}/orders/${id}/`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(updateData),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `HTTP error! status: ${res.status}`
+        );
+      }
+
+      return res.json();
+    } catch (error) {
+      console.error("Error updating order:", error);
+      throw error;
+    }
+  },
+
+  // Delete order
+  async deleteOrder(id: number): Promise<void> {
+    try {
+      const res = await fetch(
+        `${BASE_API_URL}/orders/${id}/?franchise=${franchise}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(
+          errorData.message || `HTTP error! status: ${res.status}`
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      throw error;
+    }
+  },
+};
+import { BASE_API_URL } from "@/utils/config";
+import { franchise } from "@/constants/constant";
+import {
+  InstantOrderFormData,
+  InstantOrderResponse,
+  PaginatedInstantOrders,
+  InstantOrderFilters,
+} from "@/types/instant-order";
+
+export const instantOrderAPI = {
+  getInstantOrders: async (
+    filters: InstantOrderFilters = {}
+  ): Promise<PaginatedInstantOrders> => {
+    try {
+      const {
+        page = 1,
+        page_size = 10,
+        search,
+        ordering,
+        date_gte,
+        date_lte,
+      } = filters;
+
+      const url = new URL(`${BASE_API_URL}/instant-order/`);
+      const params = new URLSearchParams();
+
+      params.append("page", page.toString());
+      params.append("page_size", page_size.toString());
+
+      if (franchise) {
+        params.append("franchise", franchise);
+      }
+
+      if (search && search.trim()) {
+        params.append("search", search.trim());
+      }
+
+      if (ordering) {
+        params.append("ordering", ordering);
+      }
+
+      // Handle date parameters - URLSearchParams will encode them automatically
+      // The %3A you see is correct URL encoding for :
+      if (date_gte && date_gte.trim()) {
+        params.append("date_gte", date_gte.trim());
+      }
+
+      if (date_lte && date_lte.trim()) {
+        params.append("date_lte", date_lte.trim());
+      }
+
+      const finalUrl = `${url.toString()}?${params.toString()}`;
+
+      const response = await fetch(finalUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch instant orders: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching instant orders:", error);
+      throw error;
+    }
+  },
+
+  createInstantOrder: async (
+    orderData: InstantOrderFormData
+  ): Promise<InstantOrderResponse> => {
+    try {
+      const response = await fetch(`${BASE_API_URL}/instant-order/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...orderData,
+          franchise: franchise,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.message ||
+            errorData.detail ||
+            `Failed to create instant order: ${response.status}`
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error creating instant order:", error);
+      throw error;
+    }
+  },
+};

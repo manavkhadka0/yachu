@@ -1,0 +1,293 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cream: var(--cream);
+  --color-bark: var(--bark);
+  --color-moss: var(--moss);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --color-yellow-cta: var(--yellow-cta);
+
+  --font-display: var(--font-display-next), "Playfair Display", ui-serif, Georgia, serif;
+  --font-body: var(--font-body-next), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-script-next), "Caveat", ui-serif, cursive;
+  --font-devanagari: var(--font-devanagari-next), "Noto Serif Devanagari", serif;
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* White background, dark forest text */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.22 0.04 145);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.04 145);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.04 145);
+
+  /* Primary = deep forest green (used for buttons, accents on light bg) */
+  --primary: oklch(0.32 0.07 150);
+  --primary-foreground: oklch(0.98 0.01 90);
+
+  /* Secondary = warm bark brown */
+  --secondary: oklch(0.36 0.06 55);
+  --secondary-foreground: oklch(0.98 0.01 90);
+
+  --muted: oklch(0.95 0.015 90);
+  --muted-foreground: oklch(0.45 0.03 100);
+
+  --accent: oklch(0.92 0.04 145);
+  --accent-foreground: oklch(0.22 0.05 145);
+
+  --destructive: oklch(0.55 0.18 28);
+  --destructive-foreground: oklch(0.98 0.01 80);
+
+  --border: oklch(0.88 0.015 95);
+  --input: oklch(0.88 0.015 95);
+  --ring: oklch(0.55 0.1 145);
+
+  /* Brand tokens */
+  --cream: oklch(0.97 0.025 90);
+  --bark: oklch(0.36 0.06 55);
+  --moss: oklch(0.45 0.09 145);
+  --forest: oklch(0.28 0.07 150);
+  --gold: oklch(67.637% 0.14285 70.135);
+  --sage: oklch(0.85 0.04 145);
+  --yellow-cta: oklch(0.85 0.18 95);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  /* Fix mobile tap delay and ensure all interactive elements are responsive */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  label {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(15px, -25px) rotate(-5deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes leaf-sway {
+
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 9s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s ease-out both;
+}
+
+.animate-leaf-sway {
+  animation: leaf-sway 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-scroll-x {
+  animation: scroll-x 40s linear infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+.animate-counter-spin {
+  animation: counter-spin 60s linear infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, var(--forest) 0%, var(--gold) 50%, var(--forest) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+.text-shimmer-gold {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--cream) 50%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

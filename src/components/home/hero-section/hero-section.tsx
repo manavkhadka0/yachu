@@ -1,13 +1,26 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { Banknote, ChevronRight, MessageCircle, Truck } from "lucide-react";
+import {
+  OIL_TIERS,
+  whatsappOrderUrl,
+  type OfferTier,
+} from "@/constants/offers";
+import PackPicker from "@/components/home/PackPicker";
+import TikaJamara from "@/components/shared/TikaJamara";
 import posthog from "posthog-js";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onOrder: (source: string, tier?: OfferTier) => void;
+}
+
+const HeroSection = ({ onOrder }: HeroSectionProps) => {
+  const [selected, setSelected] = useState(0);
+  const tier = OIL_TIERS[selected];
+
   const handleCtaClick = (cta: string, destination: string) => {
     posthog.capture("cta_hero_clicked", {
       cta_text: cta,
@@ -16,133 +29,111 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="container mx-auto px-6 pt-0 md:pt-2 lg:px-12 xl:px-30 lg:pb-20 flex flex-col md:flex-row justify-between items-center">
-      {/* Left Content */}
-      <div className="flex flex-col flex-1 justify-center w-full">
-        {/* Title */}
-        <h1 className="block xl:hidden text-4xl md:text-6xl lg:text-7xl font-bold text-foreground">
-          <span className="text-primary">Yachu</span> <br />
-          Hair Oil
-        </h1>
+    <section id="top" className="relative overflow-hidden bg-background">
+      {/* organic blob accents */}
+      <div className="absolute -left-24 top-20 h-96 w-96 rounded-full bg-sage/20 blur-3xl" />
+      <div className="absolute right-0 top-40 h-80 w-80 rounded-full bg-sage/10 opacity-60 blur-3xl" />
 
-        <h1 className="hidden xl:block text-5xl lg:text-7xl font-bold text-foreground">
-          <span className="text-primary">Yachu</span> Hair Oil
-        </h1>
-
-        {/* Description */}
-        <Card className="my-4 border-none shadow-none bg-transparent">
-          <CardContent className="space-y-2 p-0 text-sm md:text-base lg:text-lg xl:text-2xl text-foreground font-semibold">
-            <p>❌ Dandruff, Hair Loss, Baldness?</p>
-            <p>🟢 Ultimate Solution = Yachu Hair Oil</p>
-            <p>🍃 Crafted with a mix of 33 natural Ingredients</p>
-            <p>✅ Easy, Affordable and Safe</p>
-          </CardContent>
-        </Card>
-
-        {/* Problem Icons (Mobile Only) */}
-        <div className="md:hidden flex gap-2 items-center mb-4">
-          {[
-            { label: "Dandruff?", src: "/dandruff.png" },
-            { label: "Hairfall?", src: "/hairfall.webp" },
-            { label: "Baldness?", src: "/baldness.png" },
-          ].map((item, index) => (
-            <div key={item.label} className="flex items-center gap-1">
-              <Card className="flex flex-col items-center p-2 border bg-muted">
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  height={200}
-                  width={200}
-                  priority
-                  className="h-8 w-8 rounded-full object-cover"
-                />
-                <p className="text-xs font-semibold mt-1 text-foreground text-center">
-                  {item.label}
-                </p>
-              </Card>
-              {index < 2 && <ChevronRight className="text-primary h-4 w-4" />}
-            </div>
-          ))}
-        </div>
-
-        {/* Stats Section */}
-        <Card className="flex flex-col gap-1 border-none shadow-none bg-transparent mb-4">
-          <p className="text-3xl md:text-4xl lg:text-6xl font-extrabold w-fit">
-            50K +
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-2">
+        {/* Left content */}
+        <div className="relative z-10">
+          <p className="flex animate-fade-up items-end gap-2 font-script text-2xl text-gold md:text-3xl">
+            <TikaJamara className="h-12 w-10 shrink-0" />
+            Dashain Dhamaka offer
           </p>
-          <p className="font-semibold text-muted-foreground text-sm md:text-base xl:text-xl">
-            Customers Trust Yachu
-          </p>
-        </Card>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-          {/* Primary Button */}
-          <Button
-            asChild
-            size="lg"
-            className="
-              group relative overflow-hidden
-              w-full sm:w-auto
-              px-4 py-4 sm:px-6 sm:py-6
-              rounded-full
-              shadow-lg hover:shadow-primary/50
-              transition-all duration-300
-              border-2
-            "
+          <h1
+            className="mt-1 animate-fade-up text-5xl font-bold leading-[1.05] text-forest md:text-6xl lg:text-7xl"
+            style={{ animationDelay: "0.1s" }}
           >
-            <Link
-              href="/products"
-              onClick={() =>
-                handleCtaClick("Order Yachu Hair Oil Now", "/products")
-              }
-              className="flex items-center justify-center gap-2 text-center"
+            Yachu Hair Oil
+          </h1>
+          <p
+            className="mt-5 max-w-md animate-fade-up text-lg font-medium text-forest md:text-xl"
+            style={{ animationDelay: "0.2s" }}
+          >
+            For dandruff, hair fall and baldness. Crafted in Nepal with 33
+            natural ingredients.
+          </p>
+
+          {/* Dashain offer picker */}
+          <div
+            className="mt-7 max-w-lg animate-fade-up rounded-3xl border border-border bg-card p-4 shadow-[0_25px_60px_-30px_oklch(0.32_0.07_150/0.45)] sm:p-5"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <PackPicker
+              tiers={OIL_TIERS}
+              selected={selected}
+              onSelect={setSelected}
+              label="Dashain pack"
+            />
+
+            <button
+              type="button"
+              onClick={() => {
+                handleCtaClick("Order Now", "checkout");
+                onOrder("hero", tier);
+              }}
+              className="group mt-4 flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-forest text-base font-medium tracking-wide text-cream shadow-[0_15px_40px_-15px_oklch(0.32_0.07_150/0.6)] transition-all hover:bg-forest/90 md:text-lg"
             >
-              <span className="text-sm sm:text-base md:text-lg font-semibold whitespace-normal break-words">
-                <span className="sm:hidden"> Order Yachu Hair Oil Now</span>
-                <span className="hidden sm:inline">
-                  Order Yachu Hair Oil Now
-                </span>
+              Order Now · Rs. {tier.price.toLocaleString()}
+              <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </button>
+
+            <ul className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs font-medium text-foreground/70 sm:text-sm">
+              <li className="flex items-center gap-1.5">
+                <Banknote className="h-4 w-4 text-gold" />
+                Cash on Delivery
+              </li>
+              <li className="flex items-center gap-1.5">
+                <Truck className="h-4 w-4 text-gold" />
+                Delivery all over Nepal
+              </li>
+            </ul>
+          </div>
+
+          <div
+            className="mt-6 flex animate-fade-up flex-wrap items-center gap-x-8 gap-y-3"
+            style={{ animationDelay: "0.4s" }}
+          >
+            <p className="text-3xl font-extrabold text-forest md:text-4xl">
+              50K+{" "}
+              <span className="text-sm font-semibold md:text-base">
+                Customers Trust Yachu
               </span>
-
-              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-
-          {/* Secondary Button */}
-          <Button
-            variant="outline"
-            asChild
-            className="
-              w-full sm:w-auto
-              px-4 py-4 sm:px-6 sm:py-6
-              rounded-full
-              border-2
-              transition-all duration-300
-            "
-          >
+            </p>
             <Link
-              href="/how-to-use"
-              onClick={() => handleCtaClick("How to Use", "/how-to-use")}
-              className="flex items-center justify-center"
+              href={whatsappOrderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleCtaClick("Order on WhatsApp", "whatsapp")}
+              className="flex items-center gap-2 text-sm font-semibold text-forest underline-offset-4 hover:underline"
             >
-              How to Use Yachu Hair Oil
+              <MessageCircle className="h-4 w-4" />
+              Order on WhatsApp
             </Link>
-          </Button>
+          </div>
+        </div>
+
+        {/* Right image */}
+        <div
+          className="relative animate-fade-up"
+          style={{ animationDelay: "0.4s" }}
+        >
+          <div className="relative mx-auto max-w-sm lg:max-w-xl">
+            <TikaJamara className="absolute -top-8 right-2 z-10 h-28 w-24 rotate-12 animate-leaf-sway drop-shadow-lg md:h-36 md:w-28" />
+            <Image
+              src="/hero.png"
+              alt="Yachu Hair Oil"
+              width={695}
+              height={687}
+              priority
+              sizes="(max-width: 1024px) 90vw, 576px"
+              className="h-auto w-full rounded-[2rem] object-contain"
+            />
+          </div>
         </div>
       </div>
-
-      {/* Right Image (Hidden on Mobile) */}
-      <div className="w-auto pt-9 hidden md:flex justify-end">
-        <img
-          src="/hero.png"
-          alt="Hero Image"
-          height={550}
-          width={550}
-          className="object-contain"
-        />
-      </div>
-    </div>
+    </section>
   );
 };
 

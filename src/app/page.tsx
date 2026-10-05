@@ -1,21 +1,27 @@
 "use client";
-import ContactForm from "@/components/contact/ContactForm";
 import YachuHairOilBenefits from "@/components/home/YachuHairOilBenefits";
 import YachuHairOilHowToUse from "@/components/home/YachuHairOilHowToUse";
 import FAQ from "@/components/contact/FAQ";
-import FlowerDivider from "@/components/shared/FlowerDivider";
 import HeroSection from "@/components/home/hero-section/hero-section";
+import DashainDhamaka from "@/components/home/DashainDhamaka";
+import BeforeAfter from "@/components/home/BeforeAfter";
+import VideoStories from "@/components/home/VideoStories";
 import Ingredients from "@/components/home/Ingredients";
+import Story from "@/components/home/Story";
+import Commercial from "@/components/home/Commercial";
+import ContactSection from "@/components/home/ContactSection";
 import ProductShowcase from "@/components/product/product-showcase";
-import { Questions } from "@/components/home/about-us/Questions";
 import { BlogSection } from "@/components/blog/blog-section";
 import { useProducts } from "@/hooks/use-products";
 import { useBlogs } from "@/hooks/use-blogs";
-import HowToUseYachuHairOil from "@/components/home/HowTOUse";
-import DashainBanner from "@/components/home/DashainBanner";
-import DashainOfferSection from "@/components/home/DashainOfferSection";
+import { useQuickOrder } from "@/hooks/use-quick-order";
+import StickyOrderBar from "@/components/home/StickyOrderBar";
+import SectionHeading from "@/components/home/SectionHeading";
+import { CheckoutModal } from "@/components/popover/CheckoutModal";
 
 export default function HomePage() {
+  const { handleOrder, checkoutOpen, setCheckoutOpen } = useQuickOrder();
+
   const {
     data: products,
     isLoading: productsLoading,
@@ -28,60 +34,44 @@ export default function HomePage() {
     error: blogsError,
   } = useBlogs({
     page: 1,
-    page_size: 4, // Changed to 4 to match maxItems in BlogSection
+    page_size: 3,
   });
 
   const blogs = blogsResponse?.results;
 
   return (
-    <main className="flex flex-col">
-      <DashainBanner />
-      <HeroSection />
-      <FlowerDivider />
-      <HowToUseYachuHairOil />
-      <FlowerDivider />
+    <div className="flex flex-col">
+      <HeroSection onOrder={handleOrder} />
+      <DashainDhamaka onOrder={handleOrder} />
+      <YachuHairOilHowToUse />
+      <BeforeAfter onOrder={handleOrder} />
+      <VideoStories />
       <ProductShowcase
         products={products}
         isLoading={productsLoading}
         error={productsError}
       />
-      <FlowerDivider />
-      <DashainOfferSection />
-      <FlowerDivider />
       <Ingredients />
-      <FlowerDivider />
-      <YachuHairOilBenefits />
-      <FlowerDivider />
-      <YachuHairOilHowToUse />
-      <FlowerDivider />
-      <Questions />
-      <FlowerDivider />
-      <div className="mx-auto">
-        <BlogSection
-          blogs={blogs}
-          title="Latest Blog Articles"
-          description="Explore our latest articles about hair care, hair growth and more"
-          maxItems={4}
-          isLoading={blogsLoading}
-          error={blogsError}
-        />
-      </div>
-      <FlowerDivider />
-      <div className="w-full px-10 sm:px-16 lg:px-32">
-        <ContactForm />
-      </div>
-      <FlowerDivider />
-      <h3 className="text-4xl text-background-foreground text-center leading-tight font-bold mt-5 pt-6">
-        Frequently Asked Questions
-      </h3>
-      <p className="text-center font-normal pb-4 pt-3 text-sm text-foreground">
-        Here are some common questions about Yachu Hair Oil, Answered for you
-      </p>
-      <div className="w-full max-w-2xl mx-auto p-4">
-        <FAQ />
-      </div>
-      <FlowerDivider />
-      <div className="py-20"></div>
-    </main>
+      <YachuHairOilBenefits onOrder={handleOrder} />
+      <Story />
+      <Commercial />
+      <BlogSection
+        blogs={blogs}
+        title="Stories & rituals"
+        description="From the journal"
+        maxItems={3}
+        isLoading={blogsLoading}
+        error={blogsError}
+      />
+      <section id="faq" className="relative py-20 md:py-28">
+        <div className="mx-auto max-w-4xl px-6">
+          <SectionHeading eyebrow="Good questions" title="Frequently asked" />
+          <FAQ />
+        </div>
+      </section>
+      <ContactSection />
+      <StickyOrderBar onOrder={handleOrder} />
+      <CheckoutModal isOpen={checkoutOpen} setIsOpen={setCheckoutOpen} />
+    </div>
   );
 }

@@ -1,13 +1,28 @@
+"use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
+import { useState } from "react";
+import { Minus, Plus } from "lucide-react";
 import { FAQs } from "@/types/faqs";
 
 const FAQ_LIST: FAQs = [
+  {
+    id: 5,
+    question: "How do I order, and how do I pay?",
+    answer:
+      "Tap Order Now, then fill in your name, phone number and delivery address. You can choose Cash on Delivery and pay only when your order arrives. You can also order by calling us or messaging us on WhatsApp or Viber.",
+  },
+  {
+    id: 6,
+    question: "Do you deliver outside Kathmandu? What is the delivery charge?",
+    answer:
+      "Yes, we deliver all over Nepal. The delivery charge is Rs. 100 inside Kathmandu Valley and Rs. 150 outside Kathmandu Valley.",
+  },
+  {
+    id: 7,
+    question: "How do I use Yachu Hair Oil?",
+    answer:
+      "Apply the oil twice a week. Gently massage it into your hair and scalp for 15 minutes, leave it in for 2-4 hours, then rinse thoroughly with a mild shampoo.",
+  },
   {
     id: 1,
     question:
@@ -35,16 +50,60 @@ const FAQ_LIST: FAQs = [
   },
 ];
 
-const FAQ = () => {
+const FAQ = ({ limit }: { limit?: number }) => {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
-      {FAQ_LIST.map(({ question, answer }, index) => (
-        <AccordionItem value={`item-${index + 1}`} key={index + 1}>
-          <AccordionTrigger>{question}</AccordionTrigger>
-          <AccordionContent>{answer}</AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="w-full space-y-3 text-left">
+      {FAQ_LIST.slice(0, limit).map(({ question, answer }, index) => {
+        const isOpen = open === index;
+        return (
+          <div
+            key={question}
+            className={`rounded-2xl border-2 transition-all ${
+              isOpen
+                ? "border-forest/30 bg-card shadow-lg"
+                : "border-border bg-card hover:border-forest/20"
+            }`}
+          >
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              onClick={() => setOpen(isOpen ? null : index)}
+              className="flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left md:p-6"
+            >
+              <span className="font-display text-lg text-forest md:text-xl">
+                {question}
+              </span>
+              <span
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
+                  isOpen ? "bg-forest text-cream" : "bg-accent text-forest"
+                }`}
+              >
+                {isOpen ? (
+                  <Minus className="h-4 w-4" />
+                ) : (
+                  <Plus className="h-4 w-4" />
+                )}
+              </span>
+            </button>
+            <div
+              className={`grid transition-all duration-300 ease-out ${
+                isOpen
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="px-5 pb-6 leading-relaxed text-foreground/70 md:px-6">
+                  {answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 export default FAQ;

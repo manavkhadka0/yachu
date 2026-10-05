@@ -22,7 +22,8 @@ export default function ClientLayoutWrapper({
     pathname.startsWith("/purchase") ||
     pathname.startsWith("/info") ||
     pathname.startsWith("/price-guess") ||
-    pathname.startsWith("/instant-order");
+    pathname.startsWith("/instant-order") ||
+    pathname.startsWith("/dashain-dhamaka");
 
   return (
     <>

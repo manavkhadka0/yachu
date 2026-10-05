@@ -86,7 +86,7 @@ function useCountdown(target: Date) {
     return () => clearInterval(id);
   }, [target]);
 
-  if (left === null) return null;
+  if (left === null || left === 0) return null;
   const p = (n: number) => String(n).padStart(2, "0");
   return {
     days: Math.floor(left / 864e5),
@@ -327,6 +327,12 @@ export default function DashainBanner() {
                 ✦
               </span>
             </h2>
+            {countdown && (
+              <p className="mt-1 text-xs font-semibold tabular-nums text-accent-foreground sm:text-sm">
+                Vijaya Dashami in {countdown.days}d {countdown.hours}h{" "}
+                {countdown.mins}m {countdown.secs}s
+              </p>
+            )}
           </div>
 
           {/* ── Offer cards ── */}

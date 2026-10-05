@@ -2,8 +2,8 @@
 import { TBlog } from "@/types/blog";
 import { BlogCard } from "./blog-card";
 import { useBlogs } from "@/hooks/use-blogs";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface BlogSectionProps {
   blogs?: TBlog[];
@@ -18,7 +18,7 @@ export const BlogSection = ({
   blogs: propBlogs,
   title = "LATEST BLOGS",
   description = "Read our latest blogs about your hair growth, hair care, and hair loss.",
-  maxItems = 4,
+  maxItems = 3,
   isLoading: propIsLoading,
   error: propError,
 }: BlogSectionProps) => {
@@ -34,7 +34,7 @@ export const BlogSection = ({
     },
     {
       enabled: !propBlogs, // Only fetch if no blogs provided
-    }
+    },
   );
 
   // Use prop values or fallback to fetched values
@@ -43,47 +43,7 @@ export const BlogSection = ({
   const isLoading = propIsLoading ?? fetchIsLoading;
   const error = propError ?? fetchError;
 
-  if (isLoading) {
-    return (
-      <section
-        className="container px-4 py-12 sm:py-16 lg:py-20"
-        id="blog-section"
-      >
-        <div className="flex flex-col items-center justify-center space-y-2 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl">{title}</h2>
-          <p className="max-w-2xl text-muted-foreground">{description}</p>
-        </div>
-        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:mt-16">
-          {Array.from({ length: maxItems }).map((_, index) => (
-            <Card key={index}>
-              <div className="space-y-4 p-4">
-                <Skeleton className="h-40 w-full rounded-lg" />
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-full" />
-                <Skeleton className="h-6 w-full" />
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section
-        className="container px-4 py-12 sm:py-16 lg:py-20"
-        id="blog-section"
-      >
-        <div className="flex flex-col items-center justify-center space-y-2 text-center">
-          <h2 className="text-2xl font-bold sm:text-3xl">{title}</h2>
-          <p className="text-destructive">
-            Failed to load blogs. Please try again later.
-          </p>
-        </div>
-      </section>
-    );
-  }
+  if (isLoading || error) return null;
 
   if (!blogs || blogs.length === 0) {
     return null;
@@ -92,18 +52,26 @@ export const BlogSection = ({
   const displayBlogs = blogs.slice(0, maxItems);
 
   return (
-    <section
-      className="container px-4 py-12 sm:py-16 lg:py-20"
-      id="blog-section"
-    >
-      <div className="flex flex-col items-center justify-center space-y-2 text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl">{title}</h2>
-        <p className="max-w-2xl text-muted-foreground">{description}</p>
-      </div>
-      <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:mt-16">
-        {displayBlogs.map((blog) => (
-          <BlogCard key={blog.slug} blog={blog} />
-        ))}
+    <section id="blog-section" className="relative bg-card py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="mb-2 font-script text-2xl text-gold">{description}</p>
+            <h2 className="text-4xl text-forest md:text-6xl">{title}</h2>
+          </div>
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 font-medium text-forest transition-all hover:gap-3"
+          >
+            Read all posts <ChevronRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {displayBlogs.map((blog) => (
+            <BlogCard key={blog.slug} blog={blog} />
+          ))}
+        </div>
       </div>
     </section>
   );

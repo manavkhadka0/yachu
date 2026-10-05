@@ -21,66 +21,70 @@ import Link from "next/link";
 const FooterContactDetails = () => {
   return (
     <div>
-      <h3 className="mb-6 text-lg font-semibold text-primary-foreground">
+      <h3 className="mb-5 font-display text-xl text-gold">
         Contact Details
       </h3>
-      <div className="flex flex-col gap-3 text-primary-foreground">
+      <div className="flex flex-col gap-3 text-cream/80">
         <div>
           {/* <p className="font-medium text-white">{yachuCustomerService}</p> */}
-          <p className="text-sm text-slate-300">Customer Service</p>
+          <p className="text-xs uppercase tracking-widest text-cream/50">
+            Customer Service
+          </p>
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <PhoneCallIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+          <PhoneCallIcon className="h-4 w-4 shrink-0 text-gold" />
           <Link
             href={`tel:${yachuPhone}`}
-            className="text-primary-foreground transition-colors hover:underline"
+            className="transition-colors hover:text-gold"
           >
             {yachuPhone}
           </Link>
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <MailIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+          <MailIcon className="h-4 w-4 shrink-0 text-gold" />
           <Link
             href={`mailto:${yachuEmail}`}
-            className="text-primary-foreground transition-colors hover:underline"
+            className="transition-colors hover:text-gold"
           >
             {yachuEmail}
           </Link>
         </div>
 
-        <div className="pt-2 border-t border-slate-700/50 flex flex-col gap-3">
+        <div className="mt-2 flex flex-col gap-3 border-t border-cream/15 pt-5">
           <div>
-            <p className="font-medium text-white">Chibe Traders Pvt. Ltd.</p>
-            <p className=" text-sm text-slate-300">{chibekoOffice}</p>
+            <p className="font-medium text-cream">Chibe Traders Pvt. Ltd.</p>
+            <p className="text-xs uppercase tracking-widest text-cream/50">
+              {chibekoOffice}
+            </p>
           </div>
           <div className="flex items-start gap-3 text-sm">
-            <MapPinIcon className="h-4 w-4 text-primary-foreground shrink-0 mt-0.5" />
+            <MapPinIcon className="h-4 w-4 shrink-0 text-gold mt-0.5" />
             <span>{chibekoAddress}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <PhoneCallIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+            <PhoneCallIcon className="h-4 w-4 shrink-0 text-gold" />
             <Link
               href={`tel:${chibekoPhone}`}
-              className="text-primary-foreground transition-colors hover:underline"
+              className="transition-colors hover:text-gold"
             >
               {chibekoPhone}
             </Link>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <MailIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+            <MailIcon className="h-4 w-4 shrink-0 text-gold" />
             <Link
               href={`mailto:${chibekoEmail}`}
-              className="text-primary-foreground transition-colors hover:underline"
+              className="transition-colors hover:text-gold"
             >
               {chibekoEmail}
             </Link>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <ReceiptIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+            <ReceiptIcon className="h-4 w-4 shrink-0 text-gold" />
             <span>VAT No: {chibekoVatNo}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <FileTextIcon className="h-4 w-4 text-primary-foreground shrink-0" />
+            <FileTextIcon className="h-4 w-4 shrink-0 text-gold" />
             <span>Reg No: {chibekoRegistrationNo}</span>
           </div>
         </div>

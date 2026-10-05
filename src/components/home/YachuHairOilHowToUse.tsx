@@ -1,70 +1,86 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Clock, Droplet, Repeat, Bath, LucideIcon } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
-interface StepCardProps {
-  icon: React.ReactElement<LucideIcon>;
-  title: string;
-  description: string;
-}
-
-const StepCard: React.FC<StepCardProps> = ({ icon, title, description }) => (
-  <Card className="bg-muted shadow-lg hover:shadow-xl transition-shadow duration-300">
-    <CardContent className="flex items-start p-6">
-      <div className="mr-4">{icon}</div>
-      <div>
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-foreground">{description}</p>
-      </div>
-    </CardContent>
-  </Card>
-);
-
-interface Step {
-  icon: React.ReactElement<LucideIcon>;
-  title: string;
-  description: string;
-}
+const steps = [
+  {
+    n: "01",
+    title: "Frequency",
+    body: "Apply the oil twice a week for optimal results.",
+  },
+  {
+    n: "02",
+    title: "Quantity",
+    body: "For Short Hair: 10-12 ml. For Long Hair: 15-20 ml.",
+  },
+  {
+    n: "03",
+    title: "Application",
+    body: "Gently massage the oil into your hair and scalp for 15 minutes.",
+  },
+  {
+    n: "04",
+    title: "Wait Time",
+    body: "Leave the oil in your hair for 2-4 hours before washing.",
+  },
+  {
+    n: "05",
+    title: "Washing",
+    body: "Rinse thoroughly with a mild shampoo to remove the oil.",
+  },
+];
 
 const YachuHairOilHowToUse: React.FC = () => {
-  const steps: Step[] = [
-    {
-      icon: <Repeat className="h-8 w-8 text-primary" />,
-      title: "Frequency",
-      description: "Apply the oil twice a week for optimal results.",
-    },
-    {
-      icon: <Droplet className="h-8 w-8 text-primary/90" />,
-      title: "Application",
-      description:
-        "Gently massage the oil into your hair and scalp for 15 minutes.",
-    },
-    {
-      icon: <Clock className="h-8 w-8 text-primary/80" />,
-      title: "Wait Time",
-      description: "Leave the oil in your hair for 2-4 hours before washing.",
-    },
-    {
-      icon: <Bath className="h-8 w-8 text-primary/60" />,
-      title: "Washing",
-      description: "Rinse thoroughly with a mild shampoo to remove the oil.",
-    },
-  ];
-
   return (
-    <section className="bg-gradient-to-b py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">
-          How to Use Yachu Hair Oil
-        </h2>
-        <p className="text-center text-foreground mb-8 max-w-2xl mx-auto">
-          Follow these simple steps to maximize the benefits of Yachu Hair Oil
-          and achieve healthier, more beautiful hair.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {steps.map((step, index) => (
-            <StepCard key={index} {...step} />
-          ))}
+    <section id="how" className="relative bg-card py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionHeading
+          eyebrow="A simple ritual"
+          title="How to use Yachu Hair Oil"
+          description="Five mindful steps. Twice a week. That's the whole secret."
+        />
+
+        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
+          <ol className="space-y-5">
+            {steps.map((s) => (
+              <li
+                key={s.n}
+                className="group flex gap-6 rounded-2xl bg-background py-2 transition-all hover:-translate-y-0.5 md:p-6 md:hover:shadow-sm"
+              >
+                <div className="min-w-[3rem] font-display text-5xl text-gold">
+                  {s.n}
+                </div>
+                <div>
+                  <h3 className="mb-1 text-2xl text-forest">{s.title}</h3>
+                  <p className="leading-relaxed">{s.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="relative">
+            <div className="mx-auto aspect-[9/16] max-w-sm overflow-hidden rounded-3xl bg-gray-900 shadow-2xl">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube.com/embed/1FlgZBS61Sw?autoplay=0"
+                title="Yachu Hair Oil How to Use"
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+            <div
+              className="absolute -left-4 -top-8 h-24 w-24 animate-leaf-sway opacity-40"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 100 100">
+                <path
+                  d="M50 10 C 25 30, 20 60, 50 90 C 80 60, 75 30, 50 10 Z"
+                  fill="oklch(0.45 0.09 145)"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </section>

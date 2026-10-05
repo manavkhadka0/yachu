@@ -10,13 +10,11 @@ import {
   yachuLogoPath,
   yachuDescription,
 } from "@/constants/constant";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 const SOCIAL_LINKS = [
-  { Icon: FacebookIcon, href: yachuFacebook },
-  { Icon: InstagramIcon, href: yachuInstagram },
-  { Icon: YoutubeIcon, href: yachuYoutube },
+  { Icon: FacebookIcon, href: yachuFacebook, label: "Facebook" },
+  { Icon: InstagramIcon, href: yachuInstagram, label: "Instagram" },
+  { Icon: YoutubeIcon, href: yachuYoutube, label: "YouTube" },
 ];
 
 const CATEGORIES_LINKS = [
@@ -35,30 +33,34 @@ const SUPPORT_LINKS = [
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-blue-950">
-      <div className="container mx-auto grid gap-10 py-12 px-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
+    <footer className="relative w-full overflow-hidden bg-gradient-to-br from-forest to-[oklch(0.2_0.05_150)] text-cream">
+      <div className="h-1 w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
+
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:gap-12">
         {/* Company Info & Socials */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-5">
           <Image
             src={yachuLogoPath}
             alt="Yachu Hair Oil Logo"
             width={300}
             height={300}
-            className="w-36"
+            className="w-28"
           />
-          <p className="text-sm text-primary-foreground">{yachuDescription}</p>
-          <div className="flex items-center gap-4">
-            {SOCIAL_LINKS.map(({ Icon, href }, index) => (
-              <Button
-                asChild
-                key={index}
-                size="icon"
-                className="rounded-full bg-secondary hover:underline"
+          <p className="max-w-sm text-sm leading-relaxed text-cream/70">
+            {yachuDescription}
+          </p>
+          <div className="flex items-center gap-3">
+            {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+              <Link
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream transition-colors hover:border-gold hover:bg-gold hover:text-forest"
               >
-                <Link href={href} target="_blank" rel="noopener noreferrer">
-                  <Icon className="text-primary-foreground" size={20} />
-                </Link>
-              </Button>
+                <Icon size={18} />
+              </Link>
             ))}
           </div>
         </div>
@@ -70,9 +72,10 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <Separator />
-      <div className="container mx-auto py-6 text-center text-sm text-primary-foreground">
-        © {new Date().getFullYear()} Yachu Hair Oil. All rights reserved.
+      <div className="border-t border-cream/10">
+        <div className="mx-auto max-w-7xl px-6 py-6 text-sm text-cream/60 md:text-center">
+          © {new Date().getFullYear()} Yachu Hair Oil. All rights reserved.
+        </div>
       </div>
     </footer>
   );

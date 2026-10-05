@@ -2,43 +2,56 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+/* Light theme: design language from the Yachu revamp (forest, gold, cream) */
 :root {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.2686 0 0);
+  --foreground: oklch(0.22 0.04 145);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2686 0 0);
+  --card-foreground: oklch(0.22 0.04 145);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2686 0 0);
-  --primary: oklch(0.7367 0.1626 62.7543);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.6667 0.1485 62.3434);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.9846 0.0017 247.8389);
-  --muted-foreground: oklch(0.551 0.0234 264.3637);
-  --accent: oklch(0.9869 0.0214 95.2774);
-  --accent-foreground: oklch(0.4732 0.1247 46.2007);
-  --destructive: oklch(0.6368 0.2078 25.3313);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9276 0.0058 264.5313);
-  --input: oklch(0.9276 0.0058 264.5313);
-  --ring: oklch(0.7686 0.1647 70.0804);
+  --popover-foreground: oklch(0.22 0.04 145);
+  /* Primary = deep forest green */
+  --primary: oklch(0.32 0.07 150);
+  --primary-foreground: oklch(0.98 0.01 90);
+  /* Secondary = warm bark brown */
+  --secondary: oklch(0.36 0.06 55);
+  --secondary-foreground: oklch(0.98 0.01 90);
+  --muted: oklch(0.95 0.015 90);
+  --muted-foreground: oklch(0.45 0.03 100);
+  --accent: oklch(0.92 0.04 145);
+  --accent-foreground: oklch(0.22 0.05 145);
+  --destructive: oklch(0.55 0.18 28);
+  --destructive-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.88 0.015 95);
+  --input: oklch(0.88 0.015 95);
+  --ring: oklch(0.55 0.1 145);
   --chart-1: oklch(0.7686 0.1647 70.0804);
   --chart-2: oklch(0.6658 0.1574 58.3183);
   --chart-3: oklch(0.5553 0.1455 48.9975);
   --chart-4: oklch(0.4732 0.1247 46.2007);
   --chart-5: oklch(0.4137 0.1054 45.9038);
   --sidebar: oklch(0.9846 0.0017 247.8389);
-  --sidebar-foreground: oklch(0.2686 0 0);
-  --sidebar-primary: oklch(0.7686 0.1647 70.0804);
+  --sidebar-foreground: oklch(0.22 0.04 145);
+  --sidebar-primary: oklch(0.32 0.07 150);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.9869 0.0214 95.2774);
-  --sidebar-accent-foreground: oklch(0.4732 0.1247 46.2007);
-  --sidebar-border: oklch(0.9276 0.0058 264.5313);
-  --sidebar-ring: oklch(0.7686 0.1647 70.0804);
-  --font-sans: Inter, sans-serif;
-  --font-serif: Source Serif 4, serif;
+  --sidebar-accent: oklch(0.92 0.04 145);
+  --sidebar-accent-foreground: oklch(0.22 0.05 145);
+  --sidebar-border: oklch(0.88 0.015 95);
+  --sidebar-ring: oklch(0.55 0.1 145);
+
+  /* Brand tokens */
+  --cream: oklch(0.97 0.025 90);
+  --bark: oklch(0.36 0.06 55);
+  --moss: oklch(0.45 0.09 145);
+  --forest: oklch(0.28 0.07 150);
+  --gold: oklch(67.637% 0.14285 70.135);
+  --sage: oklch(0.85 0.04 145);
+  --yellow-cta: oklch(0.85 0.18 95);
+
+  --font-sans: var(--font-body-next), Inter, sans-serif;
+  --font-serif: var(--font-display-next), "Playfair Display", serif;
   --font-mono: JetBrains Mono, monospace;
-  --radius: 0.375rem;
+  --radius: 0.875rem;
   --shadow-2xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
   --shadow-sm: 0px 4px 8px -1px hsl(0 0% 0% / 0.1),
@@ -142,6 +155,19 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  --color-cream: var(--cream);
+  --color-bark: var(--bark);
+  --color-moss: var(--moss);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --color-yellow-cta: var(--yellow-cta);
+
+  --font-display: var(--font-display-next), "Playfair Display", ui-serif, Georgia, serif;
+  --font-body: var(--font-body-next), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-script-next), "Caveat", ui-serif, cursive;
+  --font-devanagari: var(--font-devanagari-next), "Noto Serif Devanagari", serif;
+
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
@@ -166,6 +192,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 }
 
@@ -201,4 +238,115 @@
   100% {
     transform: translateX(100%);
   }
+}
+
+/* Lift the floating call button above the mobile sticky order bar */
+@media (max-width: 767px) {
+  body[data-sticky-cta="true"] .call-now-fab {
+    bottom: 5.5rem;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leaf-sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s ease-out both;
+}
+
+.animate-leaf-sway {
+  animation: leaf-sway 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+.animate-counter-spin {
+  animation: counter-spin 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-fade-up,
+  .animate-leaf-sway,
+  .animate-spin-slow,
+  .animate-counter-spin {
+    animation: none;
+  }
+}
+
+/* HTML that comes from the CMS (about page copy) */
+.rich-text {
+  white-space: pre-line;
+}
+.rich-text > * + * {
+  margin-top: 1em;
+}
+.rich-text h1,
+.rich-text h2,
+.rich-text h3,
+.rich-text strong {
+  color: var(--forest);
+}
+.rich-text h1,
+.rich-text h2,
+.rich-text h3 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.rich-text ul {
+  list-style: disc;
+  padding-left: 1.25rem;
 }

@@ -42,7 +42,7 @@ const CallNowButton = () => {
 
   return (
     <TooltipProvider>
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="call-now-fab fixed bottom-6 right-6 z-50 transition-[bottom] duration-300">
         {/* Desktop: Circular button with dropdown */}
         <div className="hidden md:block">
           <Tooltip>
@@ -119,10 +119,10 @@ const CallNowButton = () => {
               <Button
                 onClick={toggleOptions}
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-3 shadow-lg transition-all duration-300 h-auto w-auto"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-0 shadow-lg transition-all duration-300 h-13 w-13"
               >
                 {isOpen ? <X size={20} /> : <Phone size={20} />}
-                <span className="text-sm font-medium ml-2">
+                <span className="sr-only">
                   {isOpen ? "Close" : "Call Now"}
                 </span>
               </Button>

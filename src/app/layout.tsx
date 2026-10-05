@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import {
+  Playfair_Display,
+  Inter,
+  Caveat,
+  Noto_Serif_Devanagari,
+} from "next/font/google";
 import { Suspense } from "react";
 import Script from "next/script";
 import "./globals.css";
@@ -10,7 +15,30 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import TopLoader from "@/components/top-loader";
 import ClientLayoutWrapper from "@/components/client-layout-wrapper";
 
-const br = Bricolage_Grotesque({ subsets: ["latin"] });
+const playfair = Playfair_Display({
+  variable: "--font-display-next",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-body-next",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  variable: "--font-script-next",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const devanagari = Noto_Serif_Devanagari({
+  variable: "--font-devanagari-next",
+  weight: ["400", "500", "600"],
+  subsets: ["devanagari"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Yachu Hair Oil - Made in Nepal with 33 Ingredients",
@@ -48,8 +76,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={br.className}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${devanagari.variable} antialiased`}
+      suppressHydrationWarning
+    >
+      <body>
         <Script
           id="facebook-pixel"
           strategy="afterInteractive"

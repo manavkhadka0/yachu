@@ -43,8 +43,8 @@ export const contactFormSchema = z.object({
 });
 
 export const checkoutFormSchema = z.object({
-  name: z.string().min(4, {
-    message: "Name is required",
+  name: z.string().trim().min(2, {
+    message: "Please enter your name",
   }),
   email: z.string().optional(),
   phone: z.string().min(10, {
