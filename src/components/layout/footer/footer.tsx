@@ -1,4 +1,9 @@
-import { FacebookIcon, InstagramIcon, YoutubeIcon } from "lucide-react";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  MapPinIcon,
+  YoutubeIcon,
+} from "lucide-react";
 import FooterContactDetails from "./footer-contact-detail";
 import FooterLinkColumn from "./footer-link-column";
 import Image from "next/image";
@@ -9,6 +14,7 @@ import {
   yachuYoutube,
   yachuLogoPath,
   yachuDescription,
+  YACHU_LOCATIONS,
 } from "@/constants/constant";
 
 const SOCIAL_LINKS = [
@@ -69,6 +75,31 @@ const Footer = () => {
         <FooterLinkColumn title="Types of Hair Oil" links={CATEGORIES_LINKS} />
         <FooterLinkColumn title="Support" links={SUPPORT_LINKS} />
         <FooterContactDetails />
+      </div>
+
+      {/* Find Yachu Near You — SEO location backlinks */}
+      <div className="border-t border-cream/10">
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <div className="mb-5 flex items-center gap-2">
+            {/* <MapPinIcon size={16} className="shrink-0 text-gold" /> */}
+            <h3 className="font-display text-xl font-semibold  text-gold">
+              Find Yachu Near You
+            </h3>
+          </div>
+          <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+            {YACHU_LOCATIONS.map(({ label, slug }) => (
+              <li key={slug} className="flex items-center gap-1.5">
+                <MapPinIcon size={12} className="shrink-0 text-gold/60" />
+                <Link
+                  href={`/buy-yachu-hair-oil/${slug}`}
+                  className="text-sm text-cream/70 transition-colors hover:text-gold"
+                >
+                  Buy Yachu Hair Oil in {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Copyright */}

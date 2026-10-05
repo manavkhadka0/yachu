@@ -41,3 +41,19 @@ export const yachuDescription =
 //   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.152298647558!2d85.32600277605418!3d27.681687376197164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19001703e43f%3A0x3e93ada32406d5b4!2sYachu%20Hair%20Oil!5e0!3m2!1sen!2snp!4v1753418058046!5m2!1sen!2snp";
 
 export const franchise = "sankhamul";
+
+// Franchise / stockist locations – used for SEO location pages & footer backlinks
+export const YACHU_LOCATIONS: { label: string; slug: string }[] = [
+  { label: "Swoyambhu", slug: "swoyambhu" },
+  { label: "Baneshwor", slug: "baneshwor" },
+  { label: "Bhaktapur", slug: "bhaktapur" },
+  { label: "Gairidhara", slug: "gairidhara" },
+  { label: "Kirtipur", slug: "kirtipur" },
+  { label: "Sitapaila", slug: "sitapaila" },
+  { label: "Jorpati", slug: "jorpati" },
+  { label: "Lagankhel", slug: "lagankhel" },
+  { label: "Soltimode", slug: "soltimode" },
+  { label: "Pokhara", slug: "pokhara" },
+  { label: "Biratnagar", slug: "biratnagar" },
+  { label: "Jhamsikhel", slug: "jhamsikhel" },
+];

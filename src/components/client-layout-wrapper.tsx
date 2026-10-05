@@ -23,7 +23,8 @@ export default function ClientLayoutWrapper({
     pathname.startsWith("/info") ||
     pathname.startsWith("/price-guess") ||
     pathname.startsWith("/instant-order") ||
-    pathname.startsWith("/dashain-dhamaka");
+    pathname.startsWith("/dashain-dhamaka") ||
+    pathname.startsWith("/buy-yachu-hair-oil");
 
   return (
     <>
