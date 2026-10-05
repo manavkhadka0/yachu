@@ -44,8 +44,8 @@ export function CheckoutModal({
       <DialogTrigger asChild></DialogTrigger>
       {/* Bottom sheet on mobile, centered dialog from sm up */}
       <DialogContent className="top-auto bottom-0 left-0 flex max-h-[94dvh] w-full max-w-full translate-x-0 translate-y-0 flex-col gap-0 overflow-hidden rounded-b-none rounded-t-3xl border-0 p-0 data-[state=open]:slide-in-from-bottom-10 sm:top-[50%] sm:bottom-auto sm:left-[50%] sm:max-h-[90vh] sm:max-w-xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-3xl sm:border sm:data-[state=open]:slide-in-from-bottom-0">
-        <DialogHeader className="shrink-0 px-5 pb-1 pt-5 text-left sm:px-7">
-          <DialogTitle className="text-xl font-bold sm:text-2xl">
+        <DialogHeader className="shrink-0 px-3.5 pb-1 pt-4 text-left sm:px-7 sm:pt-5">
+          <DialogTitle className="text-lg font-bold sm:text-2xl">
             Complete your order
           </DialogTitle>
           <DialogDescription className="sr-only">
@@ -53,7 +53,7 @@ export function CheckoutModal({
             you to confirm your order.
           </DialogDescription>
         </DialogHeader>
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pt-3 sm:px-7">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3.5 pt-2 sm:px-7 sm:pt-3">
           <CheckoutForm
             onSuccess={() => setIsOpen(false)}
             onCloseSheet={onCloseSheet}

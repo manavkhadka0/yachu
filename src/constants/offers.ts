@@ -76,8 +76,8 @@ export const SHAMPOO_TIERS: OfferTier[] = [
 
 // Products that have Dashain packs, in the order the offer section shows them
 export const DASHAIN_PACKS = [
-  { slug: "yachu-hair-oil", name: "Hair Oil", tiers: OIL_TIERS },
-  { slug: "yachu-shampoo-300-ml", name: "Shampoo", tiers: SHAMPOO_TIERS },
+  { slug: "yachu-hair-oil", name: "Yachu Hair Oil", tiers: OIL_TIERS },
+  { slug: "yachu-shampoo-300-ml", name: "Yachu Shampoo", tiers: SHAMPOO_TIERS },
 ];
 
 // Dashain per-piece price for a quantity of a pack product (undefined when

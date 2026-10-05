@@ -41,6 +41,8 @@ interface CheckoutFormProps {
   className?: string;
   initialDeliveryLocation?: "inside" | "outside";
   onDeliveryLocationChange?: (location: "inside" | "outside") => void;
+  /** Keep submit bar aligned with fields (no sheet bleed). Use for inline/desktop forms. */
+  flushSubmit?: boolean;
 }
 
 type PaymentMethodType = "cod" | "nps";
@@ -51,6 +53,7 @@ const CheckoutForm = ({
   className,
   initialDeliveryLocation = "inside",
   onDeliveryLocationChange,
+  flushSubmit = false,
 }: CheckoutFormProps) => {
   const { cart, clearCart, addToCart, increaseCount, decreaseCount } =
     useProductCart();
@@ -544,8 +547,15 @@ const CheckoutForm = ({
               />
             </div>
 
-            {/* Submit stays pinned to the bottom of the sheet */}
-            <div className="sticky bottom-0 -mx-5 rounded-b-3xl bg-background px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 sm:-mx-7 sm:px-7">
+            {/* Submit stays pinned in sheets; flushSubmit keeps it aligned in inline forms */}
+            <div
+              className={cn(
+                "sticky bottom-0 rounded-b-3xl bg-background pt-3",
+                flushSubmit
+                  ? "px-0 pb-1"
+                  : "-mx-3.5 px-3.5 pb-[max(1rem,env(safe-area-inset-bottom))] sm:-mx-7 sm:px-7"
+              )}
+            >
               <Button
                 type="submit"
                 disabled={isSubmitting}
