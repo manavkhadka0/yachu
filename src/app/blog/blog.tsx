@@ -85,7 +85,7 @@ const BlogContent = () => {
 const Blog = () => {
   return (
     <section
-      className="container py-12 sm:py-16 lg:py-20 mx-auto"
+      className="container py-12 sm:py-16 lg:py-20 mx-auto px-4 sm:px-6 lg:px-8"
       id="blogsection"
     >
       <div>
