@@ -17,6 +17,7 @@ interface Props {
   onCloseSheet?: () => void;
   deliveryLocation?: "inside" | "outside";
   onDeliveryLocationChange?: (value: "inside" | "outside") => void;
+  isDashainDhamaka?: boolean;
 }
 
 export function CheckoutModal({
@@ -25,6 +26,7 @@ export function CheckoutModal({
   onCloseSheet,
   deliveryLocation,
   onDeliveryLocationChange,
+  isDashainDhamaka,
 }: Props) {
   const hasTrackedOpen = useRef(false);
 
@@ -59,6 +61,7 @@ export function CheckoutModal({
             onCloseSheet={onCloseSheet}
             initialDeliveryLocation={deliveryLocation}
             onDeliveryLocationChange={onDeliveryLocationChange}
+            isDashainDhamaka={isDashainDhamaka}
           />
         </div>
       </DialogContent>

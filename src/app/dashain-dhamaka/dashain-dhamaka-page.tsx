@@ -413,7 +413,7 @@ export default function DashainDhamakaPage() {
                     ))}
                   </div>
                 ) : (
-                  <CheckoutForm flushSubmit />
+                  <CheckoutForm flushSubmit isDashainDhamaka />
                 )}
               </div>
             </div>
@@ -504,7 +504,11 @@ export default function DashainDhamakaPage() {
         </button>
       </div>
 
-      <CheckoutModal isOpen={checkoutOpen} setIsOpen={setCheckoutOpen} />
+      <CheckoutModal
+        isOpen={checkoutOpen}
+        setIsOpen={setCheckoutOpen}
+        isDashainDhamaka
+      />
     </div>
   );
 }

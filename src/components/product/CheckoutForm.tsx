@@ -43,6 +43,7 @@ interface CheckoutFormProps {
   onDeliveryLocationChange?: (location: "inside" | "outside") => void;
   /** Keep submit bar aligned with fields (no sheet bleed). Use for inline/desktop forms. */
   flushSubmit?: boolean;
+  isDashainDhamaka?: boolean;
 }
 
 type PaymentMethodType = "cod" | "nps";
@@ -54,6 +55,7 @@ const CheckoutForm = ({
   initialDeliveryLocation = "inside",
   onDeliveryLocationChange,
   flushSubmit = false,
+  isDashainDhamaka = false,
 }: CheckoutFormProps) => {
   const { cart, clearCart, addToCart, increaseCount, decreaseCount } =
     useProductCart();
@@ -157,8 +159,17 @@ const CheckoutForm = ({
         : "Outside Kathmandu Valley";
     const formattedAddress = `${data.address.trim()} (${locationLabel})`;
     const deliveryRemarks = `Delivery: ${locationLabel} (Rs. ${deliveryCharge})`;
-    const formattedRemarks = data.remarks
-      ? `${data.remarks.trim()} | ${deliveryRemarks}`
+
+    const userNote = data.remarks ? data.remarks.trim() : "";
+    let customerNote = userNote;
+    if (isDashainDhamaka) {
+      customerNote = customerNote
+        ? `(Dashain Dhamaka) ${customerNote}`
+        : "(Dashain Dhamaka)";
+    }
+
+    const formattedRemarks = customerNote
+      ? `${customerNote} | ${deliveryRemarks}`
       : deliveryRemarks;
 
     if (paymentMethod === "nps") {
