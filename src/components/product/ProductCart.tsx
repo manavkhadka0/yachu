@@ -1,6 +1,6 @@
 "use client";
 
-import { calculateTotalPrice, getDiscountRate, getDiscountedPricePerBottle } from "@/services/lib/utils";
+import { calculateTotalPrice, getProductPricing } from "@/services/lib/utils";
 import useProductCart from "@/store/zustand";
 import { Button } from "../ui/button";
 import { Minus, Plus, X, ShoppingBag, ArrowRight } from "lucide-react";
@@ -32,10 +32,6 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
   const [deliveryLocation, setDeliveryLocation] = useState<
     "inside" | "outside"
   >("inside");
-  const totalBottles = cart.reduce((sum, item) => sum + item.count, 0);
-  const discountRate = getDiscountRate(totalBottles);
-  const discountedPricePerBottle = getDiscountedPricePerBottle(totalBottles);
-  const discountPercent = Math.round(discountRate * 100);
   const totalPrice = calculateTotalPrice(cart);
   const shippingCharge = deliveryLocation === "inside" ? 100 : 150;
   const finalTotal = totalPrice + shippingCharge;
@@ -92,56 +88,65 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
             <ScrollArea className="h-full">
               <div className="p-4 space-y-4">
                 <AnimatePresence>
-                  {cart.map(({ product, count }) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, x: -100 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Card className="relative bg-card border-border">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-card hover:bg-destructive hover:text-destructive-foreground border border-border z-10"
-                          onClick={() => removeItem(product.id)}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
+                  {cart.map(({ product, count }) => {
+                    const pricing = getProductPricing(product, count);
+                    return (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Card className="relative bg-card border-border">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-card hover:bg-destructive hover:text-destructive-foreground border border-border z-10"
+                            onClick={() => removeItem(product.id)}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
 
-                        <CardContent className="flex gap-4 p-4">
-                          {/* Product Image */}
-                          <div className="flex-shrink-0 h-20 w-20 overflow-hidden rounded-lg border border-border">
-                            <img
-                              src={product.image1}
-                              alt={product.title}
-                              width="80"
-                              height="80"
-                              className="h-full w-full object-cover object-center"
-                            />
-                          </div>
+                          <CardContent className="flex gap-4 p-4">
+                            {/* Product Image */}
+                            <div className="flex-shrink-0 h-20 w-20 overflow-hidden rounded-lg border border-border">
+                              <img
+                                src={product.image1}
+                                alt={product.title}
+                                width="80"
+                                height="80"
+                                className="h-full w-full object-cover object-center"
+                              />
+                            </div>
 
-                          {/* Product Details */}
-                          <div className="flex flex-1 flex-col justify-between min-w-0">
-                            <div>
-                              <h3 className="font-medium text-foreground text-base mb-1 truncate">
-                                {product.title}
-                              </h3>
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <p className="text-foreground text-sm font-semibold">
-                                  Rs. {discountedPricePerBottle}
-                                </p>
-                                <p className="text-muted-foreground text-xs line-through">
-                                  Rs. 2,500
-                                </p>
-                                {discountPercent > 0 && (
-                                  <Badge variant="secondary" className="text-xs px-1.5 py-0 text-green-700 bg-green-100 dark:bg-green-900 dark:text-green-300">
-                                    {discountPercent}% off
-                                  </Badge>
+                            {/* Product Details */}
+                            <div className="flex flex-1 flex-col justify-between min-w-0">
+                              <div>
+                                <h3 className="font-medium text-foreground text-base mb-1 truncate">
+                                  {product.title}
+                                </h3>
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <p className="text-foreground text-sm font-semibold">
+                                    Rs. {pricing.unitPrice.toLocaleString()}
+                                  </p>
+                                  {pricing.hasDiscount && (
+                                    <>
+                                      <p className="text-muted-foreground text-xs line-through">
+                                        Rs. {pricing.originalPrice.toLocaleString()}
+                                      </p>
+                                      <Badge variant="secondary" className="text-xs px-1.5 py-0 text-green-700 bg-green-100 dark:bg-green-900 dark:text-green-300">
+                                        {pricing.discountPercent}% off
+                                      </Badge>
+                                    </>
+                                  )}
+                                </div>
+                                {count > 1 && (
+                                  <p className="text-xs text-muted-foreground mt-0.5">
+                                    Total: Rs. {(pricing.unitPrice * count).toLocaleString()}
+                                  </p>
                                 )}
                               </div>
-                            </div>
 
                             {/* Quantity Controls */}
                             <div className="flex items-center gap-3 mt-2">
@@ -169,7 +174,8 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                         </CardContent>
                       </Card>
                     </motion.div>
-                  ))}
+                  );
+                })}
                 </AnimatePresence>
               </div>
             </ScrollArea>
@@ -186,7 +192,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                       Subtotal
                     </Label>
                     <span className="font-medium text-foreground">
-                      Rs. {totalPrice}
+                      Rs. {totalPrice.toLocaleString()}
                     </span>
                   </div>
 
@@ -234,7 +240,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                   <div className="flex justify-between items-center">
                     <Label className="font-medium text-foreground">Total</Label>
                     <Badge variant="default" className="text-base px-3 py-1">
-                      Rs. {finalTotal}
+                      Rs. {finalTotal.toLocaleString()}
                     </Badge>
                   </div>
                 </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import useProductCart from "@/store/zustand";
 import { CartItem } from "@/types/product";
-import { newCart } from "@/services/lib/utils";
+import { newCart, getItemUnitPrice } from "@/services/lib/utils";
 import { toast } from "sonner";
 import { useProduct, useProducts } from "@/hooks/use-products";
 import { use } from "react";
@@ -43,11 +43,12 @@ export default function ProductDetail({ params }: ProductDetailProps) {
   const hasTrackedView = useRef(false);
   useEffect(() => {
     if (product && !hasTrackedView.current) {
+      const unitPrice = getItemUnitPrice(product, 1);
       posthog.capture("product_viewed", {
         product_id: product.id,
         product_title: product.title,
         product_slug: product.slug,
-        product_price: product.price,
+        product_price: unitPrice,
       });
       hasTrackedView.current = true;
     }
@@ -64,14 +65,30 @@ export default function ProductDetail({ params }: ProductDetailProps) {
 
   const handleAddToCart = () => {
     if (!product) return;
+    const unitPrice = getItemUnitPrice(product, quantity);
     const cartItem: CartItem = {
-      product: product,
+      product: { ...product, price: unitPrice },
       count: quantity,
     };
     const updatedCart = newCart(cartItem, [...cart]);
     addToCart(updatedCart);
     setIsInCart(true);
     toast.success("Product added to cart!");
+  };
+
+  const handleSelectQuantity = (qty: number) => {
+    if (!product) return;
+    setQuantity(qty);
+    if (isInCart) {
+      const unitPrice = getItemUnitPrice(product, qty);
+      addToCart(
+        cart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, count: qty, product: { ...item.product, price: unitPrice } }
+            : item
+        )
+      );
+    }
   };
 
   const handleIncrease = () => {
@@ -125,6 +142,7 @@ export default function ProductDetail({ params }: ProductDetailProps) {
             onAddToCart={handleAddToCart}
             onIncrease={handleIncrease}
             onDecrease={handleDecrease}
+            onSelectQuantity={handleSelectQuantity}
           />
         </div>
       </div>

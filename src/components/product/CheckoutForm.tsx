@@ -19,7 +19,7 @@ import { checkoutFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
 import RHFTextarea from "../react-hook-form/RHFTextarea";
 import useProductCart from "@/store/zustand";
-import { calculateTotalPrice } from "@/services/lib/utils";
+import { calculateTotalPrice, getItemUnitPrice } from "@/services/lib/utils";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -60,12 +60,12 @@ const CheckoutForm = ({
   const { cart, clearCart, addToCart, increaseCount, decreaseCount } =
     useProductCart();
 
-  // Keep pack products on the Dashain price that matches their quantity
+  // Keep products on the correct price (Dashain tier/offer or regular) matching their quantity
   useEffect(() => {
     let changed = false;
     const next = cart.map((item) => {
-      const price = dashainUnitPrice(item.product.slug, item.count);
-      if (price === undefined || price === item.product.price) return item;
+      const price = getItemUnitPrice(item.product, item.count);
+      if (price === item.product.price) return item;
       changed = true;
       return { ...item, product: { ...item.product, price } };
     });
@@ -356,9 +356,15 @@ const CheckoutForm = ({
                         className="h-full w-full object-contain p-1"
                       />
                     </div>
-                    <p className="min-w-0 flex-1 truncate text-base font-semibold text-foreground">
-                      {product.title}
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-base font-semibold text-foreground">
+                        {product.title}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Rs. {product.price.toLocaleString()}
+                        {count > 1 ? ` × ${count} = Rs. ${(product.price * count).toLocaleString()}` : ""}
+                      </p>
+                    </div>
                     <div className="flex shrink-0 items-center rounded-full border bg-white">
                       <button
                         type="button"
