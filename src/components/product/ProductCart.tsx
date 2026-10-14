@@ -56,12 +56,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
             Shopping Cart
           </h2>
         </div>
-        <Badge
-          variant="secondary"
-          className="text-secondary-foreground font-medium"
-        >
-          {cart.length} item{cart.length !== 1 ? "s" : ""}
-        </Badge>
+
       </div>
 
       {cart.length === 0 ? (
@@ -148,34 +143,34 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                                 )}
                               </div>
 
-                            {/* Quantity Controls */}
-                            <div className="flex items-center gap-3 mt-2">
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 rounded-xl flex-shrink-0"
-                                onClick={() => decreaseCount(product.id)}
-                              >
-                                <Minus className="h-3 w-3" />
-                              </Button>
-                              <span className="w-8 text-center font-medium text-foreground flex-shrink-0">
-                                {count}
-                              </span>
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 rounded-xl flex-shrink-0"
-                                onClick={() => increaseCount(product.id)}
-                              >
-                                <Plus className="h-3 w-3" />
-                              </Button>
+                              {/* Quantity Controls */}
+                              <div className="flex items-center gap-3 mt-2">
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="h-8 w-8 rounded-xl flex-shrink-0"
+                                  onClick={() => decreaseCount(product.id)}
+                                >
+                                  <Minus className="h-3 w-3" />
+                                </Button>
+                                <span className="w-8 text-center font-medium text-foreground flex-shrink-0">
+                                  {count}
+                                </span>
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="h-8 w-8 rounded-xl flex-shrink-0"
+                                  onClick={() => increaseCount(product.id)}
+                                >
+                                  <Plus className="h-3 w-3" />
+                                </Button>
+                              </div>
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })}
                 </AnimatePresence>
               </div>
             </ScrollArea>
