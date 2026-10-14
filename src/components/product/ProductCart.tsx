@@ -49,7 +49,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
   return (
     <div className="flex flex-col h-full max-h-screen bg-background">
       {/* Header with Badge */}
-      <div className="flex items-center justify-between p-4 py-8 bg-card border-b border-border flex-shrink-0">
+      <div className="flex items-center justify-between px-4 py-4 sm:py-5 bg-card border-b border-border flex-shrink-0">
         <div className="flex items-center gap-3">
           <ShoppingBag className="h-5 w-5 text-foreground" />
           <h2 className="text-lg font-semibold text-foreground">
@@ -86,7 +86,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
           {/* Scrollable Items Area - Fixed height with proper scrolling */}
           <div className="flex-1 min-h-0 overflow-hidden">
             <ScrollArea className="h-full">
-              <div className="p-4 space-y-4">
+              <div className="p-3 xs:p-4 space-y-3 xs:space-y-4">
                 <AnimatePresence>
                   {cart.map(({ product, count }) => {
                     const pricing = getProductPricing(product, count);
@@ -108,9 +108,9 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                             <X className="h-4 w-4" />
                           </Button>
 
-                          <CardContent className="flex gap-4 p-4">
+                          <CardContent className="flex gap-3 xs:gap-4 p-3 xs:p-4">
                             {/* Product Image */}
-                            <div className="flex-shrink-0 h-20 w-20 overflow-hidden rounded-lg border border-border">
+                            <div className="flex-shrink-0 h-16 w-16 xs:h-20 xs:w-20 overflow-hidden rounded-lg border border-border">
                               <img
                                 src={product.image1}
                                 alt={product.title}
@@ -184,7 +184,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
           {/* Summary Section - Fixed at bottom */}
           <div className="flex-shrink-0 border-t border-border">
             <Card className="rounded-none bg-card border-0">
-              <CardContent className="p-4 space-y-4">
+              <CardContent className="p-3.5 xs:p-4 space-y-3 xs:space-y-4">
                 <div className="space-y-3">
                   {/* Subtotal Row */}
                   <div className="flex justify-between text-sm">
@@ -247,7 +247,7 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
 
                 {/* Checkout Button */}
                 <Button
-                  className="w-full h-12 text-base font-medium"
+                  className="w-full h-11 xs:h-12 text-sm xs:text-base font-semibold cursor-pointer"
                   onClick={handleCheckout}
                 >
                   Proceed to Checkout

@@ -32,7 +32,7 @@ const CartButton: React.FC<CartButtonProps> = ({ className }) => {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-[300px] sm:w-[540px]">
+      <SheetContent className="w-full sm:max-w-md lg:max-w-lg p-0 border-l shadow-none">
         <ProductCart onCloseSheet={() => setIsOpen(false)} />
       </SheetContent>
     </Sheet>

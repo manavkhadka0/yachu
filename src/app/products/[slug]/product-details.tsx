@@ -104,7 +104,7 @@ export default function ProductDetail({ params }: ProductDetailProps) {
 
   return (
     <div className="bg-gradient-to-b from-white to-amber-50">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-12">
         <ProductBreadcrumb />
 
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
