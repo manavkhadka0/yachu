@@ -35,7 +35,6 @@ export default function ProductDetail({ params }: ProductDetailProps) {
   const { cart, addToCart, increaseCount, decreaseCount, removeItem } =
     useProductCart();
   const [quantity, setQuantity] = useState(1);
-  const [isInCart, setIsInCart] = useState(false);
 
   const otherProducts = allProducts?.filter((p) => p.slug !== slug) || [];
 
@@ -54,67 +53,43 @@ export default function ProductDetail({ params }: ProductDetailProps) {
     }
   }, [product]);
 
-  useEffect(() => {
-    if (!product) return;
-    const cartItem = cart.find((item) => item.product.id === product.id);
-    setIsInCart(!!cartItem);
-    if (cartItem) {
-      setQuantity(cartItem.count);
-    }
-  }, [cart, product]);
+  const cartItem = cart.find(
+    (item) => String(item.product.id) === String(product?.id)
+  );
+  const cartCount = cartItem?.count ?? 0;
+  const isInCart = cartCount > 0;
 
   const handleAddToCart = () => {
     if (!product) return;
     const unitPrice = getItemUnitPrice(product, quantity);
-    const cartItem: CartItem = {
+    const newCartItem: CartItem = {
       product: { ...product, price: unitPrice },
       count: quantity,
     };
-    const updatedCart = newCart(cartItem, [...cart]);
+    const updatedCart = newCart(newCartItem, [...cart]);
     addToCart(updatedCart);
-    setIsInCart(true);
-    toast.success("Product added to cart!");
+    const totalNow =
+      updatedCart.find(
+        (item) => String(item.product.id) === String(product.id)
+      )?.count ?? quantity;
+    toast.success(
+      `Added ${quantity} ${quantity === 1 ? "bottle" : "bottles"} to cart!`,
+      {
+        description: `Total ${totalNow} in cart.`,
+      }
+    );
   };
 
   const handleSelectQuantity = (qty: number) => {
-    if (!product) return;
     setQuantity(qty);
-    if (isInCart) {
-      const unitPrice = getItemUnitPrice(product, qty);
-      addToCart(
-        cart.map((item) =>
-          item.product.id === product.id
-            ? { ...item, count: qty, product: { ...item.product, price: unitPrice } }
-            : item
-        )
-      );
-    }
   };
 
   const handleIncrease = () => {
-    if (!product) return;
-
-    if (isInCart) {
-      increaseCount(product.id);
-    } else {
-      setQuantity((prev) => prev + 1);
-    }
+    setQuantity((prev) => prev + 1);
   };
 
   const handleDecrease = () => {
-    if (!product) return;
-
-    if (isInCart) {
-      if (quantity > 1) {
-        decreaseCount(product.id);
-      } else {
-        removeItem(product.id);
-        setIsInCart(false);
-        setQuantity(1);
-      }
-    } else if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    }
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
   // Loading state with skeleton
@@ -138,6 +113,7 @@ export default function ProductDetail({ params }: ProductDetailProps) {
           <ProductInfoSection
             product={product}
             quantity={quantity}
+            cartCount={cartCount}
             isInCart={isInCart}
             onAddToCart={handleAddToCart}
             onIncrease={handleIncrease}

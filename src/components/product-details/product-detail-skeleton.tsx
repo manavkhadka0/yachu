@@ -12,7 +12,7 @@ export const ProductDetailSkeleton = () => (
       <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
         {/* Product Image Skeleton */}
         <div className="lg:max-w-lg lg:self-start sticky top-8">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-border bg-card shadow-none rounded-2xl">
             <CardContent className="p-4">
               <div className="aspect-square relative">
                 <Skeleton className="h-full w-full rounded-lg" />
@@ -23,7 +23,7 @@ export const ProductDetailSkeleton = () => (
 
         {/* Product Details Skeleton */}
         <div className="mt-10 lg:mt-0">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-border bg-card shadow-none rounded-2xl">
             <CardContent className="p-8">
               <Skeleton className="h-8 w-3/4 mb-4" />
               <Skeleton className="h-10 w-32 mb-6" />
@@ -57,7 +57,7 @@ export const ProductDetailSkeleton = () => (
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
-            <Card key={i} className="border-0 shadow-lg">
+            <Card key={i} className="border border-border bg-card shadow-none rounded-2xl">
               <CardContent className="p-6">
                 <Skeleton className="h-64 mb-4 rounded" />
                 <Skeleton className="h-6 w-3/4 mb-2" />

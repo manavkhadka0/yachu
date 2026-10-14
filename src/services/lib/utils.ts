@@ -98,7 +98,7 @@ export function calculateTotalPrice(cartItems: CartItem[]): number {
 
 export function newCart(cartItem: CartItem, cart: CartItem[]) {
   const existingItemIndex = cart.findIndex(
-    (item) => item.product.id === cartItem.product.id
+    (item) => String(item.product.id) === String(cartItem.product.id)
   );
   if (existingItemIndex > -1) {
     const updatedCount = cart[existingItemIndex].count + cartItem.count;

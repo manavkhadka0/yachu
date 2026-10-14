@@ -18,7 +18,7 @@ const useProductCart = create<ProductCartStore>((set) => ({
   increaseCount: (productId: string) =>
     set((state) => ({
       cart: state.cart.map((item) => {
-        if (item.product.id === productId) {
+        if (String(item.product.id) === String(productId)) {
           const nextCount = item.count + 1;
           const unitPrice = getItemUnitPrice(item.product, nextCount);
           return {
@@ -33,7 +33,7 @@ const useProductCart = create<ProductCartStore>((set) => ({
   decreaseCount: (productId: string) =>
     set((state) => ({
       cart: state.cart.map((item) => {
-        if (item.product.id === productId && item.count > 1) {
+        if (String(item.product.id) === String(productId) && item.count > 1) {
           const nextCount = item.count - 1;
           const unitPrice = getItemUnitPrice(item.product, nextCount);
           return {
@@ -47,7 +47,7 @@ const useProductCart = create<ProductCartStore>((set) => ({
     })),
   removeItem: (productId: string) =>
     set((state) => ({
-      cart: state.cart.filter((item) => item.product.id !== productId),
+      cart: state.cart.filter((item) => String(item.product.id) !== String(productId)),
     })),
   clearCart: () => set({ cart: [] }),
 }));

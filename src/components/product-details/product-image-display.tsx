@@ -17,7 +17,7 @@ export const ProductImageDisplay = ({
 
   return (
     <div className="lg:max-w-lg lg:self-start lg:sticky lg:top-8 px-2 xs:px-3 sm:px-4 lg:px-0">
-      <Card className="border-0 shadow-lg">
+      <Card className="border border-border bg-card shadow-none rounded-2xl overflow-hidden">
         <CardContent className="p-2 xs:p-3 sm:p-4">
           <div className="aspect-square xs:aspect-h-4 xs:aspect-w-3 relative">
             {!imageLoaded && (
