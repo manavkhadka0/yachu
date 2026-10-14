@@ -170,11 +170,7 @@ export const ProductInfoSection = ({
           </div>
 
           <div className="mt-5 sm:mt-8 space-y-2.5 sm:space-y-3">
-            {cartCount > 0 && (
-              <div className="flex items-center gap-2 text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg border border-emerald-200/60 dark:border-emerald-900/60 w-fit">
-                <span className="font-bold">✓ In your cart:</span> {cartCount} {cartCount === 1 ? "bottle" : "bottles"}
-              </div>
-            )}
+
 
             <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
               <div className="flex items-center gap-2 sm:gap-3 flex-1">
