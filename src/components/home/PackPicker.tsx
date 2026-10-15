@@ -48,9 +48,11 @@ const PackPicker = ({ tiers, selected, onSelect, label }: PackPickerProps) => (
                 </span>
               )}
             </span>
-            <span className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-foreground/60 sm:text-xs">
-              {tier.perk}
-            </span>
+            {tier.perk && (
+              <span className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-foreground/60 sm:text-xs">
+                {tier.perk}
+              </span>
+            )}
           </span>
 
           <span className="shrink-0 whitespace-nowrap text-right">

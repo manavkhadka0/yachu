@@ -3,7 +3,7 @@ import DashainDhamakaPage from "./dashain-dhamaka-page";
 
 const title = "Dashain Dhamaka | Buy Yachu Hair Oil, Win an Electric Scooter";
 const description =
-  "Every Yachu bottle comes with a Scratch & Win card this Dashain. Up to 16% off, Cash on Delivery, delivery all over Nepal.";
+  "Every Yachu Hair Oil bottle comes with a Scratch & Win card this Dashain. Up to 16% off, Cash on Delivery, delivery all over Nepal.";
 
 export const metadata: Metadata = {
   title,

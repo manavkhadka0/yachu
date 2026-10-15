@@ -54,7 +54,7 @@ const STEPS = [
   {
     Icon: PackageCheck,
     title: "Receive",
-    body: "Your Yachu arrives with a Scratch & Win card for every bottle.",
+    body: "Your Yachu Hair Oil arrives with a Scratch & Win card for every bottle.",
   },
   {
     Icon: Gift,
@@ -269,7 +269,7 @@ export default function DashainDhamakaPage() {
               Buy Yachu Hair Oil. Win an Electric Scooter.
             </h1>
             <p className="mx-auto mt-2.5 max-w-md text-[13px] leading-relaxed text-cream/80 sm:mt-3 sm:text-sm md:mx-0 md:text-base">
-              Every bottle comes with a Scratch &amp; Win card. Up to 16% off
+              Every Hair Oil bottle comes with a Scratch &amp; Win card. Up to 16% off
               this Dashain.
             </p>
 

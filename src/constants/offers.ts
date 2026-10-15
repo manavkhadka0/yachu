@@ -7,7 +7,7 @@ export type OfferTier = {
   originalPrice: number;
   perPcs: number;
   discountLabel: string;
-  perk: string;
+  perk?: string;
   best?: boolean;
 };
 
@@ -51,7 +51,6 @@ export const SHAMPOO_TIERS: OfferTier[] = [
     originalPrice: 999,
     perPcs: 899,
     discountLabel: "10% off",
-    perk: "1 lucky draw scratch card",
   },
   {
     qty: 2,
@@ -60,7 +59,6 @@ export const SHAMPOO_TIERS: OfferTier[] = [
     originalPrice: 1998,
     perPcs: 899,
     discountLabel: "10% off",
-    perk: "2 lucky draw scratch cards",
   },
   {
     qty: 3,
@@ -69,7 +67,6 @@ export const SHAMPOO_TIERS: OfferTier[] = [
     originalPrice: 2997,
     perPcs: 807,
     discountLabel: "19% off",
-    perk: "3 lucky draw scratch cards",
     best: true,
   },
 ];

@@ -405,7 +405,7 @@ const CheckoutForm = ({
                     {(
                       upsell.best.originalPrice - upsell.best.price
                     ).toLocaleString()}
-                    {upsell.best.perk.startsWith("Free") && " + free Facewash"}
+                    {upsell.best.perk?.startsWith("Free") && " + free Facewash"}
                   </span>
                   <span className="shrink-0 rounded-full bg-forest px-3 py-1.5 text-xs font-bold text-cream">
                     Get {upsell.best.qty}

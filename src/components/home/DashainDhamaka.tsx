@@ -51,7 +51,7 @@ const DashainDhamaka = ({ onOrder }: DashainDhamakaProps) => {
             Get a chance to win an Electric Scooter
           </h2>
           <p className="mt-4 max-w-xl text-cream/75">
-            Every Yachu bottle comes with a Scratch &amp; Win card.
+            Every Yachu Hair Oil bottle comes with a Scratch &amp; Win card.
           </p>
 
           <button

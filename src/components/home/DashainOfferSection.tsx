@@ -73,7 +73,7 @@ const OFFERS: ProductOffer[] = [
         offerPrice: 899,
         perPcs: 899,
         discountPct: "10% off",
-        perks: ["1 Scratch Card"],
+        perks: [],
       },
       {
         qty: 2,
@@ -82,7 +82,7 @@ const OFFERS: ProductOffer[] = [
         offerPrice: 1798,
         perPcs: 899,
         discountPct: "10% off",
-        perks: ["2 Scratch Cards"],
+        perks: [],
       },
       {
         qty: 3,
@@ -91,7 +91,7 @@ const OFFERS: ProductOffer[] = [
         offerPrice: 2422,
         perPcs: 807,
         discountPct: "~19% off",
-        perks: ["3 Scratch Cards"],
+        perks: [],
         best: true,
       },
     ],
@@ -145,7 +145,7 @@ export default function DashainOfferSection() {
               Buy More, Save More This Dashain
             </h2>
             <p className="text-base text-muted-foreground max-w-xl md:text-lg">
-              Every purchase includes a lucky draw scratch card — get a chance to win a brand-new scooter!
+              Every Yachu Hair Oil purchase includes a lucky draw scratch card — get a chance to win a brand-new scooter!
             </p>
           </div>
 
@@ -223,17 +223,19 @@ export default function DashainOfferSection() {
                               ` · Rs. ${tier.perPcs.toLocaleString()} each`}
                           </p>
 
-                          <ul className="mt-2 space-y-1">
-                            {tier.perks.map((perk) => (
-                              <li
-                                key={perk}
-                                className="flex items-center gap-1.5 text-xs font-medium text-foreground"
-                              >
-                                <Gift className="h-3.5 w-3.5 shrink-0 text-primary" />
-                                {perk}
-                              </li>
-                            ))}
-                          </ul>
+                          {tier.perks.length > 0 && (
+                            <ul className="mt-2 space-y-1">
+                              {tier.perks.map((perk) => (
+                                <li
+                                  key={perk}
+                                  className="flex items-center gap-1.5 text-xs font-medium text-foreground"
+                                >
+                                  <Gift className="h-3.5 w-3.5 shrink-0 text-primary" />
+                                  {perk}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
 
                         <button

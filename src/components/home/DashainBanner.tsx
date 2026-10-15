@@ -59,7 +59,6 @@ const BANNER_OFFERS: BannerOffer[] = [
     offerPrice: 899,
     perPcs: 899,
     discountLabel: "10% off",
-    perk: "+1 lucky draw entry",
   },
   {
     id: "shampoo-3",
@@ -70,7 +69,6 @@ const BANNER_OFFERS: BannerOffer[] = [
     offerPrice: 2422,
     perPcs: 807,
     discountLabel: "19% off",
-    perk: "+3 lucky draw entries",
     badge: "Best value",
   },
 ];
