@@ -63,7 +63,7 @@ export const SHAMPOO_TIERS: OfferTier[] = [
   {
     qty: 3,
     label: "3 bottles",
-    price: 2422,
+    price: 2421,
     originalPrice: 2997,
     perPcs: 807,
     discountLabel: "19% off",

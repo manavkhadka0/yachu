@@ -66,7 +66,7 @@ const BANNER_OFFERS: BannerOffer[] = [
     title: "Yachu Shampoo (3 pcs)",
     qty: 3,
     originalPrice: 2997,
-    offerPrice: 2422,
+    offerPrice: 2421,
     perPcs: 807,
     discountLabel: "19% off",
     badge: "Best value",

@@ -88,7 +88,7 @@ const OFFERS: ProductOffer[] = [
         qty: 3,
         label: "3 bottles",
         originalPrice: 2997,
-        offerPrice: 2422,
+        offerPrice: 2421,
         perPcs: 807,
         discountPct: "~19% off",
         perks: [],
