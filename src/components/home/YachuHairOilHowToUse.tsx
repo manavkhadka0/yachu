@@ -10,7 +10,7 @@ const steps = [
   {
     n: "02",
     title: "Quantity",
-    body: "For Short Hair: 10-12 ml. For Long Hair: 15-20 ml.",
+    body: "Male : 10 - 15 ml | Female : 20 - 25 ml ( you can adjust according to the length and thickness of your hair )",
   },
   {
     n: "03",
