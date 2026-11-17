@@ -10,7 +10,7 @@ interface PackPickerProps {
   label: string;
 }
 
-/* Radio rows for choosing a Dashain pack */
+/* Radio rows for choosing a pack */
 const PackPicker = ({ tiers, selected, onSelect, label }: PackPickerProps) => (
   <div role="radiogroup" aria-label={label} className="space-y-2">
     {tiers.map((tier, index) => {
@@ -59,11 +59,13 @@ const PackPicker = ({ tiers, selected, onSelect, label }: PackPickerProps) => (
             <span className="block text-[15px] font-bold tabular-nums leading-none text-forest sm:text-base">
               Rs. {tier.price.toLocaleString()}
             </span>
-            <span className="mt-0.5 block text-[10px] tabular-nums text-foreground/45">
-              <span className="line-through">
-                Rs. {tier.originalPrice.toLocaleString()}
+            {tier.originalPrice > tier.price && (
+              <span className="mt-0.5 block text-[10px] tabular-nums text-foreground/45">
+                <span className="line-through">
+                  Rs. {tier.originalPrice.toLocaleString()}
+                </span>
               </span>
-            </span>
+            )}
           </span>
         </button>
       );

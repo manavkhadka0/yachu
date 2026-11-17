@@ -161,12 +161,7 @@ const CheckoutForm = ({
     const deliveryRemarks = `Delivery: ${locationLabel} (Rs. ${deliveryCharge})`;
 
     const userNote = data.remarks ? data.remarks.trim() : "";
-    let customerNote = userNote;
-    if (isDashainDhamaka) {
-      customerNote = customerNote
-        ? `(Dashain Dhamaka) ${customerNote}`
-        : "(Dashain Dhamaka)";
-    }
+    const customerNote = userNote;
 
     const formattedRemarks = customerNote
       ? `${customerNote} | ${deliveryRemarks}`

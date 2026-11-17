@@ -11,35 +11,31 @@ export type OfferTier = {
   best?: boolean;
 };
 
-// Dashain hair oil packs shown in the hero.
+// Hair oil packs shown in the hero.
 export const OIL_TIERS: OfferTier[] = [
   {
     qty: 1,
     label: "1 bottle",
-    price: 2250,
+    price: 2500,
     originalPrice: 2500,
-    perPcs: 2250,
-    discountLabel: "10% off",
-    perk: "1 lucky draw scratch card",
+    perPcs: 2500,
+    discountLabel: "",
   },
   {
     qty: 2,
     label: "2 bottles",
-    price: 4500,
+    price: 5000,
     originalPrice: 5000,
-    perPcs: 2250,
-    discountLabel: "10% off",
-    perk: "2 lucky draw scratch cards",
+    perPcs: 2500,
+    discountLabel: "",
   },
   {
     qty: 3,
     label: "3 bottles",
-    price: 6270,
+    price: 7500,
     originalPrice: 7500,
-    perPcs: 2090,
-    discountLabel: "16% off",
-    perk: "Free Yachu Facewash + 3 lucky draw scratch cards",
-    best: true,
+    perPcs: 2500,
+    discountLabel: "",
   },
 ];
 
@@ -47,38 +43,37 @@ export const SHAMPOO_TIERS: OfferTier[] = [
   {
     qty: 1,
     label: "1 bottle",
-    price: 899,
-    originalPrice: 999,
-    perPcs: 899,
-    discountLabel: "10% off",
+    price: 1000,
+    originalPrice: 1000,
+    perPcs: 1000,
+    discountLabel: "",
   },
   {
     qty: 2,
     label: "2 bottles",
-    price: 1798,
-    originalPrice: 1998,
-    perPcs: 899,
-    discountLabel: "10% off",
+    price: 2000,
+    originalPrice: 2000,
+    perPcs: 1000,
+    discountLabel: "",
   },
   {
     qty: 3,
     label: "3 bottles",
-    price: 2421,
-    originalPrice: 2997,
-    perPcs: 807,
-    discountLabel: "19% off",
-    best: true,
+    price: 3000,
+    originalPrice: 3000,
+    perPcs: 1000,
+    discountLabel: "",
   },
 ];
 
-// Products that have Dashain packs, in the order the offer section shows them
+// Products that have packs, in the order shown
 export const DASHAIN_PACKS = [
   { slug: "yachu-hair-oil", name: "Yachu Hair Oil", tiers: OIL_TIERS },
   { slug: "yachu-shampoo-300-ml", name: "Yachu Shampoo", tiers: SHAMPOO_TIERS },
 ];
 
-// Dashain per-piece price for a quantity of a pack product (undefined when
-// the product has no Dashain pack)
+// Per-piece price for a quantity of a pack product (undefined when
+// the product has no pack)
 export const dashainUnitPrice = (slug: string, qty: number) => {
   const pack = DASHAIN_PACKS.find((item) => item.slug === slug);
   if (!pack) return undefined;
@@ -86,7 +81,7 @@ export const dashainUnitPrice = (slug: string, qty: number) => {
   return (tier ?? pack.tiers[0]).perPcs;
 };
 
-// Single-bottle Dashain price used by the sticky order bar
+// Single-bottle price used by the sticky order bar
 export const HERO_OFFER = {
   slug: "yachu-hair-oil",
   name: "Yachu Hair Oil",
@@ -95,10 +90,10 @@ export const HERO_OFFER = {
   discountLabel: OIL_TIERS[0].discountLabel,
 };
 
-// Per-piece Dashain price by product slug, shown on product cards
+// Per-piece price by product slug, shown on product cards
 export const DASHAIN_UNIT_PRICE: Record<string, number> = {
-  "yachu-hair-oil": 2250,
-  "yachu-shampoo-300-ml": 899,
+  "yachu-hair-oil": 2500,
+  "yachu-shampoo-300-ml": 1000,
 };
 
 export const DELIVERY_CHARGE = { inside: 100, outside: 150 };

@@ -3,7 +3,6 @@ import YachuHairOilBenefits from "@/components/home/YachuHairOilBenefits";
 import YachuHairOilHowToUse from "@/components/home/YachuHairOilHowToUse";
 import FAQ from "@/components/contact/FAQ";
 import HeroSection from "@/components/home/hero-section/hero-section";
-import DashainDhamaka from "@/components/home/DashainDhamaka";
 import BeforeAfter from "@/components/home/BeforeAfter";
 import VideoStories from "@/components/home/VideoStories";
 import Ingredients from "@/components/home/Ingredients";
@@ -42,7 +41,6 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       <HeroSection onOrder={handleOrder} />
-      {/* <DashainDhamaka onOrder={handleOrder} /> */}
       <YachuHairOilHowToUse />
       <BeforeAfter onOrder={handleOrder} />
       <VideoStories />

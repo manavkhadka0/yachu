@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all hover:shadow-2xl">
       {hasOffer && (
         <span className="absolute left-3 top-3 z-10 rounded-lg bg-yellow-cta px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-forest shadow-md">
-          Dashain {discountPct}% off
+          {discountPct}% off
         </span>
       )}
 

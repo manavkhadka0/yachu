@@ -13,14 +13,14 @@ export function cn(...inputs: ClassValue[]) {
 
 const BASE_PRICE_PER_BOTTLE = 2500;
 
-// Fixed discounted prices per bottle per tier
-const PRICE_PER_BOTTLE_1_2 = 2250; // 10% off → 2500 × 0.90 = 2250
-const PRICE_PER_BOTTLE_3_PLUS = 2090; // 16.4% off → 3 × 2090 = 6270
+// Standard price per bottle
+const PRICE_PER_BOTTLE_1_2 = 2500;
+const PRICE_PER_BOTTLE_3_PLUS = 2500;
 
 /**
  * Returns the effective unit price for a given product and quantity.
- * If the product is part of a Dashain tier (e.g. hair oil or shampoo), it returns the tier per-piece price.
- * If it has a static Dashain offer price, it returns that.
+ * If the product is part of a pack tier (e.g. hair oil or shampoo), it returns the tier per-piece price.
+ * If it has a static offer price, it returns that.
  * Otherwise, it returns the product's regular price.
  */
 export function getItemUnitPrice(
@@ -31,7 +31,7 @@ export function getItemUnitPrice(
   if (tierPrice !== undefined) return tierPrice;
 
   const staticOffer = DASHAIN_UNIT_PRICE[product.slug];
-  if (staticOffer !== undefined && staticOffer < product.price) {
+  if (staticOffer !== undefined) {
     return staticOffer;
   }
 

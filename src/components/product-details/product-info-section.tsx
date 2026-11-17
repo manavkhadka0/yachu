@@ -54,7 +54,7 @@ export const ProductInfoSection = ({
                   Rs. {pricing.originalPrice.toLocaleString()}
                 </p>
                 <span className="rounded-lg bg-yellow-cta px-2 py-0.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-forest">
-                  Dashain {pricing.discountPercent}% off
+                  {pricing.discountPercent}% off
                 </span>
               </>
             )}
@@ -70,15 +70,12 @@ export const ProductInfoSection = ({
             </p>
           )}
 
-          {/* Dashain Special Packs (for products that have pack tiers) */}
+          {/* Pack options (for products that have pack tiers) */}
           {pack && pack.tiers.length > 0 && (
             <div className="mt-5 sm:mt-6 space-y-2.5 sm:space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   Select Pack Offer
-                </span>
-                <span className="text-[11px] sm:text-xs text-primary font-semibold">
-                  Dashain Dhamaka Deals
                 </span>
               </div>
 
@@ -122,9 +119,11 @@ export const ProductInfoSection = ({
                                 Best Value
                               </span>
                             )}
-                            <span className="text-[11px] sm:text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                              Save {tier.discountLabel}
-                            </span>
+                            {tier.discountLabel && (
+                              <span className="text-[11px] sm:text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                                Save {tier.discountLabel}
+                              </span>
+                            )}
                           </div>
                         </div>
 
@@ -134,9 +133,11 @@ export const ProductInfoSection = ({
                             <span className="text-base sm:text-lg font-extrabold text-foreground">
                               Rs. {tier.price.toLocaleString()}
                             </span>
-                            <span className="text-[11px] sm:text-xs text-muted-foreground line-through">
-                              Rs. {tier.originalPrice.toLocaleString()}
-                            </span>
+                            {tier.originalPrice > tier.price && (
+                              <span className="text-[11px] sm:text-xs text-muted-foreground line-through">
+                                Rs. {tier.originalPrice.toLocaleString()}
+                              </span>
+                            )}
                           </div>
                           {tier.qty > 1 && (
                             <span className="text-[10px] sm:text-[11px] text-muted-foreground block">

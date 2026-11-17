@@ -10,7 +10,6 @@ import {
   type OfferTier,
 } from "@/constants/offers";
 import PackPicker from "@/components/home/PackPicker";
-import TikaJamara from "@/components/shared/TikaJamara";
 import posthog from "posthog-js";
 
 interface HeroSectionProps {
@@ -37,12 +36,8 @@ const HeroSection = ({ onOrder }: HeroSectionProps) => {
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-2">
         {/* Left content */}
         <div className="relative z-10">
-          <p className="flex animate-fade-up items-end gap-2 font-script text-2xl text-gold md:text-3xl">
-            <TikaJamara className="h-12 w-10 shrink-0" />
-            Dashain Dhamaka offer
-          </p>
           <h1
-            className="mt-1 animate-fade-up text-5xl font-bold leading-[1.05] text-forest md:text-6xl lg:text-7xl"
+            className="animate-fade-up text-5xl font-bold leading-[1.05] text-forest md:text-6xl lg:text-7xl"
             style={{ animationDelay: "0.1s" }}
           >
             Yachu Hair Oil
@@ -55,7 +50,7 @@ const HeroSection = ({ onOrder }: HeroSectionProps) => {
             natural ingredients.
           </p>
 
-          {/* Dashain offer picker */}
+          {/* Pack picker */}
           <div
             className="mt-7 max-w-lg animate-fade-up rounded-3xl border border-border bg-card p-4 shadow-[0_25px_60px_-30px_oklch(0.32_0.07_150/0.45)] sm:p-5"
             style={{ animationDelay: "0.3s" }}
@@ -64,7 +59,7 @@ const HeroSection = ({ onOrder }: HeroSectionProps) => {
               tiers={OIL_TIERS}
               selected={selected}
               onSelect={setSelected}
-              label="Dashain pack"
+              label="Select pack"
             />
 
             <button
@@ -120,7 +115,6 @@ const HeroSection = ({ onOrder }: HeroSectionProps) => {
           style={{ animationDelay: "0.4s" }}
         >
           <div className="relative mx-auto max-w-sm lg:max-w-xl">
-            <TikaJamara className="absolute -top-8 right-2 z-10 h-28 w-24 rotate-12 animate-leaf-sway drop-shadow-lg md:h-36 md:w-28" />
             <Image
               src="/hero.png"
               alt="Yachu Hair Oil"
