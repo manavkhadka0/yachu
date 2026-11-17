@@ -57,6 +57,7 @@ export interface TOrderFilters {
   page_size?: number;
   search?: string;
   status?: string;
+  order_status?: string;
   ordering?: string;
 }
 

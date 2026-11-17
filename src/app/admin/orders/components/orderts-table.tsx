@@ -33,7 +33,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
   isUpdating,
   updatingOrderId,
 }) => (
-  <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+  <div className="overflow-hidden border border-border/80 bg-card rounded-xl shadow-none">
     {/* Mobile view - card layout */}
     <div className="p-2 space-y-3 sm:hidden">
       {orders.map((order) => {
@@ -123,7 +123,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                   onUpdateStatus(order.id, e.target.value as OrderStatus)
                 }
                 disabled={isCurrentlyUpdating}
-                className="block px-2 py-1 text-xs border border-gray-300 rounded-md shadow-sm focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                className="block px-2.5 py-1.5 text-xs border border-border rounded-lg shadow-none bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
                 {[
@@ -292,7 +292,7 @@ const OrdersTable: React.FC<OrdersTableProps> = ({
                           )
                         }
                         disabled={isCurrentlyUpdating}
-                        className="block w-full px-2 py-1 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="block w-full px-2.5 py-1.5 text-xs border border-border rounded-lg shadow-none bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                         onClick={(e) => e.stopPropagation()}
                       >
                         {[

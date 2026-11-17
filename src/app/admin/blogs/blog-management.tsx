@@ -21,6 +21,7 @@ import {
 import { TBlog, BlogFilters } from "@/types/blog";
 import Pagination from "@/components/ui/pagination";
 import { useDebounce } from "@/hooks/use-debounce";
+
 const BlogsManagement = () => {
   const router = useRouter();
 
@@ -93,7 +94,11 @@ const BlogsManagement = () => {
   };
 
   const handleFilter = (newFilters: { category: string }) =>
-    setFilters((prev) => ({ ...prev, category: newFilters.category, page: 1 }));
+    setFilters((prev) => ({
+      ...prev,
+      category: newFilters.category === "all" ? "" : newFilters.category,
+      page: 1,
+    }));
 
   const handlePageChange = (page: number) =>
     setFilters((prev) => ({ ...prev, page }));
@@ -103,41 +108,37 @@ const BlogsManagement = () => {
   const totalPages = Math.ceil(totalBlogs / (filters.page_size || 10));
 
   return (
-    <div className="min-h-screen py-8 bg-gray-50">
-      <div className="px-4">
-        <BlogHeader
-          onCreateNew={handleCreateNew}
-          onRefresh={handleRefresh}
-          blogsCount={totalBlogs}
+    <div className="px-4 py-6 sm:px-6 lg:px-8 space-y-6">
+      <BlogHeader
+        onCreateNew={handleCreateNew}
+        onRefresh={handleRefresh}
+        blogsCount={totalBlogs}
+      />
+      <BlogSearch
+        onSearch={handleSearch}
+        onFilter={handleFilter}
+        categories={categories || []}
+        searchValue={searchTerm}
+      />
+      <div>
+        <BlogsTable
+          blogs={blogs}
+          onDelete={handleDeleteBlog}
+          isLoading={isLoadingBlogs || deleteBlogMutation.isPending}
         />
-        <BlogSearch
-          onSearch={handleSearch}
-          onFilter={handleFilter}
-          categories={categories || []}
-          searchValue={searchTerm}
-        />
-        <div className="mt-6">
-          <BlogsTable
-            blogs={blogs}
-            onDelete={handleDeleteBlog}
-            isLoading={isLoadingBlogs || deleteBlogMutation.isPending}
-          />
-        </div>
-        {totalPages > 1 && (
-          <div className="mt-6">
-            <Pagination
-              currentPage={filters.page || 1}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        )}
       </div>
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={filters.page || 1}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
       <AlertDialog
         open={deleteDialog.isOpen}
         onOpenChange={(open) => !open && cancelDelete()}
       >
-        <AlertDialogContent>
+        <AlertDialogContent className="rounded-2xl border-border bg-card shadow-none">
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
@@ -146,10 +147,12 @@ const BlogsManagement = () => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-xl border-border bg-card hover:bg-muted shadow-none">
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction
               onClick={confirmDelete}
-              className="bg-red-600 hover:bg-red-700"
+              className="rounded-xl bg-rose-600 hover:bg-rose-700 text-white shadow-none"
             >
               Delete
             </AlertDialogAction>

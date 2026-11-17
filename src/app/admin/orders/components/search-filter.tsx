@@ -1,5 +1,6 @@
 import React from "react";
-import { RefreshCw, Search } from "lucide-react";
+import { RefreshCw, Search, Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface SearchFiltersProps {
   searchQuery: string;
@@ -10,6 +11,15 @@ interface SearchFiltersProps {
   isLoading: boolean;
 }
 
+const STATUS_OPTIONS = [
+  { value: "all", label: "All" },
+  { value: "Pending", label: "Pending" },
+  { value: "Processing", label: "Processing" },
+  { value: "Shipped", label: "Shipped" },
+  { value: "Delivered", label: "Delivered" },
+  { value: "Cancelled", label: "Cancelled" },
+];
+
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   searchQuery,
   filterStatus,
@@ -17,50 +27,77 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   onFilterChange,
   onRefresh,
   isLoading,
-}) => (
-  <div className="mb-6 sm:flex sm:items-center sm:justify-between">
+}) => {
+  const handleStatusClick = (status: string) => {
+    if (status === "all") {
+      onFilterChange("all");
+    } else if (filterStatus === status) {
+      // Click again to unclick / reset to all
+      onFilterChange("all");
+    } else {
+      onFilterChange(status);
+    }
+  };
 
-    <div className="flex flex-col gap-3 mt-3 sm:mt-0 sm:flex-row">
-      <div className="relative">
-        <input
-          type="text"
-          placeholder="Search by customer name or order ID..."
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          className="block w-full py-2 pl-10 pr-3 text-base border border-gray-300 rounded-md focus:outline-none sm:text-sm"
-        />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <Search className="w-4 h-4 text-gray-400" />
+  return (
+    <div className="mb-6 space-y-3">
+      {/* Search Input & Refresh Button */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative flex-1 max-w-lg">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <input
+            type="text"
+            placeholder="Search by customer name or order ID..."
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="h-11 w-full rounded-xl border border-border bg-card pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground shadow-none outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
         </div>
-      </div>
 
-      <div className="relative">
-        <select
-          className="block w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-md focus:outline-none sm:text-sm"
-          value={filterStatus}
-          onChange={(e) => onFilterChange(e.target.value)}
+        <button
+          type="button"
+          onClick={onRefresh}
+          disabled={isLoading}
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-medium text-foreground shadow-none transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer shrink-0"
         >
-          <option value="all">All Statuses</option>
-          <option value="Pending">Pending</option>
-          <option value="Processing">Processing</option>
-          <option value="Shipped">Shipped</option>
-          <option value="Delivered">Delivered</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
+          <RefreshCw className={cn("h-4 w-4", isLoading && "animate-spin")} />
+          <span>Refresh</span>
+        </button>
       </div>
 
-      <button
-        onClick={onRefresh}
-        disabled={isLoading}
-        className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        <RefreshCw
-          className={`mr-2 h-4 w-4 ${isLoading ? "animate-spin" : ""}`}
-        />
-        Refresh
-      </button>
+      {/* Status Buttons below Search */}
+      <div className="flex flex-wrap items-center gap-2 pt-1">
+        <span className="text-xs font-medium text-muted-foreground mr-1 hidden sm:inline">
+          Status:
+        </span>
+        {STATUS_OPTIONS.map((status) => {
+          const isActive =
+            status.value === "all"
+              ? filterStatus === "all" || !filterStatus
+              : filterStatus === status.value;
+
+          return (
+            <button
+              key={status.value}
+              type="button"
+              onClick={() => handleStatusClick(status.value)}
+              className={cn(
+                "inline-flex h-9 items-center gap-1.5 rounded-lg px-3.5 text-xs font-semibold transition-all cursor-pointer select-none",
+                isActive
+                  ? "bg-forest text-white border border-forest shadow-none"
+                  : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground border border-border shadow-none"
+              )}
+            >
+              {status.label}
+              {isActive && status.value !== "all" && (
+                <Check className="h-3.5 w-3.5 ml-0.5 opacity-80" />
+              )}
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default SearchFilters;

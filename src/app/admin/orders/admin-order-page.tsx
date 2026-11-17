@@ -39,7 +39,7 @@ export default function AdminOrdersPage() {
       page: pagination.page,
       page_size: pagination.pageSize,
       search: debouncedSearchQuery?.trim() || "",
-      status: filterStatus === "all" ? "" : filterStatus,
+      order_status: filterStatus === "all" ? "" : filterStatus,
       ordering: `${sort.direction === "desc" ? "-" : ""}${sort.column}`,
     }),
     [pagination, debouncedSearchQuery, filterStatus, sort]

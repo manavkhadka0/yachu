@@ -21,7 +21,8 @@ export const ordersApi = {
       // Add other filters
       Object.entries(filters).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== "") {
-          params.append(key, String(value));
+          const paramKey = key === "status" ? "order_status" : key;
+          params.append(paramKey, String(value));
         }
       });
 

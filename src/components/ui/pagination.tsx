@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PaginationProps {
   count?: number;
@@ -13,6 +14,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
   showFirstLast?: boolean;
   maxVisiblePages?: number;
+  className?: string;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -21,6 +23,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   showFirstLast = true,
   maxVisiblePages = 7,
+  className,
 }) => {
   if (totalPages <= 1) {
     return null;
@@ -61,7 +64,11 @@ const Pagination: React.FC<PaginationProps> = ({
       }
     }
 
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    const pages = [];
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    return pages;
   };
 
   const visiblePages = getVisiblePages();
@@ -69,27 +76,25 @@ const Pagination: React.FC<PaginationProps> = ({
   const showEndEllipsis = visiblePages[visiblePages.length - 1] < totalPages - 1;
 
   const buttonClass = (isActive: boolean, isDisabled: boolean = false) =>
-    `inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-all duration-200 border rounded-lg ${
+    `inline-flex items-center justify-center w-9 h-9 text-xs sm:text-sm font-medium transition-colors border rounded-lg cursor-pointer ${
       isDisabled
-        ? "text-gray-400 bg-gray-100 border-gray-200 cursor-not-allowed"
+        ? "text-muted-foreground/50 bg-muted/40 border-border cursor-not-allowed"
         : isActive
-        ? "text-white bg-primary"
-        : "text-gray-700 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md"
+        ? "text-white bg-forest border-forest shadow-none"
+        : "text-foreground bg-card border-border hover:bg-muted shadow-none"
     }`;
 
   const navButtonClass = (isDisabled: boolean) =>
-    `inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-200 border rounded-lg ${
+    `inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium transition-colors border rounded-lg shadow-none cursor-pointer ${
       isDisabled
-        ? "text-gray-400 bg-gray-100 border-gray-200 cursor-not-allowed"
-        : "text-gray-700 bg-white border-gray-300 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md"
+        ? "text-muted-foreground/50 bg-muted/40 border-border cursor-not-allowed"
+        : "text-foreground bg-card border-border hover:bg-muted"
     }`;
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-20">
-      
-
+    <div className={cn("flex flex-col items-center gap-4 mt-6", className)}>
       {/* Pagination controls */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         {/* First page button */}
         {showFirstLast && currentPage > 1 && (
           <button
@@ -122,8 +127,8 @@ const Pagination: React.FC<PaginationProps> = ({
               1
             </button>
             {showStartEllipsis && (
-              <div className="flex items-center justify-center w-10 h-10">
-                <MoreHorizontal className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-center w-9 h-9">
+                <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
               </div>
             )}
           </>
@@ -145,8 +150,8 @@ const Pagination: React.FC<PaginationProps> = ({
         {!visiblePages.includes(totalPages) && (
           <>
             {showEndEllipsis && (
-              <div className="flex items-center justify-center w-10 h-10">
-                <MoreHorizontal className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-center w-9 h-9">
+                <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
               </div>
             )}
             <button
@@ -182,12 +187,12 @@ const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       {/* Mobile-friendly quick jump */}
-      <div className="flex items-center gap-2 text-xs text-gray-500 sm:hidden">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground sm:hidden">
         <span>Jump to:</span>
         <select
           value={currentPage}
           onChange={(e) => onPageChange(Number(e.target.value))}
-          className="px-2 py-1 text-xs border border-gray-300 rounded bg-white"
+          className="px-2 py-1 text-xs border border-border rounded-lg bg-card text-foreground shadow-none outline-none"
         >
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <option key={page} value={page}>
