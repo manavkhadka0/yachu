@@ -157,7 +157,26 @@ export function sanitizeHtmlContent(
   };
 
   try {
-    let sanitized = DOMPurify.sanitize(htmlContent, dompurifyConfig);
+    let sanitized = htmlContent;
+
+    if (typeof window !== "undefined") {
+      const purify =
+        typeof DOMPurify.sanitize === "function"
+          ? DOMPurify
+          : typeof DOMPurify === "function"
+          ? DOMPurify(window)
+          : null;
+
+      if (purify && typeof purify.sanitize === "function") {
+        sanitized = purify.sanitize(htmlContent, dompurifyConfig);
+      }
+    } else {
+      // Server-side (SSR / SSG): strip unsafe script tags and inline event handlers
+      sanitized = htmlContent
+        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+        .replace(/\son\w+\s*=\s*(["'])?[^"'>]+(\1)?/gi, "")
+        .replace(/javascript:/gi, "");
+    }
 
     // Post-Processing to ensure proper list styling if enabled
     if (config.enableListStyling) {
@@ -167,8 +186,7 @@ export function sanitizeHtmlContent(
     return sanitized;
   } catch (error) {
     console.error("DOMPurify sanitization error:", error);
-    // Return empty string on error for safety
-    return "";
+    return htmlContent;
   }
 }
 

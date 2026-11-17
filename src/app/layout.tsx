@@ -41,6 +41,7 @@ const devanagari = Noto_Serif_Devanagari({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yachunepal.com"),
   title: "Yachu Hair Oil - Made in Nepal with 33 Ingredients",
   description:
     "Are you suffering from hair loss, dandruff, or baldness? Try Yachuhair oil, made in Nepal with 33 Ingredients for healthier, stronger hair.",
