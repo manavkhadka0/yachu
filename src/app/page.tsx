@@ -42,7 +42,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       <HeroSection onOrder={handleOrder} />
-      <DashainDhamaka onOrder={handleOrder} />
+      {/* <DashainDhamaka onOrder={handleOrder} /> */}
       <YachuHairOilHowToUse />
       <BeforeAfter onOrder={handleOrder} />
       <VideoStories />

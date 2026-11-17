@@ -1,7 +1,7 @@
 "use client";
 
 import ProductShowcase from "@/components/product/product-showcase";
-import DashainDhamaka from "@/components/home/DashainDhamaka";
+// import DashainDhamaka from "@/components/home/DashainDhamaka";
 import YachuHairOilHowToUse from "@/components/home/YachuHairOilHowToUse";
 import { CheckoutModal } from "@/components/popover/CheckoutModal";
 import { useProducts } from "@/hooks/use-products";
@@ -13,7 +13,7 @@ export default function ProductsPage() {
 
   return (
     <div className="flex flex-col">
-      <DashainDhamaka onOrder={handleOrder} />
+      {/* <DashainDhamaka onOrder={handleOrder} /> */}
 
       <ProductShowcase products={products} isLoading={isLoading} error={error} />
 
