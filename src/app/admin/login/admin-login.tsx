@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2, Lock, Mail, AlertCircle, Shield } from "lucide-react";
+import { Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
 import posthog from "posthog-js";
 
 interface FormData {
@@ -25,6 +25,7 @@ export default function AdminLogin() {
     email: '',
     password: ''
   });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -36,18 +37,18 @@ export default function AdminLogin() {
         const authStatus: string | null = localStorage.getItem('adminAuthenticated');
         const authTime: string | null = localStorage.getItem('adminAuthTime');
         const currentTime: number = Date.now();
-        
+
         // Check if auth is valid and not expired
         const SESSION_TIMEOUT: number = 8 * 60 * 60 * 1000; // 8 hours
-        const isValidAuth: boolean = authStatus === 'true' && 
-                           authTime !== null && 
-                           (currentTime - parseInt(authTime)) < SESSION_TIMEOUT;
+        const isValidAuth: boolean = authStatus === 'true' &&
+          authTime !== null &&
+          (currentTime - parseInt(authTime)) < SESSION_TIMEOUT;
 
         if (isValidAuth) {
           router.push('/admin/orders');
           return { isValid: true, shouldRedirect: true };
         }
-        
+
         return { isValid: false, shouldRedirect: false };
       } catch (error) {
         console.error('Auth check failed:', error);
@@ -85,7 +86,7 @@ export default function AdminLogin() {
       }
 
       await new Promise<void>(resolve => setTimeout(resolve, 1000));
-      
+
       // Use environment variables instead of hardcoded credentials
       if (formData.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && formData.password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
         const currentTime: number = Date.now();
@@ -130,7 +131,7 @@ export default function AdminLogin() {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter' && !isLoading) {
       // Create a synthetic form event for handleLogin
       const form = e.currentTarget.form;
@@ -144,67 +145,83 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-4 text-center">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-primary">
-            <Shield className="h-10 w-10 text-primary-foreground" />
-          </div>
-          <div className="space-y-2">
-            <CardTitle className="text-3xl font-bold">Admin Portal</CardTitle>
-            <CardDescription>
-              Secure access to admin panel
-            </CardDescription>
-          </div>
+    <div className="min-h-screen flex items-center justify-center bg-background p-4 sm:p-6">
+      <Card className="w-full max-w-md rounded-2xl border border-border bg-card shadow-none">
+        <CardHeader className="space-y-1.5 text-center px-6 pt-8 pb-4">
+          <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+            Admin Portal
+          </CardTitle>
+          <CardDescription className="text-sm text-muted-foreground">
+            Enter your credentials to access the admin panel
+          </CardDescription>
         </CardHeader>
-        
-        <CardContent className="space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  className="pl-10"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  onKeyPress={handleKeyPress}
-                  required
-                  disabled={isLoading}
-                  autoComplete="username"
-                />
-              </div>
+
+        <CardContent className="px-6 pb-8 pt-2">
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div className="space-y-2 text-left">
+              <Label
+                htmlFor="email"
+                className="block text-left text-sm font-medium text-foreground"
+              >
+                Email
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                className="h-12 md:h-12 w-full rounded-xl border-input bg-background px-4 text-base shadow-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+                value={formData.email}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                required
+                disabled={isLoading}
+                autoComplete="username"
+              />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-2 text-left">
+              <Label
+                htmlFor="password"
+                className="block text-left text-sm font-medium text-foreground"
+              >
+                Password
+              </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className="pl-10"
+                  className="h-12 md:h-12 w-full rounded-xl border-input bg-background pl-4 pr-12 sm:pr-12 text-base shadow-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
                   value={formData.password}
                   onChange={handleInputChange}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   required
                   disabled={isLoading}
                   autoComplete="current-password"
                 />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-0 top-0 flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors hover:text-foreground cursor-pointer focus:outline-none"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
               </div>
             </div>
 
             {/* Error Message */}
             {error && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" className="rounded-xl shadow-none">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
+                <AlertDescription className="text-sm">{error}</AlertDescription>
               </Alert>
             )}
 
@@ -212,8 +229,7 @@ export default function AdminLogin() {
             <Button
               type="submit"
               disabled={isLoading || !formData.email.trim() || !formData.password.trim()}
-              className="w-full"
-              size="lg"
+              className="h-12 md:h-12 w-full cursor-pointer rounded-xl bg-forest text-base font-medium text-white shadow-none transition-all hover:bg-forest/90 active:scale-[0.99] mt-2"
             >
               {isLoading ? (
                 <>
@@ -221,21 +237,15 @@ export default function AdminLogin() {
                   Signing in...
                 </>
               ) : (
-                <>
-                  <Lock className="mr-2 h-4 w-4" />
-                  Sign In
-                </>
+                "Sign In"
               )}
             </Button>
           </form>
 
           {/* Footer Warning */}
-          <Alert >
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription className="text-xs">
-              Authorized personnel only. All access is monitored.
-            </AlertDescription>
-          </Alert>
+          <p className="pt-6 text-center text-xs text-muted-foreground">
+            Authorized personnel only. All access is monitored.
+          </p>
         </CardContent>
       </Card>
     </div>
