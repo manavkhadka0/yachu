@@ -15,6 +15,7 @@ import {
   yachuLogoPath,
   yachuDescription,
   YACHU_LOCATIONS,
+  YACHU_INDIA_LOCATIONS,
 } from "@/constants/constant";
 
 const SOCIAL_LINKS = [
@@ -35,6 +36,19 @@ const SUPPORT_LINKS = [
   { name: "Shipping Policy", href: "/contact" },
   { name: "Terms of Service", href: "/" },
   { name: "Proposal", href: "/proposal" },
+];
+
+const FOOTER_LOCATION_LINKS = [
+  ...YACHU_LOCATIONS.map(({ label, slug }) => ({
+    label,
+    href: `/buy-yachu-hair-oil/${slug}`,
+    external: false,
+  })),
+  ...YACHU_INDIA_LOCATIONS.map(({ label, href }) => ({
+    label,
+    href,
+    external: true,
+  })),
 ];
 
 const Footer = () => {
@@ -87,11 +101,13 @@ const Footer = () => {
             </h3>
           </div>
           <ul className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
-            {YACHU_LOCATIONS.map(({ label, slug }) => (
-              <li key={slug} className="flex items-center gap-1.5">
+            {FOOTER_LOCATION_LINKS.map(({ label, href, external }) => (
+              <li key={href} className="flex items-center gap-1.5">
                 <MapPinIcon size={12} className="shrink-0 text-gold/60" />
                 <Link
-                  href={`/buy-yachu-hair-oil/${slug}`}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   className="text-sm text-cream/70 transition-colors hover:text-gold"
                 >
                   Buy Yachu Hair Oil in {label}

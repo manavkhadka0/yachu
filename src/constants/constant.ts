@@ -57,3 +57,14 @@ export const YACHU_LOCATIONS: { label: string; slug: string }[] = [
   { label: "Biratnagar", slug: "biratnagar" },
   { label: "Jhamsikhel", slug: "jhamsikhel" },
 ];
+
+// India locations – external SEO backlinks to yachu.in
+export const YACHU_INDIA_LOCATIONS: { label: string; href: string }[] = [
+  { label: "India", href: "https://yachu.in" },
+  { label: "Siliguri", href: "https://yachu.in/locations/siliguri" },
+  { label: "Darjeeling", href: "https://yachu.in/locations/darjeeling" },
+  { label: "Kalimpong", href: "https://yachu.in/locations/kalimpong" },
+  { label: "Kurseong", href: "https://yachu.in/locations/kurseong" },
+  { label: "Mirik", href: "https://yachu.in/locations/mirik" },
+  { label: "Jalpaiguri", href: "https://yachu.in/locations/jalpaiguri" },
+];
