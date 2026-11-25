@@ -1,8 +1,9 @@
-import { ShoppingCartIcon, Plus, Minus, Gift } from "lucide-react";
+import { ShoppingCartIcon, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Card, CardContent } from "@/components/ui/card";
 import ProductCart from "@/components/product/ProductCart";
+import { QuantitySelector } from "@/components/product/QuantitySelector";
 import type { TProduct } from "@/types/product";
 import useProductCart from "@/store/zustand";
 import { getProductPricing } from "@/services/lib/utils";
@@ -176,30 +177,14 @@ export const ProductInfoSection = ({
             <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
               <div className="flex items-center gap-2 sm:gap-3 flex-1">
                 {/* Quantity selector */}
-                <div className="flex items-center justify-between gap-1 p-1 border border-border rounded-xl bg-muted/40 shrink-0 h-11 sm:h-12 px-1.5 sm:px-2">
-                  <Button
-                    type="button"
-                    onClick={onDecrease}
-                    variant="ghost"
-                    size="icon"
-                    disabled={quantity <= 1}
-                    className="h-8 w-8 rounded-lg flex-shrink-0 cursor-pointer disabled:opacity-30"
-                  >
-                    <Minus className="h-3.5 w-3.5" />
-                  </Button>
-                  <span className="w-7 sm:w-8 text-center font-bold text-sm sm:text-base text-foreground tabular-nums">
-                    {quantity}
-                  </span>
-                  <Button
-                    type="button"
-                    onClick={onIncrease}
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 rounded-lg flex-shrink-0 cursor-pointer"
-                  >
-                    <Plus className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
+                <QuantitySelector
+                  quantity={quantity}
+                  onDecrease={onDecrease}
+                  onIncrease={onIncrease}
+                  onSetQuantity={onSelectQuantity}
+                  itemLabel={product.title}
+                  variant="details"
+                />
 
                 {/* Add to Cart button */}
                 <Button

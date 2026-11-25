@@ -48,6 +48,10 @@ export function getItemOriginalPrice(
   if (pack && pack.tiers.length > 0) {
     return pack.tiers[0].originalPrice;
   }
+  const basePrice = DASHAIN_UNIT_PRICE[product.slug];
+  if (basePrice !== undefined) {
+    return basePrice;
+  }
   return product.price;
 }
 

@@ -3,8 +3,9 @@
 import { calculateTotalPrice, getProductPricing } from "@/services/lib/utils";
 import useProductCart from "@/store/zustand";
 import { Button } from "../ui/button";
-import { Minus, Plus, X, ShoppingBag, ArrowRight } from "lucide-react";
+import { X, ShoppingBag, ArrowRight } from "lucide-react";
 import { CheckoutModal } from "../popover/CheckoutModal";
+import { QuantitySelector } from "./QuantitySelector";
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +28,7 @@ interface ProductCartProps {
 }
 
 const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
-  const { cart, increaseCount, decreaseCount, removeItem } = useProductCart();
+  const { cart, increaseCount, decreaseCount, setCount, removeItem } = useProductCart();
   const [openCheckoutForm, setOpenCheckoutForm] = useState(false);
   const [deliveryLocation, setDeliveryLocation] = useState<
     "inside" | "outside"
@@ -144,27 +145,14 @@ const ProductCart = ({ onCloseSheet }: ProductCartProps) => {
                               </div>
 
                               {/* Quantity Controls */}
-                              <div className="flex items-center gap-3 mt-2">
-                                <Button
-                                  variant="outline"
-                                  size="icon"
-                                  className="h-8 w-8 rounded-xl flex-shrink-0"
-                                  onClick={() => decreaseCount(product.id)}
-                                >
-                                  <Minus className="h-3 w-3" />
-                                </Button>
-                                <span className="w-8 text-center font-medium text-foreground flex-shrink-0">
-                                  {count}
-                                </span>
-                                <Button
-                                  variant="outline"
-                                  size="icon"
-                                  className="h-8 w-8 rounded-xl flex-shrink-0"
-                                  onClick={() => increaseCount(product.id)}
-                                >
-                                  <Plus className="h-3 w-3" />
-                                </Button>
-                              </div>
+                              <QuantitySelector
+                                quantity={count}
+                                onDecrease={() => decreaseCount(product.id)}
+                                onIncrease={() => increaseCount(product.id)}
+                                onSetQuantity={(qty) => setCount(product.id, qty)}
+                                itemLabel={product.title}
+                                variant="cart"
+                              />
                             </div>
                           </CardContent>
                         </Card>

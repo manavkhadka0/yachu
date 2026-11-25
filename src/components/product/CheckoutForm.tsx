@@ -9,8 +9,6 @@ import {
   Loader2,
   CheckCircle2,
   Banknote,
-  Minus,
-  Plus,
   ChevronDown,
   ShoppingBag,
   Gift,
@@ -19,7 +17,12 @@ import { checkoutFormSchema } from "@/types/zod.schema";
 import RHFInput from "../react-hook-form/RHFInput";
 import RHFTextarea from "../react-hook-form/RHFTextarea";
 import useProductCart from "@/store/zustand";
-import { calculateTotalPrice, getItemUnitPrice } from "@/services/lib/utils";
+import {
+  calculateTotalPrice,
+  getItemUnitPrice,
+  getProductPricing,
+} from "@/services/lib/utils";
+import { QuantitySelector } from "./QuantitySelector";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -57,7 +60,7 @@ const CheckoutForm = ({
   flushSubmit = false,
   isDashainDhamaka = false,
 }: CheckoutFormProps) => {
-  const { cart, clearCart, addToCart, increaseCount, decreaseCount } =
+  const { cart, clearCart, addToCart, increaseCount, decreaseCount, setCount } =
     useProductCart();
 
   // Keep products on the correct price (Dashain tier/offer or regular) matching their quantity
@@ -340,51 +343,47 @@ const CheckoutForm = ({
             {/* Order summary */}
             <div className="rounded-2xl bg-cream p-3.5">
               <ul className="space-y-3">
-                {cart.map(({ product, count }) => (
-                  <li key={product.id} className="flex items-center gap-3">
-                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-white">
-                      <img
-                        src={product.image1}
-                        alt=""
-                        width="48"
-                        height="48"
-                        className="h-full w-full object-contain p-1"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-base font-semibold text-foreground">
-                        {product.title}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Rs. {product.price.toLocaleString()}
-                        {count > 1 ? ` × ${count} = Rs. ${(product.price * count).toLocaleString()}` : ""}
-                      </p>
-                    </div>
-                    <div className="flex shrink-0 items-center rounded-full border bg-white">
-                      <button
-                        type="button"
-                        aria-label={`Decrease quantity of ${product.title}`}
-                        onClick={() => decreaseCount(product.id)}
-                        disabled={isSubmitting || count <= 1}
-                        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:cursor-not-allowed disabled:opacity-30"
-                      >
-                        <Minus className="h-4 w-4" />
-                      </button>
-                      <span className="w-6 text-center text-base font-bold tabular-nums">
-                        {count}
-                      </span>
-                      <button
-                        type="button"
-                        aria-label={`Increase quantity of ${product.title}`}
-                        onClick={() => increaseCount(product.id)}
+                {cart.map(({ product, count }) => {
+                  const pricing = getProductPricing(product, count);
+                  return (
+                    <li key={product.id} className="flex items-center gap-3">
+                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-white">
+                        <img
+                          src={product.image1}
+                          alt=""
+                          width="48"
+                          height="48"
+                          className="h-full w-full object-contain p-1"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-base font-semibold text-foreground">
+                          {product.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          Rs. {pricing.unitPrice.toLocaleString()}
+                          {pricing.hasDiscount && (
+                            <span className="ml-1.5 line-through opacity-60">
+                              Rs. {pricing.originalPrice.toLocaleString()}
+                            </span>
+                          )}
+                          {count > 1
+                            ? ` × ${count} = Rs. ${pricing.totalPrice.toLocaleString()}`
+                            : ""}
+                        </p>
+                      </div>
+                      <QuantitySelector
+                        quantity={count}
+                        onDecrease={() => decreaseCount(product.id)}
+                        onIncrease={() => increaseCount(product.id)}
+                        onSetQuantity={(qty) => setCount(product.id, qty)}
                         disabled={isSubmitting}
-                        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:opacity-30"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                        itemLabel={product.title}
+                        variant="checkout"
+                      />
+                    </li>
+                  );
+                })}
               </ul>
 
               {upsell && (

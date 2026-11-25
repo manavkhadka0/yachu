@@ -46,10 +46,15 @@ const StickyOrderBar = ({ onOrder }: StickyOrderBarProps) => {
             {HERO_OFFER.name} · Cash on Delivery
           </p>
           <p className="text-lg font-extrabold leading-tight text-foreground">
-            Rs. {HERO_OFFER.price.toLocaleString()}{" "}
-            <span className="text-xs font-medium text-muted-foreground line-through">
-              Rs. {HERO_OFFER.originalPrice.toLocaleString()}
-            </span>
+            Rs. {HERO_OFFER.price.toLocaleString()}
+            {HERO_OFFER.originalPrice > HERO_OFFER.price && (
+              <>
+                {" "}
+                <span className="text-xs font-medium text-muted-foreground line-through">
+                  Rs. {HERO_OFFER.originalPrice.toLocaleString()}
+                </span>
+              </>
+            )}
           </p>
         </div>
         <Button
