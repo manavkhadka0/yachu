@@ -36,7 +36,7 @@ import {
 } from "@/services/api/nps";
 import posthog from "posthog-js";
 import { toast } from "sonner";
-import { DASHAIN_PACKS, dashainUnitPrice } from "@/constants/offers";
+import { DASHAIN_PACKS, type OfferTier } from "@/constants/offers";
 
 interface CheckoutFormProps {
   onSuccess?: () => void;
@@ -75,27 +75,18 @@ const CheckoutForm = ({
     if (changed) addToCart(next);
   }, [cart, addToCart]);
 
-  // Offer the best-value pack when a pack product is below it
-  const upsell = cart
-    .map((item) => {
-      const pack = DASHAIN_PACKS.find((p) => p.slug === item.product.slug);
-      const best = pack?.tiers.find((t) => t.best);
-      return best && item.count < best.qty ? { item, best } : null;
-    })
-    .find((entry) => entry !== null);
-
-  const applyUpsell = () => {
-    if (!upsell) return;
+  // Apply the best-value pack to a specific cart item so each product's offer stays tied to its row
+  const applyUpsell = (productId: string, best: OfferTier, slug: string) => {
     posthog.capture("checkout_upsell_accepted", {
-      product_slug: upsell.item.product.slug,
-      quantity: upsell.best.qty,
+      product_slug: slug,
+      quantity: best.qty,
     });
     addToCart(
       cart.map((item) =>
-        item.product.id === upsell.item.product.id
+        String(item.product.id) === String(productId)
           ? {
-              product: { ...item.product, price: upsell.best.perPcs },
-              count: upsell.best.qty,
+              product: { ...item.product, price: best.perPcs },
+              count: best.qty,
             }
           : item
       )
@@ -345,67 +336,74 @@ const CheckoutForm = ({
               <ul className="space-y-3">
                 {cart.map(({ product, count }) => {
                   const pricing = getProductPricing(product, count);
+                  const pack = DASHAIN_PACKS.find(
+                    (p) => p.slug === product.slug
+                  );
+                  const best = pack?.tiers.find((t) => t.best);
+                  const showItemUpsell = best && count < best.qty;
+
                   return (
-                    <li key={product.id} className="flex items-center gap-3">
-                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-white">
-                        <img
-                          src={product.image1}
-                          alt=""
-                          width="48"
-                          height="48"
-                          className="h-full w-full object-contain p-1"
+                    <li key={product.id} className="space-y-2">
+                      <div className="flex items-center gap-2.5 sm:gap-3">
+                        <div className="h-11 w-11 shrink-0 overflow-hidden rounded-xl border bg-white sm:h-12 sm:w-12">
+                          <img
+                            src={product.image1}
+                            alt=""
+                            width="48"
+                            height="48"
+                            className="h-full w-full object-contain p-1"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="line-clamp-2 text-sm font-semibold leading-snug text-foreground sm:text-base">
+                            {product.title}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Rs. {pricing.unitPrice.toLocaleString()}
+                            {pricing.hasDiscount && (
+                              <span className="ml-1.5 line-through opacity-60">
+                                Rs. {pricing.originalPrice.toLocaleString()}
+                              </span>
+                            )}
+                            {count > 1
+                              ? ` × ${count} = Rs. ${pricing.totalPrice.toLocaleString()}`
+                              : ""}
+                          </p>
+                        </div>
+                        <QuantitySelector
+                          quantity={count}
+                          onDecrease={() => decreaseCount(product.id)}
+                          onIncrease={() => increaseCount(product.id)}
+                          onSetQuantity={(qty) => setCount(product.id, qty)}
+                          disabled={isSubmitting}
+                          itemLabel={product.title}
+                          variant="checkout"
                         />
                       </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="truncate text-base font-semibold text-foreground">
-                          {product.title}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          Rs. {pricing.unitPrice.toLocaleString()}
-                          {pricing.hasDiscount && (
-                            <span className="ml-1.5 line-through opacity-60">
-                              Rs. {pricing.originalPrice.toLocaleString()}
-                            </span>
-                          )}
-                          {count > 1
-                            ? ` × ${count} = Rs. ${pricing.totalPrice.toLocaleString()}`
-                            : ""}
-                        </p>
-                      </div>
-                      <QuantitySelector
-                        quantity={count}
-                        onDecrease={() => decreaseCount(product.id)}
-                        onIncrease={() => increaseCount(product.id)}
-                        onSetQuantity={(qty) => setCount(product.id, qty)}
-                        disabled={isSubmitting}
-                        itemLabel={product.title}
-                        variant="checkout"
-                      />
+
+                      {showItemUpsell && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            applyUpsell(product.id, best, product.slug)
+                          }
+                          disabled={isSubmitting}
+                          className="flex w-full cursor-pointer items-center gap-2 rounded-xl border border-gold/40 bg-gold/10 px-2.5 py-2 text-left transition-colors hover:bg-gold/20 sm:px-3"
+                        >
+                          <Gift className="h-4 w-4 shrink-0 text-gold" />
+                          <span className="min-w-0 flex-1 text-xs font-medium leading-snug text-forest sm:text-sm">
+                            Get {best.qty} &amp; save Rs.{" "}
+                            {(best.originalPrice - best.price).toLocaleString()}
+                          </span>
+                          <span className="shrink-0 rounded-full bg-forest px-2.5 py-1 text-[11px] font-bold text-cream sm:px-3 sm:text-xs">
+                            Get {best.qty}
+                          </span>
+                        </button>
+                      )}
                     </li>
                   );
                 })}
               </ul>
-
-              {upsell && (
-                <button
-                  type="button"
-                  onClick={applyUpsell}
-                  disabled={isSubmitting}
-                  className="mt-3 flex w-full cursor-pointer items-center gap-2.5 rounded-xl border border-gold/40 bg-gold/10 px-3 py-2.5 text-left transition-colors hover:bg-gold/20"
-                >
-                  <Gift className="h-5 w-5 shrink-0 text-gold" />
-                  <span className="min-w-0 flex-1 text-sm font-medium leading-snug text-forest">
-                    Get {upsell.best.qty} and save Rs.{" "}
-                    {(
-                      upsell.best.originalPrice - upsell.best.price
-                    ).toLocaleString()}
-                    {upsell.best.perk?.startsWith("Free") && " + free Facewash"}
-                  </span>
-                  <span className="shrink-0 rounded-full bg-forest px-3 py-1.5 text-xs font-bold text-cream">
-                    Get {upsell.best.qty}
-                  </span>
-                </button>
-              )}
 
               <div className="mt-3 flex items-baseline justify-between border-t border-border pt-3">
                 <span className="text-sm text-foreground">

@@ -63,9 +63,9 @@ export function QuantitySelector({
           aria-label={`Decrease quantity of ${itemLabel}`}
           onClick={onDecrease}
           disabled={disabled || quantity <= 1}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:cursor-not-allowed disabled:opacity-30"
+          className="flex h-9 w-8 cursor-pointer items-center justify-center rounded-full text-foreground disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-9"
         >
-          <Minus className="h-4 w-4" />
+          <Minus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
         <input
           type="text"
@@ -76,16 +76,16 @@ export function QuantitySelector({
           onChange={handleInputChange}
           onBlur={handleBlur}
           disabled={disabled}
-          className="w-10 bg-transparent text-center text-base font-bold tabular-nums text-foreground focus:outline-none"
+          className="w-8 bg-transparent text-center text-sm font-bold tabular-nums text-foreground focus:outline-none sm:w-9 sm:text-base"
         />
         <button
           type="button"
           aria-label={`Increase quantity of ${itemLabel}`}
           onClick={onIncrease}
           disabled={disabled}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-foreground disabled:opacity-30"
+          className="flex h-9 w-8 cursor-pointer items-center justify-center rounded-full text-foreground disabled:opacity-30 sm:h-10 sm:w-9"
         >
-          <Plus className="h-4 w-4" />
+          <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
       </div>
     );
